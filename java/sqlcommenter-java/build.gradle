@@ -1,0 +1,185 @@
+description = 'SQL commenter integration'
+
+apply plugin: 'com.github.sherter.google-java-format'
+apply plugin: 'idea'
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: "net.ltgt.errorprone"
+apply plugin: "jacoco"
+apply plugin: "signing"
+
+group = "com.google.cloud"
+version = "0.0.1" // CURRENT_VERSION
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    maven { url "https://plugins.gradle.org/m2/" }
+}
+
+jar.manifest {
+    attributes('Implementation-Title': name,
+            'Implementation-Version': version,
+            'Built-By': System.getProperty('user.name'),
+            'Built-JDK': System.getProperty('java.version'),
+            'Source-Compatibility': sourceCompatibility,
+            'Target-Compatibility': targetCompatibility)
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+        mavenLocal()
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+    dependencies {
+        classpath 'net.ltgt.gradle:gradle-errorprone-plugin:0.0.13'
+        classpath "gradle.plugin.com.github.sherter.google-java-format:google-java-format-gradle-plugin:0.7.1"
+    }
+}
+
+def opencensusVersion = '0.22.1'
+def errorProneVersion = '2.3.1'
+def findBugsJsr305Version = '3.0.2'
+
+dependencies {
+    compile "io.opencensus:opencensus-api:${opencensusVersion}"
+    runtime "io.opencensus:opencensus-impl:${opencensusVersion}"
+
+    compileOnly "com.google.code.findbugs:jsr305:${findBugsJsr305Version}"
+    compileOnly "com.google.errorprone:error_prone_annotations:${errorProneVersion}"
+
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.1.5.RELEASE'
+
+    compile 'org.hibernate:hibernate-core:5.4.3.Final'
+
+    testCompile 'junit:junit:4.12'
+    testCompile 'com.google.truth:truth:0.44'
+    testCompile 'org.mockito:mockito-core:1.9.5'
+    testCompile 'org.springframework.boot:spring-boot-starter-data-jpa:2.1.5.RELEASE'
+    testCompile 'org.springframework.boot:spring-boot-starter-test:2.1.5.RELEASE'
+    testCompile 'org.hsqldb:hsqldb:2.4.0'
+}
+
+compileJava {
+    // We suppress the "try" warning because it disallows managing an auto-closeable with
+    // try-with-resources without referencing the auto-closeable within the try block.
+    // We suppress the "processing" warning as suggested in
+    // https://groups.google.com/forum/#!topic/bazel-discuss/_R3A9TJSoPM
+    it.options.compilerArgs += ["-Xlint:all", "-Xlint:-try", "-Xlint:-processing"]
+    it.options.compilerArgs += ["-XepAllDisabledChecksAsWarnings", "-XepDisableWarningsInGeneratedCode"]
+
+    // MutableMethodReturnType can suggest returning Guava types from
+    // API methods (https://github.com/google/error-prone/issues/982).
+    it.options.compilerArgs += ["-Xep:MutableMethodReturnType:OFF"]
+
+    // ReturnMissingNullable conflicts with Checker Framework null analysis.
+    it.options.compilerArgs += ["-Xep:ReturnMissingNullable:OFF"]
+
+    // We currently don't use Var annotations.
+    it.options.compilerArgs += ["-Xep:Var:OFF"]
+
+    it.options.encoding = "UTF-8"
+    it.options.compilerArgs += ["-Xlint:-cast"]
+    it.options.compilerArgs += ["-Werror"]
+}
+
+// Google formatter works only on java8.
+if (JavaVersion.current().isJava8Compatible()) {
+    googleJavaFormat {
+        toolVersion '1.6'
+    }
+
+    afterEvaluate {  // Allow subproject to add more source sets.
+        tasks.googleJavaFormat {
+            source = sourceSets*.allJava
+            include '**/*.java'
+        }
+
+        tasks.verifyGoogleJavaFormat {
+            source = sourceSets*.allJava
+            include '**/*.java'
+        }
+    }
+}
+
+compileJava {
+    options.compilerArgs += ["-Xlint:none"]
+    options.encoding = "UTF-8"
+}
+
+signing {
+    required false
+    sign configurations.archives
+}
+
+javadoc.options {
+    encoding = 'UTF-8'
+    links 'https://docs.oracle.com/javase/8/docs/api/'
+}
+
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+uploadArchives {
+        repositories {
+            mavenDeployer {
+                beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+                def configureAuth = {
+                    if (rootProject.hasProperty('ossrhUsername') && rootProject.hasProperty('ossrhPassword')) {
+                        authentication(userName:rootProject.ossrhUsername, password: rootProject.ossrhPassword)
+                    }
+                }
+
+                repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/", configureAuth)
+
+                snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/", configureAuth)
+
+                pom.project {
+                    name "sqlcommenter-hibernate"
+                    packaging 'jar'
+                    description project.description
+                    url 'https://github.com/google/sqlcommenter'
+
+                    scm {
+                        connection 'scm:svn:https://github.com/google/sqlcommenter'
+                        developerConnection 'scm:git:git@github.com/google/sqlcommenter'
+                        url 'https://github.com/google/sqlcommenter'
+                    }
+
+                    licenses {
+                        license {
+                            name 'The Apache License, Version 2.0'
+                            url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        }
+                    }
+
+                    developers {
+                        developer {
+                            id 'com.google.cloud'
+                            name 'Google Developers'
+                            email 'sqlcommenter@googlegroups.com'
+                            url 'cloud.google.com'
+                            // https://issues.gradle.org/browse/GRADLE-2719
+                            organization = 'SQLCommenter Authors'
+                            organizationUrl 'https://google.com'
+                        }
+                    }
+                }
+            }
+        }
+    }
