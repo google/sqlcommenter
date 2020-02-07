@@ -15,8 +15,7 @@
 # limitations under the License.
 
 from flask import Flask
-
-from sqlcommenter.flask import get_flask_info
+from google.cloud.sqlcommenter.flask import get_flask_info
 
 app = Flask(__name__)
 

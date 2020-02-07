@@ -19,10 +19,9 @@
 from __future__ import absolute_import
 
 import sqlalchemy
-
-from sqlcommenter import generate_sql_comment
-from sqlcommenter.flask import get_flask_info
-from sqlcommenter.opencensus import get_opencensus_values
+from google.cloud.sqlcommenter import generate_sql_comment
+from google.cloud.sqlcommenter.flask import get_flask_info
+from google.cloud.sqlcommenter.opencensus import get_opencensus_values
 
 
 def BeforeExecuteFactory(

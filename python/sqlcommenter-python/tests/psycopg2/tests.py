@@ -18,9 +18,8 @@ from unittest import TestCase
 
 import psycopg2.extensions
 from forbiddenfruit import curse
-
-from sqlcommenter import url_quote
-from sqlcommenter.psycopg2.extension import CommenterCursorFactory
+from google.cloud.sqlcommenter import url_quote
+from google.cloud.sqlcommenter.psycopg2.extension import CommenterCursorFactory
 
 from ..compat import mock
 from ..opencensus_mock import mock_opencensus_tracer
@@ -89,27 +88,27 @@ class FlaskTests(Psycopg2TestCase):
         'route': '/',
     }
 
-    @mock.patch('sqlcommenter.psycopg2.extension.get_flask_info', return_value=flask_info)
+    @mock.patch('google.cloud.sqlcommenter.psycopg2.extension.get_flask_info', return_value=flask_info)
     def test_all_data(self, get_info):
         self.assertSQL(
             "SELECT 1; /*controller='c',framework='flask',route='/'*/",
         )
 
-    @mock.patch('sqlcommenter.psycopg2.extension.get_flask_info', return_value=flask_info)
+    @mock.patch('google.cloud.sqlcommenter.psycopg2.extension.get_flask_info', return_value=flask_info)
     def test_framework_disabled(self, get_info):
         self.assertSQL(
             "SELECT 1; /*controller='c',route='/'*/",
             with_framework=False,
         )
 
-    @mock.patch('sqlcommenter.psycopg2.extension.get_flask_info', return_value=flask_info)
+    @mock.patch('google.cloud.sqlcommenter.psycopg2.extension.get_flask_info', return_value=flask_info)
     def test_controller_disabled(self, get_info):
         self.assertSQL(
             "SELECT 1; /*framework='flask',route='/'*/",
             with_controller=False,
         )
 
-    @mock.patch('sqlcommenter.psycopg2.extension.get_flask_info', return_value=flask_info)
+    @mock.patch('google.cloud.sqlcommenter.psycopg2.extension.get_flask_info', return_value=flask_info)
     def test_route_disabled(self, get_info):
         self.assertSQL(
             "SELECT 1; /*controller='c',framework='flask'*/",

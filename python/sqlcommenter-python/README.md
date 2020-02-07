@@ -26,7 +26,7 @@ Add the provided Django middleware to your Django project's settings. All querie
 
 ```python
 MIDDLEWARE = [
-  'sqlcommenter.django.middleware.SqlCommenter',
+  'google.cloud.sqlcommenter.django.middleware.SqlCommenter',
   ...
 ]
 ```
@@ -41,7 +41,7 @@ which when viewed say on Postgresql logs, produces
 If you want the opencensus attributes included, you must set the
 ``SQLCOMMENTER_WITH_OPENCENSUS`` setting to ``True`` and include
 ``'opencensus.ext.django.middleware.OpencensusMiddleware'`` before
-``'sqlcommenter.django.middleware.SqlCommenter',`` in your ``MIDDLEWARE``
+``'google.cloud.sqlcommenter.django.middleware.SqlCommenter',`` in your ``MIDDLEWARE``
 setting.
 
 ### SQLAlchemy
@@ -50,7 +50,7 @@ Attach the provided event listener to the `before_cursor_execute` event of the d
 
 ```python
 import sqlalchemy
-from sqlcommenter.sqlalchemy.executor import BeforeExecuteFactory
+from google.cloud.sqlcommenter.sqlalchemy.executor import BeforeExecuteFactory
 
 engine = sqlalchemy.create_engine(...)
 listener = BeforeExecuteFactory(with_db_driver=True, with_db_framework=True, with_opencensus=True)
@@ -72,7 +72,7 @@ Use the provided cursor factory to generate database cursors. All queries execut
 
 ```python
 import psycopg2
-from sqlcommenter.psycopg2.extension import CommenterCursorFactory
+from google.cloud.sqlcommenter.psycopg2.extension import CommenterCursorFactory
 
 cursor_factory = CommenterCursorFactory(
     with_db_driver=True, with_dbapi_level=True, with_dbapi_threadsafety=True,
