@@ -18,8 +18,7 @@ import json
 
 import flask
 import pytest
-
-from sqlcommenter.flask import get_flask_info
+from google.cloud.sqlcommenter.flask import get_flask_info
 
 from .app import app
 

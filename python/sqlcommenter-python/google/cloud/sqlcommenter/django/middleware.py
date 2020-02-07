@@ -17,9 +17,8 @@
 import django
 from django.db import connection
 from django.db.backends.utils import CursorDebugWrapper
-
-from sqlcommenter import generate_sql_comment
-from sqlcommenter.opencensus import get_opencensus_values
+from google.cloud.sqlcommenter import generate_sql_comment
+from google.cloud.sqlcommenter.opencensus import get_opencensus_values
 
 django_version = django.get_version()
 

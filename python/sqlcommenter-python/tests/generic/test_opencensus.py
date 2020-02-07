@@ -17,8 +17,7 @@
 from unittest import TestCase
 
 import six
-
-from sqlcommenter.opencensus import get_opencensus_values
+from google.cloud.sqlcommenter.opencensus import get_opencensus_values
 
 from ..compat import mock
 from ..opencensus_mock import mock_opencensus_tracer
@@ -26,7 +25,7 @@ from ..opencensus_mock import mock_opencensus_tracer
 
 class OpenCensusTests(TestCase):
     def test_not_installed(self):
-        with mock.patch('sqlcommenter.opencensus.execution_context', new=None):
+        with mock.patch('google.cloud.sqlcommenter.opencensus.execution_context', new=None):
             with six.assertRaisesRegex(self, ImportError, 'opencensus is not installed'):
                 get_opencensus_values()
 

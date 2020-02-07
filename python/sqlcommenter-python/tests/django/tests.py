@@ -19,8 +19,7 @@ from django.db import connection
 from django.http import HttpRequest
 from django.test import TestCase, override_settings
 from django.urls import resolve, reverse
-
-from sqlcommenter.django.middleware import SqlCommenter
+from google.cloud.sqlcommenter.django.middleware import SqlCommenter
 
 from ..opencensus_mock import mock_opencensus_tracer
 from . import views
