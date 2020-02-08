@@ -17,7 +17,7 @@
 from setuptools import find_packages, setup
 
 setup(
-    name='google.cloud.sqlcommenter',
+    name='google-cloud-sqlcommenter',
     version='0.1',
     author='Google Developers',
     author_email='sqlcommenter@googlegroups.com',

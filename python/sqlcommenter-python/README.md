@@ -6,16 +6,16 @@ Python modules for popular projects that add meta info to your SQL queries as co
  * [SQLAlchemy](#sqlalchemy)
  * [Psycopg2](#psycopg2)
 
-## Install
+## Local Install
 
 ```shell
-pipenv install sqlcommenter
+pip3 install --user .
 ```
 
 If you'd like to record some OpenCensus information as well, just install it:
 
 ```shell
-pipenv install opencensus
+pip3 install opencensus
 ```
 
 ## Usage
