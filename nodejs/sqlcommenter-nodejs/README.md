@@ -15,7 +15,7 @@ It supports Node v6 and above to use ES6 features.
 Go into either of the packages [packages/knex](./packages/knex) or [packages/sequelize](./packages/sequelize)
 and then you can run respectively
 
-Middleware|Command
----|---
-Knex.js|`npm install --save @sqlcommenter/knex`
-Sequelize.js|`npm install --save @sqlcommenter/sequelize`
+Middleware|Command|URL
+---|---|---
+Knex.js|`npm install @google-cloud/sqlcommenter-knex`|https://www.npmjs.com/package/@google-cloud/sqlcommenter-knex
+Sequelize.js|`npm install @google-cloud/sqlcommenter-sequelize`|https://www.npmjs.com/package/@google-cloud/sqlcommenter-sequelize

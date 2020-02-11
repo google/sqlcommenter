@@ -1,7 +1,7 @@
 {
-  "name": "@sqlcommenter/knex",
+  "name": "@google-cloud/sqlcommenter-sequelize",
   "version": "0.0.1",
-  "description": "Middleware and wrappers to correlate SQL statements from Knex.js and Express.js",
+  "description": "Middleware and wrappers to correlate SQL statements from Sequelize.js and Express.js",
   "main": "index.js",
   "directories": {
     "test": "test"
@@ -12,8 +12,8 @@
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
     "express": "^4.17.0",
-    "knex": "^0.19.5",
-    "mocha": "^6.1.4"
+    "mocha": "^6.1.4",
+    "sequelize": "^6.0.0"
   },
   "engines": {
     "node": ">=6.0.0"
@@ -25,6 +25,6 @@
     "type": "git",
     "url": "private"
   },
-  "author": "Google, LLC.",
+  "author": "",
   "license": "ISC"
 }
