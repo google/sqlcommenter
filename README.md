@@ -12,5 +12,5 @@ Contains all the various `sqlcommenter-*` implementations.
 - [X] Ruby
     - [X] [Rails](ruby/sqlcommenter-ruby/sqlcommenter_rails/README.md)
 - [X] [Node.js](nodejs/sqlcommenter-nodejs/README.md)
-    - [X] Knex.js
-    - [X] Sequelize.js
+    - [X] [Knex.js](nodejs/sqlcommenter-nodejs/packages/sqlcommenter-knex/README.md)
+    - [X] [Sequelize.js](nodejs/sqlcommenter-nodejs/packages/sqlcommenter-sequelize/README.md)
