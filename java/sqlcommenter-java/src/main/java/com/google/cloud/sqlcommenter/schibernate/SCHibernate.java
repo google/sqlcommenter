@@ -14,10 +14,10 @@
 
 package com.google.cloud.sqlcommenter.schibernate;
 
+import com.google.cloud.sqlcommenter.threadlocalstorage.State;
 import io.opencensus.trace.SpanContext;
 import io.opencensus.trace.Tracer;
 import io.opencensus.trace.Tracing;
-import com.google.cloud.sqlcommenter.threadlocalstorage.State;
 import org.hibernate.resource.jdbc.spi.StatementInspector;
 
 public class SCHibernate implements StatementInspector {

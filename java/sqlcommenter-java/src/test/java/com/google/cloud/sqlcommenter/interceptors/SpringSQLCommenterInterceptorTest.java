@@ -24,10 +24,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 import org.springframework.web.method.HandlerMethod;
 
-/**
- * Tests for {@link
- * com.google.cloud.sqlcommenter.interceptors.SpringSQLCommenterInterceptor}.
- */
+/** Tests for {@link com.google.cloud.sqlcommenter.interceptors.SpringSQLCommenterInterceptor}. */
 @RunWith(JUnit4.class)
 public class SpringSQLCommenterInterceptorTest {
 
@@ -113,8 +110,7 @@ public class SpringSQLCommenterInterceptorTest {
 
                 state2 = State.Holder.get();
                 assertThat(state2.toString())
-                    .isEqualTo(
-                        "action='methodThreaded',controller='fakeBean',framework='spring'");
+                    .isEqualTo("action='methodThreaded',controller='fakeBean',framework='spring'");
                 // 3.1. Now with SQL that it is formatted alright.
                 assertThat(state2.formatAndAppendToSQL("SELECT * from FOO"))
                     .isEqualTo(

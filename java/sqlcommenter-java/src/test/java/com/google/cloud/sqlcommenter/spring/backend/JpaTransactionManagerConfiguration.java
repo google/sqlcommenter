@@ -14,9 +14,9 @@
 
 package com.google.cloud.sqlcommenter.spring.backend;
 
+import com.google.cloud.sqlcommenter.util.SCHibernateWrapper;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-import com.google.cloud.sqlcommenter.util.SCHibernateWrapper;
 import java.util.Properties;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;

@@ -16,11 +16,11 @@ package com.google.cloud.sqlcommenter.threadlocal;
 
 import static com.google.common.truth.Truth.assertThat;
 
+import com.google.cloud.sqlcommenter.threadlocalstorage.State;
 import io.opencensus.trace.SpanContext;
 import io.opencensus.trace.SpanId;
 import io.opencensus.trace.TraceId;
 import io.opencensus.trace.TraceOptions;
-import com.google.cloud.sqlcommenter.threadlocalstorage.State;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

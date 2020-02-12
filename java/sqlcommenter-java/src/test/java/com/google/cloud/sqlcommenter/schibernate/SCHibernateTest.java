@@ -16,12 +16,12 @@ package com.google.cloud.sqlcommenter.schibernate;
 
 import static com.google.common.truth.Truth.assertThat;
 
+import com.google.cloud.sqlcommenter.threadlocalstorage.State;
 import io.opencensus.common.Scope;
 import io.opencensus.trace.SpanContext;
 import io.opencensus.trace.Tracer;
 import io.opencensus.trace.Tracing;
 import io.opencensus.trace.samplers.Samplers;
-import com.google.cloud.sqlcommenter.threadlocalstorage.State;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

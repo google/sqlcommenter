@@ -20,8 +20,8 @@ import java.util.List;
 
 /**
  * The {@link SCHibernateWrapper} class wraps the {@link
- * com.google.cloud.sqlcommenter.schibernate.SCHibernate} class so that we can also get a
- * chance to intercept the executed statements and assert them during testing.
+ * com.google.cloud.sqlcommenter.schibernate.SCHibernate} class so that we can also get a chance to
+ * intercept the executed statements and assert them during testing.
  */
 public class SCHibernateWrapper extends SCHibernate {
 
