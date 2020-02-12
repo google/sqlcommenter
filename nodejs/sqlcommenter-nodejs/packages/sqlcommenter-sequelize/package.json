@@ -23,8 +23,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "private"
+    "url": "google/sqlcommenter"
   },
-  "author": "",
+  "author": "Google, LLC.",
   "license": "ISC"
 }
