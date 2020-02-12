@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ruby on sqlcommenter</title>
+    <link>https://google.github.io/sqlcommenter/ruby/</link>
+    <description>Recent content in Ruby on sqlcommenter</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 04 Jun 2019 18:30:11 -0600</lastBuildDate>
+    
+	<atom:link href="https://google.github.io/sqlcommenter/ruby/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+  </channel>
+</rss>

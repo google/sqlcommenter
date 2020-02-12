@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>sqlcommenter</title>
+    
+      <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="generator" content="Hugo 0.55.6" />
+<title>Specification :: sqlcommenter</title>
+<link rel="shortcut icon" href="https://google.github.io/sqlcommenter/images/favicon.ico" type="image/x-icon" />
+<link href="https://google.github.io/sqlcommenter/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://google.github.io/sqlcommenter/css/nucleus.css" rel="stylesheet">
+<link href="https://google.github.io/sqlcommenter/theme-flex/style.css" rel="stylesheet">
+
+<link rel="stylesheet" href="https://google.github.io/sqlcommenter/css/bootstrap.min.css">
+<script src="https://google.github.io/sqlcommenter/js/jquery-2.x.min.js"></script>
+<script type="text/javascript">
+      var baseurl = "https:\/\/google.github.io\/sqlcommenter\/";
+</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+<link rel="stylesheet" href="https://google.github.io/sqlcommenter/css/header.css">
+<link rel="stylesheet" href="https://google.github.io/sqlcommenter/css/footer.css">
+<link rel="stylesheet" href="https://google.github.io/sqlcommenter/css/content.css">
+<link rel="stylesheet" href="https://google.github.io/sqlcommenter/css/buttons.css">
+<link rel="stylesheet" href="https://google.github.io/sqlcommenter/css/feature-matrix.css">
+
+<style>
+  .shortcuts {
+    height: initial;
+    line-height: initial;
+  }
+
+  .nav i {
+    height: initial;
+  }
+
+  .tabs-body pre {
+    margin-top: 0;
+  }
+
+  ul:not(.browser-default) {
+    padding-left: 22.5px;
+    padding-right: 22.5px;
+  }
+
+  ul:not(.browser-default),
+  ul:not(.browser-default) > li {
+    list-style-type: initial;
+  }
+
+  ul.menu,
+  ul.menu ul {
+    padding: 0;
+  }
+
+  .hide {
+    display: none;
+  }
+
+  .menu *,
+  .menu a,
+  a {
+    color: #242A31;
+  }
+
+  .menu .dd-item.haschildren > div > a.highlight,
+  .menu > .dd-item > div > a.highlight {
+    color: #242A31;
+  }
+
+  .menu .dd-item a.highlight {
+    color: #9DAAB6;
+  }
+
+  .menu .dd-item.active > div > a.highlight {
+    color: #BF2A32;
+  }
+
+  section a {
+    color: #039be5;
+  }
+</style>
+
+
+    
+  </head>
+  <body data-url="/spec/">
+    
+      <header>
+  <div class="logo">
+    
+	
+  
+    <p><a href="https://google.github.io/sqlcommenter/"><img src="https://google.github.io/sqlcommenter/images/sqlcommenter_logo.png" alt="sqlcommenter logo" /> <span>sql</span>commenter</a></p>
+
+  
+
+
+  </div>
+  <div class="burger"><a href="javascript:void(0);" style="font-size:15px;">&#9776;</a></div>
+  
+  
+</header>
+<article>
+  <aside>
+    <ul class="menu">
+    <li data-nav-id="/spec/" class="dd-item parent active
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/spec/">Specification</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/python/" class="dd-item haschildren
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/python/">Python</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+        </ul>
+    </li>
+    <li data-nav-id="/ruby/" class="dd-item haschildren
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/ruby/">Ruby</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+    <li data-nav-id="/ruby/rails/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/ruby/rails/">Ruby on Rails</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/node/" class="dd-item haschildren
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/node/">Node.js</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+    <li data-nav-id="/node/knex/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/node/knex/">Knex.js</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/node/sequelize/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/node/sequelize/">Sequelize.js</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/node/express/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/node/express/">Express.js</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/java/" class="dd-item haschildren
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/java/">Java</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+    <li data-nav-id="/java/hibernate/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/java/hibernate/">Hibernate</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/java/spring/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/java/spring/">Spring</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/databases/" class="dd-item haschildren
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/databases/">Databases</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+      <li data-nav-id="/databases/postgresql/" class="dd-item">
+        <div>
+          <a href="https://google.github.io/sqlcommenter/databases/postgresql/">
+            Postgresql
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/databases/mysql/" class="dd-item">
+        <div>
+          <a href="https://google.github.io/sqlcommenter/databases/mysql/">
+            MySQL
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/databases/mariadb/" class="dd-item">
+        <div>
+          <a href="https://google.github.io/sqlcommenter/databases/mariadb/">
+            MariaDB
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/faq/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/faq/">FAQ</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+
+
+
+
+    </ul>
+    <section>
+    </section>
+  </aside>
+  <section class="page ">
+    
+      <div>
+        <div class="searchbox">
+          <input data-search-input id="search-by" type="text" placeholder="Search...">
+        </div>
+        <script type="text/javascript" src="https://google.github.io/sqlcommenter/js/lunr.min.js"></script>
+        <script type="text/javascript" src="https://google.github.io/sqlcommenter/js/auto-complete.js"></script>
+        <link href="https://google.github.io/sqlcommenter/css/auto-complete.css" rel="stylesheet">
+        <script type="text/javascript">
+          
+              var baseurl = "https:\/\/google.github.io\/sqlcommenter\/";
+          
+        </script>
+        <script type="text/javascript" src="https://google.github.io/sqlcommenter/js/search.js"></script>
+      </div>
+
+
+    
+      <div class="header-container">
+        <h1>Specification</h1>
+        
+      </div>
+    
+
+    
+    
+    
+
+
+
+<p><img src="https://google.github.io/sqlcommenter/images/sqlcommenter_logo.png" alt="" /></p>
+
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#format">Format</a></li>
+<li><a href="#comment-escaping">Comment escaping</a></li>
+<li><a href="#meta-characters">Meta characters</a>
+
+<ul>
+<li><a href="#meta-characters-algorithm">Algorithm</a></li>
+</ul></li>
+<li><a href="#key-value-serialization">Key-Value serialization</a>
+
+<ul>
+<li><a href="#key-serialization">Key serialization</a>
+
+<ul>
+<li><a href="#key-serialization-algorithm">Algorithm</a></li>
+</ul></li>
+<li><a href="#key-serialization">Value serialization</a>
+
+<ul>
+<li><a href="#value-serialization-algorithm">Algorithm</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#sorting">Sorting</a>
+
+<ul>
+<li><a href="#sorting-algorithm">Algorithm</a></li>
+<li><a href="#sorting-exhibit">Exhibit</a></li>
+</ul></li>
+<li><a href="#contentation">Concatenation</a>
+
+<ul>
+<li><a href="#separator">Separator</a></li>
+<li><a href="#concatenation-algorithm">Algorithm</a></li>
+<li><a href="#concatenation-exhibit">Exhibit</a></li>
+</ul></li>
+<li><a href="#affix-comment">Affix comment</a>
+
+<ul>
+<li><a href="#affix-comment-algorithm">Algorithm</a></li>
+<li><a href="#affix-comment-exhibit">Exhibit</a></li>
+</ul></li>
+<li><a href="#sql-commenter">SQL commenter</a>
+
+<ul>
+<li><a href="#sql-commenter-exhibit">Exhibit</a></li>
+</ul></li>
+<li><a href="#parsing">Parsing</a>
+
+<ul>
+<li><a href="#parsing-algorithm">Algorithm</a></li>
+<li><a href="#parsing-exhibit">Exhibit</a></li>
+</ul></li>
+<li><a href="#references">References</a></li>
+</ul>
+
+<h3 id="introduction">Introduction</h3>
+
+<p>This section defines the <a href="https://google.github.io/sqlcommenter/">SQL commenter algorithm</a> which augments a SQL statement with a comment containing serialized
+key value pairs that are retrieved from the various ORMs and frameworks in your programming language and environment of choice.</p>
+
+<p>A preview of the result can be seen as per <a href="#sql-commenter-exhibit">exhibit</a></p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#111">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#111">FROM</span> <span style="color:#111">FOO</span> <span style="color:#f92672">/*</span><span style="color:#111">action</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;</span><span style="color:#d88200">%2F</span><span style="color:#d88200">param*d&#39;</span><span style="color:#111">,</span><span style="color:#111">controller</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;index,&#39;</span><span style="color:#111">framework</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;spring&#39;</span><span style="color:#111">,</span>
+<span style="color:#111">traceparent</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;00-5bd66ef5095369c7b0d1f8f4bd33716a-c532cb4098ac3dd2-01&#39;</span><span style="color:#111">,</span>
+<span style="color:#111">tracestate</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;congo%3Dt61rcWkgMzE%2Crojo%3D00f067aa0ba902b7&#39;</span><span style="color:#f92672">*/</span></code></pre></div>
+<p>Read along to see how you can conform to the specification and produce similar output.</p>
+
+<h3 id="format">Format</h3>
+
+<p>The final comment SHOULD be affixed to the final SQL statement in the format</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">&lt;SQL STATEMENT&gt; /*&lt;ATTRIBUTE_KEY_VALUE_PAIRS&gt;*/</code></pre></div>
+<h3 id="comment-escaping">Comment escaping</h3>
+
+<p><a href="https://docs.oracle.com/cd/B12037_01/server.101/b10759/sql_elements006.htm">Comments within SQL comments</a> are of the format</p>
+
+<ul>
+<li>Following <code>--</code> e.g. <code>SELECT * from FOO -- this is the comment</code></li>
+<li>Contained within <code>/*</code> and <code>*/</code> e.g. <code>SELECT * from FOO /* this is the comment */</code></li>
+</ul>
+
+<p>If a comment already exists within a SQL statement, we MUST NOT mutate that statement.</p>
+
+<h3 id="separator">Separator</h3>
+
+<p>Each key value pair MUST be separated by a comma &ldquo;,&rdquo; so for example, given</p>
+
+<p>Values: <code>[&lt;FIELD_1&gt;, &lt;FIELD_2&gt;, &lt;FIELD_3&gt;, ...]</code></p>
+
+<p>Expected concatenation result: <code>&lt;FIELD_1&gt;,&lt;FIELD_2&gt;,&lt;FIELD_3&gt;,&lt;FIELD_N...&gt;</code></p>
+
+<h3 id="meta-characters">Meta characters</h3>
+
+<p>Meta characters such as <code>'</code> should be escaped with a slash <code>\</code>. That creates the following algorithm:</p>
+
+<h4 id="a-name-meta-characters-algorithm-a-algorithm"><a name="meta-characters-algorithm"></a> Algorithm</h4>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#111">algorithm</span><span style="color:#111">(</span><span style="color:#111">value</span><span style="color:#111">):</span>
+    <span style="color:#111">escaped</span> <span style="color:#111">:</span><span style="color:#f92672">=</span> <span style="color:#111">value</span><span style="color:#f92672">.</span><span style="color:#111">escape_with_slash_any_of</span><span style="color:#111">(</span><span style="color:#d88200">&#39;)</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#d88200">    return escaped</span></code></pre></div>
+<h3 id="key-serialization">Key serialization</h3>
+
+<ol>
+<li><a href="#url-encode">URL encode</a> the key e.g. given <code>route parameter</code>, that&rsquo;ll become <code>route%20parameter</code></li>
+</ol>
+
+<p>Which produces the following algorithm:</p>
+
+<h4 id="a-name-key-serialization-algorithm-a-algorithm"><a name="key-serialization-algorithm"></a> Algorithm</h4>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#111">key_serialization</span><span style="color:#111">(</span><span style="color:#111">key</span><span style="color:#111">):</span>
+    <span style="color:#111">encoded</span> <span style="color:#111">:</span><span style="color:#f92672">=</span> <span style="color:#111">url_encode</span><span style="color:#111">(</span><span style="color:#111">key</span><span style="color:#111">)</span>
+    <span style="color:#111">meta_escaped</span> <span style="color:#111">:</span><span style="color:#f92672">=</span> <span style="color:#111">escape_meta_characters</span><span style="color:#111">(</span><span style="color:#111">encoded</span><span style="color:#111">)</span>
+
+    <span style="color:#00a8c8">return</span> <span style="color:#111">meta_escaped</span></code></pre></div>
+<h3 id="value-serialization">Value serialization</h3>
+
+<ol>
+<li><a href="#url-encode">URL encode</a> the value e.g. given <code>/param first</code>, that SHOULD become <code>%2Fparam%20first</code></li>
+<li>Escape meta-characters within the raw value; a single quote <code>'</code> becomes <code>\'</code></li>
+
+<li><p>SQL escape the value by placing it within two single quotes e.g.</p>
+
+<p><code>DROP</code> should become <code>'DROP'</code></p>
+
+<p><code>FOO 'BAR</code> should become <code>'FOO%20\'BAR'</code></p></li>
+</ol>
+
+<p>And when generalized into an algorithm:</p>
+
+<h4 id="a-name-value-serialization-algorithm-a-algorithm"><a name="value-serialization-algorithm"></a> Algorithm</h4>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#111">value_serialization</span><span style="color:#111">(</span><span style="color:#111">value</span><span style="color:#111">):</span>
+    <span style="color:#111">encoded</span> <span style="color:#111">:</span><span style="color:#f92672">=</span> <span style="color:#111">url_encode</span><span style="color:#111">(</span><span style="color:#111">value</span><span style="color:#111">)</span>
+    <span style="color:#111">meta_escaped</span> <span style="color:#111">:</span><span style="color:#f92672">=</span> <span style="color:#111">escape_meta_characters</span><span style="color:#111">(</span><span style="color:#111">encoded</span><span style="color:#111">)</span>
+    <span style="color:#111">final</span> <span style="color:#111">:</span><span style="color:#f92672">=</span> <span style="color:#111">sql_escape_with_single_quotes</span><span style="color:#111">(</span><span style="color:#111">meta_escaped</span><span style="color:#111">)</span>
+
+    <span style="color:#00a8c8">return</span> <span style="color:#111">final</span></code></pre></div>
+<p>and running the algorithm on the following table will produce</p>
+
+<table>
+<thead>
+<tr>
+<th>value</th>
+<th>url_encode(value)</th>
+<th>sql_escape_with_single_quotes</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>DROP TABLE FOO</code></td>
+<td><code>DROP%20TABLE%20FOO</code></td>
+<td><code>'DROP%20TABLE%20FOO'</code></td>
+</tr>
+
+<tr>
+<td><code>/param first</code></td>
+<td><code>%2Fparam%20first</code></td>
+<td><code>'%2Fparam%20first'</code></td>
+</tr>
+
+<tr>
+<td><code>1234</code></td>
+<td><code>1234</code></td>
+<td><code>'1234'</code></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="key-value-format">Key Value format</h3>
+
+<p>Given a key value pair (key, value):</p>
+
+<ol>
+<li>Run the <a href="#key-serialization-algorithm">Key serialization algorithm</a> on <code>key</code></li>
+<li>Run the <a href="#value-serialization-algorithm">Value serialization algorithm</a> on <code>value</code></li>
+
+<li><p>Using an equals sign <code>=</code>, concatenate the result from 1. and 2. to give</p>
+
+<p><code>&lt;SERIALIZED_KEY&gt;=&lt;SERIALIZED_VALUE&gt;</code>
+gotten from:</p>
+
+<p><code>serialize_key(key)=serialize_value(value)</code></p></li>
+</ol>
+
+<p>Thus given for example the following key value pairs</p>
+
+<table>
+<thead>
+<tr>
+<th>key value pair</th>
+<th>serialized_key</th>
+<th>serialized_value</th>
+<th>Final</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>route=/polls 1000</code></td>
+<td><code>route</code></td>
+<td><code>'%2Fpolls%201000'</code></td>
+<td><code>route='%2Fpolls%201000'</code></td>
+</tr>
+
+<tr>
+<td><code>name='DROP TABLE FOO'</code></td>
+<td><code>route</code></td>
+<td><code>'%2Fpolls%201000'</code></td>
+<td><code>route='%2Fpolls%201000'</code></td>
+</tr>
+
+<tr>
+<td><code>name''=&quot;DROP TABLE USERS'&quot;</code></td>
+<td>name=\&rsquo;\&rsquo;</td>
+<td>DROP%20TABLE%20USERS\&rsquo;</td>
+<td>name=\&rsquo;\&lsquo;=&lsquo;DROP%20TABLE%20USERS\&rdquo;</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="sorting">Sorting</h3>
+
+<p>With a list of serialized <code>key=value</code> pairs, sort them by lexicographic order.</p>
+
+<h4 id="a-name-sorting-algorithm-a-algorithm"><a name="sorting-algorithm"></a> Algorithm</h4>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#111">sort</span><span style="color:#111">(</span><span style="color:#111">key_value_pairs</span><span style="color:#111">):</span>
+    <span style="color:#111">sorted</span> <span style="color:#f92672">=</span> <span style="color:#111">lexicographically_sort</span><span style="color:#111">(</span><span style="color:#111">key_value_pairs</span><span style="color:#111">)</span>
+
+    <span style="color:#00a8c8">return</span> <span style="color:#111">sorted</span></code></pre></div>
+<h4 id="a-name-sorting-exhibit-a-exhibit"><a name="sorting-exhibit"></a> Exhibit</h4>
+
+<p>Thus</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#111">sort</span><span style="color:#111">([</span>
+        <span style="color:#111">traceparent</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;00-5bd66ef5095369c7b0d1f8f4bd33716a-c532cb4098ac3dd2-01&#39;</span><span style="color:#111">,</span>
+        <span style="color:#111">tracestate</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;congo%3Dt61rcWkgMzE%2Crojo%3D00f067aa0ba902b7&#39;</span><span style="color:#111">,</span>
+        <span style="color:#111">route</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;</span><span style="color:#d88200">%2F</span><span style="color:#d88200">param*d&#39;</span><span style="color:#111">,</span>
+        <span style="color:#111">controller</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;index&#39;</span><span style="color:#111">,</span>
+    <span style="color:#111">])</span></code></pre></div>
+<p>produces</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"> <span style="color:#111">[</span>
+        <span style="color:#111">controller</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;index&#39;</span><span style="color:#111">,</span>
+        <span style="color:#111">route</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;</span><span style="color:#d88200">%2F</span><span style="color:#d88200">param*d&#39;</span><span style="color:#111">,</span>
+        <span style="color:#111">traceparent</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;00-5bd66ef5095369c7b0d1f8f4bd33716a-c532cb4098ac3dd2-01&#39;</span><span style="color:#111">,</span>
+        <span style="color:#111">tracestate</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;congo%3Dt61rcWkgMzE%2Crojo%3D00f067aa0ba902b7&#39;</span><span style="color:#111">,</span>
+ <span style="color:#111">]</span></code></pre></div>
+<h3 id="concatenation">Concatenation</h3>
+
+<p>After all the keys and values have been serialized and sorted, they MUST be joined by a comma <code>,</code>.</p>
+
+<p>If no values are present, <code>concatenate</code> MUST return the empty value <code>''</code></p>
+
+<h4 id="a-name-concatenation-algorithm-a-algorithm"><a name="concatenation-algorithm"></a> Algorithm</h4>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#111">concatenate</span><span style="color:#111">(</span><span style="color:#111">key_value_pairs</span><span style="color:#111">):</span>
+
+    <span style="color:#00a8c8">if</span> <span style="color:#111">len</span><span style="color:#111">(</span><span style="color:#111">key_value_pairs</span><span style="color:#111">)</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span><span style="color:#111">:</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#d88200">&#39;&#39;</span>
+
+    <span style="color:#00a8c8">return</span> <span style="color:#d88200">&#39;,&#39;</span><span style="color:#f92672">.</span><span style="color:#111">join</span><span style="color:#111">(</span><span style="color:#111">key_value_pairs</span><span style="color:#111">)</span></code></pre></div>
+<h4 id="a-name-concatenation-exhibit-a-exhibit"><a name="concatenation-exhibit"></a> Exhibit</h4>
+
+<p>Therefore</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#111">concatenate</span><span style="color:#111">([</span>
+        <span style="color:#111">controller</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;index&#39;</span><span style="color:#111">,</span>
+        <span style="color:#111">route</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;</span><span style="color:#d88200">%2F</span><span style="color:#d88200">param*d&#39;</span><span style="color:#111">,</span>
+        <span style="color:#111">traceparent</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;00-5bd66ef5095369c7b0d1f8f4bd33716a-c532cb4098ac3dd2-01&#39;</span><span style="color:#111">,</span>
+        <span style="color:#111">tracestate</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;congo%3Dt61rcWkgMzE%2Crojo%3D00f067aa0ba902b7&#39;</span><span style="color:#111">,</span>
+    <span style="color:#111">])</span></code></pre></div>
+<p>produces</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#111">controller</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;index&#39;</span><span style="color:#111">,</span><span style="color:#111">route</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;</span><span style="color:#d88200">%2F</span><span style="color:#d88200">param*d&#39;</span><span style="color:#111">,</span><span style="color:#111">traceparent</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;00-5bd66ef5095369c7b0d1f8f4bd33716a-c532cb4098ac3dd2-01&#39;</span><span style="color:#111">,</span><span style="color:#111">tracestate</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;congo%3Dt61rcWkgMzE%2Crojo%3D00f067aa0ba902b7&#39;</span></code></pre></div>
+<h3 id="affix-comment">Affix comment</h3>
+
+<p>After <a href="#serialization">serialization</a>, <a href="#sorting">sorting</a>, <a href="#concatenation">concatenation</a>, the final form MUST be placed between <code>/*</code> and <code>*/</code></p>
+
+<h4 id="a-name-affix-comment-a-algorithm"><a name="affix-comment"></a> Algorithm</h4>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#111">affix_comment</span><span style="color:#111">(</span><span style="color:#111">sql</span><span style="color:#111">,</span> <span style="color:#111">concatenated</span><span style="color:#111">):</span>
+    <span style="color:#00a8c8">if</span> <span style="color:#111">is_empty</span><span style="color:#111">(</span><span style="color:#111">concatenated</span><span style="color:#111">):</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#111">sql</span> <span style="color:#f92672">//</span> <span style="color:#111">Do</span> <span style="color:#111">NOT</span> <span style="color:#111">modify</span> <span style="color:#111">the</span> <span style="color:#111">SQL</span> <span style="color:#00a8c8">if</span> <span style="color:#111">concatenated</span> <span style="color:#f92672">is</span> <span style="color:#111">blank</span><span style="color:#f92672">.</span>
+
+    <span style="color:#111">affixed</span> <span style="color:#111">:</span><span style="color:#f92672">=</span> <span style="color:#111">sql</span> <span style="color:#f92672">+</span> <span style="color:#d88200">&#39;/*&#39;</span> <span style="color:#f92672">+</span> <span style="color:#111">concatenated</span> <span style="color:#f92672">+</span> <span style="color:#d88200">&#39;*/&#39;</span>
+
+    <span style="color:#00a8c8">return</span> <span style="color:#111">affixed</span></code></pre></div>
+<h4 id="a-name-affix-comment-exhibit-a-exhibit"><a name="affix-comment-exhibit"></a> Exhibit</h4>
+
+<p>for example given</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#111">affix_comment</span><span style="color:#111">(</span><span style="color:#d88200">&#39;SELECT * from FOO&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">&#39;&#39;</span><span style="color:#111">)</span></code></pre></div>
+<p>produces</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#111">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#f92672">from</span> <span style="color:#111">FOO</span></code></pre></div><div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#111">affix_comment</span><span style="color:#111">(</span><span style="color:#d88200">&#39;SELECT * from FOO&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">&#34;route=&#39;</span><span style="color:#d88200">%2F</span><span style="color:#d88200">param*d&#39;&#34;</span><span style="color:#111">)</span></code></pre></div>
+<p>produces</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#111">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#f92672">from</span> <span style="color:#111">FOO</span> <span style="color:#f92672">/*</span><span style="color:#111">route</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;</span><span style="color:#d88200">%2F</span><span style="color:#d88200">param*d&#39;</span><span style="color:#f92672">*/</span></code></pre></div>
+<h3 id="sql-commenter">SQL commenter</h3>
+
+<p>Wrapping all the steps together, we thus have the following algorithm</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#111">sql_commenter</span><span style="color:#111">(</span><span style="color:#111">sql</span><span style="color:#111">,</span> <span style="color:#111">attributes</span><span style="color:#111">):</span>
+    <span style="color:#00a8c8">if</span> <span style="color:#111">contains_sql_comment</span><span style="color:#111">(</span><span style="color:#111">sql</span><span style="color:#111">):</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#111">sql</span> <span style="color:#75715e"># DO NOT mutate a statement with an already present comment.</span>
+
+    <span style="color:#111">serialized_key_value_pairs</span> <span style="color:#111">:</span><span style="color:#f92672">=</span> <span style="color:#111">[]</span>
+
+    <span style="color:#00a8c8">for</span> <span style="color:#111">each</span> <span style="color:#111">attribute</span> <span style="color:#f92672">in</span> <span style="color:#111">attributes</span><span style="color:#111">:</span>
+        <span style="color:#111">serialized</span> <span style="color:#111">:</span><span style="color:#f92672">=</span> <span style="color:#111">serialize_key_value_pair</span><span style="color:#111">(</span><span style="color:#111">attribute</span><span style="color:#111">)</span>
+        <span style="color:#00a8c8">if</span> <span style="color:#111">serialized</span><span style="color:#111">:</span>
+            <span style="color:#111">serialized_key_value_pairs</span><span style="color:#f92672">.</span><span style="color:#111">append</span><span style="color:#111">(</span><span style="color:#111">serialized</span><span style="color:#111">)</span>
+
+    <span style="color:#111">sorted</span> <span style="color:#111">:</span><span style="color:#f92672">=</span> <span style="color:#111">sort</span><span style="color:#111">(</span><span style="color:#111">serialized_key_value_pairs</span><span style="color:#111">)</span>
+    <span style="color:#111">concatenated</span> <span style="color:#111">:</span><span style="color:#f92672">=</span> <span style="color:#111">concatenate</span><span style="color:#111">(</span><span style="color:#111">sorted</span><span style="color:#111">)</span>
+    <span style="color:#111">final</span> <span style="color:#111">:</span><span style="color:#f92672">=</span> <span style="color:#111">affix_comment</span><span style="color:#111">(</span><span style="color:#111">sql</span><span style="color:#111">,</span> <span style="color:#111">concatenated</span><span style="color:#111">)</span>
+
+    <span style="color:#00a8c8">return</span> <span style="color:#111">final</span></code></pre></div>
+<h4 id="a-name-sql-commenter-exhibit-a-exhibit"><a name="sql-commenter-exhibit"></a> Exhibit</h4>
+
+<p>Running <a href="#sql-commenter">sql_commenter</a> on an ORM integration that extracts the respective attributes:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#111">sql_commenter</span><span style="color:#111">(</span><span style="color:#d88200">&#39;SELECT * FROM FOO&#39;</span><span style="color:#111">,</span> <span style="color:#111">[</span>
+        <span style="color:#111">tracestate</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;congo%3Dt61rcWkgMzE%2Crojo%3D00f067aa0ba902b7&#39;</span><span style="color:#111">,</span>
+        <span style="color:#111">traceparent</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;00-5bd66ef5095369c7b0d1f8f4bd33716a-c532cb4098ac3dd2-01&#39;</span><span style="color:#111">,</span>
+        <span style="color:#111">framework</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;spring&#39;</span><span style="color:#111">,</span>
+        <span style="color:#111">action</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;</span><span style="color:#d88200">%2F</span><span style="color:#d88200">param*d&#39;</span><span style="color:#111">,</span>
+        <span style="color:#111">controller</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;index&#39;</span><span style="color:#111">,</span>
+<span style="color:#111">])</span></code></pre></div>
+<p>finally produces</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#111">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#111">FROM</span> <span style="color:#111">FOO</span> <span style="color:#f92672">/*</span><span style="color:#111">action</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;</span><span style="color:#d88200">%2F</span><span style="color:#d88200">param*d&#39;</span><span style="color:#111">,</span><span style="color:#111">controller</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;index,&#39;</span><span style="color:#111">framework</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;spring&#39;</span><span style="color:#111">,</span>
+<span style="color:#111">traceparent</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;00-5bd66ef5095369c7b0d1f8f4bd33716a-c532cb4098ac3dd2-01&#39;</span><span style="color:#111">,</span>
+<span style="color:#111">tracestate</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;congo%3Dt61rcWkgMzE%2Crojo%3D00f067aa0ba902b7&#39;</span><span style="color:#f92672">*/</span></code></pre></div>
+<h3 id="parsing">Parsing</h3>
+
+<p>Parsing is the step to reverse sql-commenter and extract the key value attributes.</p>
+
+<p>It&rsquo;ll follow the following steps:</p>
+
+<ol>
+<li>Find the last comment so search for and strip out <code>/*</code> and <code>*/</code></li>
+<li>Split the comment by comma <code>,</code></li>
+<li>Split each <code>key='value'</code> pair so extract <code>key</code> and <code>'value'</code>
+
+<ul>
+<li>3.1. For <code>key</code>, <code>unescape_meta_characters</code> then <code>url_decode</code></li>
+<li>3.2. For <code>value</code>, sql_unescape/trim the <code>'</code> at the beginning and end of <code>'value'</code> -&gt; <code>value</code>
+
+<ul>
+<li>3.2.1. Unescape the meta characters in <code>value</code></li>
+<li>3.2.2. URL Decode the value</li>
+</ul></li>
+</ul></li>
+</ol>
+
+<h4 id="a-name-parsing-algorithm-a-algorithm"><a name="parsing-algorithm"></a> Algorithm</h4>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75af00">parse</span><span style="color:#111">(</span><span style="color:#75af00">sql_with_comment</span><span style="color:#111">):</span>
+    <span style="color:#00a8c8">if</span> <span style="color:#111">!</span><span style="color:#75af00">contains_sql_comment</span><span style="color:#111">(</span><span style="color:#75af00">sql_with_comment</span><span style="color:#111">):</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#75af00">sql_with_comment</span><span style="color:#111">,</span> <span style="color:#75af00">null</span>
+
+    <span style="color:#75715e">// Since we now have a SQL comment, let&#39;s extract the serialized attributes.
+</span><span style="color:#75715e"></span>    <span style="color:#75af00">sql_stmt</span><span style="color:#111">,</span> <span style="color:#75af00">serialized_attrs</span> <span style="color:#f92672">:=</span> <span style="color:#75af00">extract_sql_commenter</span><span style="color:#111">(</span><span style="color:#75af00">sql_with_comment</span><span style="color:#111">)</span>
+
+    <span style="color:#00a8c8">if</span> <span style="color:#75af00">is_empty</span><span style="color:#111">(</span><span style="color:#75af00">serialized_attrs</span><span style="color:#111">):</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#75af00">sql_stmt</span><span style="color:#111">,</span> <span style="color:#75af00">null</span>
+
+    <span style="color:#75af00">attrs</span> <span style="color:#f92672">:=</span> <span style="color:#111">{}</span>
+    <span style="color:#75af00">kv_splits</span> <span style="color:#f92672">:=</span> <span style="color:#75af00">split_by_comma</span><span style="color:#111">(</span><span style="color:#75af00">serialized_attrs</span><span style="color:#111">)</span>
+    <span style="color:#00a8c8">for</span> <span style="color:#75af00">kv</span> <span style="color:#75af00">in</span> <span style="color:#75af00">kv_splits</span><span style="color:#111">:</span>
+        <span style="color:#75af00">e_key</span><span style="color:#111">,</span> <span style="color:#75af00">e_value</span> <span style="color:#f92672">:=</span> <span style="color:#75af00">split_by_equals</span><span style="color:#111">(</span><span style="color:#75af00">kv</span><span style="color:#111">)</span>
+        <span style="color:#75af00">key</span> <span style="color:#f92672">:=</span> <span style="color:#75af00">decode_key</span><span style="color:#111">(</span><span style="color:#75af00">e_key</span><span style="color:#111">)</span>
+        <span style="color:#75af00">value</span> <span style="color:#f92672">:=</span> <span style="color:#75af00">decode_value</span><span style="color:#111">(</span><span style="color:#75af00">e_value</span><span style="color:#111">)</span>
+
+        <span style="color:#75af00">attrs</span><span style="color:#111">[</span><span style="color:#75af00">key</span><span style="color:#111">]</span> <span style="color:#111">=</span> <span style="color:#75af00">value</span>
+
+    <span style="color:#75715e">// Some attributes such as traceparent, tracestate, sampled
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// might need need some grouping and reconstruction.
+</span><span style="color:#75715e"></span>    <span style="color:#75af00">final</span> <span style="color:#f92672">:=</span> <span style="color:#75af00">deconstruct_and_group_attributes</span><span style="color:#111">(</span><span style="color:#75af00">attrs</span><span style="color:#111">)</span>
+
+    <span style="color:#00a8c8">return</span> <span style="color:#75af00">sql_stmt</span><span style="color:#111">,</span> <span style="color:#75af00">final</span></code></pre></div>
+<h4 id="a-name-parsing-exhibit-a-exhibit"><a name="parsing-exhibit"></a> Exhibit</h4>
+
+<p>Given the value from <a href="#sql-commenter-exhibit">SQLCommenter exhibit</a></p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#111">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#111">FROM</span> <span style="color:#111">FOO</span> <span style="color:#f92672">/*</span><span style="color:#111">action</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;</span><span style="color:#d88200">%2F</span><span style="color:#d88200">param*d&#39;</span><span style="color:#111">,</span><span style="color:#111">controller</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;index,&#39;</span><span style="color:#111">framework</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;spring&#39;</span><span style="color:#111">,</span>
+<span style="color:#111">traceparent</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;00-5bd66ef5095369c7b0d1f8f4bd33716a-c532cb4098ac3dd2-01&#39;</span><span style="color:#111">,</span>
+<span style="color:#111">tracestate</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;congo%3Dt61rcWkgMzE%2Crojo%3D00f067aa0ba902b7&#39;</span><span style="color:#f92672">*/</span></code></pre></div>
+<p>Running <code>parse</code> on the value</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75af00">sql</span><span style="color:#111">,</span> <span style="color:#75af00">attributes</span> <span style="color:#111">=</span> <span style="color:#75af00">parse</span><span style="color:#111">(</span><span style="color:#d88200">`SELECT * FROM FOO
+</span><span style="color:#d88200">/*action=&#39;%2Fparam*d&#39;,controller=&#39;index,&#39;framework=&#39;spring&#39;,
+</span><span style="color:#d88200">traceparent=&#39;00-5bd66ef5095369c7b0d1f8f4bd33716a-c532cb4098ac3dd2-01&#39;,
+</span><span style="color:#d88200">tracestate=&#39;congo%3Dt61rcWkgMzE%2Crojo%3D00f067aa0ba902b7&#39;*/`</span><span style="color:#111">)</span></code></pre></div>
+<p>produces</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#111">sql</span><span style="color:#111">:</span> <span style="color:#111">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#111">FROM</span> <span style="color:#111">FOO</span>
+<span style="color:#111">attributes</span><span style="color:#111">:</span> <span style="color:#111">{</span>
+    <span style="color:#111">controller</span><span style="color:#111">:</span> <span style="color:#d88200">&#39;index&#39;</span><span style="color:#111">,</span>
+    <span style="color:#111">framework</span><span style="color:#111">:</span> <span style="color:#d88200">&#39;spring&#39;</span><span style="color:#111">,</span>
+    <span style="color:#111">action</span><span style="color:#111">:</span> <span style="color:#d88200">&#39;/param*d&#39;</span><span style="color:#111">,</span>
+    <span style="color:#111">trace</span><span style="color:#111">:</span> <span style="color:#111">{</span>
+        <span style="color:#111">sampled</span><span style="color:#111">:</span> <span style="color:#111">true</span><span style="color:#111">,</span>
+        <span style="color:#111">span_id</span><span style="color:#111">:</span> <span style="color:#d88200">&#39;c532cb4098ac3dd2&#39;</span><span style="color:#111">,</span>
+        <span style="color:#111">trace_id</span><span style="color:#111">:</span> <span style="color:#d88200">&#39;5bd66ef5095369c7b0d1f8f4bd33716a&#39;</span><span style="color:#111">,</span>
+        <span style="color:#111">trace_state</span><span style="color:#111">:</span> <span style="color:#111">[{</span><span style="color:#d88200">&#39;congo&#39;</span><span style="color:#111">:</span> <span style="color:#d88200">&#39;t61rcWkgMzE&#39;</span><span style="color:#111">},</span> <span style="color:#111">{</span><span style="color:#d88200">&#39;rojo&#39;</span><span style="color:#111">:</span> <span style="color:#d88200">&#39;00f067aa0ba902b7&#39;</span><span style="color:#111">}],</span>
+    <span style="color:#111">},</span>
+<span style="color:#111">}</span></code></pre></div>
+<h3 id="references">References</h3>
+
+<table>
+<thead>
+<tr>
+<th>Resource</th>
+<th>URL</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>URL Encoding</td>
+<td><a href="https://en.wikipedia.org/wiki/Percent-encoding">https://en.wikipedia.org/wiki/Percent-encoding</a></td>
+</tr>
+
+<tr>
+<td>Comments within SQL comments</td>
+<td><a href="https://docs.oracle.com/cd/B12037_01/server.101/b10759/sql_elements006.htm">https://docs.oracle.com/cd/B12037_01/server.101/b10759/sql_elements006.htm</a></td>
+</tr>
+</tbody>
+</table>
+
+
+
+    
+    
+        <div class="chevrons">
+    <div id="navigation">
+<a class="nav nav-prev" href="https://google.github.io/sqlcommenter/" title=""> <i class="fa fa-chevron-left"></i><label></label></a>
+    <a class="nav nav-next" href="https://google.github.io/sqlcommenter/python/" title="Python" style="margin-right: 0px;"><label>Python</label><i class="fa fa-chevron-right"></i></a></div>
+  </div>
+
+  </section>
+</article>
+
+<footer>
+
+<div class="footline">
+    
+
+    
+
+  
+
+    <div class="github-link">
+      <a href="https://github.com/orijtech/sqlcommenter-website/edit/master/content/spec/_index.md" target="blank"><i class="fa fa-code-fork"></i>
+        Edit this page on Github</a>
+    </div>
+  </div>
+
+
+	<div>
+
+
+  
+    <ul>
+<li><a href="https://github.com/orijtech/sqlcommenter-website">Github</a></li>
+</ul>
+
+<h5 style="color: #fff">sqlcommenter</h5>
+
+  
+
+
+
+	</div>
+</footer>
+
+<script src="https://google.github.io/sqlcommenter/js/clipboard.min.js"></script>
+
+<link href="https://google.github.io/sqlcommenter/css/featherlight.min.css" rel="stylesheet">
+<script src="https://google.github.io/sqlcommenter/js/featherlight.min.js"></script>
+
+
+
+<script src="https://google.github.io/sqlcommenter/theme-flex/script.js"></script>
+
+
+    
+
+    
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+<script src="https://google.github.io/sqlcommenter/js/tabs.js"></script>
+<script>
+  [].slice.call(document.querySelectorAll('.tab-container'))
+    .forEach(function(el) {
+      initializeTabs(el);
+    });
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-125198141-1"></script>
+<script>
+ window.dataLayer = window.dataLayer || [];
+ function gtag(){dataLayer.push(arguments);}
+ gtag('js', new Date());
+
+ gtag('config', 'UA-125198141-1');
+</script>
+
+  </body>
+</html>

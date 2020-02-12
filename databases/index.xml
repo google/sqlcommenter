@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Databases on sqlcommenter</title>
+    <link>https://google.github.io/sqlcommenter/databases/</link>
+    <description>Recent content in Databases on sqlcommenter</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 31 May 2019 16:00:01 -0700</lastBuildDate>
+    
+	<atom:link href="https://google.github.io/sqlcommenter/databases/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Postgresql</title>
+      <link>https://google.github.io/sqlcommenter/databases/postgresql/</link>
+      <pubDate>Fri, 31 May 2019 16:23:01 -0700</pubDate>
+      
+      <guid>https://google.github.io/sqlcommenter/databases/postgresql/</guid>
+      <description>If you host your own instance of Postgresql, you can run it with logs to examine statements by following the guide at Runtime config logging
+i.e. on macOS, edit /usr/local/var/postgres/postgresql.conf and set log_destination to &#39;stderr&#39; as per:
+#------------------------------------------------------------------------------ # REPORTING AND LOGGING #------------------------------------------------------------------------------ # - Where to Log - log_destination = &amp;#39;stderr&amp;#39; # Valid values are combinations of # stderr, csvlog, syslog, and eventlog, # depending on platform. csvlog # requires logging_collector to be on.</description>
+    </item>
+    
+    <item>
+      <title>MySQL</title>
+      <link>https://google.github.io/sqlcommenter/databases/mysql/</link>
+      <pubDate>Fri, 31 May 2019 16:31:01 -0700</pubDate>
+      
+      <guid>https://google.github.io/sqlcommenter/databases/mysql/</guid>
+      <description>If you host your own instance of MySQL, you can run it with logs to examine statements by following the guide at:
+   Guide URL     Running MySQL locally/System variables: log output https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_log_output   MySQL Docker installation with logs https://hub.docker.com/_/mysql    </description>
+    </item>
+    
+    <item>
+      <title>MariaDB</title>
+      <link>https://google.github.io/sqlcommenter/databases/mariadb/</link>
+      <pubDate>Fri, 31 May 2019 16:34:01 -0700</pubDate>
+      
+      <guid>https://google.github.io/sqlcommenter/databases/mariadb/</guid>
+      <description> If you host your own instance of MariaDB, you can run it with logs to examine statements by following the guide at Query log output destination
+References    Resource URL     Log output https://mariadb.com/kb/en/library/general-query-log/#choosing-the-general-query-log-output-destination   MariaDB Docker https://hub.docker.com/_/mariadb/    </description>
+    </item>
+    
+  </channel>
+</rss>

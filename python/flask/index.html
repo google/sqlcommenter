@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>sqlcommenter</title>
+    
+      <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="generator" content="Hugo 0.55.6" />
+<title>Flask :: sqlcommenter</title>
+<link rel="shortcut icon" href="https://google.github.io/sqlcommenter/images/favicon.ico" type="image/x-icon" />
+<link href="https://google.github.io/sqlcommenter/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://google.github.io/sqlcommenter/css/nucleus.css" rel="stylesheet">
+<link href="https://google.github.io/sqlcommenter/theme-flex/style.css" rel="stylesheet">
+
+<link rel="stylesheet" href="https://google.github.io/sqlcommenter/css/bootstrap.min.css">
+<script src="https://google.github.io/sqlcommenter/js/jquery-2.x.min.js"></script>
+<script type="text/javascript">
+      var baseurl = "https:\/\/google.github.io\/sqlcommenter\/";
+</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+<link rel="stylesheet" href="https://google.github.io/sqlcommenter/css/header.css">
+<link rel="stylesheet" href="https://google.github.io/sqlcommenter/css/footer.css">
+<link rel="stylesheet" href="https://google.github.io/sqlcommenter/css/content.css">
+<link rel="stylesheet" href="https://google.github.io/sqlcommenter/css/buttons.css">
+<link rel="stylesheet" href="https://google.github.io/sqlcommenter/css/feature-matrix.css">
+
+<style>
+  .shortcuts {
+    height: initial;
+    line-height: initial;
+  }
+
+  .nav i {
+    height: initial;
+  }
+
+  .tabs-body pre {
+    margin-top: 0;
+  }
+
+  ul:not(.browser-default) {
+    padding-left: 22.5px;
+    padding-right: 22.5px;
+  }
+
+  ul:not(.browser-default),
+  ul:not(.browser-default) > li {
+    list-style-type: initial;
+  }
+
+  ul.menu,
+  ul.menu ul {
+    padding: 0;
+  }
+
+  .hide {
+    display: none;
+  }
+
+  .menu *,
+  .menu a,
+  a {
+    color: #242A31;
+  }
+
+  .menu .dd-item.haschildren > div > a.highlight,
+  .menu > .dd-item > div > a.highlight {
+    color: #242A31;
+  }
+
+  .menu .dd-item a.highlight {
+    color: #9DAAB6;
+  }
+
+  .menu .dd-item.active > div > a.highlight {
+    color: #BF2A32;
+  }
+
+  section a {
+    color: #039be5;
+  }
+</style>
+
+
+    
+  </head>
+  <body data-url="/python/flask/">
+    
+      <header>
+  <div class="logo">
+    
+	
+  
+    <p><a href="https://google.github.io/sqlcommenter/"><img src="https://google.github.io/sqlcommenter/images/sqlcommenter_logo.png" alt="sqlcommenter logo" /> <span>sql</span>commenter</a></p>
+
+  
+
+
+  </div>
+  <div class="burger"><a href="javascript:void(0);" style="font-size:15px;">&#9776;</a></div>
+  
+  
+</header>
+<article>
+  <aside>
+    <ul class="menu">
+    <li data-nav-id="/spec/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/spec/">Specification</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/python/" class="dd-item parent haschildren
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/python/">Python</a>
+            <i class="fa fa-angle-down fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+    <li data-nav-id="/python/django/" class="dd-item haschildren
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/python/django/">Django</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+      <li data-nav-id="/python/django/local/" class="dd-item">
+        <div>
+          <a href="https://google.github.io/sqlcommenter/python/django/local/">
+            Locally
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/python/django/gcp/" class="dd-item">
+        <div>
+          <a href="https://google.github.io/sqlcommenter/python/django/gcp/">
+            Google Cloud Platform
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/python/django/aws/" class="dd-item">
+        <div>
+          <a href="https://google.github.io/sqlcommenter/python/django/aws/">
+            Amazon Web Services
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/python/psycopg2/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/python/psycopg2/">psycopg2</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/python/sqlalchemy/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/python/sqlalchemy/">SQLAlchemy</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/python/flask/" class="dd-item parent active
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/python/flask/">Flask</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/ruby/" class="dd-item haschildren
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/ruby/">Ruby</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+    <li data-nav-id="/ruby/rails/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/ruby/rails/">Ruby on Rails</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/node/" class="dd-item haschildren
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/node/">Node.js</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+    <li data-nav-id="/node/knex/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/node/knex/">Knex.js</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/node/sequelize/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/node/sequelize/">Sequelize.js</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/node/express/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/node/express/">Express.js</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/java/" class="dd-item haschildren
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/java/">Java</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+    <li data-nav-id="/java/hibernate/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/java/hibernate/">Hibernate</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/java/spring/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/java/spring/">Spring</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/databases/" class="dd-item haschildren
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/databases/">Databases</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+      <li data-nav-id="/databases/postgresql/" class="dd-item">
+        <div>
+          <a href="https://google.github.io/sqlcommenter/databases/postgresql/">
+            Postgresql
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/databases/mysql/" class="dd-item">
+        <div>
+          <a href="https://google.github.io/sqlcommenter/databases/mysql/">
+            MySQL
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/databases/mariadb/" class="dd-item">
+        <div>
+          <a href="https://google.github.io/sqlcommenter/databases/mariadb/">
+            MariaDB
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/faq/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/faq/">FAQ</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+
+
+
+
+    </ul>
+    <section>
+    </section>
+  </aside>
+  <section class="page ">
+    
+      <div>
+        <div class="searchbox">
+          <input data-search-input id="search-by" type="text" placeholder="Search...">
+        </div>
+        <script type="text/javascript" src="https://google.github.io/sqlcommenter/js/lunr.min.js"></script>
+        <script type="text/javascript" src="https://google.github.io/sqlcommenter/js/auto-complete.js"></script>
+        <link href="https://google.github.io/sqlcommenter/css/auto-complete.css" rel="stylesheet">
+        <script type="text/javascript">
+          
+              var baseurl = "https:\/\/google.github.io\/sqlcommenter\/";
+          
+        </script>
+        <script type="text/javascript" src="https://google.github.io/sqlcommenter/js/search.js"></script>
+      </div>
+
+
+    
+      <div class="header-container">
+        <h1>Flask</h1>
+        
+      </div>
+    
+
+    
+    
+    
+
+
+
+<p><img src="https://google.github.io/sqlcommenter/images/flask-logo.png" alt="" /></p>
+
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#using-it">Using it</a></li>
+<li><a href="#expected-fields">Expected fields</a></li>
+<li><a href="#end-to-end-examples">End to examples</a>
+
+<ul>
+<li><a href="#with-psycopg2">With psycopg2</a></li>
+<li><a href="#with-sqlalchemy">With sqlalchemy</a></li>
+</ul></li>
+<li><a href="#references">References</a></li>
+</ul>
+
+<h3 id="introduction">Introduction</h3>
+
+<p>We provide Flask middleware which when coupled with:</p>
+
+<ul>
+<li><a href="https://google.github.io/sqlcommenter/python/psycopg2">sqlcommenter-psycopg2</a></li>
+<li><a href="https://google.github.io/sqlcommenter/python/sqlalchemy">sqlcommenter-sqlalchemy</a></li>
+</ul>
+
+<p>allow us to retrieve the <code>controller</code> and <code>route</code> correlated with your source code in your web app.</p>
+
+<h3 id="using-it">Using it</h3>
+
+<p>Having successfully installed <a href="https://google.github.io/sqlcommenter/python#install">sqlcommenter-python&rsquo;s sqlcommenter</a></p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> <span style="color:#111">sqlcommenter</span> <span style="color:#f92672">import</span> <span style="color:#111">FlaskMiddleware</span>
+
+<span style="color:#75715e"># Then in your flask programs just pass in the app</span>
+<span style="color:#111">FlaskMiddleware</span><span style="color:#111">(</span><span style="color:#111">app</span><span style="color:#111">)</span></code></pre></div>
+<h3 id="expected-fields">Expected fields</h3>
+
+<p>This Flask integration when coupled with compatible drivers will place the following fields</p>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Included by default</th>
+<th>Description</th>
+<th>Turn if off by</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>controller</td>
+<td><div style="text-align: center">&#10004;</div></td>
+<td>The function being used to service an HTTP request</td>
+<td><code>with_controller=False</code></td>
+</tr>
+
+<tr>
+<td>framework</td>
+<td><div style="text-align: center">&#10004;</div></td>
+<td>&ldquo;flask:<FLASK_VERSION>&ldquo;</td>
+<td><code>with_framework=False</code></td>
+</tr>
+
+<tr>
+<td>route</td>
+<td><div style="text-align: center">&#10004;</div></td>
+<td>The pattern used to match an HTTP request</td>
+<td><code>with_route=False</code></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="end-to-end-examples">End to end examples</h3>
+
+<h4 id="with-psycopg2">With psycopg2</h4>
+
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#!/usr/bin/env python3</span>
+
+<span style="color:#f92672">import</span> <span style="color:#111">psycopg2</span>
+<span style="color:#f92672">import</span> <span style="color:#111">json</span>
+<span style="color:#f92672">import</span> <span style="color:#111">flask</span>
+<span style="color:#111">app</span> <span style="color:#f92672">=</span> <span style="color:#111">flask</span><span style="color:#f92672">.</span><span style="color:#111">Flask</span><span style="color:#111">(</span><span style="color:#111">__name__</span><span style="color:#111">)</span>
+
+<span style="color:#f92672">from</span> <span style="color:#111">sqlcommenter</span> <span style="color:#f92672">import</span> <span style="color:#111">FlaskMiddleware</span>
+<span style="color:#f92672">from</span> <span style="color:#111">sqlcommenter.psycopg2.extension</span> <span style="color:#f92672">import</span> <span style="color:#111">CommenterCursorFactory</span>
+
+<span style="color:#111">conn</span> <span style="color:#f92672">=</span> <span style="color:#111">None</span>
+
+<span style="color:#75af00">@app.route</span><span style="color:#111">(</span><span style="color:#d88200">&#39;/polls&#39;</span><span style="color:#111">)</span>
+<span style="color:#00a8c8">def</span> <span style="color:#75af00">get_polls</span><span style="color:#111">():</span>
+    <span style="color:#111">cursor</span> <span style="color:#f92672">=</span> <span style="color:#111">conn</span><span style="color:#f92672">.</span><span style="color:#111">cursor</span><span style="color:#111">()</span>
+    <span style="color:#111">cursor</span><span style="color:#f92672">.</span><span style="color:#111">execute</span><span style="color:#111">(</span><span style="color:#d88200">&#34;SELECT * FROM polls_question&#34;</span><span style="color:#111">)</span>
+    <span style="color:#111">str_polls</span> <span style="color:#f92672">=</span> <span style="color:#111">list</span><span style="color:#111">(</span><span style="color:#111">map</span><span style="color:#111">(</span><span style="color:#00a8c8">lambda</span> <span style="color:#111">s</span><span style="color:#111">:</span> <span style="color:#111">str</span><span style="color:#111">(</span><span style="color:#111">s</span><span style="color:#111">),</span> <span style="color:#111">cursor</span><span style="color:#111">))</span>
+
+    <span style="color:#111">cursor</span><span style="color:#f92672">.</span><span style="color:#111">close</span><span style="color:#111">()</span>
+    <span style="color:#00a8c8">return</span> <span style="color:#111">json</span><span style="color:#f92672">.</span><span style="color:#111">dumps</span><span style="color:#111">(</span><span style="color:#111">str_polls</span><span style="color:#111">)</span>
+
+<span style="color:#00a8c8">def</span> <span style="color:#75af00">main</span><span style="color:#111">():</span>
+    <span style="color:#00a8c8">global</span> <span style="color:#111">conn</span>
+
+    <span style="color:#00a8c8">try</span><span style="color:#111">:</span>
+        <span style="color:#111">conn</span> <span style="color:#f92672">=</span> <span style="color:#111">psycopg2</span><span style="color:#f92672">.</span><span style="color:#111">connect</span><span style="color:#111">(</span><span style="color:#111">user</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;&#39;</span><span style="color:#111">,</span> <span style="color:#111">password</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;$postgres$&#39;</span><span style="color:#111">,</span>
+                <span style="color:#111">host</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;127.0.0.1&#39;</span><span style="color:#111">,</span> <span style="color:#111">port</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;5432&#39;</span><span style="color:#111">,</span> <span style="color:#111">database</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;quickstart_py&#39;</span><span style="color:#111">,</span>
+                <span style="color:#111">cursor_factory</span><span style="color:#f92672">=</span><span style="color:#111">CommenterCursorFactory</span><span style="color:#111">())</span>
+
+        <span style="color:#75715e"># Now enable the middleware.</span>
+        <span style="color:#111">FlaskMiddleware</span><span style="color:#111">(</span><span style="color:#111">app</span><span style="color:#111">)</span>
+
+        <span style="color:#75715e"># Finally run the Flask web app.</span>
+        <span style="color:#111">app</span><span style="color:#f92672">.</span><span style="color:#111">run</span><span style="color:#111">(</span><span style="color:#111">host</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;localhost&#39;</span><span style="color:#111">,</span> <span style="color:#111">port</span><span style="color:#f92672">=</span><span style="color:#ae81ff">8088</span><span style="color:#111">,</span> <span style="color:#111">threaded</span><span style="color:#f92672">=</span><span style="color:#111">True</span><span style="color:#111">)</span>
+    <span style="color:#00a8c8">except</span> <span style="color:#75af00">Exception</span> <span style="color:#00a8c8">as</span> <span style="color:#111">e</span><span style="color:#111">:</span>
+        <span style="color:#00a8c8">print</span><span style="color:#111">(</span><span style="color:#d88200">&#39;Encountered exception </span><span style="color:#d88200">%s</span><span style="color:#d88200">&#39;</span><span style="color:#f92672">%</span><span style="color:#111">(</span><span style="color:#111">e</span><span style="color:#111">))</span>
+
+    <span style="color:#00a8c8">finally</span><span style="color:#111">:</span>
+        <span style="color:#00a8c8">if</span> <span style="color:#111">conn</span><span style="color:#111">:</span>
+            <span style="color:#111">conn</span><span style="color:#f92672">.</span><span style="color:#111">close</span><span style="color:#111">()</span>
+
+
+<span style="color:#00a8c8">if</span> <span style="color:#111">__name__</span> <span style="color:#f92672">==</span> <span style="color:#d88200">&#39;__main__&#39;</span><span style="color:#111">:</span>
+    <span style="color:#111">main</span><span style="color:#111">()</span></code></pre></div>
+
+<p>which when run by <code>python3 main.py</code> and on visiting <a href="http://localhost:8088/polls">http://localhost:8088/polls</a> we can see on our database logs</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#ae81ff">2019</span>-06-08 <span style="color:#ae81ff">12</span>:19:11.284 PDT <span style="color:#f92672">[</span><span style="color:#ae81ff">70984</span><span style="color:#f92672">]</span> LOG:  statement: SELECT * FROM polls_question
+/*controller<span style="color:#f92672">=</span><span style="color:#d88200">&#39;get_polls&#39;</span>,db_driver<span style="color:#f92672">=</span><span style="color:#d88200">&#39;psycopg2&#39;</span>,framework<span style="color:#f92672">=</span><span style="color:#d88200">&#39;sqlalchemy%3A1.3.4&#39;</span>,
+<span style="color:#111">route</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;/polls&#39;</span>,traceparent<span style="color:#f92672">=</span><span style="color:#d88200">&#39;00-5b3df77064f35f091e89fb40022e2a1d-9bbd4868cf0ba2c3-01&#39;</span>*/</code></pre></div>
+<h4 id="with-sqlalchemy">With sqlalchemy</h4>
+
+<p>Having successfully installed <a href="https://google.github.io/sqlcommenter/python/sqlalchemy">sqlcommenter-sqlalchemy</a> you can now just run
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#!/usr/bin/env python3</span>
+
+<span style="color:#f92672">import</span> <span style="color:#111">json</span>
+<span style="color:#f92672">import</span> <span style="color:#111">flask</span>
+<span style="color:#111">app</span> <span style="color:#f92672">=</span> <span style="color:#111">flask</span><span style="color:#f92672">.</span><span style="color:#111">Flask</span><span style="color:#111">(</span><span style="color:#111">__name__</span><span style="color:#111">)</span>
+
+<span style="color:#f92672">from</span> <span style="color:#111">sqlalchemy</span> <span style="color:#f92672">import</span> <span style="color:#111">create_engine</span><span style="color:#111">,</span> <span style="color:#111">event</span>
+<span style="color:#f92672">from</span> <span style="color:#111">sqlcommenter</span> <span style="color:#f92672">import</span> <span style="color:#111">FlaskMiddleware</span>
+<span style="color:#f92672">from</span> <span style="color:#111">sqlcommenter.sqlalchemy.executor</span> <span style="color:#f92672">import</span> <span style="color:#111">BeforeExecuteFactory</span>
+
+<span style="color:#111">engine</span> <span style="color:#f92672">=</span> <span style="color:#111">None</span>
+
+<span style="color:#75af00">@app.route</span><span style="color:#111">(</span><span style="color:#d88200">&#39;/polls&#39;</span><span style="color:#111">)</span>
+<span style="color:#00a8c8">def</span> <span style="color:#75af00">get_polls</span><span style="color:#111">():</span>
+    <span style="color:#111">result_proxy</span> <span style="color:#f92672">=</span> <span style="color:#111">engine</span><span style="color:#f92672">.</span><span style="color:#111">execute</span><span style="color:#111">(</span><span style="color:#d88200">&#34;SELECT * FROM polls_question&#34;</span><span style="color:#111">)</span>
+    <span style="color:#111">str_polls</span> <span style="color:#f92672">=</span> <span style="color:#111">list</span><span style="color:#111">(</span><span style="color:#111">map</span><span style="color:#111">(</span><span style="color:#00a8c8">lambda</span> <span style="color:#111">s</span><span style="color:#111">:</span> <span style="color:#111">str</span><span style="color:#111">(</span><span style="color:#111">s</span><span style="color:#111">),</span> <span style="color:#111">result_proxy</span><span style="color:#111">))</span>
+
+    <span style="color:#111">result_proxy</span><span style="color:#f92672">.</span><span style="color:#111">close</span><span style="color:#111">()</span>
+    <span style="color:#00a8c8">return</span> <span style="color:#111">json</span><span style="color:#f92672">.</span><span style="color:#111">dumps</span><span style="color:#111">(</span><span style="color:#111">str_polls</span><span style="color:#111">)</span>
+
+<span style="color:#00a8c8">def</span> <span style="color:#75af00">main</span><span style="color:#111">():</span>
+    <span style="color:#00a8c8">global</span> <span style="color:#111">engine</span>
+    <span style="color:#111">engine</span> <span style="color:#f92672">=</span> <span style="color:#111">create_engine</span><span style="color:#111">(</span><span style="color:#d88200">&#34;postgresql://:$postgres$@127.0.0.1:5432/quickstart_py&#34;</span><span style="color:#111">)</span>
+    <span style="color:#111">event</span><span style="color:#f92672">.</span><span style="color:#111">listen</span><span style="color:#111">(</span><span style="color:#111">engine</span><span style="color:#111">,</span> <span style="color:#d88200">&#39;before_cursor_execute&#39;</span><span style="color:#111">,</span> <span style="color:#111">BeforeExecuteFactory</span><span style="color:#111">(),</span> <span style="color:#111">retval</span><span style="color:#f92672">=</span><span style="color:#111">True</span><span style="color:#111">)</span>
+
+    <span style="color:#111">FlaskMiddleware</span><span style="color:#111">(</span><span style="color:#111">app</span><span style="color:#111">)</span>
+    <span style="color:#111">app</span><span style="color:#f92672">.</span><span style="color:#111">run</span><span style="color:#111">(</span><span style="color:#111">host</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;localhost&#39;</span><span style="color:#111">,</span> <span style="color:#111">port</span><span style="color:#f92672">=</span><span style="color:#ae81ff">8089</span><span style="color:#111">,</span> <span style="color:#111">threaded</span><span style="color:#f92672">=</span><span style="color:#111">True</span><span style="color:#111">)</span>
+
+<span style="color:#00a8c8">if</span> <span style="color:#111">__name__</span> <span style="color:#f92672">==</span> <span style="color:#d88200">&#39;__main__&#39;</span><span style="color:#111">:</span>
+    <span style="color:#111">main</span><span style="color:#111">()</span></code></pre></div></p>
+
+<p>which when run by <code>python3 main.py</code> and on visiting <a href="http://localhost:8089/polls">http://localhost:8089/polls</a> we can see on our database logs</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#ae81ff">2019</span>-06-08 <span style="color:#ae81ff">12</span>:17:59.518 PDT <span style="color:#f92672">[</span><span style="color:#ae81ff">73546</span><span style="color:#f92672">]</span> LOG:  statement: SELECT * FROM polls_question
+/*controller<span style="color:#f92672">=</span><span style="color:#d88200">&#39;get_polls&#39;</span>,db_driver<span style="color:#f92672">=</span><span style="color:#d88200">&#39;psycopg2%3A2.8.2%20%28dt%20dec%20pq3%20ext%20lo64%29&#39;</span>,
+<span style="color:#111">dbapi_level</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;2.0&#39;</span>,dbapi_threadsafety<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>,driver_paramstyle<span style="color:#f92672">=</span><span style="color:#d88200">&#39;pyformat&#39;</span>,
+<span style="color:#111">framework</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;flask%3A1.0.3&#39;</span>,libpq_version<span style="color:#f92672">=</span><span style="color:#ae81ff">100001</span>,route<span style="color:#f92672">=</span><span style="color:#d88200">&#39;/polls&#39;</span>*/</code></pre></div>
+<h3 id="references">References</h3>
+
+<table>
+<thead>
+<tr>
+<th>Resource</th>
+<th>URL</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>flask web framework</td>
+<td><a href="http://flask.pocoo.org/">http://flask.pocoo.org/</a></td>
+</tr>
+
+<tr>
+<td>sqlcommenter-psycopg2+flask</td>
+<td><a href="https://google.github.io/sqlcommenter/python/psycopg2#with-flask">/python/psycopg2#with-flask</a></td>
+</tr>
+
+<tr>
+<td>sqlcommenter-sqlalchemy+flask</td>
+<td><a href="https://google.github.io/sqlcommenter/python/sqlalchemy#with-flask">/python/sqlalchemy#with-flask</a></td>
+</tr>
+</tbody>
+</table>
+
+
+
+    
+    
+        <div class="chevrons">
+    <div id="navigation">
+<a class="nav nav-prev" href="https://google.github.io/sqlcommenter/python/sqlalchemy/" title="SQLAlchemy"> <i class="fa fa-chevron-left"></i><label>SQLAlchemy</label></a>
+    <a class="nav nav-next" href="https://google.github.io/sqlcommenter/ruby/" title="Ruby" style="margin-right: 0px;"><label>Ruby</label><i class="fa fa-chevron-right"></i></a></div>
+  </div>
+
+  </section>
+</article>
+
+<footer>
+
+<div class="footline">
+    
+    <div class="tags">
+      
+        <a class="label label-default" href="https://google.github.io/sqlcommenter/tags/python">python</a>
+      
+        <a class="label label-default" href="https://google.github.io/sqlcommenter/tags/flask">flask</a>
+      
+    </div>
+    
+
+    
+
+  
+
+    <div class="github-link">
+      <a href="https://github.com/orijtech/sqlcommenter-website/edit/master/content/python/flask/_index.md" target="blank"><i class="fa fa-code-fork"></i>
+        Edit this page on Github</a>
+    </div>
+  </div>
+
+
+	<div>
+
+
+  
+    <ul>
+<li><a href="https://github.com/orijtech/sqlcommenter-website">Github</a></li>
+</ul>
+
+<h5 style="color: #fff">sqlcommenter</h5>
+
+  
+
+
+
+	</div>
+</footer>
+
+<script src="https://google.github.io/sqlcommenter/js/clipboard.min.js"></script>
+
+<link href="https://google.github.io/sqlcommenter/css/featherlight.min.css" rel="stylesheet">
+<script src="https://google.github.io/sqlcommenter/js/featherlight.min.js"></script>
+
+
+
+<script src="https://google.github.io/sqlcommenter/theme-flex/script.js"></script>
+
+
+    
+
+    
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+<script src="https://google.github.io/sqlcommenter/js/tabs.js"></script>
+<script>
+  [].slice.call(document.querySelectorAll('.tab-container'))
+    .forEach(function(el) {
+      initializeTabs(el);
+    });
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-125198141-1"></script>
+<script>
+ window.dataLayer = window.dataLayer || [];
+ function gtag(){dataLayer.push(arguments);}
+ gtag('js', new Date());
+
+ gtag('config', 'UA-125198141-1');
+</script>
+
+  </body>
+</html>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>postgresql on sqlcommenter</title>
+    <link>https://google.github.io/sqlcommenter/tags/postgresql/</link>
+    <description>Recent content in postgresql on sqlcommenter</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 31 May 2019 16:23:01 -0700</lastBuildDate>
+    
+	<atom:link href="https://google.github.io/sqlcommenter/tags/postgresql/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Postgresql</title>
+      <link>https://google.github.io/sqlcommenter/databases/postgresql/</link>
+      <pubDate>Fri, 31 May 2019 16:23:01 -0700</pubDate>
+      
+      <guid>https://google.github.io/sqlcommenter/databases/postgresql/</guid>
+      <description>If you host your own instance of Postgresql, you can run it with logs to examine statements by following the guide at Runtime config logging
+i.e. on macOS, edit /usr/local/var/postgres/postgresql.conf and set log_destination to &#39;stderr&#39; as per:
+#------------------------------------------------------------------------------ # REPORTING AND LOGGING #------------------------------------------------------------------------------ # - Where to Log - log_destination = &amp;#39;stderr&amp;#39; # Valid values are combinations of # stderr, csvlog, syslog, and eventlog, # depending on platform. csvlog # requires logging_collector to be on.</description>
+    </item>
+    
+    <item>
+      <title>Databases</title>
+      <link>https://google.github.io/sqlcommenter/databases/</link>
+      <pubDate>Fri, 31 May 2019 16:00:01 -0700</pubDate>
+      
+      <guid>https://google.github.io/sqlcommenter/databases/</guid>
+      <description>In order to examine the results of sqlcommenter, we&amp;rsquo;ll need to examine query logs on the database. Below are some guides to help make this happen:
+          </description>
+    </item>
+    
+  </channel>
+</rss>

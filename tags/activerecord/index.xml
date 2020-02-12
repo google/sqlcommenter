@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>activerecord on sqlcommenter</title>
+    <link>https://google.github.io/sqlcommenter/tags/activerecord/</link>
+    <description>Recent content in activerecord on sqlcommenter</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 13 Jun 2019 16:04:11 -0600</lastBuildDate>
+    
+	<atom:link href="https://google.github.io/sqlcommenter/tags/activerecord/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Ruby on Rails</title>
+      <link>https://google.github.io/sqlcommenter/ruby/rails/</link>
+      <pubDate>Thu, 13 Jun 2019 16:04:11 -0600</pubDate>
+      
+      <guid>https://google.github.io/sqlcommenter/ruby/rails/</guid>
+      <description>Introduction Installation Usage Fields End-to-end example  Results  References  Introduction sqlcommenter_rails adds comments to your SQL statements.
+It is powered by marginalia and also adds OpenCensus information to the comments if you use the opencensus gem.
+sqlcommenter_rails configures marginalia and marginalia-opencensus to match the SQLCommenter format.
+Installation Add this line to your application&amp;rsquo;s Gemfile
+gem &amp;#39;sqlcommenter_rails&amp;#39; Then run bundle and restart your Rails server.
+To enable OpenCensus support, add the opencensus gem to your Gemfile, and add the following line in the beginning of config/application.</description>
+    </item>
+    
+  </channel>
+</rss>

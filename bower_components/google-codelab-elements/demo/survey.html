@@ -1,0 +1,82 @@
+<!--
+Copyright (c) 2015 Google Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not
+use this file except in compliance with the License. You may obtain a copy of
+the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+License for the specific language governing permissions and limitations under
+the License.
+-->
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <title>survey demo</title>
+    <script src="../../webcomponentsjs/webcomponents-lite.min.js"></script>
+    <link rel="import" href="../../paper-radio-button/paper-radio-button.html">
+    <link rel="import" href="../../paper-radio-group/paper-radio-group.html">
+    <link rel="import" href="../google-codelab-survey.html">
+    <link rel="import" href="../shared-style.html">
+  </head>
+  <body unresolved>
+    <style is="custom-style" include="shared-style"></style>
+    <p>An example of <code>&lt;google-codelab-survey&gt;</code></p>
+
+    <template id="t" is="dom-bind">
+
+      <google-codelab-survey answers="{{a}}"
+          on-answers-changed="onChanged"
+          on-google-codelab-survey-answer="onAnswer">
+        <h4>How would rate your experience with Polymer?</h4>
+        <paper-radio-group>
+          <paper-radio-button>Novice</paper-radio-button>
+          <paper-radio-button>Intermediate</paper-radio-button>
+          <paper-radio-button>Advanced</paper-radio-button>
+        </paper-radio-group>
+        <h4>
+          Another question?
+        </h4>
+        <paper-radio-group>
+          <paper-radio-button>One</paper-radio-button>
+          <paper-radio-button>Two</paper-radio-button>
+          <paper-radio-button>Three</paper-radio-button>
+        </paper-radio-group>
+      </google-codelab-survey>
+
+      answers:
+      <pre>[[json(a)]]</pre>
+
+      google-codelab-survey-answer detail:
+      <pre id="answerDetail"></pre>
+
+      answers-changed detail:
+      <pre id="changedDetail"></pre>
+
+    </template>
+
+    <script>
+      var t = document.querySelector('#t');
+
+      t.json = function(v) {
+        return JSON.stringify(v, undefined, 2);
+      };
+
+      t.onAnswer = function(e, detail) {
+        t.$.answerDetail.textContent = t.json(detail);
+      };
+
+      t.onChanged = function(e, detail) {
+        t.$.changedDetail.textContent = t.json(detail);
+      };
+    </script>
+
+  </body>
+</html>

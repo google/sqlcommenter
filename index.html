@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>sqlcommenter</title>
+    
+      <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="generator" content="Hugo 0.55.6" />
+<title> :: sqlcommenter</title>
+<link rel="shortcut icon" href="https://google.github.io/sqlcommenter/images/favicon.ico" type="image/x-icon" />
+<link href="https://google.github.io/sqlcommenter/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://google.github.io/sqlcommenter/css/nucleus.css" rel="stylesheet">
+<link href="https://google.github.io/sqlcommenter/theme-flex/style.css" rel="stylesheet">
+
+<link rel="stylesheet" href="https://google.github.io/sqlcommenter/css/bootstrap.min.css">
+<script src="https://google.github.io/sqlcommenter/js/jquery-2.x.min.js"></script>
+<script type="text/javascript">
+      var baseurl = "https:\/\/google.github.io\/sqlcommenter\/";
+</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+<link rel="stylesheet" href="https://google.github.io/sqlcommenter/css/header.css">
+<link rel="stylesheet" href="https://google.github.io/sqlcommenter/css/footer.css">
+<link rel="stylesheet" href="https://google.github.io/sqlcommenter/css/content.css">
+<link rel="stylesheet" href="https://google.github.io/sqlcommenter/css/buttons.css">
+<link rel="stylesheet" href="https://google.github.io/sqlcommenter/css/feature-matrix.css">
+
+<style>
+  .shortcuts {
+    height: initial;
+    line-height: initial;
+  }
+
+  .nav i {
+    height: initial;
+  }
+
+  .tabs-body pre {
+    margin-top: 0;
+  }
+
+  ul:not(.browser-default) {
+    padding-left: 22.5px;
+    padding-right: 22.5px;
+  }
+
+  ul:not(.browser-default),
+  ul:not(.browser-default) > li {
+    list-style-type: initial;
+  }
+
+  ul.menu,
+  ul.menu ul {
+    padding: 0;
+  }
+
+  .hide {
+    display: none;
+  }
+
+  .menu *,
+  .menu a,
+  a {
+    color: #242A31;
+  }
+
+  .menu .dd-item.haschildren > div > a.highlight,
+  .menu > .dd-item > div > a.highlight {
+    color: #242A31;
+  }
+
+  .menu .dd-item a.highlight {
+    color: #9DAAB6;
+  }
+
+  .menu .dd-item.active > div > a.highlight {
+    color: #BF2A32;
+  }
+
+  section a {
+    color: #039be5;
+  }
+</style>
+
+
+    
+  </head>
+  <body data-url="/">
+    
+      <header>
+  <div class="logo">
+    
+	
+  
+    <p><a href="https://google.github.io/sqlcommenter/"><img src="https://google.github.io/sqlcommenter/images/sqlcommenter_logo.png" alt="sqlcommenter logo" /> <span>sql</span>commenter</a></p>
+
+  
+
+
+  </div>
+  <div class="burger"><a href="javascript:void(0);" style="font-size:15px;">&#9776;</a></div>
+  
+  
+</header>
+<article>
+  <aside>
+    <ul class="menu">
+    <li data-nav-id="/spec/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/spec/">Specification</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/python/" class="dd-item haschildren
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/python/">Python</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+    <li data-nav-id="/python/django/" class="dd-item haschildren
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/python/django/">Django</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+      <li data-nav-id="/python/django/local/" class="dd-item">
+        <div>
+          <a href="https://google.github.io/sqlcommenter/python/django/local/">
+            Locally
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/python/django/gcp/" class="dd-item">
+        <div>
+          <a href="https://google.github.io/sqlcommenter/python/django/gcp/">
+            Google Cloud Platform
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/python/django/aws/" class="dd-item">
+        <div>
+          <a href="https://google.github.io/sqlcommenter/python/django/aws/">
+            Amazon Web Services
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/python/psycopg2/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/python/psycopg2/">psycopg2</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/python/sqlalchemy/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/python/sqlalchemy/">SQLAlchemy</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/python/flask/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/python/flask/">Flask</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/ruby/" class="dd-item haschildren
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/ruby/">Ruby</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+    <li data-nav-id="/ruby/rails/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/ruby/rails/">Ruby on Rails</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/node/" class="dd-item haschildren
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/node/">Node.js</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+    <li data-nav-id="/node/knex/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/node/knex/">Knex.js</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/node/sequelize/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/node/sequelize/">Sequelize.js</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/node/express/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/node/express/">Express.js</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/java/" class="dd-item haschildren
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/java/">Java</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+    <li data-nav-id="/java/hibernate/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/java/hibernate/">Hibernate</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/java/spring/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/java/spring/">Spring</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/databases/" class="dd-item haschildren
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/databases/">Databases</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+      <li data-nav-id="/databases/postgresql/" class="dd-item">
+        <div>
+          <a href="https://google.github.io/sqlcommenter/databases/postgresql/">
+            Postgresql
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/databases/mysql/" class="dd-item">
+        <div>
+          <a href="https://google.github.io/sqlcommenter/databases/mysql/">
+            MySQL
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/databases/mariadb/" class="dd-item">
+        <div>
+          <a href="https://google.github.io/sqlcommenter/databases/mariadb/">
+            MariaDB
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/faq/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/faq/">FAQ</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+
+
+
+
+    </ul>
+    <section>
+    </section>
+  </aside>
+  <section class="page no-pagination no-top-border-header no-search max-text-width">
+    
+      <div>
+        <div class="searchbox">
+          <input data-search-input id="search-by" type="text" placeholder="Search...">
+        </div>
+        <script type="text/javascript" src="https://google.github.io/sqlcommenter/js/lunr.min.js"></script>
+        <script type="text/javascript" src="https://google.github.io/sqlcommenter/js/auto-complete.js"></script>
+        <link href="https://google.github.io/sqlcommenter/css/auto-complete.css" rel="stylesheet">
+        <script type="text/javascript">
+          
+              var baseurl = "https:\/\/google.github.io\/sqlcommenter\/";
+          
+        </script>
+        <script type="text/javascript" src="https://google.github.io/sqlcommenter/js/search.js"></script>
+      </div>
+
+
+    
+
+    
+    
+    
+<span id="sidebar-toggle-span">
+<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fa fa-bars"></i> navigation</a>
+</span>
+ 
+
+
+<div class="title-card" style="">
+  <div>
+    <h2 class="logo"><span>sql</span>commenter</h2>
+    <i>Attach SQL comments to correlate user code in ORMs and SQL drivers with SQL statements</i>
+  </div>
+</div>
+
+
+<p><img src="https://google.github.io/sqlcommenter/images/sqlcommenter_logo.png" alt="" /></p>
+
+<p>
+
+<span class="logo brand">
+  <img src="https://google.github.io/sqlcommenter/images/sqlcommenter_logo.png" />
+  <span>sql</span>commenter
+  
+</span>
+ is a suite of middlewares/plugins that enable your ORMs to augment SQL statements before execution, with comments containing
+information about the code that caused its execution. This helps in easily correlating slow performance with source code and giving insights into backend database performance. In short it provides some observability into the state of your client-side applications and their impact on the database&rsquo;s server-side.</p>
+
+<ul>
+<li><a href="#value">Value</a></li>
+<li><a href="#sample">Sample</a></li>
+<li><a href="#interpretation">Interpretation</a></li>
+<li><a href="#getting-started">Getting started</a></li>
+<li><a href="#support">Support</a>
+
+<ul>
+<li><a href="#languages">Languages</a></li>
+<li><a href="#frameworks">Frameworks</a></li>
+<li><a href="#databases">Databases</a></li>
+</ul></li>
+<li><a href="#source-code">Source code</a></li>
+</ul>
+
+<h3 id="value">Value</h3>
+
+<p>sqlcommenter provides instrumentation/wrappers to augment SQL from frameworks and ORMs. The augmented SQL provides key=&lsquo;value&rsquo; comments
+that help correlate usercode with ORM generated SQL statements and they can be examined in your database server logs. It provides deeper
+observability insights into the state of your applications all the way to your database server.</p>
+
+<h3 id="sample">Sample</h3>
+
+<p>This log was extracted from a live web application</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#ae81ff">2019</span>-05-28 <span style="color:#ae81ff">11</span>:54:50.780 PDT <span style="color:#f92672">[</span><span style="color:#ae81ff">64128</span><span style="color:#f92672">]</span> LOG:  statement: INSERT INTO <span style="color:#d88200">&#34;polls_question&#34;</span>
+<span style="color:#f92672">(</span><span style="color:#d88200">&#34;question_text&#34;</span>, <span style="color:#d88200">&#34;pub_date&#34;</span><span style="color:#f92672">)</span> VALUES
+<span style="color:#f92672">(</span><span style="color:#d88200">&#39;What is this?&#39;</span>, <span style="color:#d88200">&#39;2019-05-28T18:54:50.767481+00:00&#39;</span>::timestamptz<span style="color:#f92672">)</span> RETURNING
+<span style="color:#d88200">&#34;polls_question&#34;</span>.<span style="color:#d88200">&#34;id&#34;</span> /*controller<span style="color:#f92672">=</span><span style="color:#d88200">&#39;index&#39;</span>,db_driver<span style="color:#f92672">=</span><span style="color:#d88200">&#39;django.db.backends.postgresql&#39;</span>,
+<span style="color:#111">framework</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;django%3A2.2.1&#39;</span>,route<span style="color:#f92672">=</span><span style="color:#d88200">&#39;%5Epolls/%24&#39;</span>,
+<span style="color:#111">traceparent</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;00-5bd66ef5095369c7b0d1f8f4bd33716a-c532cb4098ac3dd2-01&#39;</span>,
+<span style="color:#111">tracestate</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;congo%3Dt61rcWkgMzE%2Crojo%3D00f067aa0ba902b7&#39;</span>*/</code></pre></div>
+<h3 id="interpretation">Interpretation</h3>
+
+<p>On examining the SQL statement from above in <a href="#sample">Sample</a> and examining the comment in <code>/*...*/</code></p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#75715e">/*controller=&#39;index&#39;,db_driver=&#39;django.db.backends.postgresql&#39;,
+</span><span style="color:#75715e">framework=&#39;django%3A2.2.1&#39;,route=&#39;%5Epolls/%24&#39;,
+</span><span style="color:#75715e">traceparent=&#39;00-5bd66ef5095369c7b0d1f8f4bd33716a-c532cb4098ac3dd2-01&#39;,
+</span><span style="color:#75715e">tracestate=&#39;congo%3Dt61rcWkgMzE%2Crojo%3D00f067aa0ba902b7&#39;*/</span></code></pre></div>
+<p>we can now correlate and pinpoint the fields in the above slow SQL query to our source code in our web application:</p>
+
+<table>
+<thead>
+<tr>
+<th>Original field</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>controller='index'</code></td>
+<td>Controller name <code>^/polls/$</code></td>
+</tr>
+
+<tr>
+<td><code>db_driver='django.db.backends.postgresql'</code></td>
+<td>Database driver <code>django.db.backends.postgresql</code></td>
+</tr>
+
+<tr>
+<td><code>framework='django%3A2.2.1'</code></td>
+<td>Framework version of <code>django 2.2.1</code></td>
+</tr>
+
+<tr>
+<td><code>route='%5Epolls/%24'</code></td>
+<td>Route of <code>^/polls/$</code></td>
+</tr>
+
+<tr>
+<td><code>traceparent='00-5bd66ef5095369c7b0d1f8f4bd33716a-c532cb4098ac3dd2-01'</code></td>
+<td><a href="https://www.w3.org/TR/trace-context/#traceparent-field">W3C TraceContext.Traceparent</a> of &lsquo;00-5bd66ef5095369c7b0d1f8f4bd33716a-c532cb4098ac3dd2-01&rsquo;</td>
+</tr>
+
+<tr>
+<td><code>tracestate='congo%3Dt61rcWkgMzE%2Crojo%3D00f067aa0ba902b7'</code></td>
+<td><a href="https://www.w3.org/TR/trace-context/#tracestate-field">W3C TraceContext.Tracestate</a> with entries congo=t61rcWkgMzE,rojo=00f067aa0ba902b7</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="support">Support</h3>
+
+<p>We support a variety of languages and frameworks such as:</p>
+
+<h4 id="languages">Languages</h4>
+
+<p><div class="user-card-container">
+  <a target="_blank" href="https://google.github.io/sqlcommenter/python">
+  
+  <img class="no-padding no-margin " src="https://google.github.io/sqlcommenter/images/python-logo.png">
+  
+  </a>
+</div>
+
+<div class="user-card-container">
+  <a target="_blank" href="https://google.github.io/sqlcommenter/java">
+  
+  <img class="no-padding no-margin " src="https://google.github.io/sqlcommenter/images/java-logo.png">
+  
+  </a>
+</div>
+
+<div class="user-card-container">
+  <a target="_blank" href="https://google.github.io/sqlcommenter/node">
+  
+  <img class="no-padding no-margin " src="https://google.github.io/sqlcommenter/images/nodejs-logo.png">
+  
+  </a>
+</div>
+
+<div class="user-card-container">
+  <a target="_blank" href="https://google.github.io/sqlcommenter/ruby">
+  
+  <img class="no-padding no-margin " src="https://google.github.io/sqlcommenter/images/ruby-logo.png">
+  
+  </a>
+</div>
+</p>
+
+<h4 id="frameworks">Frameworks</h4>
+
+<p><div class="user-card-container">
+  <a target="_blank" href="https://google.github.io/sqlcommenter/python/django">
+  
+  <img class="no-padding no-margin " src="https://google.github.io/sqlcommenter/images/django-logo.png">
+  
+  </a>
+</div>
+
+<div class="user-card-container">
+  <a target="_blank" href="https://google.github.io/sqlcommenter/node/knex">
+  
+  <img class="no-padding no-margin " src="https://google.github.io/sqlcommenter/images/knex-logo.png">
+  
+  </a>
+</div>
+
+<div class="user-card-container">
+  <a target="_blank" href="https://google.github.io/sqlcommenter/python/psycopg2">
+  
+  <img class="no-padding no-margin " src="https://google.github.io/sqlcommenter/images/psycopg2-logo.png">
+  
+  </a>
+</div>
+
+<div class="user-card-container">
+  <a target="_blank" href="https://google.github.io/sqlcommenter/node/sequelize">
+  
+  <img class="no-padding no-margin " src="https://google.github.io/sqlcommenter/images/sequelize-logo.png">
+  
+  </a>
+</div>
+
+<div class="user-card-container">
+  <a target="_blank" href="https://google.github.io/sqlcommenter/python/sqlalchemy">
+  
+  <img class="no-padding no-margin " src="https://google.github.io/sqlcommenter/images/sqlalchemy-logo.png">
+  
+  </a>
+</div>
+
+<div class="user-card-container">
+  <a target="_blank" href="https://google.github.io/sqlcommenter/java/hibernate">
+  
+  <img class="no-padding no-margin " src="https://google.github.io/sqlcommenter/images/hibernate-logo.svg">
+  
+  </a>
+</div>
+
+<div class="user-card-container">
+  <a target="_blank" href="https://google.github.io/sqlcommenter/node/express">
+  
+  <img class="no-padding no-margin " src="https://google.github.io/sqlcommenter/images/express_js-logo.png">
+  
+  </a>
+</div>
+
+<div class="user-card-container">
+  <a target="_blank" href="https://google.github.io/sqlcommenter/java/spring">
+  
+  <img class="no-padding no-margin " src="https://google.github.io/sqlcommenter/images/spring-logo.png">
+  
+  </a>
+</div>
+
+<div class="user-card-container">
+  <a target="_blank" href="https://google.github.io/sqlcommenter/python/flask">
+  
+  <img class="no-padding no-margin " src="https://google.github.io/sqlcommenter/images/flask-logo.png">
+  
+  </a>
+</div>
+
+<div class="user-card-container">
+  <a target="_blank" href="https://google.github.io/sqlcommenter/ruby/rails">
+  
+  <img class="no-padding no-margin " src="https://google.github.io/sqlcommenter/images/activerecord_marginalia-logo.png">
+  
+  </a>
+</div>
+</p>
+
+<h4 id="databases">Databases</h4>
+
+<p>We have tested the instrumentation on the following databases:</p>
+
+<p><div class="user-card-container">
+  <a target="_blank" href="https://google.github.io/sqlcommenter/databases/postgresql">
+  
+  <img class="no-padding no-margin " src="https://google.github.io/sqlcommenter/images/postgresql-logo.png">
+  
+  </a>
+</div>
+
+<div class="user-card-container">
+  <a target="_blank" href="https://google.github.io/sqlcommenter/databases/mysql">
+  
+  <img class="no-padding no-margin " src="https://google.github.io/sqlcommenter/images/mysql-logo.png">
+  
+  </a>
+</div>
+
+<div class="user-card-container">
+  <a target="_blank" href="https://google.github.io/sqlcommenter/databases/mariadb">
+  
+  <img class="no-padding no-margin " src="https://google.github.io/sqlcommenter/images/mariadb-logo.png">
+  
+  </a>
+</div>
+
+<div class="user-card-container">
+  <a target="_blank" href="https://sqlite.org/cli.html">
+  
+  <img class="no-padding no-margin " src="https://google.github.io/sqlcommenter/images/sqlite-logo.png">
+  
+  </a>
+</div>
+
+<div class="user-card-container">
+  <a target="_blank" href="https://cloud.google.com/sql/">
+  
+  <img class="no-padding no-margin " src="https://google.github.io/sqlcommenter/images/cloudsql-logo.png">
+  
+  </a>
+</div>
+</p>
+
+<h3 id="source-code">Source code</h3>
+
+<p>To get started, please download the <a href="https://storage.googleapis.com/orijtech/sqlcommenter-mono.zip">sqlcommenter-mono.zip</a> file and on unzipping it, it should have the following directory structure
+containing the various ORM instrumentation that you can then install.</p>
+
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">.
+├── README.md
+├── java
+│   └── sqlcommenter-java
+│       ├── README.md
+│       ├── build.gradle
+│       ├── gradle
+│       │   └── wrapper
+│       │       ├── gradle-wrapper.jar
+│       │       └── gradle-wrapper.properties
+│       ├── gradlew
+│       ├── gradlew.bat
+│       ├── settings.gradle
+│       ├── src
+│       │   ├── main
+│       │   │   └── java
+│       │   │       └── io
+│       │   │           └── orijtech
+│       │   │               └── integrations
+│       │   │                   └── sqlcommenter
+│       │   │                       ├── interceptors
+│       │   │                       │   └── SpringSQLCommenterInterceptor.java
+│       │   │                       ├── schibernate
+│       │   │                       │   └── SCHibernate.java
+│       │   │                       └── threadlocalstorage
+│       │   │                           └── State.java
+│       │   └── <span style="color:#111">test</span>
+│       │       ├── java
+│       │       │   └── io
+│       │       │       └── orijtech
+│       │       │           └── integrations
+│       │       │               └── sqlcommenter
+│       │       │                   ├── interceptors
+│       │       │                   │   └── SpringSQLCommenterInterceptorTest.java
+│       │       │                   ├── schibernate
+│       │       │                   │   └── SCHibernateTest.java
+│       │       │                   ├── spring
+│       │       │                   │   └── backend
+│       │       │                   │       ├── JpaTransactionManagerConfiguration.java
+│       │       │                   │       ├── JpaTransactionManagerTest.java
+│       │       │                   │       ├── dao
+│       │       │                   │       │   ├── PostRepository.java
+│       │       │                   │       │   └── TagRepository.java
+│       │       │                   │       ├── domain
+│       │       │                   │       │   ├── Post.java
+│       │       │                   │       │   └── Tag.java
+│       │       │                   │       └── service
+│       │       │                   │           ├── ForumService.java
+│       │       │                   │           └── ForumServiceImpl.java
+│       │       │                   ├── threadlocalstorage
+│       │       │                   │   ├── StateTest.java
+│       │       │                   │   └── ThreadLocalStorageTest.java
+│       │       │                   └── util
+│       │       │                       └── SCHibernateWrapper.java
+│       │       └── resources
+│       │           ├── META-INF
+│       │           │   └── jdbc-hsqldb.properties
+│       │           └── logback-test.xml
+│       ├── target
+│       │   └── test.log
+│       └── travis_script
+├── nodejs
+│   └── sqlcommenter-nodejs
+│       ├── README.md
+│       ├── package-lock.json
+│       ├── package.json
+│       └── packages
+│           ├── knex
+│           │   ├── index.js
+│           │   ├── package-lock.json
+│           │   ├── package.json
+│           │   ├── <span style="color:#111">test</span>
+│           │   │   ├── comment.test.js
+│           │   │   ├── express.test.js
+│           │   │   └── unit
+│           │   │       └── util.js
+│           │   └── util.js
+│           └── sequelize
+│               ├── index.js
+│               ├── package-lock.json
+│               ├── package.json
+│               ├── <span style="color:#111">test</span>
+│               │   ├── comment.test.js
+│               │   ├── express.test.js
+│               │   └── unit
+│               │       └── util.js
+│               └── util.js
+├── package_it.sh
+├── python
+│   └── sqlcommenter-python
+│       ├── MANIFEST
+│       ├── README.md
+│       ├── runtests.py
+│       ├── setup.cfg
+│       ├── setup.py
+│       ├── sqlcommenter
+│       │   ├── __init__.py
+│       │   ├── django
+│       │   │   ├── __init__.py
+│       │   │   └── middleware.py
+│       │   ├── flask
+│       │   ├── flask.py
+│       │   ├── psycopg2
+│       │   │   ├── __init__.py
+│       │   │   └── extension.py
+│       │   └── sqlalchemy
+│       │       ├── __init__.py
+│       │       └── executor.py
+│       ├── tests
+│       │   ├── __init__.py
+│       │   ├── django
+│       │   │   ├── __init__.py
+│       │   │   ├── app_urls.py
+│       │   │   ├── models.py
+│       │   │   ├── settings.py
+│       │   │   ├── tests.py
+│       │   │   ├── urls.py
+│       │   │   └── views.py
+│       │   ├── flask
+│       │   │   ├── __init__.py
+│       │   │   ├── app.py
+│       │   │   └── tests.py
+│       │   ├── generic
+│       │   │   ├── __init__.py
+│       │   │   └── test_generate_sql_comment.py
+│       │   ├── opencensus_mock.py
+│       │   ├── psycopg2
+│       │   │   ├── __init__.py
+│       │   │   └── tests.py
+│       │   └── sqlalchemy
+│       │       ├── __init__.py
+│       │       └── tests.py
+│       └── tox.ini
+├── ruby
+│   └── sqlcommenter-ruby
+│       ├── README.md
+│       ├── marginalia-opencensus
+│       │   ├── Gemfile
+│       │   ├── README.md
+│       │   ├── Rakefile
+│       │   ├── bin
+│       │   │   ├── console
+│       │   │   ├── rails
+│       │   │   └── setup
+│       │   ├── lib
+│       │   │   ├── marginalia
+│       │   │   │   ├── opencensus
+│       │   │   │   │   ├── marginalia_components.rb
+│       │   │   │   │   └── version.rb
+│       │   │   │   └── opencensus.rb
+│       │   │   └── marginalia-opencensus.rb
+│       │   ├── marginalia-opencensus.gemspec
+│       │   ├── rubocop.gemfile
+│       │   └── spec
+│       │       ├── gemfiles
+│       │       │   ├── rails_5_2.gemfile
+│       │       │   ├── rails_6_0.gemfile
+│       │       │   └── rubocop.gemfile
+│       │       ├── internal
+│       │       │   ├── Rakefile
+│       │       │   ├── app
+│       │       │   │   └── controllers
+│       │       │   │       └── internal_app_controller.rb
+│       │       │   ├── config
+│       │       │   │   ├── application.rb
+│       │       │   │   ├── boot.rb
+│       │       │   │   ├── database.yml
+│       │       │   │   ├── environment.rb
+│       │       │   │   └── routes.rb
+│       │       │   ├── db
+│       │       │   │   └── schema.rb
+│       │       │   ├── log
+│       │       │   └── public
+│       │       │       └── favicon.ico
+│       │       ├── marginalia
+│       │       │   └── opencensus
+│       │       │       ├── integration_spec.rb
+│       │       │       └── marginalia_comment_components_spec.rb
+│       │       └── spec_helper.rb
+│       ├── sqlcommenter_rails
+│       │   ├── Gemfile
+│       │   ├── README.md
+│       │   ├── Rakefile
+│       │   ├── bin
+│       │   │   ├── console
+│       │   │   ├── rails
+│       │   │   └── setup
+│       │   ├── lib
+│       │   │   ├── sqlcommenter_rails
+│       │   │   │   ├── marginalia_components.rb
+│       │   │   │   └── version.rb
+│       │   │   └── sqlcommenter_rails.rb
+│       │   ├── rubocop.gemfile
+│       │   ├── shared.gemfile
+│       │   ├── spec
+│       │   │   ├── gemfiles
+│       │   │   │   ├── rails_5_2.gemfile
+│       │   │   │   ├── rails_6_0.gemfile
+│       │   │   │   └── rubocop.gemfile
+│       │   │   ├── internal
+│       │   │   │   ├── Rakefile
+│       │   │   │   ├── app
+│       │   │   │   │   └── controllers
+│       │   │   │   │       └── internal_app_controller.rb
+│       │   │   │   ├── config
+│       │   │   │   │   ├── application.rb
+│       │   │   │   │   ├── boot.rb
+│       │   │   │   │   ├── database.yml
+│       │   │   │   │   ├── environment.rb
+│       │   │   │   │   └── routes.rb
+│       │   │   │   ├── db
+│       │   │   │   │   └── schema.rb
+│       │   │   │   ├── log
+│       │   │   │   └── public
+│       │   │   │       └── favicon.ico
+│       │   │   ├── spec_helper.rb
+│       │   │   └── sqlcommenter_rails
+│       │   │       ├── integration_spec.rb
+│       │   │       └── marginalia_comment_components_spec.rb
+│       │   └── sqlcommenter_rails.gemspec
+│       └── sqlcommenter_rails_demo
+│           ├── Gemfile
+│           ├── Gemfile.lock
+│           ├── README.md
+│           ├── Rakefile
+│           ├── app
+│           │   ├── controllers
+│           │   │   ├── application_controller.rb
+│           │   │   └── posts_controller.rb
+│           │   └── models
+│           │       ├── application_record.rb
+│           │       └── post.rb
+│           ├── bin
+│           │   ├── bundle
+│           │   ├── rails
+│           │   ├── rake
+│           │   ├── setup
+│           │   └── spring
+│           ├── config
+│           │   ├── application.rb
+│           │   ├── boot.rb
+│           │   ├── cable.yml
+│           │   ├── credentials.yml.enc
+│           │   ├── database.yml
+│           │   ├── environment.rb
+│           │   ├── environments
+│           │   │   ├── development.rb
+│           │   │   ├── production.rb
+│           │   │   └── test.rb
+│           │   ├── puma.rb
+│           │   ├── routes.rb
+│           │   ├── spring.rb
+│           │   └── storage.yml
+│           ├── config.ru
+│           ├── db
+│           │   ├── migrate
+│           │   │   └── 20190608153219_create_posts.rb
+│           │   └── schema.rb
+│           ├── log
+│           ├── <span style="color:#111">test</span>
+│           │   ├── controllers
+│           │   │   └── posts_controller_test.rb
+│           │   ├── fixtures
+│           │   │   └── posts.yml
+│           │   └── test_helper.rb
+│           └── tmp
+└── sqlcommenter-mono.zip
+
+<span style="color:#ae81ff">100</span> directories, <span style="color:#ae81ff">166</span> files</code></pre></div>
+
+
+
+
+    
+    
+        <div class="chevrons">
+    <div id="navigation">
+<a class="nav nav-next" href="https://google.github.io/sqlcommenter/spec/" title="Specification" style="margin-right: 0px;"><label>Specification</label><i class="fa fa-chevron-right"></i></a></div>
+  </div>
+
+  </section>
+</article>
+
+<footer>
+
+<div class="footline">
+    
+
+    
+
+  
+
+    <div class="github-link">
+      <a href="https://github.com/orijtech/sqlcommenter-website/edit/master/content/_index.md" target="blank"><i class="fa fa-code-fork"></i>
+        Edit this page on Github</a>
+    </div>
+  </div>
+
+
+	<div>
+
+
+  
+    <ul>
+<li><a href="https://github.com/orijtech/sqlcommenter-website">Github</a></li>
+</ul>
+
+<h5 style="color: #fff">sqlcommenter</h5>
+
+  
+
+
+
+	</div>
+</footer>
+
+<script src="https://google.github.io/sqlcommenter/js/clipboard.min.js"></script>
+
+<link href="https://google.github.io/sqlcommenter/css/featherlight.min.css" rel="stylesheet">
+<script src="https://google.github.io/sqlcommenter/js/featherlight.min.js"></script>
+
+
+
+<script src="https://google.github.io/sqlcommenter/theme-flex/script.js"></script>
+
+
+    
+
+    
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+<script src="https://google.github.io/sqlcommenter/js/tabs.js"></script>
+<script>
+  [].slice.call(document.querySelectorAll('.tab-container'))
+    .forEach(function(el) {
+      initializeTabs(el);
+    });
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-125198141-1"></script>
+<script>
+ window.dataLayer = window.dataLayer || [];
+ function gtag(){dataLayer.push(arguments);}
+ gtag('js', new Date());
+
+ gtag('config', 'UA-125198141-1');
+</script>
+
+  </body>
+</html>

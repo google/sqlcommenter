@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>cloudsql on sqlcommenter</title>
+    <link>https://google.github.io/sqlcommenter/tags/cloudsql/</link>
+    <description>Recent content in cloudsql on sqlcommenter</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 31 May 2019 16:00:01 -0700</lastBuildDate>
+    
+	<atom:link href="https://google.github.io/sqlcommenter/tags/cloudsql/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Databases</title>
+      <link>https://google.github.io/sqlcommenter/databases/</link>
+      <pubDate>Fri, 31 May 2019 16:00:01 -0700</pubDate>
+      
+      <guid>https://google.github.io/sqlcommenter/databases/</guid>
+      <description>In order to examine the results of sqlcommenter, we&amp;rsquo;ll need to examine query logs on the database. Below are some guides to help make this happen:
+          </description>
+    </item>
+    
+  </channel>
+</rss>

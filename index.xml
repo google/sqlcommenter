@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>sqlcommenter</title>
+    <link>https://google.github.io/sqlcommenter/</link>
+    <description>Recent content on sqlcommenter</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 29 May 2019 19:58:45 -0700</lastBuildDate>
+    
+	<atom:link href="https://google.github.io/sqlcommenter/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Locally</title>
+      <link>https://google.github.io/sqlcommenter/python/django/local/</link>
+      <pubDate>Fri, 31 May 2019 14:20:21 -0700</pubDate>
+      
+      <guid>https://google.github.io/sqlcommenter/python/django/local/</guid>
+      <description>Introduction Requirements Addition to your code References  Introduction This guide will help you add sqlcommenter to your Django applications running locally.
+Please see the reference for the fields added in the SQL comments sqlcommenter-django.Fields
+Requirements    Steps Resource     Django https://docs.djangoproject.com/en/stable/intro/   sqlcommenter-django https://pypi.org/projects/sqlcommenter-django   Django 2.X https://docs.djangoproject.com/en/stable/faq/install   Python 3.X https://www.python.org/downloads/    Addition to your code Firstly, please install sqlcommenter-django.</description>
+    </item>
+    
+    <item>
+      <title>Google Cloud Platform</title>
+      <link>https://google.github.io/sqlcommenter/python/django/gcp/</link>
+      <pubDate>Wed, 29 May 2019 17:06:21 -0700</pubDate>
+      
+      <guid>https://google.github.io/sqlcommenter/python/django/gcp/</guid>
+      <description>Introduction Requirements Addition to your code References  Introduction This guide will help you add sqlcommenter to your Django applications running on Google Cloud Platform (GCP)
+Requirements    Steps Resource     Django on GCP https://cloud.google.com/python/django/   sqlcommenter-django https://pypi.org/projects/sqlcommenter-django   Django 2.X https://docs.djangoproject.com/en/stable/faq/install   Python 3.X https://www.python.org/downloads/    Addition to your code Firstly, please install sqlcommenter-django.
+For any Django deployment, we can just edit our settings.</description>
+    </item>
+    
+    <item>
+      <title>Amazon Web Services</title>
+      <link>https://google.github.io/sqlcommenter/python/django/aws/</link>
+      <pubDate>Fri, 31 May 2019 14:40:33 -0700</pubDate>
+      
+      <guid>https://google.github.io/sqlcommenter/python/django/aws/</guid>
+      <description>Introduction Requirements Addition to your code References  Introduction This guide will help you add sqlcommenter to your Django applications running on Amazon Web Services (AWS)
+Requirements    Steps Resource     Python on AWS https://aws.amazon.com/getting-started/projects/deploy-python-application/   sqlcommenter-django https://pypi.org/projects/sqlcommenter-django   Django 2.X https://docs.djangoproject.com/en/stable/faq/install   Python 3.X https://www.python.org/downloads/    Addition to your code For any Django deployment, we can just edit your settings.</description>
+    </item>
+    
+    <item>
+      <title>Postgresql</title>
+      <link>https://google.github.io/sqlcommenter/databases/postgresql/</link>
+      <pubDate>Fri, 31 May 2019 16:23:01 -0700</pubDate>
+      
+      <guid>https://google.github.io/sqlcommenter/databases/postgresql/</guid>
+      <description>If you host your own instance of Postgresql, you can run it with logs to examine statements by following the guide at Runtime config logging
+i.e. on macOS, edit /usr/local/var/postgres/postgresql.conf and set log_destination to &#39;stderr&#39; as per:
+#------------------------------------------------------------------------------ # REPORTING AND LOGGING #------------------------------------------------------------------------------ # - Where to Log - log_destination = &amp;#39;stderr&amp;#39; # Valid values are combinations of # stderr, csvlog, syslog, and eventlog, # depending on platform. csvlog # requires logging_collector to be on.</description>
+    </item>
+    
+    <item>
+      <title>MySQL</title>
+      <link>https://google.github.io/sqlcommenter/databases/mysql/</link>
+      <pubDate>Fri, 31 May 2019 16:31:01 -0700</pubDate>
+      
+      <guid>https://google.github.io/sqlcommenter/databases/mysql/</guid>
+      <description>If you host your own instance of MySQL, you can run it with logs to examine statements by following the guide at:
+   Guide URL     Running MySQL locally/System variables: log output https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_log_output   MySQL Docker installation with logs https://hub.docker.com/_/mysql    </description>
+    </item>
+    
+    <item>
+      <title>MariaDB</title>
+      <link>https://google.github.io/sqlcommenter/databases/mariadb/</link>
+      <pubDate>Fri, 31 May 2019 16:34:01 -0700</pubDate>
+      
+      <guid>https://google.github.io/sqlcommenter/databases/mariadb/</guid>
+      <description> If you host your own instance of MariaDB, you can run it with logs to examine statements by following the guide at Query log output destination
+References    Resource URL     Log output https://mariadb.com/kb/en/library/general-query-log/#choosing-the-general-query-log-output-destination   MariaDB Docker https://hub.docker.com/_/mariadb/    </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://google.github.io/sqlcommenter/_footer/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://google.github.io/sqlcommenter/_footer/</guid>
+      <description> Github  sqlcommenter </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://google.github.io/sqlcommenter/_header/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://google.github.io/sqlcommenter/_header/</guid>
+      <description>sqlcommenter</description>
+    </item>
+    
+  </channel>
+</rss>

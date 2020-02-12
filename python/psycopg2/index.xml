@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>psycopg2 on sqlcommenter</title>
+    <link>https://google.github.io/sqlcommenter/python/psycopg2/</link>
+    <description>Recent content in psycopg2 on sqlcommenter</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 29 May 2019 08:40:11 -0600</lastBuildDate>
+    
+	<atom:link href="https://google.github.io/sqlcommenter/python/psycopg2/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+  </channel>
+</rss>

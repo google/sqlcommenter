@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>python on sqlcommenter</title>
+    <link>https://google.github.io/sqlcommenter/tags/python/</link>
+    <description>Recent content in python on sqlcommenter</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 31 May 2019 18:22:11 -0700</lastBuildDate>
+    
+	<atom:link href="https://google.github.io/sqlcommenter/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Locally</title>
+      <link>https://google.github.io/sqlcommenter/python/django/local/</link>
+      <pubDate>Fri, 31 May 2019 14:20:21 -0700</pubDate>
+      
+      <guid>https://google.github.io/sqlcommenter/python/django/local/</guid>
+      <description>Introduction Requirements Addition to your code References  Introduction This guide will help you add sqlcommenter to your Django applications running locally.
+Please see the reference for the fields added in the SQL comments sqlcommenter-django.Fields
+Requirements    Steps Resource     Django https://docs.djangoproject.com/en/stable/intro/   sqlcommenter-django https://pypi.org/projects/sqlcommenter-django   Django 2.X https://docs.djangoproject.com/en/stable/faq/install   Python 3.X https://www.python.org/downloads/    Addition to your code Firstly, please install sqlcommenter-django.</description>
+    </item>
+    
+    <item>
+      <title>Django</title>
+      <link>https://google.github.io/sqlcommenter/python/django/</link>
+      <pubDate>Wed, 29 May 2019 08:40:11 -0600</pubDate>
+      
+      <guid>https://google.github.io/sqlcommenter/python/django/</guid>
+      <description>Introduction Requirements Installation  pip install Source  Fields  Sample log entry Expected fields  References  Introduction This package is in the form of Django middleware whose purpose is to augment a SQL statement right before execution, with information about the controller and user code to help with later making database optimization decisions, after those statements are examined from the database server&amp;rsquo;s logs.</description>
+    </item>
+    
+    <item>
+      <title>Google Cloud Platform</title>
+      <link>https://google.github.io/sqlcommenter/python/django/gcp/</link>
+      <pubDate>Wed, 29 May 2019 17:06:21 -0700</pubDate>
+      
+      <guid>https://google.github.io/sqlcommenter/python/django/gcp/</guid>
+      <description>Introduction Requirements Addition to your code References  Introduction This guide will help you add sqlcommenter to your Django applications running on Google Cloud Platform (GCP)
+Requirements    Steps Resource     Django on GCP https://cloud.google.com/python/django/   sqlcommenter-django https://pypi.org/projects/sqlcommenter-django   Django 2.X https://docs.djangoproject.com/en/stable/faq/install   Python 3.X https://www.python.org/downloads/    Addition to your code Firstly, please install sqlcommenter-django.
+For any Django deployment, we can just edit our settings.</description>
+    </item>
+    
+    <item>
+      <title>Amazon Web Services</title>
+      <link>https://google.github.io/sqlcommenter/python/django/aws/</link>
+      <pubDate>Fri, 31 May 2019 14:40:33 -0700</pubDate>
+      
+      <guid>https://google.github.io/sqlcommenter/python/django/aws/</guid>
+      <description>Introduction Requirements Addition to your code References  Introduction This guide will help you add sqlcommenter to your Django applications running on Amazon Web Services (AWS)
+Requirements    Steps Resource     Python on AWS https://aws.amazon.com/getting-started/projects/deploy-python-application/   sqlcommenter-django https://pypi.org/projects/sqlcommenter-django   Django 2.X https://docs.djangoproject.com/en/stable/faq/install   Python 3.X https://www.python.org/downloads/    Addition to your code For any Django deployment, we can just edit your settings.</description>
+    </item>
+    
+    <item>
+      <title>Flask</title>
+      <link>https://google.github.io/sqlcommenter/python/flask/</link>
+      <pubDate>Fri, 31 May 2019 18:22:11 -0700</pubDate>
+      
+      <guid>https://google.github.io/sqlcommenter/python/flask/</guid>
+      <description>Introduction Using it Expected fields End to examples  With psycopg2 With sqlalchemy  References  Introduction We provide Flask middleware which when coupled with:
+ sqlcommenter-psycopg2 sqlcommenter-sqlalchemy  allow us to retrieve the controller and route correlated with your source code in your web app.
+Using it Having successfully installed sqlcommenter-python&amp;rsquo;s sqlcommenter
+from sqlcommenter import FlaskMiddleware # Then in your flask programs just pass in the app FlaskMiddleware(app) Expected fields This Flask integration when coupled with compatible drivers will place the following fields</description>
+    </item>
+    
+  </channel>
+</rss>

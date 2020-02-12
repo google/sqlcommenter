@@ -1,6 +1,0 @@
-#!/usr/bin/env ruby
-# frozen_string_literal: true
-
-APP_PATH = File.expand_path('../spec/internal/config/application', __dir__)
-require File.expand_path('../spec/internal/config/boot', __dir__)
-require 'rails/commands'

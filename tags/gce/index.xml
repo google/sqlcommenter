@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>gce on sqlcommenter</title>
+    <link>https://google.github.io/sqlcommenter/tags/gce/</link>
+    <description>Recent content in gce on sqlcommenter</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 29 May 2019 17:06:21 -0700</lastBuildDate>
+    
+	<atom:link href="https://google.github.io/sqlcommenter/tags/gce/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Google Cloud Platform</title>
+      <link>https://google.github.io/sqlcommenter/python/django/gcp/</link>
+      <pubDate>Wed, 29 May 2019 17:06:21 -0700</pubDate>
+      
+      <guid>https://google.github.io/sqlcommenter/python/django/gcp/</guid>
+      <description>Introduction Requirements Addition to your code References  Introduction This guide will help you add sqlcommenter to your Django applications running on Google Cloud Platform (GCP)
+Requirements    Steps Resource     Django on GCP https://cloud.google.com/python/django/   sqlcommenter-django https://pypi.org/projects/sqlcommenter-django   Django 2.X https://docs.djangoproject.com/en/stable/faq/install   Python 3.X https://www.python.org/downloads/    Addition to your code Firstly, please install sqlcommenter-django.
+For any Django deployment, we can just edit our settings.</description>
+    </item>
+    
+  </channel>
+</rss>

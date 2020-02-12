@@ -1,1 +1,0 @@
-# sqlcommenter-ruby

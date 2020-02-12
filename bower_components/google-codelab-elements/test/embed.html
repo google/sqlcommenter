@@ -1,0 +1,75 @@
+<!--
+Copyright (c) 2015 Google Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not
+use this file except in compliance with the License. You may obtain a copy of
+the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+License for the specific language governing permissions and limitations under
+the License.
+-->
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>embed tests</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <script src="../../webcomponentsjs/webcomponents.js"></script>
+  <script src="../../web-component-tester/browser.js"></script>
+  <script src="../../test-fixture/test-fixture-mocha.js"></script>
+  <script src="../../iron-test-helpers/mock-interactions.js"></script>
+
+  <link rel="import" href="../../test-fixture/test-fixture.html">
+  <link rel="import" href="../google-codelab-step.html">
+  <link rel="import" href="../google-codelab.html">
+</head>
+<body>
+
+  <test-fixture id="codelab">
+    <template>
+      <google-codelab title="Test title" feedback-link="http://codelab.example.org"
+                      no-toolbar no-highlight no-arrows>
+        <google-codelab-step label="First" duration="2">
+<pre><code language="">&lt;head&gt;
+  ....
+  &lt;script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"&gt;&lt;/script&gt;
+  &lt;link rel="import" href="bower_components/google-map/google-map.html"&gt;
+&lt;/head&gt;</code></pre>
+        </google-codelab-step>
+      </google-codelab>
+    </template>
+  </test-fixture>
+
+  <script>
+    suite('ui toggles', function() {
+
+      test('test properties', function(done) {
+        var codelab = fixture('codelab');
+
+        var toolbar = codelab.$.headerpanel.querySelector('#main-toolbar');
+        assert.equal(toolbar.hidden, true, 'toolbar hidden');
+        assert.equal(getComputedStyle(toolbar).display,
+                     'none', 'toolbar not displayed');
+
+        assert.equal(codelab.$.controls.hidden, true, 'arrows hidden');
+        assert.equal(getComputedStyle(
+            codelab.$.controls).display, 'none', 'arrows not displayed');
+
+        var higlighted = codelab.querySelector('code span');
+        async.nextTick(function() {
+          assert.equal(higlighted, null, 'code was not syntax higlighted');
+          done();
+        });
+      });
+
+    });
+  </script>
+
+</body>

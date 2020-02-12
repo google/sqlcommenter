@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>query-builder on sqlcommenter</title>
+    <link>https://google.github.io/sqlcommenter/tags/query-builder/</link>
+    <description>Recent content in query-builder on sqlcommenter</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 29 May 2019 08:40:11 -0600</lastBuildDate>
+    
+	<atom:link href="https://google.github.io/sqlcommenter/tags/query-builder/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Knex.js</title>
+      <link>https://google.github.io/sqlcommenter/node/knex/</link>
+      <pubDate>Wed, 29 May 2019 08:40:11 -0600</pubDate>
+      
+      <guid>https://google.github.io/sqlcommenter/node/knex/</guid>
+      <description>Introduction Requirements Installation  Manually Package manager  Usage  Plain knex wrapper Express middleware  Fields  Options  Options examples   End to end examples  Source code Results  References  Introduction This package is in the form of Knex.Client.prototype.query wrapper whose purpose is to augment a SQL statement right before execution, with information about the controller and user code to help correlate them with SQL statements emitted by Knex.</description>
+    </item>
+    
+    <item>
+      <title>Sequelize.js</title>
+      <link>https://google.github.io/sqlcommenter/node/sequelize/</link>
+      <pubDate>Wed, 29 May 2019 08:40:11 -0600</pubDate>
+      
+      <guid>https://google.github.io/sqlcommenter/node/sequelize/</guid>
+      <description>Introduction Requirements Installation  Manually Package manager  Usage  Plain sequelize wrapper Express middleware  Fields  Options  Options   End to end example  Source code Results  References  Introduction This package is in the form of Sequelize.Client.prototype.query wrapper whose purpose is to augment a SQL statement right before execution, with information about the controller and user code to help correlate them with SQL statements emitted by Sequelize.</description>
+    </item>
+    
+  </channel>
+</rss>

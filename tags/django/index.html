@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>sqlcommenter</title>
+    
+      <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="generator" content="Hugo 0.55.6" />
+<title>django :: sqlcommenter</title>
+<link rel="shortcut icon" href="https://google.github.io/sqlcommenter/images/favicon.ico" type="image/x-icon" />
+<link href="https://google.github.io/sqlcommenter/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://google.github.io/sqlcommenter/css/nucleus.css" rel="stylesheet">
+<link href="https://google.github.io/sqlcommenter/theme-flex/style.css" rel="stylesheet">
+
+<link rel="stylesheet" href="https://google.github.io/sqlcommenter/css/bootstrap.min.css">
+<script src="https://google.github.io/sqlcommenter/js/jquery-2.x.min.js"></script>
+<script type="text/javascript">
+      var baseurl = "https:\/\/google.github.io\/sqlcommenter\/";
+</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+<link rel="stylesheet" href="https://google.github.io/sqlcommenter/css/header.css">
+<link rel="stylesheet" href="https://google.github.io/sqlcommenter/css/footer.css">
+<link rel="stylesheet" href="https://google.github.io/sqlcommenter/css/content.css">
+<link rel="stylesheet" href="https://google.github.io/sqlcommenter/css/buttons.css">
+<link rel="stylesheet" href="https://google.github.io/sqlcommenter/css/feature-matrix.css">
+
+<style>
+  .shortcuts {
+    height: initial;
+    line-height: initial;
+  }
+
+  .nav i {
+    height: initial;
+  }
+
+  .tabs-body pre {
+    margin-top: 0;
+  }
+
+  ul:not(.browser-default) {
+    padding-left: 22.5px;
+    padding-right: 22.5px;
+  }
+
+  ul:not(.browser-default),
+  ul:not(.browser-default) > li {
+    list-style-type: initial;
+  }
+
+  ul.menu,
+  ul.menu ul {
+    padding: 0;
+  }
+
+  .hide {
+    display: none;
+  }
+
+  .menu *,
+  .menu a,
+  a {
+    color: #242A31;
+  }
+
+  .menu .dd-item.haschildren > div > a.highlight,
+  .menu > .dd-item > div > a.highlight {
+    color: #242A31;
+  }
+
+  .menu .dd-item a.highlight {
+    color: #9DAAB6;
+  }
+
+  .menu .dd-item.active > div > a.highlight {
+    color: #BF2A32;
+  }
+
+  section a {
+    color: #039be5;
+  }
+</style>
+
+
+    
+  </head>
+  <body data-url="/tags/django/">
+    
+      <header>
+  <div class="logo">
+    
+	
+  
+    <p><a href="https://google.github.io/sqlcommenter/"><img src="https://google.github.io/sqlcommenter/images/sqlcommenter_logo.png" alt="sqlcommenter logo" /> <span>sql</span>commenter</a></p>
+
+  
+
+
+  </div>
+  <div class="burger"><a href="javascript:void(0);" style="font-size:15px;">&#9776;</a></div>
+  
+  
+</header>
+<article>
+  <aside>
+    <ul class="menu">
+    <li data-nav-id="/spec/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/spec/">Specification</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/python/" class="dd-item haschildren
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/python/">Python</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+    <li data-nav-id="/python/django/" class="dd-item haschildren
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/python/django/">Django</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+      <li data-nav-id="/python/django/local/" class="dd-item">
+        <div>
+          <a href="https://google.github.io/sqlcommenter/python/django/local/">
+            Locally
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/python/django/gcp/" class="dd-item">
+        <div>
+          <a href="https://google.github.io/sqlcommenter/python/django/gcp/">
+            Google Cloud Platform
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/python/django/aws/" class="dd-item">
+        <div>
+          <a href="https://google.github.io/sqlcommenter/python/django/aws/">
+            Amazon Web Services
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/python/psycopg2/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/python/psycopg2/">psycopg2</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/python/sqlalchemy/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/python/sqlalchemy/">SQLAlchemy</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/python/flask/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/python/flask/">Flask</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/ruby/" class="dd-item haschildren
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/ruby/">Ruby</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+    <li data-nav-id="/ruby/rails/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/ruby/rails/">Ruby on Rails</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/node/" class="dd-item haschildren
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/node/">Node.js</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+    <li data-nav-id="/node/knex/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/node/knex/">Knex.js</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/node/sequelize/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/node/sequelize/">Sequelize.js</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/node/express/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/node/express/">Express.js</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/java/" class="dd-item haschildren
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/java/">Java</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+    <li data-nav-id="/java/hibernate/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/java/hibernate/">Hibernate</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/java/spring/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/java/spring/">Spring</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/databases/" class="dd-item haschildren
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/databases/">Databases</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+      <li data-nav-id="/databases/postgresql/" class="dd-item">
+        <div>
+          <a href="https://google.github.io/sqlcommenter/databases/postgresql/">
+            Postgresql
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/databases/mysql/" class="dd-item">
+        <div>
+          <a href="https://google.github.io/sqlcommenter/databases/mysql/">
+            MySQL
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/databases/mariadb/" class="dd-item">
+        <div>
+          <a href="https://google.github.io/sqlcommenter/databases/mariadb/">
+            MariaDB
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/faq/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/faq/">FAQ</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+
+
+
+
+    </ul>
+    <section>
+    </section>
+  </aside>
+  <section class="page ">
+    
+      <div>
+        <div class="searchbox">
+          <input data-search-input id="search-by" type="text" placeholder="Search...">
+        </div>
+        <script type="text/javascript" src="https://google.github.io/sqlcommenter/js/lunr.min.js"></script>
+        <script type="text/javascript" src="https://google.github.io/sqlcommenter/js/auto-complete.js"></script>
+        <link href="https://google.github.io/sqlcommenter/css/auto-complete.css" rel="stylesheet">
+        <script type="text/javascript">
+          
+              var baseurl = "https:\/\/google.github.io\/sqlcommenter\/";
+          
+        </script>
+        <script type="text/javascript" src="https://google.github.io/sqlcommenter/js/search.js"></script>
+      </div>
+
+
+    
+      <div class="header-container">
+        <h1>django</h1>
+        
+      </div>
+    
+
+    
+    
+    
+
+
+
+<div class="extra-pagination inner">
+<nav class="pagination" role="navigation">
+	
+	<span class="page-number">Page 1 of 1</span>
+	
+</nav>
+
+</div>
+
+
+   <article class="post python">
+    <header class="post-header">
+        <h2 class="post-title"><a href="https://google.github.io/sqlcommenter/python/django/local/">Locally</a></h2>
+    </header>
+    <section class="post-excerpt">
+        <p>Introduction Requirements Addition to your code References  Introduction This guide will help you add sqlcommenter to your Django applications running locally.
+Please see the reference for the fields added in the SQL comments sqlcommenter-django.Fields
+Requirements    Steps Resource     Django https://docs.djangoproject.com/en/stable/intro/   sqlcommenter-django https://pypi.org/projects/sqlcommenter-django   Django 2.X https://docs.djangoproject.com/en/stable/faq/install   Python 3.X https://www.python.org/downloads/    Addition to your code Firstly, please install sqlcommenter-django. <a class="read-more" href="https://google.github.io/sqlcommenter/python/django/local/">&raquo;</a></p>
+    </section>
+    <footer class=" footline" >
+         
+        
+
+        
+          
+            
+                <a class="label label-default" href="https://google.github.io/sqlcommenter/tags/python/">python</a>
+            
+                <a class="label label-default" href="https://google.github.io/sqlcommenter/tags/django/">django</a>
+            
+                <a class="label label-default" href="https://google.github.io/sqlcommenter/tags/local/">local</a>
+            
+        
+
+    </footer>
+</article>
+
+   <article class="post python">
+    <header class="post-header">
+        <h2 class="post-title"><a href="https://google.github.io/sqlcommenter/python/django/">Django</a></h2>
+    </header>
+    <section class="post-excerpt">
+        <p>Introduction Requirements Installation  pip install Source  Fields  Sample log entry Expected fields  References  Introduction This package is in the form of Django middleware whose purpose is to augment a SQL statement right before execution, with information about the controller and user code to help with later making database optimization decisions, after those statements are examined from the database server&rsquo;s logs. <a class="read-more" href="https://google.github.io/sqlcommenter/python/django/">&raquo;</a></p>
+    </section>
+    <footer class=" footline" >
+         
+        
+
+        
+          
+            
+                <a class="label label-default" href="https://google.github.io/sqlcommenter/tags/python/">python</a>
+            
+                <a class="label label-default" href="https://google.github.io/sqlcommenter/tags/django/">django</a>
+            
+        
+
+    </footer>
+</article>
+
+   <article class="post python">
+    <header class="post-header">
+        <h2 class="post-title"><a href="https://google.github.io/sqlcommenter/python/django/gcp/">Google Cloud Platform</a></h2>
+    </header>
+    <section class="post-excerpt">
+        <p>Introduction Requirements Addition to your code References  Introduction This guide will help you add sqlcommenter to your Django applications running on Google Cloud Platform (GCP)
+Requirements    Steps Resource     Django on GCP https://cloud.google.com/python/django/   sqlcommenter-django https://pypi.org/projects/sqlcommenter-django   Django 2.X https://docs.djangoproject.com/en/stable/faq/install   Python 3.X https://www.python.org/downloads/    Addition to your code Firstly, please install sqlcommenter-django.
+For any Django deployment, we can just edit our settings. <a class="read-more" href="https://google.github.io/sqlcommenter/python/django/gcp/">&raquo;</a></p>
+    </section>
+    <footer class=" footline" >
+         
+        
+
+        
+          
+            
+                <a class="label label-default" href="https://google.github.io/sqlcommenter/tags/python/">python</a>
+            
+                <a class="label label-default" href="https://google.github.io/sqlcommenter/tags/django/">django</a>
+            
+                <a class="label label-default" href="https://google.github.io/sqlcommenter/tags/appengine/">appengine</a>
+            
+                <a class="label label-default" href="https://google.github.io/sqlcommenter/tags/gce/">gce</a>
+            
+                <a class="label label-default" href="https://google.github.io/sqlcommenter/tags/gcp/">gcp</a>
+            
+                <a class="label label-default" href="https://google.github.io/sqlcommenter/tags/google/">google</a>
+            
+                <a class="label label-default" href="https://google.github.io/sqlcommenter/tags/compute/">compute</a>
+            
+        
+
+    </footer>
+</article>
+
+   <article class="post python">
+    <header class="post-header">
+        <h2 class="post-title"><a href="https://google.github.io/sqlcommenter/python/django/aws/">Amazon Web Services</a></h2>
+    </header>
+    <section class="post-excerpt">
+        <p>Introduction Requirements Addition to your code References  Introduction This guide will help you add sqlcommenter to your Django applications running on Amazon Web Services (AWS)
+Requirements    Steps Resource     Python on AWS https://aws.amazon.com/getting-started/projects/deploy-python-application/   sqlcommenter-django https://pypi.org/projects/sqlcommenter-django   Django 2.X https://docs.djangoproject.com/en/stable/faq/install   Python 3.X https://www.python.org/downloads/    Addition to your code For any Django deployment, we can just edit your settings. <a class="read-more" href="https://google.github.io/sqlcommenter/python/django/aws/">&raquo;</a></p>
+    </section>
+    <footer class=" footline" >
+         
+        
+
+        
+          
+            
+                <a class="label label-default" href="https://google.github.io/sqlcommenter/tags/python/">python</a>
+            
+                <a class="label label-default" href="https://google.github.io/sqlcommenter/tags/django/">django</a>
+            
+                <a class="label label-default" href="https://google.github.io/sqlcommenter/tags/ec2/">ec2</a>
+            
+                <a class="label label-default" href="https://google.github.io/sqlcommenter/tags/lambda/">lambda</a>
+            
+                <a class="label label-default" href="https://google.github.io/sqlcommenter/tags/aws/">aws</a>
+            
+                <a class="label label-default" href="https://google.github.io/sqlcommenter/tags/amazon/">amazon</a>
+            
+                <a class="label label-default" href="https://google.github.io/sqlcommenter/tags/compute/">compute</a>
+            
+        
+
+    </footer>
+</article>
+
+
+<div style="margin-bottom:2rem"></div>
+
+<nav class="pagination" role="navigation">
+	
+	<span class="page-number">Page 1 of 1</span>
+	
+</nav>
+
+
+
+
+    
+    
+        <div class="chevrons">
+    <div id="navigation">
+<a class="nav nav-next" href="https://google.github.io/sqlcommenter/spec/" title="Specification" style="margin-right: 0px;"><label>Specification</label><i class="fa fa-chevron-right"></i></a></div>
+  </div>
+
+  </section>
+</article>
+
+<footer>
+
+<div class="footline">
+    
+
+    
+
+  
+
+    <div class="github-link">
+      <a href="https://github.com/orijtech/sqlcommenter-website/edit/master/content/" target="blank"><i class="fa fa-code-fork"></i>
+        Edit this page on Github</a>
+    </div>
+  </div>
+
+
+	<div>
+
+
+  
+    <ul>
+<li><a href="https://github.com/orijtech/sqlcommenter-website">Github</a></li>
+</ul>
+
+<h5 style="color: #fff">sqlcommenter</h5>
+
+  
+
+
+
+	</div>
+</footer>
+
+<script src="https://google.github.io/sqlcommenter/js/clipboard.min.js"></script>
+
+<link href="https://google.github.io/sqlcommenter/css/featherlight.min.css" rel="stylesheet">
+<script src="https://google.github.io/sqlcommenter/js/featherlight.min.js"></script>
+
+
+
+<script src="https://google.github.io/sqlcommenter/theme-flex/script.js"></script>
+
+
+    
+
+    
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+<script src="https://google.github.io/sqlcommenter/js/tabs.js"></script>
+<script>
+  [].slice.call(document.querySelectorAll('.tab-container'))
+    .forEach(function(el) {
+      initializeTabs(el);
+    });
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-125198141-1"></script>
+<script>
+ window.dataLayer = window.dataLayer || [];
+ function gtag(){dataLayer.push(arguments);}
+ gtag('js', new Date());
+
+ gtag('config', 'UA-125198141-1');
+</script>
+
+  </body>
+</html>

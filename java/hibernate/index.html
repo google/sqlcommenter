@@ -1,0 +1,1635 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>sqlcommenter</title>
+    
+      <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="generator" content="Hugo 0.55.6" />
+<title>Hibernate :: sqlcommenter</title>
+<link rel="shortcut icon" href="https://google.github.io/sqlcommenter/images/favicon.ico" type="image/x-icon" />
+<link href="https://google.github.io/sqlcommenter/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://google.github.io/sqlcommenter/css/nucleus.css" rel="stylesheet">
+<link href="https://google.github.io/sqlcommenter/theme-flex/style.css" rel="stylesheet">
+
+<link rel="stylesheet" href="https://google.github.io/sqlcommenter/css/bootstrap.min.css">
+<script src="https://google.github.io/sqlcommenter/js/jquery-2.x.min.js"></script>
+<script type="text/javascript">
+      var baseurl = "https:\/\/google.github.io\/sqlcommenter\/";
+</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+<link rel="stylesheet" href="https://google.github.io/sqlcommenter/css/header.css">
+<link rel="stylesheet" href="https://google.github.io/sqlcommenter/css/footer.css">
+<link rel="stylesheet" href="https://google.github.io/sqlcommenter/css/content.css">
+<link rel="stylesheet" href="https://google.github.io/sqlcommenter/css/buttons.css">
+<link rel="stylesheet" href="https://google.github.io/sqlcommenter/css/feature-matrix.css">
+
+<style>
+  .shortcuts {
+    height: initial;
+    line-height: initial;
+  }
+
+  .nav i {
+    height: initial;
+  }
+
+  .tabs-body pre {
+    margin-top: 0;
+  }
+
+  ul:not(.browser-default) {
+    padding-left: 22.5px;
+    padding-right: 22.5px;
+  }
+
+  ul:not(.browser-default),
+  ul:not(.browser-default) > li {
+    list-style-type: initial;
+  }
+
+  ul.menu,
+  ul.menu ul {
+    padding: 0;
+  }
+
+  .hide {
+    display: none;
+  }
+
+  .menu *,
+  .menu a,
+  a {
+    color: #242A31;
+  }
+
+  .menu .dd-item.haschildren > div > a.highlight,
+  .menu > .dd-item > div > a.highlight {
+    color: #242A31;
+  }
+
+  .menu .dd-item a.highlight {
+    color: #9DAAB6;
+  }
+
+  .menu .dd-item.active > div > a.highlight {
+    color: #BF2A32;
+  }
+
+  section a {
+    color: #039be5;
+  }
+</style>
+
+
+    
+  </head>
+  <body data-url="/java/hibernate/">
+    
+      <header>
+  <div class="logo">
+    
+	
+  
+    <p><a href="https://google.github.io/sqlcommenter/"><img src="https://google.github.io/sqlcommenter/images/sqlcommenter_logo.png" alt="sqlcommenter logo" /> <span>sql</span>commenter</a></p>
+
+  
+
+
+  </div>
+  <div class="burger"><a href="javascript:void(0);" style="font-size:15px;">&#9776;</a></div>
+  
+  
+</header>
+<article>
+  <aside>
+    <ul class="menu">
+    <li data-nav-id="/spec/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/spec/">Specification</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/python/" class="dd-item haschildren
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/python/">Python</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+    <li data-nav-id="/python/django/" class="dd-item haschildren
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/python/django/">Django</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+      <li data-nav-id="/python/django/local/" class="dd-item">
+        <div>
+          <a href="https://google.github.io/sqlcommenter/python/django/local/">
+            Locally
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/python/django/gcp/" class="dd-item">
+        <div>
+          <a href="https://google.github.io/sqlcommenter/python/django/gcp/">
+            Google Cloud Platform
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/python/django/aws/" class="dd-item">
+        <div>
+          <a href="https://google.github.io/sqlcommenter/python/django/aws/">
+            Amazon Web Services
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/python/psycopg2/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/python/psycopg2/">psycopg2</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/python/sqlalchemy/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/python/sqlalchemy/">SQLAlchemy</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/python/flask/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/python/flask/">Flask</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/ruby/" class="dd-item haschildren
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/ruby/">Ruby</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+    <li data-nav-id="/ruby/rails/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/ruby/rails/">Ruby on Rails</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/node/" class="dd-item haschildren
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/node/">Node.js</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+    <li data-nav-id="/node/knex/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/node/knex/">Knex.js</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/node/sequelize/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/node/sequelize/">Sequelize.js</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/node/express/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/node/express/">Express.js</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/java/" class="dd-item parent haschildren
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/java/">Java</a>
+            <i class="fa fa-angle-down fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+    <li data-nav-id="/java/hibernate/" class="dd-item parent active
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/java/hibernate/">Hibernate</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/java/spring/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/java/spring/">Spring</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/databases/" class="dd-item haschildren
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/databases/">Databases</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+      <li data-nav-id="/databases/postgresql/" class="dd-item">
+        <div>
+          <a href="https://google.github.io/sqlcommenter/databases/postgresql/">
+            Postgresql
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/databases/mysql/" class="dd-item">
+        <div>
+          <a href="https://google.github.io/sqlcommenter/databases/mysql/">
+            MySQL
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/databases/mariadb/" class="dd-item">
+        <div>
+          <a href="https://google.github.io/sqlcommenter/databases/mariadb/">
+            MariaDB
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/faq/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/faq/">FAQ</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+
+
+
+
+    </ul>
+    <section>
+    </section>
+  </aside>
+  <section class="page ">
+    
+      <div>
+        <div class="searchbox">
+          <input data-search-input id="search-by" type="text" placeholder="Search...">
+        </div>
+        <script type="text/javascript" src="https://google.github.io/sqlcommenter/js/lunr.min.js"></script>
+        <script type="text/javascript" src="https://google.github.io/sqlcommenter/js/auto-complete.js"></script>
+        <link href="https://google.github.io/sqlcommenter/css/auto-complete.css" rel="stylesheet">
+        <script type="text/javascript">
+          
+              var baseurl = "https:\/\/google.github.io\/sqlcommenter\/";
+          
+        </script>
+        <script type="text/javascript" src="https://google.github.io/sqlcommenter/js/search.js"></script>
+      </div>
+
+
+    
+      <div class="header-container">
+        <h1>Hibernate</h1>
+        
+      </div>
+    
+
+    
+    
+    
+
+
+
+<p><img src="https://google.github.io/sqlcommenter/images/hibernate-logo.svg" alt="" /></p>
+
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#requirements">Requirements</a></li>
+<li><a href="#using-the-integration">Using the integration</a>
+
+<ul>
+<li><a href="#imports">Imports</a></li>
+<li><a href="#imports#0">Maven imports</a></li>
+</ul></li>
+<li><a href="#end-to-end-example">End to end example</a>
+
+<ul>
+<li><a href="#directory-structure">Directory structure</a></li>
+<li><a href="#source-code">Source code</a></li>
+<li><a href="#0">Question.java</a></li>
+<li><a href="#1">ListQuestions.java</a></li>
+<li><a href="#2">hibernate.cfg.xml</a></li>
+<li><a href="#3">Question.hbm.xml</a></li>
+</ul></li>
+<li><a href="#references">References</a></li>
+</ul>
+
+<h3 id="introduction">Introduction</h3>
+
+<p>We provide an integration for Hibernate ORM that will inspect and augment your SQL with information about your
+setup. It is best used when coupled with other frameworks such as:</p>
+
+<p><div class="user-card-container">
+  <a target="_blank" href="https://google.github.io/sqlcommenter/java/spring">
+  
+  <img class="no-padding no-margin " src="https://google.github.io/sqlcommenter/images/spring-logo.png">
+  
+  </a>
+</div>
+
+<!-- <div class="user-card-container">
+  <a target="_blank" href="https://google.github.io/sqlcommenter/java/jetty">
+  
+  <img class="no-padding no-margin " src="https://google.github.io/sqlcommenter/images/jetty-logo.png">
+  
+  </a>
+</div>
+
+<div class="user-card-container">
+  <a target="_blank" href="https://google.github.io/sqlcommenter/java/grpc">
+  
+  <img class="no-padding no-margin " src="https://google.github.io/sqlcommenter/images/grpc-logo.png">
+  
+  </a>
+</div>
+
+<div class="user-card-container">
+  <a target="_blank" href="https://google.github.io/sqlcommenter/java/tomcat">
+  
+  <img class="no-padding no-margin " src="https://google.github.io/sqlcommenter/images/tomcat-logo.png">
+  
+  </a>
+</div>
+ --></p>
+
+<h3 id="requirements">Requirements</h3>
+
+<ul>
+<li>Java 8+</li>
+<li>Successfully installed <a href="https://google.github.io/sqlcommenter/java/#install">sqlcommenter-java</a></li>
+</ul>
+
+<h3 id="using-the-integration">Using the integration</h3>
+
+<p>You can include this integration in your Java programs in 2 ways.</p>
+
+<h4 id="persistance-xml-file">Persistance XML file</h4>
+
+<p>By simply adding to your persistence XML file the property
+<code>&quot;hibernate.session_factory.statement_inspector&quot;</code></p>
+
+<p>e.g. to your <code>hibernate.cfg.xml</code> file</p>
+
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;property</span> <span style="color:#75af00">name=</span><span style="color:#d88200">&#34;hibernate.session_factory.statement_inspector&#34;</span>
+          <span style="color:#75af00">value=</span><span style="color:#d88200">&#34;io.orijtech.integrations.sqlcommenter.schibernate.SCHibernate&#34;</span> <span style="color:#f92672">/&gt;</span></code></pre></div>
+
+<h4 id="in-java-source-code">In Java source code</h4>
+
+<p>When creating your Hibernate session factory, add our StatementInspector like this:</p>
+
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.schhibernate.SCHibernate</span><span style="color:#f92672">;</span>
+
+<span style="color:#f92672">...</span>
+        <span style="color:#111">sessionFactoryBuilder</span><span style="color:#f92672">.</span><span style="color:#75af00">applyStatementInspector</span><span style="color:#f92672">(</span><span style="color:#00a8c8">new</span> <span style="color:#111">SCHibernate</span><span style="color:#f92672">());</span></code></pre></div>
+
+<h3 id="spring-and-jpa-end-to-end-example">Spring and JPA end-to-end example</h3>
+
+<p>First thing you need to do is to download the <a href="https://github.com/orijtech/sqlcommenter-java-guides/tree/master/sqlcommenter-java-guides-spring-jpa">sqlcommenter-java-guides-spring-jpa</a>
+Java project.</p>
+
+<h4 id="source-code">Source code</h4>
+
+<p>This project uses the following JPA entities:</p>
+
+<div class="tab-container">
+  <ul class="tabs">
+    
+      <li class="tab col s3">
+        <a href="#0">Post_java</a>
+      </li>
+    
+      <li class="tab col s3">
+        <a href="#1">Tag_java</a>
+      </li>
+    
+  </ul>
+
+  <span class="tabs-body">
+    
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// In file Post.java
+</span><span style="color:#75715e"></span><span style="color:#f92672">package</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.jpa.domain</span><span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> <span style="color:#111">javax.persistence.*</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">java.util.ArrayList</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">java.util.List</span><span style="color:#f92672">;</span>
+
+<span style="color:#75af00">@Entity</span>
+<span style="color:#75af00">@Table</span><span style="color:#f92672">(</span><span style="color:#111">name</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#34;post&#34;</span><span style="color:#f92672">)</span>
+<span style="color:#00a8c8">public</span> <span style="color:#00a8c8">class</span> <span style="color:#75af00">Post</span> <span style="color:#f92672">{</span>
+
+    <span style="color:#75af00">@Id</span>
+    <span style="color:#75af00">@GeneratedValue</span>
+    <span style="color:#00a8c8">private</span> <span style="color:#111">Long</span> <span style="color:#111">id</span><span style="color:#f92672">;</span>
+
+    <span style="color:#00a8c8">private</span> <span style="color:#111">String</span> <span style="color:#111">title</span><span style="color:#f92672">;</span>
+
+    <span style="color:#75af00">@ManyToMany</span>
+    <span style="color:#75af00">@JoinTable</span><span style="color:#f92672">(</span>
+            <span style="color:#111">name</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#34;post_tag&#34;</span><span style="color:#f92672">,</span>
+            <span style="color:#111">joinColumns</span> <span style="color:#f92672">=</span> <span style="color:#75af00">@JoinColumn</span><span style="color:#f92672">(</span><span style="color:#111">name</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#34;post_id&#34;</span><span style="color:#f92672">),</span>
+            <span style="color:#111">inverseJoinColumns</span> <span style="color:#f92672">=</span> <span style="color:#75af00">@JoinColumn</span><span style="color:#f92672">(</span><span style="color:#111">name</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#34;tag_id&#34;</span><span style="color:#f92672">))</span>
+    <span style="color:#00a8c8">private</span> <span style="color:#111">List</span><span style="color:#f92672">&lt;</span><span style="color:#111">Tag</span><span style="color:#f92672">&gt;</span> <span style="color:#111">tags</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">new</span> <span style="color:#111">ArrayList</span><span style="color:#f92672">&lt;&gt;();</span>
+
+    <span style="color:#00a8c8">public</span> <span style="color:#111">Long</span> <span style="color:#75af00">getId</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#111">id</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#00a8c8">public</span> <span style="color:#00a8c8">void</span> <span style="color:#75af00">setId</span><span style="color:#f92672">(</span><span style="color:#111">Long</span> <span style="color:#111">id</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">this</span><span style="color:#f92672">.</span><span style="color:#75af00">id</span> <span style="color:#f92672">=</span> <span style="color:#111">id</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#00a8c8">public</span> <span style="color:#111">String</span> <span style="color:#75af00">getTitle</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#111">title</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#00a8c8">public</span> <span style="color:#00a8c8">void</span> <span style="color:#75af00">setTitle</span><span style="color:#f92672">(</span><span style="color:#111">String</span> <span style="color:#111">title</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">this</span><span style="color:#f92672">.</span><span style="color:#75af00">title</span> <span style="color:#f92672">=</span> <span style="color:#111">title</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#00a8c8">public</span> <span style="color:#111">List</span><span style="color:#f92672">&lt;</span><span style="color:#111">Tag</span><span style="color:#f92672">&gt;</span> <span style="color:#75af00">getTags</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#111">tags</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span></code></pre></div>
+
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// In file Tag.java
+</span><span style="color:#75715e"></span><span style="color:#f92672">package</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.jpa.domain</span><span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> <span style="color:#111">javax.persistence.Entity</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">javax.persistence.GeneratedValue</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">javax.persistence.Id</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">javax.persistence.Table</span><span style="color:#f92672">;</span>
+
+<span style="color:#75af00">@Entity</span>
+<span style="color:#75af00">@Table</span><span style="color:#f92672">(</span><span style="color:#111">name</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#34;tag&#34;</span><span style="color:#f92672">)</span>
+<span style="color:#00a8c8">public</span> <span style="color:#00a8c8">class</span> <span style="color:#75af00">Tag</span> <span style="color:#f92672">{</span>
+
+    <span style="color:#75af00">@Id</span>
+    <span style="color:#75af00">@GeneratedValue</span>
+    <span style="color:#00a8c8">private</span> <span style="color:#111">Long</span> <span style="color:#111">id</span><span style="color:#f92672">;</span>
+
+    <span style="color:#00a8c8">private</span> <span style="color:#111">String</span> <span style="color:#111">name</span><span style="color:#f92672">;</span>
+
+    <span style="color:#00a8c8">public</span> <span style="color:#111">Long</span> <span style="color:#75af00">getId</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#111">id</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#00a8c8">public</span> <span style="color:#00a8c8">void</span> <span style="color:#75af00">setId</span><span style="color:#f92672">(</span><span style="color:#111">Long</span> <span style="color:#111">id</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">this</span><span style="color:#f92672">.</span><span style="color:#75af00">id</span> <span style="color:#f92672">=</span> <span style="color:#111">id</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#00a8c8">public</span> <span style="color:#111">String</span> <span style="color:#75af00">getName</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#111">name</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#00a8c8">public</span> <span style="color:#00a8c8">void</span> <span style="color:#75af00">setName</span><span style="color:#f92672">(</span><span style="color:#111">String</span> <span style="color:#111">name</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">this</span><span style="color:#f92672">.</span><span style="color:#75af00">name</span> <span style="color:#f92672">=</span> <span style="color:#111">name</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span></code></pre></div>
+
+  </span>
+</div>
+
+
+<p>The Repository layer looks as follows:</p>
+
+<div class="tab-container">
+  <ul class="tabs">
+    
+      <li class="tab col s3">
+        <a href="#0">PostRepository_java</a>
+      </li>
+    
+      <li class="tab col s3">
+        <a href="#1">TagRepository_java</a>
+      </li>
+    
+  </ul>
+
+  <span class="tabs-body">
+    
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// In file PostRepository.java
+</span><span style="color:#75715e"></span>
+<span style="color:#f92672">package</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.jpa.dao</span><span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.jpa.domain.Post</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.springframework.data.repository.CrudRepository</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.springframework.stereotype.Repository</span><span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> <span style="color:#111">java.util.List</span><span style="color:#f92672">;</span>
+
+<span style="color:#75af00">@Repository</span>
+<span style="color:#00a8c8">public</span> <span style="color:#00a8c8">interface</span> <span style="color:#75af00">PostRepository</span> <span style="color:#00a8c8">extends</span> <span style="color:#111">CrudRepository</span><span style="color:#f92672">&lt;</span><span style="color:#111">Post</span><span style="color:#f92672">,</span> <span style="color:#111">Long</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
+
+    <span style="color:#111">List</span><span style="color:#f92672">&lt;</span><span style="color:#111">Post</span><span style="color:#f92672">&gt;</span> <span style="color:#75af00">findByTitle</span><span style="color:#f92672">(</span><span style="color:#111">String</span> <span style="color:#111">title</span><span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span></code></pre></div>
+
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// In file TagRepository.java
+</span><span style="color:#75715e"></span>
+<span style="color:#f92672">package</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.jpa.dao</span><span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.jpa.domain.Tag</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.springframework.data.repository.CrudRepository</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.springframework.stereotype.Repository</span><span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> <span style="color:#111">java.util.List</span><span style="color:#f92672">;</span>
+
+<span style="color:#75af00">@Repository</span>
+<span style="color:#00a8c8">public</span> <span style="color:#00a8c8">interface</span> <span style="color:#75af00">TagRepository</span> <span style="color:#00a8c8">extends</span> <span style="color:#111">CrudRepository</span><span style="color:#f92672">&lt;</span><span style="color:#111">Tag</span><span style="color:#f92672">,</span> <span style="color:#111">Long</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
+
+    <span style="color:#111">List</span><span style="color:#f92672">&lt;</span><span style="color:#111">Tag</span><span style="color:#f92672">&gt;</span> <span style="color:#75af00">findByNameIn</span><span style="color:#f92672">(</span><span style="color:#111">List</span><span style="color:#f92672">&lt;</span><span style="color:#111">String</span><span style="color:#f92672">&gt;</span> <span style="color:#111">names</span><span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span></code></pre></div>
+
+  </span>
+</div>
+
+
+<p>The Service layer looks as follows:</p>
+
+<div class="tab-container">
+  <ul class="tabs">
+    
+      <li class="tab col s3">
+        <a href="#0">ForumService_java</a>
+      </li>
+    
+      <li class="tab col s3">
+        <a href="#1">ForumServiceImpl_java</a>
+      </li>
+    
+  </ul>
+
+  <span class="tabs-body">
+    
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// In file ForumService.java
+</span><span style="color:#75715e"></span>
+<span style="color:#f92672">package</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.jpa.service</span><span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.jpa.domain.Post</span><span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> <span style="color:#111">java.util.List</span><span style="color:#f92672">;</span>
+
+<span style="color:#00a8c8">public</span> <span style="color:#00a8c8">interface</span> <span style="color:#75af00">ForumService</span> <span style="color:#f92672">{</span>
+
+    <span style="color:#111">Post</span> <span style="color:#75af00">createPost</span><span style="color:#f92672">(</span><span style="color:#111">String</span> <span style="color:#111">title</span><span style="color:#f92672">,</span> <span style="color:#111">String</span><span style="color:#f92672">...</span> <span style="color:#111">tags</span><span style="color:#f92672">);</span>
+
+    <span style="color:#111">List</span><span style="color:#f92672">&lt;</span><span style="color:#111">Post</span><span style="color:#f92672">&gt;</span> <span style="color:#75af00">findPostsByTitle</span><span style="color:#f92672">(</span><span style="color:#111">String</span> <span style="color:#111">title</span><span style="color:#f92672">);</span>
+
+    <span style="color:#111">Post</span> <span style="color:#75af00">findPostById</span><span style="color:#f92672">(</span><span style="color:#111">Long</span> <span style="color:#111">id</span><span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span></code></pre></div>
+
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// In file ForumServiceImpl.java
+</span><span style="color:#75715e"></span>
+<span style="color:#f92672">package</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.jpa.service</span><span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.jpa.dao.PostRepository</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.jpa.dao.TagRepository</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.jpa.domain.Post</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.springframework.beans.factory.annotation.Autowired</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.springframework.stereotype.Service</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.springframework.transaction.annotation.Transactional</span><span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> <span style="color:#111">java.util.Arrays</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">java.util.List</span><span style="color:#f92672">;</span>
+
+<span style="color:#75af00">@Service</span>
+<span style="color:#00a8c8">public</span> <span style="color:#00a8c8">class</span> <span style="color:#75af00">ForumServiceImpl</span> <span style="color:#00a8c8">implements</span> <span style="color:#111">ForumService</span> <span style="color:#f92672">{</span>
+
+    <span style="color:#75af00">@Autowired</span>
+    <span style="color:#00a8c8">private</span> <span style="color:#111">PostRepository</span> <span style="color:#111">postRepository</span><span style="color:#f92672">;</span>
+
+    <span style="color:#75af00">@Autowired</span>
+    <span style="color:#00a8c8">private</span> <span style="color:#111">TagRepository</span> <span style="color:#111">tagRepository</span><span style="color:#f92672">;</span>
+
+    <span style="color:#75af00">@Override</span>
+    <span style="color:#75af00">@Transactional</span>
+    <span style="color:#00a8c8">public</span> <span style="color:#111">Post</span> <span style="color:#75af00">createPost</span><span style="color:#f92672">(</span><span style="color:#111">String</span> <span style="color:#111">title</span><span style="color:#f92672">,</span> <span style="color:#111">String</span><span style="color:#f92672">...</span> <span style="color:#111">tags</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#111">Post</span> <span style="color:#111">post</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">new</span> <span style="color:#111">Post</span><span style="color:#f92672">();</span>
+        <span style="color:#111">post</span><span style="color:#f92672">.</span><span style="color:#75af00">setTitle</span><span style="color:#f92672">(</span><span style="color:#111">title</span><span style="color:#f92672">);</span>
+        <span style="color:#111">post</span><span style="color:#f92672">.</span><span style="color:#75af00">getTags</span><span style="color:#f92672">().</span><span style="color:#75af00">addAll</span><span style="color:#f92672">(</span><span style="color:#111">tagRepository</span><span style="color:#f92672">.</span><span style="color:#75af00">findByNameIn</span><span style="color:#f92672">(</span><span style="color:#111">Arrays</span><span style="color:#f92672">.</span><span style="color:#75af00">asList</span><span style="color:#f92672">(</span><span style="color:#111">tags</span><span style="color:#f92672">)));</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#111">postRepository</span><span style="color:#f92672">.</span><span style="color:#75af00">save</span><span style="color:#f92672">(</span><span style="color:#111">post</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#75af00">@Override</span>
+    <span style="color:#75af00">@Transactional</span><span style="color:#f92672">(</span><span style="color:#111">readOnly</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">true</span><span style="color:#f92672">)</span>
+    <span style="color:#00a8c8">public</span> <span style="color:#111">List</span><span style="color:#f92672">&lt;</span><span style="color:#111">Post</span><span style="color:#f92672">&gt;</span> <span style="color:#75af00">findPostsByTitle</span><span style="color:#f92672">(</span><span style="color:#111">String</span> <span style="color:#111">title</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#111">postRepository</span><span style="color:#f92672">.</span><span style="color:#75af00">findByTitle</span><span style="color:#f92672">(</span><span style="color:#111">title</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#75af00">@Override</span>
+    <span style="color:#75af00">@Transactional</span>
+    <span style="color:#00a8c8">public</span> <span style="color:#111">Post</span> <span style="color:#75af00">findPostById</span><span style="color:#f92672">(</span><span style="color:#111">Long</span> <span style="color:#111">id</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#111">postRepository</span><span style="color:#f92672">.</span><span style="color:#75af00">findById</span><span style="color:#f92672">(</span><span style="color:#111">id</span><span style="color:#f92672">).</span><span style="color:#75af00">orElse</span><span style="color:#f92672">(</span><span style="color:#00a8c8">null</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span></code></pre></div>
+
+  </span>
+</div>
+
+
+<p>The Spring JPA configuration looks as follows:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// In file JpaTransactionManagerConfiguration.java
+</span><span style="color:#75715e"></span>
+<span style="color:#f92672">package</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.jpa</span><span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> <span style="color:#111">com.zaxxer.hikari.HikariConfig</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">com.zaxxer.hikari.HikariDataSource</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.util.SCHibernateWrapper</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.hibernate.jpa.HibernatePersistenceProvider</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.springframework.beans.factory.annotation.Value</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.springframework.context.annotation.*</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.springframework.context.support.PropertySourcesPlaceholderConfigurer</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.springframework.data.jpa.repository.config.EnableJpaRepositories</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.springframework.orm.jpa.JpaTransactionManager</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.springframework.orm.jpa.JpaVendorAdapter</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.springframework.transaction.annotation.EnableTransactionManagement</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.springframework.transaction.support.TransactionTemplate</span><span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> <span style="color:#111">javax.persistence.EntityManagerFactory</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">javax.sql.DataSource</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">java.util.Properties</span><span style="color:#f92672">;</span>
+
+<span style="color:#75af00">@Configuration</span>
+<span style="color:#75af00">@PropertySource</span><span style="color:#f92672">({</span><span style="color:#d88200">&#34;/META-INF/jdbc-hsqldb.properties&#34;</span><span style="color:#f92672">})</span>
+<span style="color:#75af00">@ComponentScan</span><span style="color:#f92672">(</span><span style="color:#111">basePackages</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#34;io.orijtech.integrations.sqlcommenter.spring.jpa&#34;</span><span style="color:#f92672">)</span>
+<span style="color:#75af00">@EnableTransactionManagement</span>
+<span style="color:#75af00">@EnableAspectJAutoProxy</span>
+<span style="color:#75af00">@EnableJpaRepositories</span>
+<span style="color:#00a8c8">public</span> <span style="color:#00a8c8">class</span> <span style="color:#75af00">JpaTransactionManagerConfiguration</span> <span style="color:#f92672">{</span>
+
+    <span style="color:#75af00">@Value</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;${jdbc.dataSourceClassName}&#34;</span><span style="color:#f92672">)</span>
+    <span style="color:#00a8c8">private</span> <span style="color:#111">String</span> <span style="color:#111">dataSourceClassName</span><span style="color:#f92672">;</span>
+
+    <span style="color:#75af00">@Value</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;${jdbc.url}&#34;</span><span style="color:#f92672">)</span>
+    <span style="color:#00a8c8">private</span> <span style="color:#111">String</span> <span style="color:#111">jdbcUrl</span><span style="color:#f92672">;</span>
+
+    <span style="color:#75af00">@Value</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;${jdbc.username}&#34;</span><span style="color:#f92672">)</span>
+    <span style="color:#00a8c8">private</span> <span style="color:#111">String</span> <span style="color:#111">jdbcUser</span><span style="color:#f92672">;</span>
+
+    <span style="color:#75af00">@Value</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;${jdbc.password}&#34;</span><span style="color:#f92672">)</span>
+    <span style="color:#00a8c8">private</span> <span style="color:#111">String</span> <span style="color:#111">jdbcPassword</span><span style="color:#f92672">;</span>
+
+    <span style="color:#75af00">@Value</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;${hibernate.dialect}&#34;</span><span style="color:#f92672">)</span>
+    <span style="color:#00a8c8">private</span> <span style="color:#111">String</span> <span style="color:#111">hibernateDialect</span><span style="color:#f92672">;</span>
+
+    <span style="color:#75af00">@Bean</span><span style="color:#f92672">(</span><span style="color:#111">destroyMethod</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#34;close&#34;</span><span style="color:#f92672">)</span>
+    <span style="color:#00a8c8">public</span> <span style="color:#111">DataSource</span> <span style="color:#75af00">actualDataSource</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#111">Properties</span> <span style="color:#111">driverProperties</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">new</span> <span style="color:#111">Properties</span><span style="color:#f92672">();</span>
+        <span style="color:#111">driverProperties</span><span style="color:#f92672">.</span><span style="color:#75af00">setProperty</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;url&#34;</span><span style="color:#f92672">,</span> <span style="color:#111">jdbcUrl</span><span style="color:#f92672">);</span>
+        <span style="color:#111">driverProperties</span><span style="color:#f92672">.</span><span style="color:#75af00">setProperty</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;user&#34;</span><span style="color:#f92672">,</span> <span style="color:#111">jdbcUser</span><span style="color:#f92672">);</span>
+        <span style="color:#111">driverProperties</span><span style="color:#f92672">.</span><span style="color:#75af00">setProperty</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;password&#34;</span><span style="color:#f92672">,</span> <span style="color:#111">jdbcPassword</span><span style="color:#f92672">);</span>
+
+        <span style="color:#111">Properties</span> <span style="color:#111">properties</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">new</span> <span style="color:#111">Properties</span><span style="color:#f92672">();</span>
+        <span style="color:#111">properties</span><span style="color:#f92672">.</span><span style="color:#75af00">put</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;dataSourceClassName&#34;</span><span style="color:#f92672">,</span> <span style="color:#111">dataSourceClassName</span><span style="color:#f92672">);</span>
+        <span style="color:#111">properties</span><span style="color:#f92672">.</span><span style="color:#75af00">put</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;dataSourceProperties&#34;</span><span style="color:#f92672">,</span> <span style="color:#111">driverProperties</span><span style="color:#f92672">);</span>
+        <span style="color:#111">properties</span><span style="color:#f92672">.</span><span style="color:#75af00">setProperty</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;maximumPoolSize&#34;</span><span style="color:#f92672">,</span> <span style="color:#111">String</span><span style="color:#f92672">.</span><span style="color:#75af00">valueOf</span><span style="color:#f92672">(</span><span style="color:#111">3</span><span style="color:#f92672">));</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#00a8c8">new</span> <span style="color:#111">HikariDataSource</span><span style="color:#f92672">(</span><span style="color:#00a8c8">new</span> <span style="color:#111">HikariConfig</span><span style="color:#f92672">(</span><span style="color:#111">properties</span><span style="color:#f92672">));</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#75af00">@Bean</span>
+    <span style="color:#00a8c8">public</span> <span style="color:#00a8c8">static</span> <span style="color:#111">PropertySourcesPlaceholderConfigurer</span> <span style="color:#75af00">properties</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#00a8c8">new</span> <span style="color:#111">PropertySourcesPlaceholderConfigurer</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#75af00">@Bean</span>
+    <span style="color:#00a8c8">public</span> <span style="color:#111">DataSource</span> <span style="color:#75af00">dataSource</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#111">actualDataSource</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#75af00">@Bean</span>
+    <span style="color:#00a8c8">public</span> <span style="color:#111">LocalContainerEntityManagerFactoryBean</span> <span style="color:#75af00">entityManagerFactory</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#111">LocalContainerEntityManagerFactoryBean</span> <span style="color:#111">localContainerEntityManagerFactoryBean</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">new</span> <span style="color:#111">LocalContainerEntityManagerFactoryBean</span><span style="color:#f92672">();</span>
+        <span style="color:#111">localContainerEntityManagerFactoryBean</span><span style="color:#f92672">.</span><span style="color:#75af00">setPersistenceUnitName</span><span style="color:#f92672">(</span><span style="color:#111">getClass</span><span style="color:#f92672">().</span><span style="color:#75af00">getSimpleName</span><span style="color:#f92672">());</span>
+        <span style="color:#111">localContainerEntityManagerFactoryBean</span><span style="color:#f92672">.</span><span style="color:#75af00">setPersistenceProvider</span><span style="color:#f92672">(</span><span style="color:#00a8c8">new</span> <span style="color:#111">HibernatePersistenceProvider</span><span style="color:#f92672">());</span>
+        <span style="color:#111">localContainerEntityManagerFactoryBean</span><span style="color:#f92672">.</span><span style="color:#75af00">setDataSource</span><span style="color:#f92672">(</span><span style="color:#111">dataSource</span><span style="color:#f92672">());</span>
+        <span style="color:#111">localContainerEntityManagerFactoryBean</span><span style="color:#f92672">.</span><span style="color:#75af00">setPackagesToScan</span><span style="color:#f92672">(</span><span style="color:#111">packagesToScan</span><span style="color:#f92672">());</span>
+
+        <span style="color:#111">JpaVendorAdapter</span> <span style="color:#111">vendorAdapter</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">new</span> <span style="color:#111">HibernateJpaVendorAdapter</span><span style="color:#f92672">();</span>
+        <span style="color:#111">localContainerEntityManagerFactoryBean</span><span style="color:#f92672">.</span><span style="color:#75af00">setJpaVendorAdapter</span><span style="color:#f92672">(</span><span style="color:#111">vendorAdapter</span><span style="color:#f92672">);</span>
+        <span style="color:#111">localContainerEntityManagerFactoryBean</span><span style="color:#f92672">.</span><span style="color:#75af00">setJpaProperties</span><span style="color:#f92672">(</span><span style="color:#111">additionalProperties</span><span style="color:#f92672">());</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#111">localContainerEntityManagerFactoryBean</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#75af00">@Bean</span>
+    <span style="color:#00a8c8">public</span> <span style="color:#111">JpaTransactionManager</span> <span style="color:#75af00">transactionManager</span><span style="color:#f92672">(</span><span style="color:#111">EntityManagerFactory</span> <span style="color:#111">entityManagerFactory</span><span style="color:#f92672">){</span>
+        <span style="color:#111">JpaTransactionManager</span> <span style="color:#111">transactionManager</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">new</span> <span style="color:#111">JpaTransactionManager</span><span style="color:#f92672">();</span>
+        <span style="color:#111">transactionManager</span><span style="color:#f92672">.</span><span style="color:#75af00">setEntityManagerFactory</span><span style="color:#f92672">(</span><span style="color:#111">entityManagerFactory</span><span style="color:#f92672">);</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#111">transactionManager</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#75af00">@Bean</span>
+    <span style="color:#00a8c8">public</span> <span style="color:#111">TransactionTemplate</span> <span style="color:#75af00">transactionTemplate</span><span style="color:#f92672">(</span><span style="color:#111">EntityManagerFactory</span> <span style="color:#111">entityManagerFactory</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#00a8c8">new</span> <span style="color:#111">TransactionTemplate</span><span style="color:#f92672">(</span><span style="color:#111">transactionManager</span><span style="color:#f92672">(</span><span style="color:#111">entityManagerFactory</span><span style="color:#f92672">));</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#00a8c8">protected</span> <span style="color:#111">Properties</span> <span style="color:#75af00">additionalProperties</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#111">Properties</span> <span style="color:#111">properties</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">new</span> <span style="color:#111">Properties</span><span style="color:#f92672">();</span>
+        <span style="color:#111">properties</span><span style="color:#f92672">.</span><span style="color:#75af00">setProperty</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;hibernate.dialect&#34;</span><span style="color:#f92672">,</span> <span style="color:#111">hibernateDialect</span><span style="color:#f92672">);</span>
+        <span style="color:#111">properties</span><span style="color:#f92672">.</span><span style="color:#75af00">setProperty</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;hibernate.hbm2ddl.auto&#34;</span><span style="color:#f92672">,</span> <span style="color:#d88200">&#34;create-drop&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#111">properties</span><span style="color:#f92672">.</span><span style="color:#75af00">put</span><span style="color:#f92672">(</span>
+            <span style="color:#d88200">&#34;hibernate.session_factory.statement_inspector&#34;</span><span style="color:#f92672">,</span> <span style="color:#111">SCHibernateWrapper</span><span style="color:#f92672">.</span><span style="color:#75af00">class</span><span style="color:#f92672">.</span><span style="color:#75af00">getName</span><span style="color:#f92672">()</span>
+        <span style="color:#f92672">);</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#111">properties</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#00a8c8">protected</span> <span style="color:#111">String</span><span style="color:#f92672">[]</span> <span style="color:#75af00">packagesToScan</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#00a8c8">new</span> <span style="color:#111">String</span><span style="color:#f92672">[]{</span>
+            <span style="color:#d88200">&#34;io.orijtech.integrations.sqlcommenter.spring.jpa.domain&#34;</span>
+        <span style="color:#f92672">};</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<p>Now, the test looks as follows:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// In file JpaTransactionManagerTest.java
+</span><span style="color:#75715e"></span>
+<span style="color:#f92672">package</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.jpa</span><span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.jpa.dao.TagRepository</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.jpa.domain.Post</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.jpa.domain.Tag</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.jpa.service.ForumService</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.util.SCHibernateWrapper</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.threadlocalstorage.State</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.junit.Before</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.junit.Test</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.junit.runner.RunWith</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.springframework.beans.factory.annotation.Autowired</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.springframework.test.annotation.DirtiesContext</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.springframework.test.context.ContextConfiguration</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.springframework.test.context.junit4.SpringJUnit4ClassRunner</span><span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> <span style="color:#111">java.util.List</span><span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import static</span> <span style="color:#111">org.junit.Assert.assertEquals</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import static</span> <span style="color:#111">org.junit.Assert.assertNotNull</span><span style="color:#f92672">;</span>
+
+<span style="color:#75af00">@RunWith</span><span style="color:#f92672">(</span><span style="color:#111">SpringJUnit4ClassRunner</span><span style="color:#f92672">.</span><span style="color:#75af00">class</span><span style="color:#f92672">)</span>
+<span style="color:#75af00">@ContextConfiguration</span><span style="color:#f92672">(</span><span style="color:#111">classes</span> <span style="color:#f92672">=</span> <span style="color:#111">JpaTransactionManagerConfiguration</span><span style="color:#f92672">.</span><span style="color:#75af00">class</span><span style="color:#f92672">)</span>
+<span style="color:#75af00">@DirtiesContext</span><span style="color:#f92672">(</span><span style="color:#111">classMode</span> <span style="color:#f92672">=</span> <span style="color:#111">DirtiesContext</span><span style="color:#f92672">.</span><span style="color:#75af00">ClassMode</span><span style="color:#f92672">.</span><span style="color:#75af00">AFTER_EACH_TEST_METHOD</span><span style="color:#f92672">)</span>
+<span style="color:#00a8c8">public</span> <span style="color:#00a8c8">class</span> <span style="color:#75af00">JpaTransactionManagerTest</span> <span style="color:#f92672">{</span>
+
+    <span style="color:#75af00">@Autowired</span>
+    <span style="color:#00a8c8">private</span> <span style="color:#111">TagRepository</span> <span style="color:#111">tagRepository</span><span style="color:#f92672">;</span>
+
+    <span style="color:#75af00">@Autowired</span>
+    <span style="color:#00a8c8">private</span> <span style="color:#111">ForumService</span> <span style="color:#111">forumService</span><span style="color:#f92672">;</span>
+
+    <span style="color:#75af00">@Before</span>
+    <span style="color:#00a8c8">public</span> <span style="color:#00a8c8">void</span> <span style="color:#75af00">init</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#111">Tag</span> <span style="color:#111">hibernate</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">new</span> <span style="color:#111">Tag</span><span style="color:#f92672">();</span>
+        <span style="color:#111">hibernate</span><span style="color:#f92672">.</span><span style="color:#75af00">setName</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;hibernate&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#111">tagRepository</span><span style="color:#f92672">.</span><span style="color:#75af00">save</span><span style="color:#f92672">(</span><span style="color:#111">hibernate</span><span style="color:#f92672">);</span>
+
+        <span style="color:#111">Tag</span> <span style="color:#111">jpa</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">new</span> <span style="color:#111">Tag</span><span style="color:#f92672">();</span>
+        <span style="color:#111">jpa</span><span style="color:#f92672">.</span><span style="color:#75af00">setName</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;jpa&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#111">tagRepository</span><span style="color:#f92672">.</span><span style="color:#75af00">save</span><span style="color:#f92672">(</span><span style="color:#111">jpa</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#75af00">@Test</span>
+    <span style="color:#00a8c8">public</span> <span style="color:#00a8c8">void</span> <span style="color:#75af00">test</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#111">State</span><span style="color:#f92672">.</span><span style="color:#75af00">Holder</span><span style="color:#f92672">.</span><span style="color:#75af00">set</span><span style="color:#f92672">(</span>
+            <span style="color:#111">State</span><span style="color:#f92672">.</span><span style="color:#75af00">newBuilder</span><span style="color:#f92672">()</span>
+                <span style="color:#f92672">.</span><span style="color:#75af00">withControllerName</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;ForumController&#34;</span><span style="color:#f92672">)</span>
+                <span style="color:#f92672">.</span><span style="color:#75af00">withActionName</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;CreatePost&#34;</span><span style="color:#f92672">)</span>
+                <span style="color:#f92672">.</span><span style="color:#75af00">withWebFramework</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;spring&#34;</span><span style="color:#f92672">)</span>
+                <span style="color:#f92672">.</span><span style="color:#75af00">build</span><span style="color:#f92672">()</span>
+        <span style="color:#f92672">);</span>
+
+        <span style="color:#111">SCHibernateWrapper</span><span style="color:#f92672">.</span><span style="color:#75af00">reset</span><span style="color:#f92672">();</span>
+
+        <span style="color:#111">Post</span> <span style="color:#111">newPost</span> <span style="color:#f92672">=</span> <span style="color:#111">forumService</span><span style="color:#f92672">.</span><span style="color:#75af00">createPost</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;High-Performance Java Persistence&#34;</span><span style="color:#f92672">,</span> <span style="color:#d88200">&#34;hibernate&#34;</span><span style="color:#f92672">,</span> <span style="color:#d88200">&#34;jpa&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#111">assertNotNull</span><span style="color:#f92672">(</span><span style="color:#111">newPost</span><span style="color:#f92672">.</span><span style="color:#75af00">getId</span><span style="color:#f92672">());</span>
+
+        <span style="color:#111">List</span><span style="color:#f92672">&lt;</span><span style="color:#111">String</span><span style="color:#f92672">&gt;</span> <span style="color:#111">sqlStatements</span> <span style="color:#f92672">=</span> <span style="color:#111">SCHibernateWrapper</span><span style="color:#f92672">.</span><span style="color:#75af00">getAfterSqlStatements</span><span style="color:#f92672">();</span>
+        <span style="color:#111">assertEquals</span><span style="color:#f92672">(</span><span style="color:#111">5</span><span style="color:#f92672">,</span> <span style="color:#111">sqlStatements</span><span style="color:#f92672">.</span><span style="color:#75af00">size</span><span style="color:#f92672">());</span>
+        <span style="color:#111">assertEquals</span><span style="color:#f92672">(</span>
+                <span style="color:#111">5</span><span style="color:#f92672">,</span>
+                <span style="color:#111">sqlStatements</span>
+                    <span style="color:#f92672">.</span><span style="color:#75af00">stream</span><span style="color:#f92672">()</span>
+                    <span style="color:#f92672">.</span><span style="color:#75af00">filter</span><span style="color:#f92672">(</span>
+                        <span style="color:#111">sql</span> <span style="color:#f92672">-&gt;</span> <span style="color:#111">sql</span><span style="color:#f92672">.</span><span style="color:#75af00">contains</span><span style="color:#f92672">(</span>
+                            <span style="color:#d88200">&#34;/*action=&#39;CreatePost&#39;,controller=&#39;ForumController&#39;,framework=&#39;spring&#39;*/&#34;</span>
+                        <span style="color:#f92672">)</span>
+                    <span style="color:#f92672">)</span>
+                    <span style="color:#f92672">.</span><span style="color:#75af00">count</span><span style="color:#f92672">()</span>
+        <span style="color:#f92672">);</span>
+
+        <span style="color:#111">SCHibernateWrapper</span><span style="color:#f92672">.</span><span style="color:#75af00">reset</span><span style="color:#f92672">();</span>
+
+        <span style="color:#111">State</span><span style="color:#f92672">.</span><span style="color:#75af00">Holder</span><span style="color:#f92672">.</span><span style="color:#75af00">set</span><span style="color:#f92672">(</span>
+                <span style="color:#111">State</span><span style="color:#f92672">.</span><span style="color:#75af00">newBuilder</span><span style="color:#f92672">()</span>
+                        <span style="color:#f92672">.</span><span style="color:#75af00">withControllerName</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;ForumController&#34;</span><span style="color:#f92672">)</span>
+                        <span style="color:#f92672">.</span><span style="color:#75af00">withActionName</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;FindPostsByTitle&#34;</span><span style="color:#f92672">)</span>
+                        <span style="color:#f92672">.</span><span style="color:#75af00">withWebFramework</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;spring&#34;</span><span style="color:#f92672">)</span>
+                        <span style="color:#f92672">.</span><span style="color:#75af00">build</span><span style="color:#f92672">()</span>
+        <span style="color:#f92672">);</span>
+
+        <span style="color:#111">List</span><span style="color:#f92672">&lt;</span><span style="color:#111">Post</span><span style="color:#f92672">&gt;</span> <span style="color:#111">posts</span> <span style="color:#f92672">=</span> <span style="color:#111">forumService</span><span style="color:#f92672">.</span><span style="color:#75af00">findPostsByTitle</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;High-Performance Java Persistence&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#111">assertEquals</span><span style="color:#f92672">(</span><span style="color:#111">1</span><span style="color:#f92672">,</span> <span style="color:#111">posts</span><span style="color:#f92672">.</span><span style="color:#75af00">size</span><span style="color:#f92672">());</span>
+
+        <span style="color:#111">sqlStatements</span> <span style="color:#f92672">=</span> <span style="color:#111">SCHibernateWrapper</span><span style="color:#f92672">.</span><span style="color:#75af00">getAfterSqlStatements</span><span style="color:#f92672">();</span>
+        <span style="color:#111">assertEquals</span><span style="color:#f92672">(</span><span style="color:#111">1</span><span style="color:#f92672">,</span> <span style="color:#111">sqlStatements</span><span style="color:#f92672">.</span><span style="color:#75af00">size</span><span style="color:#f92672">());</span>
+        <span style="color:#111">assertEquals</span><span style="color:#f92672">(</span>
+                <span style="color:#111">1</span><span style="color:#f92672">,</span>
+                <span style="color:#111">sqlStatements</span>
+                    <span style="color:#f92672">.</span><span style="color:#75af00">stream</span><span style="color:#f92672">()</span>
+                    <span style="color:#f92672">.</span><span style="color:#75af00">filter</span><span style="color:#f92672">(</span>
+                        <span style="color:#111">sql</span> <span style="color:#f92672">-&gt;</span> <span style="color:#111">sql</span><span style="color:#f92672">.</span><span style="color:#75af00">contains</span><span style="color:#f92672">(</span>
+                            <span style="color:#d88200">&#34;/*action=&#39;FindPostsByTitle&#39;,controller=&#39;ForumController&#39;,framework=&#39;spring&#39;*/&#34;</span>
+                        <span style="color:#f92672">)</span>
+                    <span style="color:#f92672">)</span>
+                    <span style="color:#f92672">.</span><span style="color:#75af00">count</span><span style="color:#f92672">()</span>
+        <span style="color:#f92672">);</span>
+
+        <span style="color:#111">State</span><span style="color:#f92672">.</span><span style="color:#75af00">Holder</span><span style="color:#f92672">.</span><span style="color:#75af00">set</span><span style="color:#f92672">(</span>
+                <span style="color:#111">State</span><span style="color:#f92672">.</span><span style="color:#75af00">newBuilder</span><span style="color:#f92672">()</span>
+                        <span style="color:#f92672">.</span><span style="color:#75af00">withControllerName</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;ForumController&#34;</span><span style="color:#f92672">)</span>
+                        <span style="color:#f92672">.</span><span style="color:#75af00">withActionName</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;FindPostById&#34;</span><span style="color:#f92672">)</span>
+                        <span style="color:#f92672">.</span><span style="color:#75af00">withWebFramework</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;spring&#34;</span><span style="color:#f92672">)</span>
+                        <span style="color:#f92672">.</span><span style="color:#75af00">build</span><span style="color:#f92672">()</span>
+        <span style="color:#f92672">);</span>
+
+        <span style="color:#111">SCHibernateWrapper</span><span style="color:#f92672">.</span><span style="color:#75af00">reset</span><span style="color:#f92672">();</span>
+
+        <span style="color:#111">Post</span> <span style="color:#111">post</span> <span style="color:#f92672">=</span> <span style="color:#111">forumService</span><span style="color:#f92672">.</span><span style="color:#75af00">findPostById</span><span style="color:#f92672">(</span><span style="color:#111">newPost</span><span style="color:#f92672">.</span><span style="color:#75af00">getId</span><span style="color:#f92672">());</span>
+        <span style="color:#111">assertEquals</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;High-Performance Java Persistence&#34;</span><span style="color:#f92672">,</span> <span style="color:#111">post</span><span style="color:#f92672">.</span><span style="color:#75af00">getTitle</span><span style="color:#f92672">());</span>
+
+        <span style="color:#111">sqlStatements</span> <span style="color:#f92672">=</span> <span style="color:#111">SCHibernateWrapper</span><span style="color:#f92672">.</span><span style="color:#75af00">getAfterSqlStatements</span><span style="color:#f92672">();</span>
+        <span style="color:#111">assertEquals</span><span style="color:#f92672">(</span><span style="color:#111">1</span><span style="color:#f92672">,</span> <span style="color:#111">sqlStatements</span><span style="color:#f92672">.</span><span style="color:#75af00">size</span><span style="color:#f92672">());</span>
+        <span style="color:#111">assertEquals</span><span style="color:#f92672">(</span>
+                <span style="color:#111">1</span><span style="color:#f92672">,</span>
+                <span style="color:#111">sqlStatements</span>
+                    <span style="color:#f92672">.</span><span style="color:#75af00">stream</span><span style="color:#f92672">()</span>
+                    <span style="color:#f92672">.</span><span style="color:#75af00">filter</span><span style="color:#f92672">(</span>
+                        <span style="color:#111">sql</span> <span style="color:#f92672">-&gt;</span> <span style="color:#111">sql</span><span style="color:#f92672">.</span><span style="color:#75af00">contains</span><span style="color:#f92672">(</span>
+                            <span style="color:#d88200">&#34;/*action=&#39;FindPostById&#39;,controller=&#39;ForumController&#39;,framework=&#39;spring&#39;*/&#34;</span>
+                        <span style="color:#f92672">)</span>
+                    <span style="color:#f92672">)</span>
+                    <span style="color:#f92672">.</span><span style="color:#75af00">count</span><span style="color:#f92672">()</span>
+        <span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<p>When running the unit test above, we can see that the SQL statements include the comments as well:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#00a8c8">select</span> <span style="color:#111">tag0_</span><span style="color:#111">.</span><span style="color:#111">id</span> <span style="color:#00a8c8">as</span> <span style="color:#111">id1_2_</span><span style="color:#111">,</span> <span style="color:#111">tag0_</span><span style="color:#111">.</span><span style="color:#111">name</span> <span style="color:#00a8c8">as</span> <span style="color:#111">name2_2_</span> <span style="color:#00a8c8">from</span> <span style="color:#111">tag</span> <span style="color:#111">tag0_</span> <span style="color:#00a8c8">where</span> <span style="color:#111">tag0_</span><span style="color:#111">.</span><span style="color:#111">name</span> <span style="color:#00a8c8">in</span> <span style="color:#111">(</span><span style="color:#f92672">?</span> <span style="color:#111">,</span> <span style="color:#f92672">?</span><span style="color:#111">)</span> <span style="color:#75715e">/*action=&#39;CreatePost&#39;,controller=&#39;ForumController&#39;,framework=&#39;spring&#39;*/</span>
+
+<span style="color:#00a8c8">call</span> <span style="color:#00a8c8">next</span> <span style="color:#111">value</span> <span style="color:#00a8c8">for</span> <span style="color:#111">hibernate_sequence</span> <span style="color:#75715e">/*action=&#39;CreatePost&#39;,controller=&#39;ForumController&#39;,framework=&#39;spring&#39;*/</span>
+
+<span style="color:#00a8c8">insert</span> <span style="color:#00a8c8">into</span> <span style="color:#111">post</span> <span style="color:#111">(</span><span style="color:#111">title</span><span style="color:#111">,</span> <span style="color:#111">id</span><span style="color:#111">)</span> <span style="color:#00a8c8">values</span> <span style="color:#111">(</span><span style="color:#f92672">?</span><span style="color:#111">,</span> <span style="color:#f92672">?</span><span style="color:#111">)</span> <span style="color:#75715e">/*action=&#39;CreatePost&#39;,controller=&#39;ForumController&#39;,framework=&#39;spring&#39;*/</span>
+
+<span style="color:#00a8c8">insert</span> <span style="color:#00a8c8">into</span> <span style="color:#111">post_tag</span> <span style="color:#111">(</span><span style="color:#111">post_id</span><span style="color:#111">,</span> <span style="color:#111">tag_id</span><span style="color:#111">)</span> <span style="color:#00a8c8">values</span> <span style="color:#111">(</span><span style="color:#f92672">?</span><span style="color:#111">,</span> <span style="color:#f92672">?</span><span style="color:#111">)</span> <span style="color:#75715e">/*action=&#39;CreatePost&#39;,controller=&#39;ForumController&#39;,framework=&#39;spring&#39;*/</span>
+
+<span style="color:#00a8c8">insert</span> <span style="color:#00a8c8">into</span> <span style="color:#111">post_tag</span> <span style="color:#111">(</span><span style="color:#111">post_id</span><span style="color:#111">,</span> <span style="color:#111">tag_id</span><span style="color:#111">)</span> <span style="color:#00a8c8">values</span> <span style="color:#111">(</span><span style="color:#f92672">?</span><span style="color:#111">,</span> <span style="color:#f92672">?</span><span style="color:#111">)</span> <span style="color:#75715e">/*action=&#39;CreatePost&#39;,controller=&#39;ForumController&#39;,framework=&#39;spring&#39;*/</span>
+
+<span style="color:#00a8c8">select</span> <span style="color:#111">post0_</span><span style="color:#111">.</span><span style="color:#111">id</span> <span style="color:#00a8c8">as</span> <span style="color:#111">id1_0_</span><span style="color:#111">,</span> <span style="color:#111">post0_</span><span style="color:#111">.</span><span style="color:#111">title</span> <span style="color:#00a8c8">as</span> <span style="color:#111">title2_0_</span> <span style="color:#00a8c8">from</span> <span style="color:#111">post</span> <span style="color:#111">post0_</span> <span style="color:#00a8c8">where</span> <span style="color:#111">post0_</span><span style="color:#111">.</span><span style="color:#111">title</span><span style="color:#f92672">=?</span> <span style="color:#75715e">/*action=&#39;FindPostsByTitle&#39;,controller=&#39;ForumController&#39;,framework=&#39;spring&#39;*/</span>
+
+<span style="color:#00a8c8">select</span> <span style="color:#111">post0_</span><span style="color:#111">.</span><span style="color:#111">id</span> <span style="color:#00a8c8">as</span> <span style="color:#111">id1_0_0_</span><span style="color:#111">,</span> <span style="color:#111">post0_</span><span style="color:#111">.</span><span style="color:#111">title</span> <span style="color:#00a8c8">as</span> <span style="color:#111">title2_0_0_</span> <span style="color:#00a8c8">from</span> <span style="color:#111">post</span> <span style="color:#111">post0_</span> <span style="color:#00a8c8">where</span> <span style="color:#111">post0_</span><span style="color:#111">.</span><span style="color:#111">id</span><span style="color:#f92672">=?</span> <span style="color:#75715e">/*action=&#39;FindPostById&#39;,controller=&#39;ForumController&#39;,framework=&#39;spring&#39;*/</span></code></pre></div>
+<h3 id="spring-and-hibernate-end-to-end-example">Spring and Hibernate end-to-end example</h3>
+
+<p>First thing you need to do is to download the <a href="https://github.com/orijtech/sqlcommenter-java-guides/tree/master/sqlcommenter-java-guides-spring-hibernate">sqlcommenter-java-guides-spring-hibernate</a>
+Java project.</p>
+
+<h4 id="source-code-1">Source code</h4>
+
+<p>This project uses the following JPA entities:</p>
+
+<div class="tab-container">
+  <ul class="tabs">
+    
+      <li class="tab col s3">
+        <a href="#0">Post_java</a>
+      </li>
+    
+      <li class="tab col s3">
+        <a href="#1">Tag_java</a>
+      </li>
+    
+  </ul>
+
+  <span class="tabs-body">
+    
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// In file Post.java
+</span><span style="color:#75715e"></span><span style="color:#f92672">package</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.hibernate.domain</span><span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> <span style="color:#111">javax.persistence.*</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">java.util.ArrayList</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">java.util.List</span><span style="color:#f92672">;</span>
+
+<span style="color:#75af00">@Entity</span>
+<span style="color:#75af00">@Table</span><span style="color:#f92672">(</span><span style="color:#111">name</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#34;post&#34;</span><span style="color:#f92672">)</span>
+<span style="color:#00a8c8">public</span> <span style="color:#00a8c8">class</span> <span style="color:#75af00">Post</span> <span style="color:#f92672">{</span>
+
+    <span style="color:#75af00">@Id</span>
+    <span style="color:#75af00">@GeneratedValue</span>
+    <span style="color:#00a8c8">private</span> <span style="color:#111">Long</span> <span style="color:#111">id</span><span style="color:#f92672">;</span>
+
+    <span style="color:#00a8c8">private</span> <span style="color:#111">String</span> <span style="color:#111">title</span><span style="color:#f92672">;</span>
+
+    <span style="color:#75af00">@ManyToMany</span>
+    <span style="color:#75af00">@JoinTable</span><span style="color:#f92672">(</span>
+            <span style="color:#111">name</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#34;post_tag&#34;</span><span style="color:#f92672">,</span>
+            <span style="color:#111">joinColumns</span> <span style="color:#f92672">=</span> <span style="color:#75af00">@JoinColumn</span><span style="color:#f92672">(</span><span style="color:#111">name</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#34;post_id&#34;</span><span style="color:#f92672">),</span>
+            <span style="color:#111">inverseJoinColumns</span> <span style="color:#f92672">=</span> <span style="color:#75af00">@JoinColumn</span><span style="color:#f92672">(</span><span style="color:#111">name</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#34;tag_id&#34;</span><span style="color:#f92672">))</span>
+    <span style="color:#00a8c8">private</span> <span style="color:#111">List</span><span style="color:#f92672">&lt;</span><span style="color:#111">Tag</span><span style="color:#f92672">&gt;</span> <span style="color:#111">tags</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">new</span> <span style="color:#111">ArrayList</span><span style="color:#f92672">&lt;&gt;();</span>
+
+    <span style="color:#00a8c8">public</span> <span style="color:#111">Long</span> <span style="color:#75af00">getId</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#111">id</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#00a8c8">public</span> <span style="color:#00a8c8">void</span> <span style="color:#75af00">setId</span><span style="color:#f92672">(</span><span style="color:#111">Long</span> <span style="color:#111">id</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">this</span><span style="color:#f92672">.</span><span style="color:#75af00">id</span> <span style="color:#f92672">=</span> <span style="color:#111">id</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#00a8c8">public</span> <span style="color:#111">String</span> <span style="color:#75af00">getTitle</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#111">title</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#00a8c8">public</span> <span style="color:#00a8c8">void</span> <span style="color:#75af00">setTitle</span><span style="color:#f92672">(</span><span style="color:#111">String</span> <span style="color:#111">title</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">this</span><span style="color:#f92672">.</span><span style="color:#75af00">title</span> <span style="color:#f92672">=</span> <span style="color:#111">title</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#00a8c8">public</span> <span style="color:#111">List</span><span style="color:#f92672">&lt;</span><span style="color:#111">Tag</span><span style="color:#f92672">&gt;</span> <span style="color:#75af00">getTags</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#111">tags</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span></code></pre></div>
+
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// In file Tag.java
+</span><span style="color:#75715e"></span><span style="color:#f92672">package</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.hibernate.domain</span><span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> <span style="color:#111">javax.persistence.Entity</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">javax.persistence.GeneratedValue</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">javax.persistence.Id</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">javax.persistence.Table</span><span style="color:#f92672">;</span>
+
+<span style="color:#75af00">@Entity</span>
+<span style="color:#75af00">@Table</span><span style="color:#f92672">(</span><span style="color:#111">name</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#34;tag&#34;</span><span style="color:#f92672">)</span>
+<span style="color:#00a8c8">public</span> <span style="color:#00a8c8">class</span> <span style="color:#75af00">Tag</span> <span style="color:#f92672">{</span>
+
+    <span style="color:#75af00">@Id</span>
+    <span style="color:#75af00">@GeneratedValue</span>
+    <span style="color:#00a8c8">private</span> <span style="color:#111">Long</span> <span style="color:#111">id</span><span style="color:#f92672">;</span>
+
+    <span style="color:#00a8c8">private</span> <span style="color:#111">String</span> <span style="color:#111">name</span><span style="color:#f92672">;</span>
+
+    <span style="color:#00a8c8">public</span> <span style="color:#111">Long</span> <span style="color:#75af00">getId</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#111">id</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#00a8c8">public</span> <span style="color:#00a8c8">void</span> <span style="color:#75af00">setId</span><span style="color:#f92672">(</span><span style="color:#111">Long</span> <span style="color:#111">id</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">this</span><span style="color:#f92672">.</span><span style="color:#75af00">id</span> <span style="color:#f92672">=</span> <span style="color:#111">id</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#00a8c8">public</span> <span style="color:#111">String</span> <span style="color:#75af00">getName</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#111">name</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#00a8c8">public</span> <span style="color:#00a8c8">void</span> <span style="color:#75af00">setName</span><span style="color:#f92672">(</span><span style="color:#111">String</span> <span style="color:#111">name</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">this</span><span style="color:#f92672">.</span><span style="color:#75af00">name</span> <span style="color:#f92672">=</span> <span style="color:#111">name</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span></code></pre></div>
+
+  </span>
+</div>
+
+
+<p>The DAO (Data Access Object) layer looks as follows:</p>
+
+<div class="tab-container">
+  <ul class="tabs">
+    
+      <li class="tab col s3">
+        <a href="#0">GenericDAO_java</a>
+      </li>
+    
+      <li class="tab col s3">
+        <a href="#1">GenericDAOImpl_java</a>
+      </li>
+    
+      <li class="tab col s3">
+        <a href="#2">PostDAO_java</a>
+      </li>
+    
+      <li class="tab col s3">
+        <a href="#3">PostDAOImpl_java</a>
+      </li>
+    
+      <li class="tab col s3">
+        <a href="#4">TagDAO_java</a>
+      </li>
+    
+      <li class="tab col s3">
+        <a href="#5">TagDAOImpl_java</a>
+      </li>
+    
+  </ul>
+
+  <span class="tabs-body">
+    
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// In file GenericDAO.java
+</span><span style="color:#75715e"></span>
+<span style="color:#f92672">package</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.hibernate.dao</span><span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> <span style="color:#111">java.io.Serializable</span><span style="color:#f92672">;</span>
+
+<span style="color:#00a8c8">public</span> <span style="color:#00a8c8">interface</span> <span style="color:#75af00">GenericDAO</span><span style="color:#f92672">&lt;</span><span style="color:#111">T</span><span style="color:#f92672">,</span> <span style="color:#111">ID</span> <span style="color:#00a8c8">extends</span> <span style="color:#111">Serializable</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
+
+    <span style="color:#111">T</span> <span style="color:#75af00">findById</span><span style="color:#f92672">(</span><span style="color:#111">ID</span> <span style="color:#111">id</span><span style="color:#f92672">);</span>
+
+    <span style="color:#111">T</span> <span style="color:#75af00">save</span><span style="color:#f92672">(</span><span style="color:#111">T</span> <span style="color:#111">entity</span><span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span></code></pre></div>
+
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// In file GenericDAOImpl.java
+</span><span style="color:#75715e"></span>
+<span style="color:#f92672">package</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.hibernate.dao</span><span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> <span style="color:#111">org.hibernate.Session</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.hibernate.SessionFactory</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.springframework.beans.factory.annotation.Autowired</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.springframework.stereotype.Repository</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.springframework.transaction.annotation.Transactional</span><span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> <span style="color:#111">java.io.Serializable</span><span style="color:#f92672">;</span>
+
+<span style="color:#75af00">@Repository</span>
+<span style="color:#75af00">@Transactional</span>
+<span style="color:#00a8c8">public</span> <span style="color:#00a8c8">abstract</span> <span style="color:#00a8c8">class</span> <span style="color:#75af00">GenericDAOImpl</span><span style="color:#f92672">&lt;</span><span style="color:#111">T</span><span style="color:#f92672">,</span> <span style="color:#111">ID</span> <span style="color:#00a8c8">extends</span> <span style="color:#111">Serializable</span><span style="color:#f92672">&gt;</span> <span style="color:#00a8c8">implements</span> <span style="color:#111">GenericDAO</span><span style="color:#f92672">&lt;</span><span style="color:#111">T</span><span style="color:#f92672">,</span> <span style="color:#111">ID</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
+
+    <span style="color:#75af00">@Autowired</span>
+    <span style="color:#00a8c8">private</span> <span style="color:#111">SessionFactory</span> <span style="color:#111">sessionFactory</span><span style="color:#f92672">;</span>
+
+    <span style="color:#00a8c8">private</span> <span style="color:#00a8c8">final</span> <span style="color:#111">Class</span><span style="color:#f92672">&lt;</span><span style="color:#111">T</span><span style="color:#f92672">&gt;</span> <span style="color:#111">entityClass</span><span style="color:#f92672">;</span>
+
+    <span style="color:#00a8c8">protected</span> <span style="color:#111">SessionFactory</span> <span style="color:#75af00">getSessionFactory</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#111">sessionFactory</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#00a8c8">protected</span> <span style="color:#111">Session</span> <span style="color:#75af00">getSession</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#111">sessionFactory</span><span style="color:#f92672">.</span><span style="color:#75af00">getCurrentSession</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#00a8c8">protected</span> <span style="color:#75af00">GenericDAOImpl</span><span style="color:#f92672">(</span><span style="color:#111">Class</span><span style="color:#f92672">&lt;</span><span style="color:#111">T</span><span style="color:#f92672">&gt;</span> <span style="color:#111">entityClass</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">this</span><span style="color:#f92672">.</span><span style="color:#75af00">entityClass</span> <span style="color:#f92672">=</span> <span style="color:#111">entityClass</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#00a8c8">public</span> <span style="color:#111">Class</span><span style="color:#f92672">&lt;</span><span style="color:#111">T</span><span style="color:#f92672">&gt;</span> <span style="color:#75af00">getEntityClass</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#111">entityClass</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#75af00">@Override</span>
+    <span style="color:#00a8c8">public</span> <span style="color:#111">T</span> <span style="color:#75af00">findById</span><span style="color:#f92672">(</span><span style="color:#111">ID</span> <span style="color:#111">id</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#111">getSession</span><span style="color:#f92672">().</span><span style="color:#75af00">get</span><span style="color:#f92672">(</span><span style="color:#111">entityClass</span><span style="color:#f92672">,</span> <span style="color:#111">id</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#75af00">@Override</span>
+    <span style="color:#00a8c8">public</span> <span style="color:#111">T</span> <span style="color:#75af00">save</span><span style="color:#f92672">(</span><span style="color:#111">T</span> <span style="color:#111">entity</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#111">getSession</span><span style="color:#f92672">().</span><span style="color:#75af00">persist</span><span style="color:#f92672">(</span><span style="color:#111">entity</span><span style="color:#f92672">);</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#111">entity</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span></code></pre></div>
+
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// In file PostDAO.java
+</span><span style="color:#75715e"></span>
+<span style="color:#f92672">package</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.hibernate.dao</span><span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.hibernate.domain.Post</span><span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> <span style="color:#111">java.util.List</span><span style="color:#f92672">;</span>
+
+<span style="color:#00a8c8">public</span> <span style="color:#00a8c8">interface</span> <span style="color:#75af00">PostDAO</span> <span style="color:#00a8c8">extends</span> <span style="color:#111">GenericDAO</span><span style="color:#f92672">&lt;</span><span style="color:#111">Post</span><span style="color:#f92672">,</span> <span style="color:#111">Long</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
+
+    <span style="color:#111">List</span><span style="color:#f92672">&lt;</span><span style="color:#111">Post</span><span style="color:#f92672">&gt;</span> <span style="color:#75af00">findByTitle</span><span style="color:#f92672">(</span><span style="color:#111">String</span> <span style="color:#111">title</span><span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span></code></pre></div>
+
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// In file PostDAOImpl.java
+</span><span style="color:#75715e"></span>
+<span style="color:#f92672">package</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.hibernate.dao</span><span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.hibernate.domain.Post</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.springframework.stereotype.Repository</span><span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> <span style="color:#111">java.util.List</span><span style="color:#f92672">;</span>
+
+<span style="color:#75af00">@Repository</span>
+<span style="color:#00a8c8">public</span> <span style="color:#00a8c8">class</span> <span style="color:#75af00">PostDAOImpl</span> <span style="color:#00a8c8">extends</span> <span style="color:#111">GenericDAOImpl</span><span style="color:#f92672">&lt;</span><span style="color:#111">Post</span><span style="color:#f92672">,</span> <span style="color:#111">Long</span><span style="color:#f92672">&gt;</span> <span style="color:#00a8c8">implements</span> <span style="color:#111">PostDAO</span> <span style="color:#f92672">{</span>
+
+    <span style="color:#00a8c8">protected</span> <span style="color:#75af00">PostDAOImpl</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">super</span><span style="color:#f92672">(</span><span style="color:#111">Post</span><span style="color:#f92672">.</span><span style="color:#75af00">class</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#75af00">@Override</span>
+    <span style="color:#00a8c8">public</span> <span style="color:#111">List</span><span style="color:#f92672">&lt;</span><span style="color:#111">Post</span><span style="color:#f92672">&gt;</span> <span style="color:#75af00">findByTitle</span><span style="color:#f92672">(</span><span style="color:#111">String</span> <span style="color:#111">title</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#111">getSession</span><span style="color:#f92672">().</span><span style="color:#75af00">createQuery</span><span style="color:#f92672">(</span>
+                <span style="color:#d88200">&#34;select p from Post p where p.title = :title&#34;</span><span style="color:#f92672">,</span> <span style="color:#111">Post</span><span style="color:#f92672">.</span><span style="color:#75af00">class</span><span style="color:#f92672">)</span>
+                <span style="color:#f92672">.</span><span style="color:#75af00">setParameter</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;title&#34;</span><span style="color:#f92672">,</span> <span style="color:#111">title</span><span style="color:#f92672">)</span>
+                <span style="color:#f92672">.</span><span style="color:#75af00">getResultList</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span></code></pre></div>
+
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// In file TagDAO.java
+</span><span style="color:#75715e"></span>
+<span style="color:#f92672">package</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.hibernate.dao</span><span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.hibernate.domain.Tag</span><span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> <span style="color:#111">java.util.List</span><span style="color:#f92672">;</span>
+
+<span style="color:#00a8c8">public</span> <span style="color:#00a8c8">interface</span> <span style="color:#75af00">TagDAO</span> <span style="color:#00a8c8">extends</span> <span style="color:#111">GenericDAO</span><span style="color:#f92672">&lt;</span><span style="color:#111">Tag</span><span style="color:#f92672">,</span> <span style="color:#111">Long</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
+
+    <span style="color:#111">List</span><span style="color:#f92672">&lt;</span><span style="color:#111">Tag</span><span style="color:#f92672">&gt;</span> <span style="color:#75af00">findByName</span><span style="color:#f92672">(</span><span style="color:#111">String</span><span style="color:#f92672">...</span> <span style="color:#111">tags</span><span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span></code></pre></div>
+
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// In file TagDAOImpl.java
+</span><span style="color:#75715e"></span>
+<span style="color:#f92672">package</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.hibernate.dao</span><span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.hibernate.domain.Tag</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.springframework.stereotype.Repository</span><span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> <span style="color:#111">java.util.Arrays</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">java.util.List</span><span style="color:#f92672">;</span>
+
+<span style="color:#75af00">@Repository</span>
+<span style="color:#00a8c8">public</span> <span style="color:#00a8c8">class</span> <span style="color:#75af00">TagDAOImpl</span> <span style="color:#00a8c8">extends</span> <span style="color:#111">GenericDAOImpl</span><span style="color:#f92672">&lt;</span><span style="color:#111">Tag</span><span style="color:#f92672">,</span> <span style="color:#111">Long</span><span style="color:#f92672">&gt;</span> <span style="color:#00a8c8">implements</span> <span style="color:#111">TagDAO</span> <span style="color:#f92672">{</span>
+
+    <span style="color:#00a8c8">protected</span> <span style="color:#75af00">TagDAOImpl</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">super</span><span style="color:#f92672">(</span><span style="color:#111">Tag</span><span style="color:#f92672">.</span><span style="color:#75af00">class</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#75af00">@Override</span>
+    <span style="color:#00a8c8">public</span> <span style="color:#111">List</span><span style="color:#f92672">&lt;</span><span style="color:#111">Tag</span><span style="color:#f92672">&gt;</span> <span style="color:#75af00">findByName</span><span style="color:#f92672">(</span><span style="color:#111">String</span><span style="color:#f92672">...</span> <span style="color:#111">tags</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">if</span> <span style="color:#f92672">(</span><span style="color:#111">tags</span><span style="color:#f92672">.</span><span style="color:#75af00">length</span> <span style="color:#f92672">==</span> <span style="color:#111">0</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#00a8c8">throw</span> <span style="color:#00a8c8">new</span> <span style="color:#111">IllegalArgumentException</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;There&#39;s no tag name to search for!&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#111">getSession</span><span style="color:#f92672">()</span>
+            <span style="color:#f92672">.</span><span style="color:#75af00">createQuery</span><span style="color:#f92672">(</span>
+                <span style="color:#d88200">&#34;select t &#34;</span> <span style="color:#f92672">+</span>
+                <span style="color:#d88200">&#34;from Tag t &#34;</span> <span style="color:#f92672">+</span>
+                <span style="color:#d88200">&#34;where t.name in :tags&#34;</span><span style="color:#f92672">)</span>
+            <span style="color:#f92672">.</span><span style="color:#75af00">setParameterList</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;tags&#34;</span><span style="color:#f92672">,</span> <span style="color:#111">Arrays</span><span style="color:#f92672">.</span><span style="color:#75af00">asList</span><span style="color:#f92672">(</span><span style="color:#111">tags</span><span style="color:#f92672">))</span>
+            <span style="color:#f92672">.</span><span style="color:#75af00">list</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span></code></pre></div>
+
+  </span>
+</div>
+
+
+<p>The Service layer looks as follows:</p>
+
+<div class="tab-container">
+  <ul class="tabs">
+    
+      <li class="tab col s3">
+        <a href="#0">ForumService_java</a>
+      </li>
+    
+      <li class="tab col s3">
+        <a href="#1">ForumServiceImpl_java</a>
+      </li>
+    
+  </ul>
+
+  <span class="tabs-body">
+    
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// In file ForumService.java
+</span><span style="color:#75715e"></span>
+<span style="color:#f92672">package</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.hibernate.service</span><span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.hibernate.domain.Post</span><span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> <span style="color:#111">java.util.List</span><span style="color:#f92672">;</span>
+
+<span style="color:#00a8c8">public</span> <span style="color:#00a8c8">interface</span> <span style="color:#75af00">ForumService</span> <span style="color:#f92672">{</span>
+
+    <span style="color:#111">Post</span> <span style="color:#75af00">createPost</span><span style="color:#f92672">(</span><span style="color:#111">String</span> <span style="color:#111">title</span><span style="color:#f92672">,</span> <span style="color:#111">String</span><span style="color:#f92672">...</span> <span style="color:#111">tags</span><span style="color:#f92672">);</span>
+
+    <span style="color:#111">List</span><span style="color:#f92672">&lt;</span><span style="color:#111">Post</span><span style="color:#f92672">&gt;</span> <span style="color:#75af00">findPostsByTitle</span><span style="color:#f92672">(</span><span style="color:#111">String</span> <span style="color:#111">title</span><span style="color:#f92672">);</span>
+
+    <span style="color:#111">Post</span> <span style="color:#75af00">findPostById</span><span style="color:#f92672">(</span><span style="color:#111">Long</span> <span style="color:#111">id</span><span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span></code></pre></div>
+
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// In file ForumServiceImpl.java
+</span><span style="color:#75715e"></span>
+<span style="color:#f92672">package</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.hibernate.service</span><span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.hibernate.dao.PostDAO</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.hibernate.dao.TagDAO</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.hibernate.domain.Post</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.springframework.beans.factory.annotation.Autowired</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.springframework.stereotype.Service</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.springframework.transaction.annotation.Transactional</span><span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> <span style="color:#111">java.util.List</span><span style="color:#f92672">;</span>
+
+<span style="color:#75af00">@Service</span>
+<span style="color:#00a8c8">public</span> <span style="color:#00a8c8">class</span> <span style="color:#75af00">ForumServiceImpl</span> <span style="color:#00a8c8">implements</span> <span style="color:#111">ForumService</span> <span style="color:#f92672">{</span>
+
+    <span style="color:#75af00">@Autowired</span>
+    <span style="color:#00a8c8">private</span> <span style="color:#111">PostDAO</span> <span style="color:#111">postDAO</span><span style="color:#f92672">;</span>
+
+    <span style="color:#75af00">@Autowired</span>
+    <span style="color:#00a8c8">private</span> <span style="color:#111">TagDAO</span> <span style="color:#111">tagDAO</span><span style="color:#f92672">;</span>
+
+    <span style="color:#75af00">@Override</span>
+    <span style="color:#75af00">@Transactional</span>
+    <span style="color:#00a8c8">public</span> <span style="color:#111">Post</span> <span style="color:#75af00">createPost</span><span style="color:#f92672">(</span><span style="color:#111">String</span> <span style="color:#111">title</span><span style="color:#f92672">,</span> <span style="color:#111">String</span><span style="color:#f92672">...</span> <span style="color:#111">tags</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#111">Post</span> <span style="color:#111">post</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">new</span> <span style="color:#111">Post</span><span style="color:#f92672">();</span>
+        <span style="color:#111">post</span><span style="color:#f92672">.</span><span style="color:#75af00">setTitle</span><span style="color:#f92672">(</span><span style="color:#111">title</span><span style="color:#f92672">);</span>
+        <span style="color:#111">post</span><span style="color:#f92672">.</span><span style="color:#75af00">getTags</span><span style="color:#f92672">().</span><span style="color:#75af00">addAll</span><span style="color:#f92672">(</span><span style="color:#111">tagDAO</span><span style="color:#f92672">.</span><span style="color:#75af00">findByName</span><span style="color:#f92672">(</span><span style="color:#111">tags</span><span style="color:#f92672">));</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#111">postDAO</span><span style="color:#f92672">.</span><span style="color:#75af00">save</span><span style="color:#f92672">(</span><span style="color:#111">post</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#75af00">@Override</span>
+    <span style="color:#75af00">@Transactional</span><span style="color:#f92672">(</span><span style="color:#111">readOnly</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">true</span><span style="color:#f92672">)</span>
+    <span style="color:#00a8c8">public</span> <span style="color:#111">List</span><span style="color:#f92672">&lt;</span><span style="color:#111">Post</span><span style="color:#f92672">&gt;</span> <span style="color:#75af00">findPostsByTitle</span><span style="color:#f92672">(</span><span style="color:#111">String</span> <span style="color:#111">title</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#111">postDAO</span><span style="color:#f92672">.</span><span style="color:#75af00">findByTitle</span><span style="color:#f92672">(</span><span style="color:#111">title</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#75af00">@Override</span>
+    <span style="color:#75af00">@Transactional</span>
+    <span style="color:#00a8c8">public</span> <span style="color:#111">Post</span> <span style="color:#75af00">findPostById</span><span style="color:#f92672">(</span><span style="color:#111">Long</span> <span style="color:#111">id</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#111">postDAO</span><span style="color:#f92672">.</span><span style="color:#75af00">findById</span><span style="color:#f92672">(</span><span style="color:#111">id</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span></code></pre></div>
+
+  </span>
+</div>
+
+
+<p>The Spring Hibernate configuration looks as follows:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// In file HibernateTransactionManagerConfiguration.java
+</span><span style="color:#75715e"></span>
+<span style="color:#f92672">package</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.hibernate</span><span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> <span style="color:#111">com.zaxxer.hikari.HikariConfig</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">com.zaxxer.hikari.HikariDataSource</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.util.SCHibernateWrapper</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.hibernate.SessionFactory</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.springframework.beans.factory.annotation.Value</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.springframework.context.annotation.*</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.springframework.context.support.PropertySourcesPlaceholderConfigurer</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.springframework.orm.hibernate5.HibernateTransactionManager</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.springframework.orm.hibernate5.LocalSessionFactoryBean</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.springframework.transaction.annotation.EnableTransactionManagement</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.springframework.transaction.support.TransactionTemplate</span><span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> <span style="color:#111">javax.sql.DataSource</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">java.util.Properties</span><span style="color:#f92672">;</span>
+
+<span style="color:#75af00">@Configuration</span>
+<span style="color:#75af00">@PropertySource</span><span style="color:#f92672">({</span><span style="color:#d88200">&#34;/META-INF/jdbc-hsqldb.properties&#34;</span><span style="color:#f92672">})</span>
+<span style="color:#75af00">@ComponentScan</span><span style="color:#f92672">(</span><span style="color:#111">basePackages</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#34;io.orijtech.integrations.sqlcommenter.spring.hibernate&#34;</span><span style="color:#f92672">)</span>
+<span style="color:#75af00">@EnableTransactionManagement</span>
+<span style="color:#75af00">@EnableAspectJAutoProxy</span>
+<span style="color:#00a8c8">public</span> <span style="color:#00a8c8">class</span> <span style="color:#75af00">HibernateTransactionManagerConfiguration</span> <span style="color:#f92672">{</span>
+
+    <span style="color:#75af00">@Value</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;${jdbc.dataSourceClassName}&#34;</span><span style="color:#f92672">)</span>
+    <span style="color:#00a8c8">private</span> <span style="color:#111">String</span> <span style="color:#111">dataSourceClassName</span><span style="color:#f92672">;</span>
+
+    <span style="color:#75af00">@Value</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;${jdbc.url}&#34;</span><span style="color:#f92672">)</span>
+    <span style="color:#00a8c8">private</span> <span style="color:#111">String</span> <span style="color:#111">jdbcUrl</span><span style="color:#f92672">;</span>
+
+    <span style="color:#75af00">@Value</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;${jdbc.username}&#34;</span><span style="color:#f92672">)</span>
+    <span style="color:#00a8c8">private</span> <span style="color:#111">String</span> <span style="color:#111">jdbcUser</span><span style="color:#f92672">;</span>
+
+    <span style="color:#75af00">@Value</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;${jdbc.password}&#34;</span><span style="color:#f92672">)</span>
+    <span style="color:#00a8c8">private</span> <span style="color:#111">String</span> <span style="color:#111">jdbcPassword</span><span style="color:#f92672">;</span>
+
+    <span style="color:#75af00">@Value</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;${hibernate.dialect}&#34;</span><span style="color:#f92672">)</span>
+    <span style="color:#00a8c8">private</span> <span style="color:#111">String</span> <span style="color:#111">hibernateDialect</span><span style="color:#f92672">;</span>
+
+    <span style="color:#75af00">@Bean</span><span style="color:#f92672">(</span><span style="color:#111">destroyMethod</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#34;close&#34;</span><span style="color:#f92672">)</span>
+    <span style="color:#00a8c8">public</span> <span style="color:#111">DataSource</span> <span style="color:#75af00">actualDataSource</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#111">Properties</span> <span style="color:#111">driverProperties</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">new</span> <span style="color:#111">Properties</span><span style="color:#f92672">();</span>
+        <span style="color:#111">driverProperties</span><span style="color:#f92672">.</span><span style="color:#75af00">setProperty</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;url&#34;</span><span style="color:#f92672">,</span> <span style="color:#111">jdbcUrl</span><span style="color:#f92672">);</span>
+        <span style="color:#111">driverProperties</span><span style="color:#f92672">.</span><span style="color:#75af00">setProperty</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;user&#34;</span><span style="color:#f92672">,</span> <span style="color:#111">jdbcUser</span><span style="color:#f92672">);</span>
+        <span style="color:#111">driverProperties</span><span style="color:#f92672">.</span><span style="color:#75af00">setProperty</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;password&#34;</span><span style="color:#f92672">,</span> <span style="color:#111">jdbcPassword</span><span style="color:#f92672">);</span>
+
+        <span style="color:#111">Properties</span> <span style="color:#111">properties</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">new</span> <span style="color:#111">Properties</span><span style="color:#f92672">();</span>
+        <span style="color:#111">properties</span><span style="color:#f92672">.</span><span style="color:#75af00">put</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;dataSourceClassName&#34;</span><span style="color:#f92672">,</span> <span style="color:#111">dataSourceClassName</span><span style="color:#f92672">);</span>
+        <span style="color:#111">properties</span><span style="color:#f92672">.</span><span style="color:#75af00">put</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;dataSourceProperties&#34;</span><span style="color:#f92672">,</span> <span style="color:#111">driverProperties</span><span style="color:#f92672">);</span>
+        <span style="color:#111">properties</span><span style="color:#f92672">.</span><span style="color:#75af00">setProperty</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;maximumPoolSize&#34;</span><span style="color:#f92672">,</span> <span style="color:#111">String</span><span style="color:#f92672">.</span><span style="color:#75af00">valueOf</span><span style="color:#f92672">(</span><span style="color:#111">3</span><span style="color:#f92672">));</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#00a8c8">new</span> <span style="color:#111">HikariDataSource</span><span style="color:#f92672">(</span><span style="color:#00a8c8">new</span> <span style="color:#111">HikariConfig</span><span style="color:#f92672">(</span><span style="color:#111">properties</span><span style="color:#f92672">));</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#75af00">@Bean</span>
+    <span style="color:#00a8c8">public</span> <span style="color:#00a8c8">static</span> <span style="color:#111">PropertySourcesPlaceholderConfigurer</span> <span style="color:#75af00">properties</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#00a8c8">new</span> <span style="color:#111">PropertySourcesPlaceholderConfigurer</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#75af00">@Bean</span>
+    <span style="color:#00a8c8">public</span> <span style="color:#111">DataSource</span> <span style="color:#75af00">dataSource</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#111">actualDataSource</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#75af00">@Bean</span>
+    <span style="color:#00a8c8">public</span> <span style="color:#111">LocalSessionFactoryBean</span> <span style="color:#75af00">sessionFactory</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#111">LocalSessionFactoryBean</span> <span style="color:#111">localSessionFactoryBean</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">new</span> <span style="color:#111">LocalSessionFactoryBean</span><span style="color:#f92672">();</span>
+        <span style="color:#111">localSessionFactoryBean</span><span style="color:#f92672">.</span><span style="color:#75af00">setDataSource</span><span style="color:#f92672">(</span><span style="color:#111">dataSource</span><span style="color:#f92672">());</span>
+        <span style="color:#111">localSessionFactoryBean</span><span style="color:#f92672">.</span><span style="color:#75af00">setPackagesToScan</span><span style="color:#f92672">(</span><span style="color:#111">packagesToScan</span><span style="color:#f92672">());</span>
+        <span style="color:#111">localSessionFactoryBean</span><span style="color:#f92672">.</span><span style="color:#75af00">setHibernateProperties</span><span style="color:#f92672">(</span><span style="color:#111">additionalProperties</span><span style="color:#f92672">());</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#111">localSessionFactoryBean</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#75af00">@Bean</span>
+    <span style="color:#00a8c8">public</span> <span style="color:#111">HibernateTransactionManager</span> <span style="color:#75af00">transactionManager</span><span style="color:#f92672">(</span><span style="color:#111">SessionFactory</span> <span style="color:#111">sessionFactory</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#111">HibernateTransactionManager</span> <span style="color:#111">transactionManager</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">new</span> <span style="color:#111">HibernateTransactionManager</span><span style="color:#f92672">();</span>
+        <span style="color:#111">transactionManager</span><span style="color:#f92672">.</span><span style="color:#75af00">setSessionFactory</span><span style="color:#f92672">(</span><span style="color:#111">sessionFactory</span><span style="color:#f92672">);</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#111">transactionManager</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#75af00">@Bean</span>
+    <span style="color:#00a8c8">public</span> <span style="color:#111">TransactionTemplate</span> <span style="color:#75af00">transactionTemplate</span><span style="color:#f92672">(</span><span style="color:#111">SessionFactory</span> <span style="color:#111">sessionFactory</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#00a8c8">new</span> <span style="color:#111">TransactionTemplate</span><span style="color:#f92672">(</span><span style="color:#111">transactionManager</span><span style="color:#f92672">(</span><span style="color:#111">sessionFactory</span><span style="color:#f92672">));</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#00a8c8">protected</span> <span style="color:#111">Properties</span> <span style="color:#75af00">additionalProperties</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#111">Properties</span> <span style="color:#111">properties</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">new</span> <span style="color:#111">Properties</span><span style="color:#f92672">();</span>
+        <span style="color:#111">properties</span><span style="color:#f92672">.</span><span style="color:#75af00">setProperty</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;hibernate.dialect&#34;</span><span style="color:#f92672">,</span> <span style="color:#111">hibernateDialect</span><span style="color:#f92672">);</span>
+        <span style="color:#111">properties</span><span style="color:#f92672">.</span><span style="color:#75af00">setProperty</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;hibernate.hbm2ddl.auto&#34;</span><span style="color:#f92672">,</span> <span style="color:#d88200">&#34;create-drop&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#111">properties</span><span style="color:#f92672">.</span><span style="color:#75af00">put</span><span style="color:#f92672">(</span>
+            <span style="color:#d88200">&#34;hibernate.session_factory.statement_inspector&#34;</span><span style="color:#f92672">,</span> <span style="color:#111">SCHibernateWrapper</span><span style="color:#f92672">.</span><span style="color:#75af00">class</span><span style="color:#f92672">.</span><span style="color:#75af00">getName</span><span style="color:#f92672">()</span>
+        <span style="color:#f92672">);</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#111">properties</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#00a8c8">protected</span> <span style="color:#111">String</span><span style="color:#f92672">[]</span> <span style="color:#75af00">packagesToScan</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#00a8c8">new</span> <span style="color:#111">String</span><span style="color:#f92672">[]{</span>
+                <span style="color:#d88200">&#34;io.orijtech.integrations.sqlcommenter.spring.hibernate.domain&#34;</span>
+        <span style="color:#f92672">};</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<p>Now, the test looks as follows:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// In file HibernateTransactionManagerTest.java
+</span><span style="color:#75715e"></span>
+<span style="color:#f92672">package</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.hibernate</span><span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.hibernate.domain.Post</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.hibernate.domain.Tag</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.hibernate.service.ForumService</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.util.SCHibernateWrapper</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.threadlocalstorage.State</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.junit.Before</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.junit.Test</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.junit.runner.RunWith</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.springframework.beans.factory.annotation.Autowired</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.springframework.test.annotation.DirtiesContext</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.springframework.test.context.ContextConfiguration</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.springframework.test.context.junit4.SpringJUnit4ClassRunner</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.springframework.transaction.TransactionException</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.springframework.transaction.support.TransactionCallback</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">org.springframework.transaction.support.TransactionTemplate</span><span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> <span style="color:#111">javax.persistence.EntityManager</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">javax.persistence.PersistenceContext</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">java.util.List</span><span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import static</span> <span style="color:#111">org.junit.Assert.assertEquals</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import static</span> <span style="color:#111">org.junit.Assert.assertNotNull</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import static</span> <span style="color:#111">org.junit.Assert.fail</span><span style="color:#f92672">;</span>
+
+<span style="color:#75af00">@RunWith</span><span style="color:#f92672">(</span><span style="color:#111">SpringJUnit4ClassRunner</span><span style="color:#f92672">.</span><span style="color:#75af00">class</span><span style="color:#f92672">)</span>
+<span style="color:#75af00">@ContextConfiguration</span><span style="color:#f92672">(</span><span style="color:#111">classes</span> <span style="color:#f92672">=</span> <span style="color:#111">HibernateTransactionManagerConfiguration</span><span style="color:#f92672">.</span><span style="color:#75af00">class</span><span style="color:#f92672">)</span>
+<span style="color:#75af00">@DirtiesContext</span><span style="color:#f92672">(</span><span style="color:#111">classMode</span> <span style="color:#f92672">=</span> <span style="color:#111">DirtiesContext</span><span style="color:#f92672">.</span><span style="color:#75af00">ClassMode</span><span style="color:#f92672">.</span><span style="color:#75af00">AFTER_EACH_TEST_METHOD</span><span style="color:#f92672">)</span>
+<span style="color:#00a8c8">public</span> <span style="color:#00a8c8">class</span> <span style="color:#75af00">HibernateTransactionManagerTest</span> <span style="color:#f92672">{</span>
+
+    <span style="color:#75af00">@Autowired</span>
+    <span style="color:#00a8c8">private</span> <span style="color:#111">TransactionTemplate</span> <span style="color:#111">transactionTemplate</span><span style="color:#f92672">;</span>
+
+    <span style="color:#75af00">@PersistenceContext</span>
+    <span style="color:#00a8c8">private</span> <span style="color:#111">EntityManager</span> <span style="color:#111">entityManager</span><span style="color:#f92672">;</span>
+
+    <span style="color:#75af00">@Autowired</span>
+    <span style="color:#00a8c8">private</span> <span style="color:#111">ForumService</span> <span style="color:#111">forumService</span><span style="color:#f92672">;</span>
+
+    <span style="color:#75af00">@Before</span>
+    <span style="color:#00a8c8">public</span> <span style="color:#00a8c8">void</span> <span style="color:#75af00">init</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">try</span> <span style="color:#f92672">{</span>
+            <span style="color:#111">transactionTemplate</span><span style="color:#f92672">.</span><span style="color:#75af00">execute</span><span style="color:#f92672">((</span><span style="color:#111">TransactionCallback</span><span style="color:#f92672">&lt;</span><span style="color:#111">Void</span><span style="color:#f92672">&gt;)</span> <span style="color:#111">transactionStatus</span> <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
+                <span style="color:#111">Tag</span> <span style="color:#111">hibernate</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">new</span> <span style="color:#111">Tag</span><span style="color:#f92672">();</span>
+                <span style="color:#111">hibernate</span><span style="color:#f92672">.</span><span style="color:#75af00">setName</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;hibernate&#34;</span><span style="color:#f92672">);</span>
+                <span style="color:#111">entityManager</span><span style="color:#f92672">.</span><span style="color:#75af00">persist</span><span style="color:#f92672">(</span><span style="color:#111">hibernate</span><span style="color:#f92672">);</span>
+
+                <span style="color:#111">Tag</span> <span style="color:#111">jpa</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">new</span> <span style="color:#111">Tag</span><span style="color:#f92672">();</span>
+                <span style="color:#111">jpa</span><span style="color:#f92672">.</span><span style="color:#75af00">setName</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;jpa&#34;</span><span style="color:#f92672">);</span>
+                <span style="color:#111">entityManager</span><span style="color:#f92672">.</span><span style="color:#75af00">persist</span><span style="color:#f92672">(</span><span style="color:#111">jpa</span><span style="color:#f92672">);</span>
+
+                <span style="color:#00a8c8">return</span> <span style="color:#00a8c8">null</span><span style="color:#f92672">;</span>
+            <span style="color:#f92672">});</span>
+        <span style="color:#f92672">}</span> <span style="color:#00a8c8">catch</span> <span style="color:#f92672">(</span><span style="color:#111">TransactionException</span> <span style="color:#111">e</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#111">fail</span><span style="color:#f92672">(</span><span style="color:#111">e</span><span style="color:#f92672">.</span><span style="color:#75af00">getMessage</span><span style="color:#f92672">());</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#75af00">@Test</span>
+    <span style="color:#00a8c8">public</span> <span style="color:#00a8c8">void</span> <span style="color:#75af00">test</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#111">State</span><span style="color:#f92672">.</span><span style="color:#75af00">Holder</span><span style="color:#f92672">.</span><span style="color:#75af00">set</span><span style="color:#f92672">(</span>
+            <span style="color:#111">State</span><span style="color:#f92672">.</span><span style="color:#75af00">newBuilder</span><span style="color:#f92672">()</span>
+                <span style="color:#f92672">.</span><span style="color:#75af00">withControllerName</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;ForumController&#34;</span><span style="color:#f92672">)</span>
+                <span style="color:#f92672">.</span><span style="color:#75af00">withActionName</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;CreatePost&#34;</span><span style="color:#f92672">)</span>
+                <span style="color:#f92672">.</span><span style="color:#75af00">withWebFramework</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;spring&#34;</span><span style="color:#f92672">)</span>
+                <span style="color:#f92672">.</span><span style="color:#75af00">build</span><span style="color:#f92672">()</span>
+        <span style="color:#f92672">);</span>
+
+        <span style="color:#111">SCHibernateWrapper</span><span style="color:#f92672">.</span><span style="color:#75af00">reset</span><span style="color:#f92672">();</span>
+
+        <span style="color:#111">Post</span> <span style="color:#111">newPost</span> <span style="color:#f92672">=</span> <span style="color:#111">forumService</span><span style="color:#f92672">.</span><span style="color:#75af00">createPost</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;High-Performance Java Persistence&#34;</span><span style="color:#f92672">,</span> <span style="color:#d88200">&#34;hibernate&#34;</span><span style="color:#f92672">,</span> <span style="color:#d88200">&#34;jpa&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#111">assertNotNull</span><span style="color:#f92672">(</span><span style="color:#111">newPost</span><span style="color:#f92672">.</span><span style="color:#75af00">getId</span><span style="color:#f92672">());</span>
+
+        <span style="color:#111">List</span><span style="color:#f92672">&lt;</span><span style="color:#111">String</span><span style="color:#f92672">&gt;</span> <span style="color:#111">sqlStatements</span> <span style="color:#f92672">=</span> <span style="color:#111">SCHibernateWrapper</span><span style="color:#f92672">.</span><span style="color:#75af00">getAfterSqlStatements</span><span style="color:#f92672">();</span>
+        <span style="color:#111">assertEquals</span><span style="color:#f92672">(</span><span style="color:#111">5</span><span style="color:#f92672">,</span> <span style="color:#111">sqlStatements</span><span style="color:#f92672">.</span><span style="color:#75af00">size</span><span style="color:#f92672">());</span>
+        <span style="color:#111">assertEquals</span><span style="color:#f92672">(</span>
+                <span style="color:#111">5</span><span style="color:#f92672">,</span>
+                <span style="color:#111">sqlStatements</span>
+                <span style="color:#f92672">.</span><span style="color:#75af00">stream</span><span style="color:#f92672">()</span>
+                <span style="color:#f92672">.</span><span style="color:#75af00">filter</span><span style="color:#f92672">(</span>
+                    <span style="color:#111">sql</span> <span style="color:#f92672">-&gt;</span> <span style="color:#111">sql</span><span style="color:#f92672">.</span><span style="color:#75af00">contains</span><span style="color:#f92672">(</span>
+                        <span style="color:#d88200">&#34;/*action=&#39;CreatePost&#39;,controller=&#39;ForumController&#39;,framework=&#39;spring&#39;*/&#34;</span>
+                    <span style="color:#f92672">)</span>
+                <span style="color:#f92672">)</span>
+                <span style="color:#f92672">.</span><span style="color:#75af00">count</span><span style="color:#f92672">()</span>
+        <span style="color:#f92672">);</span>
+
+        <span style="color:#111">SCHibernateWrapper</span><span style="color:#f92672">.</span><span style="color:#75af00">reset</span><span style="color:#f92672">();</span>
+
+        <span style="color:#111">State</span><span style="color:#f92672">.</span><span style="color:#75af00">Holder</span><span style="color:#f92672">.</span><span style="color:#75af00">set</span><span style="color:#f92672">(</span>
+            <span style="color:#111">State</span><span style="color:#f92672">.</span><span style="color:#75af00">newBuilder</span><span style="color:#f92672">()</span>
+                <span style="color:#f92672">.</span><span style="color:#75af00">withControllerName</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;ForumController&#34;</span><span style="color:#f92672">)</span>
+                <span style="color:#f92672">.</span><span style="color:#75af00">withActionName</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;FindPostsByTitle&#34;</span><span style="color:#f92672">)</span>
+                <span style="color:#f92672">.</span><span style="color:#75af00">withWebFramework</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;spring&#34;</span><span style="color:#f92672">)</span>
+                <span style="color:#f92672">.</span><span style="color:#75af00">build</span><span style="color:#f92672">()</span>
+        <span style="color:#f92672">);</span>
+
+        <span style="color:#111">List</span><span style="color:#f92672">&lt;</span><span style="color:#111">Post</span><span style="color:#f92672">&gt;</span> <span style="color:#111">posts</span> <span style="color:#f92672">=</span> <span style="color:#111">forumService</span><span style="color:#f92672">.</span><span style="color:#75af00">findPostsByTitle</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;High-Performance Java Persistence&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#111">assertEquals</span><span style="color:#f92672">(</span><span style="color:#111">1</span><span style="color:#f92672">,</span> <span style="color:#111">posts</span><span style="color:#f92672">.</span><span style="color:#75af00">size</span><span style="color:#f92672">());</span>
+
+        <span style="color:#111">sqlStatements</span> <span style="color:#f92672">=</span> <span style="color:#111">SCHibernateWrapper</span><span style="color:#f92672">.</span><span style="color:#75af00">getAfterSqlStatements</span><span style="color:#f92672">();</span>
+        <span style="color:#111">assertEquals</span><span style="color:#f92672">(</span><span style="color:#111">1</span><span style="color:#f92672">,</span> <span style="color:#111">sqlStatements</span><span style="color:#f92672">.</span><span style="color:#75af00">size</span><span style="color:#f92672">());</span>
+        <span style="color:#111">assertEquals</span><span style="color:#f92672">(</span>
+                <span style="color:#111">1</span><span style="color:#f92672">,</span>
+                <span style="color:#111">sqlStatements</span>
+                    <span style="color:#f92672">.</span><span style="color:#75af00">stream</span><span style="color:#f92672">()</span>
+                    <span style="color:#f92672">.</span><span style="color:#75af00">filter</span><span style="color:#f92672">(</span>
+                        <span style="color:#111">sql</span> <span style="color:#f92672">-&gt;</span> <span style="color:#111">sql</span><span style="color:#f92672">.</span><span style="color:#75af00">contains</span><span style="color:#f92672">(</span>
+                            <span style="color:#d88200">&#34;/*action=&#39;FindPostsByTitle&#39;,controller=&#39;ForumController&#39;,framework=&#39;spring&#39;*/&#34;</span>
+                        <span style="color:#f92672">)</span>
+                    <span style="color:#f92672">)</span>
+                    <span style="color:#f92672">.</span><span style="color:#75af00">count</span><span style="color:#f92672">()</span>
+        <span style="color:#f92672">);</span>
+
+        <span style="color:#111">State</span><span style="color:#f92672">.</span><span style="color:#75af00">Holder</span><span style="color:#f92672">.</span><span style="color:#75af00">set</span><span style="color:#f92672">(</span>
+            <span style="color:#111">State</span><span style="color:#f92672">.</span><span style="color:#75af00">newBuilder</span><span style="color:#f92672">()</span>
+                    <span style="color:#f92672">.</span><span style="color:#75af00">withControllerName</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;ForumController&#34;</span><span style="color:#f92672">)</span>
+                    <span style="color:#f92672">.</span><span style="color:#75af00">withActionName</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;FindPostById&#34;</span><span style="color:#f92672">)</span>
+                    <span style="color:#f92672">.</span><span style="color:#75af00">withWebFramework</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;spring&#34;</span><span style="color:#f92672">)</span>
+                    <span style="color:#f92672">.</span><span style="color:#75af00">build</span><span style="color:#f92672">()</span>
+        <span style="color:#f92672">);</span>
+
+        <span style="color:#111">SCHibernateWrapper</span><span style="color:#f92672">.</span><span style="color:#75af00">reset</span><span style="color:#f92672">();</span>
+
+        <span style="color:#111">Post</span> <span style="color:#111">post</span> <span style="color:#f92672">=</span> <span style="color:#111">forumService</span><span style="color:#f92672">.</span><span style="color:#75af00">findPostById</span><span style="color:#f92672">(</span><span style="color:#111">newPost</span><span style="color:#f92672">.</span><span style="color:#75af00">getId</span><span style="color:#f92672">());</span>
+        <span style="color:#111">assertEquals</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;High-Performance Java Persistence&#34;</span><span style="color:#f92672">,</span> <span style="color:#111">post</span><span style="color:#f92672">.</span><span style="color:#75af00">getTitle</span><span style="color:#f92672">());</span>
+
+        <span style="color:#111">sqlStatements</span> <span style="color:#f92672">=</span> <span style="color:#111">SCHibernateWrapper</span><span style="color:#f92672">.</span><span style="color:#75af00">getAfterSqlStatements</span><span style="color:#f92672">();</span>
+        <span style="color:#111">assertEquals</span><span style="color:#f92672">(</span><span style="color:#111">1</span><span style="color:#f92672">,</span> <span style="color:#111">sqlStatements</span><span style="color:#f92672">.</span><span style="color:#75af00">size</span><span style="color:#f92672">());</span>
+        <span style="color:#111">assertEquals</span><span style="color:#f92672">(</span>
+                <span style="color:#111">1</span><span style="color:#f92672">,</span>
+                <span style="color:#111">sqlStatements</span>
+                    <span style="color:#f92672">.</span><span style="color:#75af00">stream</span><span style="color:#f92672">()</span>
+                    <span style="color:#f92672">.</span><span style="color:#75af00">filter</span><span style="color:#f92672">(</span>
+                        <span style="color:#111">sql</span> <span style="color:#f92672">-&gt;</span> <span style="color:#111">sql</span><span style="color:#f92672">.</span><span style="color:#75af00">contains</span><span style="color:#f92672">(</span>
+                            <span style="color:#d88200">&#34;/*action=&#39;FindPostById&#39;,controller=&#39;ForumController&#39;,framework=&#39;spring&#39;*/&#34;</span>
+                        <span style="color:#f92672">)</span>
+                    <span style="color:#f92672">)</span>
+                    <span style="color:#f92672">.</span><span style="color:#75af00">count</span><span style="color:#f92672">()</span>
+        <span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<p>When running the unit test above, we can see that the SQL statements include the comments as well:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#00a8c8">select</span> <span style="color:#111">tag0_</span><span style="color:#111">.</span><span style="color:#111">id</span> <span style="color:#00a8c8">as</span> <span style="color:#111">id1_2_</span><span style="color:#111">,</span> <span style="color:#111">tag0_</span><span style="color:#111">.</span><span style="color:#111">name</span> <span style="color:#00a8c8">as</span> <span style="color:#111">name2_2_</span> <span style="color:#00a8c8">from</span> <span style="color:#111">tag</span> <span style="color:#111">tag0_</span> <span style="color:#00a8c8">where</span> <span style="color:#111">tag0_</span><span style="color:#111">.</span><span style="color:#111">name</span> <span style="color:#00a8c8">in</span> <span style="color:#111">(</span><span style="color:#f92672">?</span> <span style="color:#111">,</span> <span style="color:#f92672">?</span><span style="color:#111">)</span> <span style="color:#75715e">/*action=&#39;CreatePost&#39;,controller=&#39;ForumController&#39;,framework=&#39;spring&#39;*/</span>
+
+<span style="color:#00a8c8">call</span> <span style="color:#00a8c8">next</span> <span style="color:#111">value</span> <span style="color:#00a8c8">for</span> <span style="color:#111">hibernate_sequence</span> <span style="color:#75715e">/*action=&#39;CreatePost&#39;,controller=&#39;ForumController&#39;,framework=&#39;spring&#39;*/</span>
+
+<span style="color:#00a8c8">insert</span> <span style="color:#00a8c8">into</span> <span style="color:#111">post</span> <span style="color:#111">(</span><span style="color:#111">title</span><span style="color:#111">,</span> <span style="color:#111">id</span><span style="color:#111">)</span> <span style="color:#00a8c8">values</span> <span style="color:#111">(</span><span style="color:#f92672">?</span><span style="color:#111">,</span> <span style="color:#f92672">?</span><span style="color:#111">)</span> <span style="color:#75715e">/*action=&#39;CreatePost&#39;,controller=&#39;ForumController&#39;,framework=&#39;spring&#39;*/</span>
+
+<span style="color:#00a8c8">insert</span> <span style="color:#00a8c8">into</span> <span style="color:#111">post_tag</span> <span style="color:#111">(</span><span style="color:#111">post_id</span><span style="color:#111">,</span> <span style="color:#111">tag_id</span><span style="color:#111">)</span> <span style="color:#00a8c8">values</span> <span style="color:#111">(</span><span style="color:#f92672">?</span><span style="color:#111">,</span> <span style="color:#f92672">?</span><span style="color:#111">)</span> <span style="color:#75715e">/*action=&#39;CreatePost&#39;,controller=&#39;ForumController&#39;,framework=&#39;spring&#39;*/</span>
+
+<span style="color:#00a8c8">insert</span> <span style="color:#00a8c8">into</span> <span style="color:#111">post_tag</span> <span style="color:#111">(</span><span style="color:#111">post_id</span><span style="color:#111">,</span> <span style="color:#111">tag_id</span><span style="color:#111">)</span> <span style="color:#00a8c8">values</span> <span style="color:#111">(</span><span style="color:#f92672">?</span><span style="color:#111">,</span> <span style="color:#f92672">?</span><span style="color:#111">)</span> <span style="color:#75715e">/*action=&#39;CreatePost&#39;,controller=&#39;ForumController&#39;,framework=&#39;spring&#39;*/</span>
+
+<span style="color:#00a8c8">select</span> <span style="color:#111">post0_</span><span style="color:#111">.</span><span style="color:#111">id</span> <span style="color:#00a8c8">as</span> <span style="color:#111">id1_0_</span><span style="color:#111">,</span> <span style="color:#111">post0_</span><span style="color:#111">.</span><span style="color:#111">title</span> <span style="color:#00a8c8">as</span> <span style="color:#111">title2_0_</span> <span style="color:#00a8c8">from</span> <span style="color:#111">post</span> <span style="color:#111">post0_</span> <span style="color:#00a8c8">where</span> <span style="color:#111">post0_</span><span style="color:#111">.</span><span style="color:#111">title</span><span style="color:#f92672">=?</span> <span style="color:#75715e">/*action=&#39;FindPostsByTitle&#39;,controller=&#39;ForumController&#39;,framework=&#39;spring&#39;*/</span>
+
+<span style="color:#00a8c8">select</span> <span style="color:#111">post0_</span><span style="color:#111">.</span><span style="color:#111">id</span> <span style="color:#00a8c8">as</span> <span style="color:#111">id1_0_0_</span><span style="color:#111">,</span> <span style="color:#111">post0_</span><span style="color:#111">.</span><span style="color:#111">title</span> <span style="color:#00a8c8">as</span> <span style="color:#111">title2_0_0_</span> <span style="color:#00a8c8">from</span> <span style="color:#111">post</span> <span style="color:#111">post0_</span> <span style="color:#00a8c8">where</span> <span style="color:#111">post0_</span><span style="color:#111">.</span><span style="color:#111">id</span><span style="color:#f92672">=?</span> <span style="color:#75715e">/*action=&#39;FindPostById&#39;,controller=&#39;ForumController&#39;,framework=&#39;spring&#39;*/</span></code></pre></div>
+<h3 id="references">References</h3>
+
+<table>
+<thead>
+<tr>
+<th>Resource</th>
+<th>URL</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Hibernate ORM project</td>
+<td><a href="https://hibernate.org/orm/">https://hibernate.org/orm/</a></td>
+</tr>
+
+<tr>
+<td>sqlcommenter-java on Github</td>
+<td><a href="https://github.com/orijtech/sqlcommenter-java">https://github.com/orijtech/sqlcommenter-java</a></td>
+</tr>
+</tbody>
+</table>
+
+
+
+    
+    
+        <div class="chevrons">
+    <div id="navigation">
+<a class="nav nav-prev" href="https://google.github.io/sqlcommenter/java/" title="Java"> <i class="fa fa-chevron-left"></i><label>Java</label></a>
+    <a class="nav nav-next" href="https://google.github.io/sqlcommenter/java/spring/" title="Spring" style="margin-right: 0px;"><label>Spring</label><i class="fa fa-chevron-right"></i></a></div>
+  </div>
+
+  </section>
+</article>
+
+<footer>
+
+<div class="footline">
+    
+
+    
+
+  
+
+    <div class="github-link">
+      <a href="https://github.com/orijtech/sqlcommenter-website/edit/master/content/java/hibernate/_index.md" target="blank"><i class="fa fa-code-fork"></i>
+        Edit this page on Github</a>
+    </div>
+  </div>
+
+
+	<div>
+
+
+  
+    <ul>
+<li><a href="https://github.com/orijtech/sqlcommenter-website">Github</a></li>
+</ul>
+
+<h5 style="color: #fff">sqlcommenter</h5>
+
+  
+
+
+
+	</div>
+</footer>
+
+<script src="https://google.github.io/sqlcommenter/js/clipboard.min.js"></script>
+
+<link href="https://google.github.io/sqlcommenter/css/featherlight.min.css" rel="stylesheet">
+<script src="https://google.github.io/sqlcommenter/js/featherlight.min.js"></script>
+
+
+
+<script src="https://google.github.io/sqlcommenter/theme-flex/script.js"></script>
+
+
+    
+
+    
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+<script src="https://google.github.io/sqlcommenter/js/tabs.js"></script>
+<script>
+  [].slice.call(document.querySelectorAll('.tab-container'))
+    .forEach(function(el) {
+      initializeTabs(el);
+    });
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-125198141-1"></script>
+<script>
+ window.dataLayer = window.dataLayer || [];
+ function gtag(){dataLayer.push(arguments);}
+ gtag('js', new Date());
+
+ gtag('config', 'UA-125198141-1');
+</script>
+
+  </body>
+</html>

@@ -1,4 +1,0 @@
-# frozen_string_literal: true
-
-gem 'marginalia', path: '../marginalia'
-gem 'marginalia-opencensus', path: '../marginalia-opencensus'

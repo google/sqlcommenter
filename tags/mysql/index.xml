@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>mysql on sqlcommenter</title>
+    <link>https://google.github.io/sqlcommenter/tags/mysql/</link>
+    <description>Recent content in mysql on sqlcommenter</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 31 May 2019 16:31:01 -0700</lastBuildDate>
+    
+	<atom:link href="https://google.github.io/sqlcommenter/tags/mysql/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>MySQL</title>
+      <link>https://google.github.io/sqlcommenter/databases/mysql/</link>
+      <pubDate>Fri, 31 May 2019 16:31:01 -0700</pubDate>
+      
+      <guid>https://google.github.io/sqlcommenter/databases/mysql/</guid>
+      <description>If you host your own instance of MySQL, you can run it with logs to examine statements by following the guide at:
+   Guide URL     Running MySQL locally/System variables: log output https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_log_output   MySQL Docker installation with logs https://hub.docker.com/_/mysql    </description>
+    </item>
+    
+    <item>
+      <title>Databases</title>
+      <link>https://google.github.io/sqlcommenter/databases/</link>
+      <pubDate>Fri, 31 May 2019 16:00:01 -0700</pubDate>
+      
+      <guid>https://google.github.io/sqlcommenter/databases/</guid>
+      <description>In order to examine the results of sqlcommenter, we&amp;rsquo;ll need to examine query logs on the database. Below are some guides to help make this happen:
+          </description>
+    </item>
+    
+  </channel>
+</rss>

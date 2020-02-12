@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Specification on sqlcommenter</title>
+    <link>https://google.github.io/sqlcommenter/spec/</link>
+    <description>Recent content in Specification on sqlcommenter</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 28 May 2019 14:28:03 -0700</lastBuildDate>
+    
+	<atom:link href="https://google.github.io/sqlcommenter/spec/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+  </channel>
+</rss>
