@@ -9,7 +9,7 @@ Python modules for popular projects that add meta info to your SQL queries as co
 ## Local Install
 
 ```shell
-pip3 install --user .
+pip3 install --user google-cloud-sqlcommenter
 ```
 
 If you'd like to record some OpenCensus information as well, just install it:
@@ -76,7 +76,7 @@ from google.cloud.sqlcommenter.psycopg2.extension import CommenterCursorFactory
 
 cursor_factory = CommenterCursorFactory(
     with_db_driver=True, with_dbapi_level=True, with_dbapi_threadsafety=True,
-    with_driver_paramstyel=True, with_libpq_version=True, with_opencensus=True)
+    with_driver_paramstyle=True, with_libpq_version=True, with_opencensus=True)
 conn = psycopg2.connect(..., cursor_factory=cursor_factory)
 cursor = conn.cursor()
 cursor.execute(...) # comment will be added before execution
