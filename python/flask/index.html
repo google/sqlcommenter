@@ -382,8 +382,8 @@
 <span style="color:#f92672">import</span> <span style="color:#111">flask</span>
 <span style="color:#111">app</span> <span style="color:#f92672">=</span> <span style="color:#111">flask</span><span style="color:#f92672">.</span><span style="color:#111">Flask</span><span style="color:#111">(</span><span style="color:#111">__name__</span><span style="color:#111">)</span>
 
-<span style="color:#f92672">from</span> <span style="color:#111">sqlcommenter</span> <span style="color:#f92672">import</span> <span style="color:#111">FlaskMiddleware</span>
-<span style="color:#f92672">from</span> <span style="color:#111">sqlcommenter.psycopg2.extension</span> <span style="color:#f92672">import</span> <span style="color:#111">CommenterCursorFactory</span>
+<span style="color:#f92672">from</span> <span style="color:#111">google.cloud.sqlcommenter</span> <span style="color:#f92672">import</span> <span style="color:#111">FlaskMiddleware</span>
+<span style="color:#f92672">from</span> <span style="color:#111">google.cloud.sqlcommenter.psycopg2.extension</span> <span style="color:#f92672">import</span> <span style="color:#111">CommenterCursorFactory</span>
 
 <span style="color:#111">conn</span> <span style="color:#f92672">=</span> <span style="color:#111">None</span>
 
@@ -426,7 +426,7 @@
 <span style="color:#111">route</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;/polls&#39;</span>,traceparent<span style="color:#f92672">=</span><span style="color:#d88200">&#39;00-5b3df77064f35f091e89fb40022e2a1d-9bbd4868cf0ba2c3-01&#39;</span>*/</code></pre></div>
 <h4 id="with-sqlalchemy">With sqlalchemy</h4>
 
-<p>Having successfully installed <a href="https://google.github.io/sqlcommenter/python/sqlalchemy">sqlcommenter-sqlalchemy</a> you can now just run
+<p>Having successfully installed <a href="https://google.github.io/sqlcommenter/python/sqlalchemy">google-cloud-sqlcommenter</a> you can now just run
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#!/usr/bin/env python3</span>
 
 <span style="color:#f92672">import</span> <span style="color:#111">json</span>

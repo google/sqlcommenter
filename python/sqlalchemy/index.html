@@ -349,10 +349,10 @@ Since OpenCensus <a href="https://opencensus.io/tracing/span/traceid"><code>trac
 
   <span class="tabs-body">
     
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">pip3 install sqlcommenter-sqlalchemy</code></pre></div>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">pip3 install google-cloud-sqlcommenter</code></pre></div>
 
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">git clone https://github.com/orijtech/python-sql-commenter.git
-<span style="color:#111">cd</span> python-sql-commenter/django <span style="color:#f92672">&amp;&amp;</span> python3 setup.py install</code></pre></div>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">git clone https://github.com/google/sqlcommenter.git
+<span style="color:#111">cd</span> python/sqlcommenter-python <span style="color:#f92672">&amp;&amp;</span> python3 setup.py install</code></pre></div>
 
   </span>
 </div>
@@ -449,19 +449,7 @@ Please ensure that you set <code>retval=True</code> when listening for events</p
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#!/usr/bin/env python3</span>
 
 <span style="color:#f92672">from</span> <span style="color:#111">sqlalchemy</span> <span style="color:#f92672">import</span> <span style="color:#111">create_engine</span><span style="color:#111">,</span> <span style="color:#111">event</span>
-<span style="color:#f92672">from</span> <span style="color:#111">sqlcommenter.sqlalchemy.executor</span> <span style="color:#f92672">import</span> <span style="color:#111">BeforeExecuteFactory</span>
-
-<span style="color:#f92672">from</span> <span style="color:#111">opencensus.trace.samplers</span> <span style="color:#f92672">import</span> <span style="color:#111">AlwaysOnSampler</span>
-<span style="color:#f92672">from</span> <span style="color:#111">opencensus.trace.tracer</span> <span style="color:#f92672">import</span> <span style="color:#111">Tracer</span>
-
-<span style="color:#111">DB_URL</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#39;...&#39;</span>  <span style="color:#75715e"># DB connection info</span>
-
-<span style="color:#00a8c8">class</span> <span style="color:#75af00">NoopExporter</span><span style="color:#111">(</span><span style="color:#111">object</span><span style="color:#111">):</span>
-    <span style="color:#00a8c8">def</span> <span style="color:#75af00">emit</span><span style="color:#111">(</span><span style="color:#111">self</span><span style="color:#111">,</span> <span style="color:#f92672">*</span><span style="color:#111">args</span><span style="color:#111">,</span> <span style="color:#f92672">**</span><span style="color:#111">kwargs</span><span style="color:#111">):</span>
-        <span style="color:#00a8c8">pass</span>
-
-    <span style="color:#00a8c8">def</span> <span style="color:#75af00">export</span><span style="color:#111">(</span><span style="color:#111">self</span><span style="color:#111">,</span> <span style="color:#f92672">*</span><span style="color:#111">args</span><span style="color:#111">,</span> <span style="color:#f92672">**</span><span style="color:#111">kwargs</span><span style="color:#111">):</span>
-        <span style="color:#00a8c8">pass</span>
+<span style="color:#f92672">from</span> <span style="color:#111">google.cloud.sqlcommenter.sqlalchemy.executor</span> <span style="color:#f92672">import</span> <span style="color:#111">BeforeExecuteFactory</span>
 
 <span style="color:#00a8c8">def</span> <span style="color:#75af00">main</span><span style="color:#111">():</span>
     <span style="color:#111">tracer</span> <span style="color:#f92672">=</span> <span style="color:#111">Tracer</span><span style="color:#111">(</span><span style="color:#111">exporter</span><span style="color:#f92672">=</span><span style="color:#111">NoopExporter</span><span style="color:#111">,</span> <span style="color:#111">sampler</span><span style="color:#f92672">=</span><span style="color:#111">AlwaysOnSampler</span><span style="color:#111">())</span>
@@ -481,7 +469,7 @@ Please ensure that you set <code>retval=True</code> when listening for events</p
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#!/usr/bin/env python3</span>
 
 <span style="color:#f92672">from</span> <span style="color:#111">sqlalchemy</span> <span style="color:#f92672">import</span> <span style="color:#111">create_engine</span><span style="color:#111">,</span> <span style="color:#111">event</span>
-<span style="color:#f92672">from</span> <span style="color:#111">sqlcommenter.sqlalchemy.executor</span> <span style="color:#f92672">import</span> <span style="color:#111">BeforeExecuteFactory</span>
+<span style="color:#f92672">from</span> <span style="color:#111">google.cloud.sqlcommenter.sqlalchemy.executor</span> <span style="color:#f92672">import</span> <span style="color:#111">BeforeExecuteFactory</span>
 
 <span style="color:#111">DB_URL</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#39;...&#39;</span>  <span style="color:#75715e"># DB connection info</span>
 
@@ -501,7 +489,7 @@ Please ensure that you set <code>retval=True</code> when listening for events</p
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#!/usr/bin/env python3</span>
 
 <span style="color:#f92672">from</span> <span style="color:#111">sqlalchemy</span> <span style="color:#f92672">import</span> <span style="color:#111">create_engine</span><span style="color:#111">,</span> <span style="color:#111">event</span>
-<span style="color:#f92672">from</span> <span style="color:#111">sqlcommenter.sqlalchemy.executor</span> <span style="color:#f92672">import</span> <span style="color:#111">BeforeExecuteFactory</span>
+<span style="color:#f92672">from</span> <span style="color:#111">google.cloud.sqlcommenter.sqlalchemy.executor</span> <span style="color:#f92672">import</span> <span style="color:#111">BeforeExecuteFactory</span>
 
 <span style="color:#111">DB_URL</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#39;...&#39;</span>  <span style="color:#75715e"># DB connection info</span>
 
@@ -592,12 +580,12 @@ your web applications with your SQL statements from sqlalchemy. Please see this 
 <tbody>
 <tr>
 <td>sqlcommenter-sqlalchemy on PyPi</td>
-<td><a href="https://pypi.org/project/sqlcommenter-sqlalchemy">https://pypi.org/project/sqlcommenter-sqlalchemy</a></td>
+<td><a href="https://pypi.org/project/google-cloud-sqlcommenter">https://pypi.org/project/google-cloud-sqlcommenter</a></td>
 </tr>
 
 <tr>
 <td>sqlcommenter-sqlalchemy on Github</td>
-<td><a href="https://github.com/sqlcommenter-sqlalchemy">https://github.com/sqlcommenter-sqlalchemy</a></td>
+<td><a href="https://github.com/google/sqlcommenter">https://github.com/google/sqlcommenter</a></td>
 </tr>
 
 <tr>

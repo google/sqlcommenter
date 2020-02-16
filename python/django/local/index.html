@@ -315,7 +315,7 @@
 
 <p>This guide will help you add <a href="https://google.github.io/sqlcommenter/introduction">sqlcommenter</a> to your Django applications running locally.</p>
 
-<p>Please see the reference for the fields added in the SQL comments <a href="https://google.github.io/sqlcommenter/python/django#fields">sqlcommenter-django.Fields</a></p>
+<p>Please see the reference for the fields added in the SQL comments <a href="https://google.github.io/sqlcommenter/python/django#fields">google-cloud-sqlcommenter.Fields</a></p>
 
 <h3 id="requirements">Requirements</h3>
 
@@ -334,8 +334,8 @@
 </tr>
 
 <tr>
-<td>sqlcommenter-django</td>
-<td><a href="https://pypi.org/projects/sqlcommenter-django">https://pypi.org/projects/sqlcommenter-django</a></td>
+<td>google-cloud-sqlcommenter</td>
+<td><a href="https://pypi.org/project/google-cloud-sqlcommenter">https://pypi.org/project/google-cloud-sqlcommenter</a></td>
 </tr>
 
 <tr>
@@ -352,16 +352,16 @@
 
 <h3 id="addition-to-your-code">Addition to your code</h3>
 
-<p>Firstly, please install <a href="https://google.github.io/sqlcommenter/python/django#installation">sqlcommenter-django</a>.</p>
+<p>Firstly, please install <a href="https://google.github.io/sqlcommenter/python/django#installation">google-cloud-sqlcommenter</a>.</p>
 
 <p>For any Django deployment, we can just edit our settings.py file and update the <code>MIDDLEWARE</code> section as per:</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#111">MIDDLEWARE</span> <span style="color:#f92672">=</span> <span style="color:#111">[</span>
-  <span style="color:#d88200">&#39;sqlcommenter.django.middleware.SqlCommenter&#39;</span><span style="color:#111">,</span>
+  <span style="color:#d88200">&#39;google.cloud.sqlcommenter.django.middleware.SqlCommenter&#39;</span><span style="color:#111">,</span>
   <span style="color:#f92672">...</span>
 <span style="color:#111">]</span></code></pre></div>
 <div class="notices tip" >
 If any middleware execute database queries (that you'd like commented by SqlCommenter), those middleware MUST appear after
-'sqlcommenter.django.middleware.SqlCommenter'
+'google.cloud.sqlcommenter.django.middleware.SqlCommenter'
 </div>
 
 <h3 id="references">References</h3>

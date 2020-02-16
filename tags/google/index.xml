@@ -18,7 +18,7 @@
       
       <guid>https://google.github.io/sqlcommenter/python/django/gcp/</guid>
       <description>Introduction Requirements Addition to your code References  Introduction This guide will help you add sqlcommenter to your Django applications running on Google Cloud Platform (GCP)
-Requirements    Steps Resource     Django on GCP https://cloud.google.com/python/django/   sqlcommenter-django https://pypi.org/projects/sqlcommenter-django   Django 2.X https://docs.djangoproject.com/en/stable/faq/install   Python 3.X https://www.python.org/downloads/    Addition to your code Firstly, please install sqlcommenter-django.
+Requirements    Steps Resource     Django on GCP https://cloud.google.com/python/django/   google-cloud-sqlcommenter https://pypi.org/project/google-cloud-sqlcommenter   Django 2.X https://docs.djangoproject.com/en/stable/faq/install   Python 3.X https://www.python.org/downloads/    Addition to your code Firstly, please install google-cloud-sqlcommenter.
 For any Django deployment, we can just edit our settings.</description>
     </item>
     

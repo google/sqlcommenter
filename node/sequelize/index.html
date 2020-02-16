@@ -116,6 +116,53 @@
       <a href="https://google.github.io/sqlcommenter/python/">Python</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
       </div>
         <ul>
+    <li data-nav-id="/python/django/" class="dd-item haschildren
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/python/django/">Django</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+      <li data-nav-id="/python/django/local/" class="dd-item">
+        <div>
+          <a href="https://google.github.io/sqlcommenter/python/django/local/">
+            Locally
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/python/django/gcp/" class="dd-item">
+        <div>
+          <a href="https://google.github.io/sqlcommenter/python/django/gcp/">
+            Google Cloud Platform
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/python/django/aws/" class="dd-item">
+        <div>
+          <a href="https://google.github.io/sqlcommenter/python/django/aws/">
+            Amazon Web Services
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/python/psycopg2/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/python/psycopg2/">psycopg2</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/python/sqlalchemy/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/python/sqlalchemy/">SQLAlchemy</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/python/flask/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/python/flask/">Flask</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
         </ul>
     </li>
     <li data-nav-id="/ruby/" class="dd-item haschildren
@@ -323,18 +370,18 @@ information about the controller and user code to help correlate them with SQL s
 
 <p>Add to your package.json the dependency
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#111">{</span>
-    <span style="color:#f92672">&#34;@sqlcommenter/sequelize&#34;</span><span style="color:#111">:</span> <span style="color:#d88200">&#34;*&#34;</span>
+    <span style="color:#f92672">&#34;@google-cloud/sqlcommenter-sequelize&#34;</span><span style="color:#111">:</span> <span style="color:#d88200">&#34;*&#34;</span>
 <span style="color:#111">}</span></code></pre></div></p>
 
 <p>and then run <code>npm install</code> to get the latest version or</p>
 
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">npm install @sqlcommenter/sequelize --save</code></pre></div>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">npm install @google-cloud/sqlcommenter-sequelize --save</code></pre></div>
 
 <h3 id="usage">Usage</h3>
 
 <h4 id="plain-sequelize-wrapper">Plain sequelize wrapper</h4>
 
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#00a8c8">const</span> <span style="color:#111">{</span><span style="color:#75af00">wrapSequelize</span><span style="color:#111">}</span> <span style="color:#f92672">=</span> <span style="color:#75af00">require</span><span style="color:#111">(</span><span style="color:#d88200">&#39;@sqlcommenter/sequelize&#39;</span><span style="color:#111">);</span>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#00a8c8">const</span> <span style="color:#111">{</span><span style="color:#75af00">wrapSequelize</span><span style="color:#111">}</span> <span style="color:#f92672">=</span> <span style="color:#75af00">require</span><span style="color:#111">(</span><span style="color:#d88200">&#39;@google-cloud/sqlcommenter-sequelize&#39;</span><span style="color:#111">);</span>
 <span style="color:#00a8c8">const</span> <span style="color:#75af00">Sequelize</span> <span style="color:#f92672">=</span> <span style="color:#75af00">require</span><span style="color:#111">(</span><span style="color:#d88200">&#39;sequelize&#39;</span><span style="color:#111">);</span>
 
 <span style="color:#75715e">// Create the sequelize client.
@@ -347,7 +394,7 @@ information about the controller and user code to help correlate them with SQL s
 <h4 id="express-middleware">Express middleware</h4>
 
 <p>This wrapper/middleware can be used as is or better with <a href="https://expressjs.com/">express.js</a>
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#00a8c8">const</span> <span style="color:#111">{</span><span style="color:#75af00">wrapSequelizeAsMiddleware</span><span style="color:#111">}</span> <span style="color:#f92672">=</span> <span style="color:#75af00">require</span><span style="color:#111">(</span><span style="color:#d88200">&#39;@sqlcommenter/sequelize&#39;</span><span style="color:#111">);</span>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#00a8c8">const</span> <span style="color:#111">{</span><span style="color:#75af00">wrapSequelizeAsMiddleware</span><span style="color:#111">}</span> <span style="color:#f92672">=</span> <span style="color:#75af00">require</span><span style="color:#111">(</span><span style="color:#d88200">&#39;@google-cloud/sqlcommenter-sequelize&#39;</span><span style="color:#111">);</span>
 <span style="color:#00a8c8">const</span> <span style="color:#75af00">Sequelize</span> <span style="color:#f92672">=</span> <span style="color:#75af00">require</span><span style="color:#111">(</span><span style="color:#d88200">&#39;sequelize&#39;</span><span style="color:#111">);</span>
 <span style="color:#00a8c8">const</span> <span style="color:#75af00">sequelize</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">new</span> <span style="color:#75af00">Sequelize</span><span style="color:#111">(</span><span style="color:#75af00">options</span><span style="color:#111">);</span>
 <span style="color:#00a8c8">const</span> <span style="color:#75af00">app</span> <span style="color:#f92672">=</span> <span style="color:#75af00">require</span><span style="color:#111">(</span><span style="color:#d88200">&#39;express&#39;</span><span style="color:#111">)();</span>
@@ -533,7 +580,7 @@ information about the controller and user code to help correlate them with SQL s
 </span><span style="color:#75715e"></span><span style="color:#00a8c8">const</span> <span style="color:#75af00">tracing</span> <span style="color:#f92672">=</span> <span style="color:#75af00">require</span><span style="color:#111">(</span><span style="color:#d88200">&#39;@opencensus/nodejs&#39;</span><span style="color:#111">);</span>
 <span style="color:#00a8c8">const</span> <span style="color:#111">{</span><span style="color:#75af00">B3Format</span><span style="color:#111">}</span> <span style="color:#f92672">=</span> <span style="color:#75af00">require</span><span style="color:#111">(</span><span style="color:#d88200">&#39;@opencensus/propagation-b3&#39;</span><span style="color:#111">);</span>
 <span style="color:#00a8c8">const</span> <span style="color:#111">{</span><span style="color:#75af00">ZipkinTraceExporter</span><span style="color:#111">}</span> <span style="color:#f92672">=</span> <span style="color:#75af00">require</span><span style="color:#111">(</span><span style="color:#d88200">&#39;@opencensus/exporter-zipkin&#39;</span><span style="color:#111">);</span>
-<span style="color:#00a8c8">const</span> <span style="color:#111">{</span><span style="color:#75af00">wrapSequelizeAsMiddleware</span><span style="color:#111">}</span> <span style="color:#f92672">=</span> <span style="color:#75af00">require</span><span style="color:#111">(</span><span style="color:#d88200">&#39;@sqlcommenter/sequelize&#39;</span><span style="color:#111">);</span>
+<span style="color:#00a8c8">const</span> <span style="color:#111">{</span><span style="color:#75af00">wrapSequelizeAsMiddleware</span><span style="color:#111">}</span> <span style="color:#f92672">=</span> <span style="color:#75af00">require</span><span style="color:#111">(</span><span style="color:#d88200">&#39;@google-cloud/sqlcommenter-sequelize&#39;</span><span style="color:#111">);</span>
 <span style="color:#00a8c8">const</span> <span style="color:#75af00">Sequelize</span> <span style="color:#f92672">=</span> <span style="color:#75af00">require</span><span style="color:#111">(</span><span style="color:#d88200">&#39;sequelize&#39;</span><span style="color:#111">);</span>
 <span style="color:#00a8c8">const</span> <span style="color:#75af00">express</span> <span style="color:#f92672">=</span> <span style="color:#75af00">require</span><span style="color:#111">(</span><span style="color:#d88200">&#39;express&#39;</span><span style="color:#111">);</span>
 
@@ -580,7 +627,7 @@ information about the controller and user code to help correlate them with SQL s
 
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// In file app.js.
 </span><span style="color:#75715e"></span><span style="color:#00a8c8">const</span> <span style="color:#75af00">Sequelize</span> <span style="color:#f92672">=</span> <span style="color:#75af00">require</span><span style="color:#111">(</span><span style="color:#d88200">&#39;sequelize&#39;</span><span style="color:#111">);</span>
-<span style="color:#00a8c8">const</span> <span style="color:#111">{</span><span style="color:#75af00">wrapSequelizeAsMiddleware</span><span style="color:#111">}</span> <span style="color:#f92672">=</span> <span style="color:#75af00">require</span><span style="color:#111">(</span><span style="color:#d88200">&#39;@sqlcommenter/sequelize&#39;</span><span style="color:#111">);</span>
+<span style="color:#00a8c8">const</span> <span style="color:#111">{</span><span style="color:#75af00">wrapSequelizeAsMiddleware</span><span style="color:#111">}</span> <span style="color:#f92672">=</span> <span style="color:#75af00">require</span><span style="color:#111">(</span><span style="color:#d88200">&#39;@google-cloud/sqlcommenter-sequelize&#39;</span><span style="color:#111">);</span>
 <span style="color:#00a8c8">const</span> <span style="color:#75af00">express</span> <span style="color:#f92672">=</span> <span style="color:#75af00">require</span><span style="color:#111">(</span><span style="color:#d88200">&#39;express&#39;</span><span style="color:#111">);</span>
 
 <span style="color:#75715e">// Using a connection URI
@@ -608,7 +655,7 @@ information about the controller and user code to help correlate them with SQL s
 
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// In file app.js
 </span><span style="color:#75715e"></span><span style="color:#00a8c8">const</span> <span style="color:#75af00">Sequelize</span> <span style="color:#f92672">=</span> <span style="color:#75af00">require</span><span style="color:#111">(</span><span style="color:#d88200">&#39;sequelize&#39;</span><span style="color:#111">);</span>
-<span style="color:#00a8c8">const</span> <span style="color:#111">{</span><span style="color:#75af00">wrapSequelizeAsMiddleware</span><span style="color:#111">}</span> <span style="color:#f92672">=</span> <span style="color:#75af00">require</span><span style="color:#111">(</span><span style="color:#d88200">&#39;@sqlcommenter/sequelize&#39;</span><span style="color:#111">);</span>
+<span style="color:#00a8c8">const</span> <span style="color:#111">{</span><span style="color:#75af00">wrapSequelizeAsMiddleware</span><span style="color:#111">}</span> <span style="color:#f92672">=</span> <span style="color:#75af00">require</span><span style="color:#111">(</span><span style="color:#d88200">&#39;@google-cloud/sqlcommenter-sequelize&#39;</span><span style="color:#111">);</span>
 <span style="color:#00a8c8">const</span> <span style="color:#75af00">express</span> <span style="color:#f92672">=</span> <span style="color:#75af00">require</span><span style="color:#111">(</span><span style="color:#d88200">&#39;express&#39;</span><span style="color:#111">);</span>
 
 <span style="color:#75715e">// Using a connection URI
@@ -641,7 +688,7 @@ information about the controller and user code to help correlate them with SQL s
 <span style="color:#00a8c8">const</span> <span style="color:#111">{</span><span style="color:#75af00">B3Format</span><span style="color:#111">}</span> <span style="color:#f92672">=</span> <span style="color:#75af00">require</span><span style="color:#111">(</span><span style="color:#d88200">&#39;@opencensus/propagation-b3&#39;</span><span style="color:#111">);</span>
 <span style="color:#00a8c8">const</span> <span style="color:#111">{</span><span style="color:#75af00">ZipkinTraceExporter</span><span style="color:#111">}</span> <span style="color:#f92672">=</span> <span style="color:#75af00">require</span><span style="color:#111">(</span><span style="color:#d88200">&#39;@opencensus/exporter-zipkin&#39;</span><span style="color:#111">);</span>
 <span style="color:#00a8c8">const</span> <span style="color:#75af00">Sequelize</span> <span style="color:#f92672">=</span> <span style="color:#75af00">require</span><span style="color:#111">(</span><span style="color:#d88200">&#39;sequelize&#39;</span><span style="color:#111">);</span>
-<span style="color:#00a8c8">const</span> <span style="color:#111">{</span><span style="color:#75af00">wrapSequelizeAsMiddleware</span><span style="color:#111">}</span> <span style="color:#f92672">=</span> <span style="color:#75af00">require</span><span style="color:#111">(</span><span style="color:#d88200">&#39;@sqlcommenter/sequelize&#39;</span><span style="color:#111">);</span>
+<span style="color:#00a8c8">const</span> <span style="color:#111">{</span><span style="color:#75af00">wrapSequelizeAsMiddleware</span><span style="color:#111">}</span> <span style="color:#f92672">=</span> <span style="color:#75af00">require</span><span style="color:#111">(</span><span style="color:#d88200">&#39;@google-cloud/sqlcommenter-sequelize&#39;</span><span style="color:#111">);</span>
 <span style="color:#00a8c8">const</span> <span style="color:#75af00">express</span> <span style="color:#f92672">=</span> <span style="color:#75af00">require</span><span style="color:#111">(</span><span style="color:#d88200">&#39;express&#39;</span><span style="color:#111">);</span>
 
 <span style="color:#00a8c8">const</span> <span style="color:#75af00">exporter</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">new</span> <span style="color:#75af00">ZipkinTraceExporter</span><span style="color:#111">({</span>
@@ -752,12 +799,12 @@ Application listening on <span style="color:#ae81ff">3000</span></code></pre></d
 
 <tbody>
 <tr>
-<td>@sqlcommenter/sequelize on Yarn</td>
+<td>@google-cloud/sqlcommenter-sequelize on Yarn</td>
 <td><code>&lt;FILL_ME_IN&gt;</code></td>
 </tr>
 
 <tr>
-<td>@sqlcommenter/sequelize on npm</td>
+<td>@google-cloud/sqlcommenter-sequelize on npm</td>
 <td><code>&lt;FILL_ME_IN&gt;</code></td>
 </tr>
 

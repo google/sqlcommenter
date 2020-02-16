@@ -351,9 +351,9 @@
 <h4 id="a-name-install-from-source-a-from-source"><a name="install-from-source"></a> From source</h4>
 
 <p>The first step is to clone the repository. This can be done with <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">git</a> by running:
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">git clone https://github.com/orijtech/sqlcommenter-nodejs.git</code></pre></div>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">git clone https://github.com/google/sqlcommenter.git</code></pre></div>
 Inspect the source code and note the path to the package you want installed.</p>
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sqlcommenter-nodejs
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sqlcommenter/nodejs/sqlcommenter-nodejs
 └── packages
     ├── knex
     │   ├── index.js
@@ -369,19 +369,19 @@ Inspect the source code and note the path to the package you want installed.</p>
 
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">npm install &lt;path/to/package&gt;</code></pre></div>
 
-<p>for example to install <code>@sqlcommenter/knex</code> in a given location, run <code>npm install /path/to/sqlcommenter-nodejs/packages/knex</code>. Same for every package(folder) in the <code>packages</code> directory.</p>
+<p>for example to install <code>@google-cloud/sqlcommenter-knex</code> in a given location, run <code>npm install /path/to/sqlcommenter-nodejs/packages/knex</code>. Same for every package(folder) in the <code>packages</code> directory.</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># install</span> 
 &gt; npm install /path/to/sqlcommenter-nodejs/packages/knex
 
-+ @sqlcommenter/knex@0.0.1</code></pre></div>
++ @google-cloud/sqlcommenter-knex@0.0.1</code></pre></div>
 <h4 id="a-name-verify-installation-a-verify-installation"><a name="verify-installation"></a> Verify Installation</h4>
 
-<p>If package is properly installed, running <code>npm list &lt;package-name&gt;</code> will output details of the package. Let&rsquo;s verify the installation of <code>@sqlcommenter/knex</code> below:</p>
+<p>If package is properly installed, running <code>npm list &lt;package-name&gt;</code> will output details of the package. Let&rsquo;s verify the installation of <code>@google-cloud/sqlcommenter-knex</code> below:</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># verify</span>
-&gt; npm list @sqlcommenter/knex
+&gt; npm list @google-cloud/sqlcommenter-knex
 
 project@0.0.0 path/to/project
-└── @sqlcommenter/knex@0.0.1  -&gt; /path/to/sqlcommenter-nodejs/packages/knex</code></pre></div>
+└── @google-cloud/sqlcommenter-knex@0.0.1  -&gt; /path/to/sqlcommenter-nodejs/packages/knex</code></pre></div>
 <p>Inspecting the <code>package.json</code> file after installation should also show the installed pacakge.</p>
 
 
