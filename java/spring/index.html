@@ -212,18 +212,6 @@
             <i class="fa fa-angle-down fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
       </div>
         <ul>
-    <li data-nav-id="/java/hibernate/" class="dd-item
-        ">
-      <div>
-      <a href="https://google.github.io/sqlcommenter/java/hibernate/">Hibernate</a><i class="fa fa-circle-thin read-icon"></i>
-      </div>
-    </li>
-    <li data-nav-id="/java/spring/" class="dd-item parent active
-        ">
-      <div>
-      <a href="https://google.github.io/sqlcommenter/java/spring/">Spring</a><i class="fa fa-circle-thin read-icon"></i>
-      </div>
-    </li>
         </ul>
     </li>
     <li data-nav-id="/databases/" class="dd-item haschildren
@@ -372,13 +360,13 @@ later those properties will be picked up by the actual ORMs and augment your SQL
   <span class="tabs-body">
     
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml">    <span style="color:#f92672">&lt;dependency&gt;</span>
-        <span style="color:#f92672">&lt;groupId&gt;</span>io.orijtech.integrations<span style="color:#f92672">&lt;/groupId&gt;</span>
+        <span style="color:#f92672">&lt;groupId&gt;</span>com.google.cloud<span style="color:#f92672">&lt;/groupId&gt;</span>
         <span style="color:#f92672">&lt;artifactId&gt;</span>sqlcommenter-java<span style="color:#f92672">&lt;/artifactId&gt;</span>
         <span style="color:#f92672">&lt;version&gt;</span>0.0.1<span style="color:#f92672">&lt;/version&gt;</span>
     <span style="color:#f92672">&lt;/dependency&gt;</span></code></pre></div>
 
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gradle" data-lang="gradle"><span style="color:#75715e">// https://mvnrepository.com/artifact/io.orijtech.integrations/sqlcommenter-java
-</span><span style="color:#75715e"></span><span style="color:#111">compile</span> <span style="color:#111">group:</span> <span style="color:#d88200">&#39;io.orijtech.integrations&#39;</span><span style="color:#f92672">,</span> <span style="color:#111">name:</span> <span style="color:#d88200">&#39;sqlcommenter-java&#39;</span><span style="color:#f92672">,</span> <span style="color:#111">version:</span> <span style="color:#d88200">&#39;0.0.1&#39;</span></code></pre></div>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gradle" data-lang="gradle"><span style="color:#75715e">// https://mvnrepository.com/artifact/com.google.cloud/sqlcommenter-java
+</span><span style="color:#75715e"></span><span style="color:#111">compile</span> <span style="color:#111">group:</span> <span style="color:#d88200">&#39;com.google.cloud&#39;</span><span style="color:#f92672">,</span> <span style="color:#111">name:</span> <span style="color:#d88200">&#39;sqlcommenter-java&#39;</span><span style="color:#f92672">,</span> <span style="color:#111">version:</span> <span style="color:#d88200">&#39;0.0.1&#39;</span></code></pre></div>
 
 
   </span>
@@ -424,7 +412,7 @@ how to enable it for the different versions:</p>
 
 <p>If using Spring 5, please import the <code>SpringSQLCommenterInterceptor</code> class by:</p>
 
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.interceptors.SpringSQLCommenterInterceptor</span><span style="color:#f92672">;</span>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">import</span> <span style="color:#111">com.google.cloud.sqlcommenter.interceptors.SpringSQLCommenterInterceptor</span><span style="color:#f92672">;</span>
 
 <span style="color:#75af00">@EnableWebMvc</span>
 <span style="color:#75af00">@Configuration</span>
@@ -445,7 +433,7 @@ how to enable it for the different versions:</p>
 
 <p>If using a version before Spring 5, your <code>WebConfig</code> class needs to extend the <a href="https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/servlet/config/annotation/WebMvcConfigurerAdapter.html">WebMVCConfigureAdapter</a> class instead like this:</p>
 
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.interceptors.SpringSQLCommenterInterceptor</span><span style="color:#f92672">;</span>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">import</span> <span style="color:#111">com.google.cloud.sqlcommenter.interceptors.SpringSQLCommenterInterceptor</span><span style="color:#f92672">;</span>
 
 <span style="color:#75af00">@EnableWebMvc</span>
 <span style="color:#75af00">@Configuration</span>
@@ -482,13 +470,13 @@ how to enable it for the different versions:</p>
   <span class="tabs-body">
     
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;mvc:interceptors&gt;</span>
-    <span style="color:#f92672">&lt;bean</span> <span style="color:#75af00">class=</span><span style="color:#d88200">&#34;io.orijtech.integrations.sqlcommenter.interceptors.SpringSQLCommenterInterceptor&#34;</span><span style="color:#f92672">&gt;&lt;/bean&gt;</span>
+    <span style="color:#f92672">&lt;bean</span> <span style="color:#75af00">class=</span><span style="color:#d88200">&#34;com.google.cloud.sqlcommenter.interceptors.SpringSQLCommenterInterceptor&#34;</span><span style="color:#f92672">&gt;&lt;/bean&gt;</span>
 <span style="color:#f92672">&lt;/mvc:interceptors&gt;</span></code></pre></div>
 
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;mvc:interceptors&gt;</span>
     <span style="color:#f92672">&lt;mvc:interceptor&gt;</span>
         <span style="color:#f92672">&lt;mvc:mapping</span> <span style="color:#75af00">path=</span><span style="color:#d88200">&#34;/flights&#34;</span><span style="color:#f92672">&gt;&lt;/mvc:mapping&gt;</span>
-        <span style="color:#f92672">&lt;bean</span> <span style="color:#75af00">class=</span><span style="color:#d88200">&#34;io.orijtech.integrations.sqlcommenter.interceptors.SpringSQLCommenterInterceptor&#34;</span><span style="color:#f92672">&gt;&lt;/bean&gt;</span>
+        <span style="color:#f92672">&lt;bean</span> <span style="color:#75af00">class=</span><span style="color:#d88200">&#34;com.google.cloud.sqlcommenter.interceptors.SpringSQLCommenterInterceptor&#34;</span><span style="color:#f92672">&gt;&lt;/bean&gt;</span>
     <span style="color:#f92672">&lt;/mvc:interceptor&gt;</span>
 <span style="color:#f92672">&lt;/mvc:interceptors&gt;</span></code></pre></div>
 
@@ -502,7 +490,7 @@ how to enable it for the different versions:</p>
 since you might not be using a <code>persistence.xml</code> file, we can setup in Java code the
 <code>hibernate.session_factory.statement_inspector</code> configuration property in your <code>additionalProperties</code> method as per</p>
 
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.schhibernate.SCHibernate</span><span style="color:#f92672">;</span>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">import</span> <span style="color:#111">com.google.cloud.sqlcommenter.schhibernate.SCHibernate</span><span style="color:#f92672">;</span>
 
 <span style="color:#75af00">@Configuration</span>
 <span style="color:#75af00">@EnableTransactionManagement</span>
@@ -547,7 +535,7 @@ since you might not be using a <code>persistence.xml</code> file, we can setup i
 
 <tr>
 <td>sqlcommenter-java on Github</td>
-<td><a href="https://github.com/orijtech/sqlcommenter-java">https://github.com/orijtech/sqlcommenter-java</a></td>
+<td><a href="https://github.com/google/sqlcommenter/tree/master/java/sqlcommenter-java">https://github.com/google/sqlcommenter/tree/master/java/sqlcommenter-java</a></td>
 </tr>
 
 <tr>
@@ -596,7 +584,7 @@ since you might not be using a <code>persistence.xml</code> file, we can setup i
 
   
     <ul>
-<li><a href="https://github.com/orijtech/sqlcommenter-website">Github</a></li>
+<li><a href="https://github.com/google/sqlcommenter/">Github</a></li>
 </ul>
 
 <h5 style="color: #fff">sqlcommenter</h5>

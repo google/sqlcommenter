@@ -317,12 +317,12 @@
 
 <h3 id="introduction">Introduction</h3>
 
-<p><a href="https://github.com/orijtech/sqlcommenter_rails">sqlcommenter_rails</a> adds comments to your SQL statements.</p>
+<p><a href="https://github.com/google/sqlcommenter/tree/master/ruby/sqlcommenter-ruby/sqlcommenter_rails">sqlcommenter_rails</a> adds comments to your SQL statements.</p>
 
 <p>It is powered by <a href="https://github.com/basecamp/marginalia">marginalia</a> and also adds <a href="https://opencensus.io/">OpenCensus</a> information to the
 comments if you use the <a href="https://github.com/census-instrumentation/opencensus-ruby">opencensus gem</a>.</p>
 
-<p><a href="https://github.com/orijtech/sqlcommenter_rails">sqlcommenter_rails</a> configures <a href="https://github.com/basecamp/marginalia">marginalia</a> and <a href="https://github.com/orijtech/marginalia-opencensus">marginalia-opencensus</a> to
+<p><a href="https://github.com/google/sqlcommenter/tree/master/ruby/sqlcommenter-ruby/sqlcommenter_rails">sqlcommenter_rails</a> configures <a href="https://github.com/basecamp/marginalia">marginalia</a> and <a href="https://github.com/google/sqlcommenter/tree/master/ruby/sqlcommenter-ruby/marginalia-opencensus">marginalia-opencensus</a> to
 match the SQLCommenter format.</p>
 
 <h3 id="installation">Installation</h3>
@@ -393,7 +393,7 @@ your Gemfile, and add the following line in the beginning of
 <td><code>db_driver</code></td>
 <td><div style="text-align: center">&#10004;</div></td>
 <td>Database adapter class name</td>
-<td><a href="https://github.com/orijtech/sqlcommenter_rails">sqlcommenter_rails</a></td>
+<td><a href="https://github.com/google/sqlcommenter/tree/master/ruby/sqlcommenter-ruby/sqlcommenter_rails">sqlcommenter_rails</a></td>
 </tr>
 
 <tr>
@@ -407,7 +407,7 @@ your Gemfile, and add the following line in the beginning of
 <td><code>framework</code></td>
 <td><div style="text-align: center">&#10004;</div></td>
 <td><code>rails_v</code> followed by <code>Rails::VERSION</code></td>
-<td><a href="https://github.com/orijtech/sqlcommenter_rails">sqlcommenter_rails</a></td>
+<td><a href="https://github.com/google/sqlcommenter/tree/master/ruby/sqlcommenter-ruby/sqlcommenter_rails">sqlcommenter_rails</a></td>
 </tr>
 
 <tr>
@@ -442,7 +442,7 @@ your Gemfile, and add the following line in the beginning of
 <td><code>route</code></td>
 <td><div style="text-align: center">&#10004;</div></td>
 <td>Request&rsquo;s full path</td>
-<td><a href="https://github.com/orijtech/sqlcommenter_rails">sqlcommenter_rails</a></td>
+<td><a href="https://github.com/google/sqlcommenter/tree/master/ruby/sqlcommenter-ruby/sqlcommenter_rails">sqlcommenter_rails</a></td>
 </tr>
 
 <tr>
@@ -456,21 +456,21 @@ your Gemfile, and add the following line in the beginning of
 <td><code>traceparent</code></td>
 <td><div style="text-align: center">&#10060;</div></td>
 <td>The <a href="https://www.w3.org/TR/trace-context/#traceparent-field">W3C TraceContext.Traceparent field</a> of the OpenCensus trace</td>
-<td><a href="https://github.com/orijtech/marginalia-opencensus">marginalia-opencensus</a></td>
+<td><a href="https://github.com/google/sqlcommenter/tree/master/ruby/sqlcommenter-ruby/marginalia-opencensus">marginalia-opencensus</a></td>
 </tr>
 </tbody>
 </table>
 
-<p>To include the <code>traceparent</code> field, install the <a href="https://github.com/orijtech/marginalia-opencensus">marginalia-opencensus</a> gem and it will be automatically included by default.</p>
+<p>To include the <code>traceparent</code> field, install the <a href="https://github.com/google/sqlcommenter/tree/master/ruby/sqlcommenter-ruby/marginalia-opencensus">marginalia-opencensus</a> gem and it will be automatically included by default.</p>
 
 <p>To change which fields are included, set <code>Marginalia::Comment.components = [ :field1, :field2, ... ]</code> in <code>config/initializers/marginalia.rb</code> as described in the <a href="https://github.com/basecamp/marginalia#components">marginalia documentation</a>.</p>
 
 <h3 id="end-to-end-example">End to end example</h3>
 
-<p>A Rails 6 <a href="https://github.com/orijtech/sqlcommenter_rails">sqlcommenter_rails</a> demo is available at:
-<a href="https://github.com/orijtech/sqlcommenter_rails_demo">https://github.com/orijtech/sqlcommenter_rails_demo</a>.</p>
+<p>A Rails 6 <a href="https://github.com/google/sqlcommenter/tree/master/ruby/sqlcommenter-ruby/sqlcommenter_rails">sqlcommenter_rails</a> demo is available at:
+<a href="https://github.com/google/sqlcommenter/tree/master/ruby/sqlcommenter-ruby/sqlcommenter_rails_demo">https://github.com/google/sqlcommenter/tree/master/ruby/sqlcommenter-ruby/sqlcommenter_rails_demo</a></p>
 
-<p>The demo is a vanilla Rails API application with <a href="https://github.com/orijtech/sqlcommenter_rails">sqlcommenter_rails</a> and
+<p>The demo is a vanilla Rails API application with <a href="https://github.com/google/sqlcommenter/tree/master/ruby/sqlcommenter-ruby/sqlcommenter_rails">sqlcommenter_rails</a> and
 OpenCensus enabled.</p>
 
 <p>First, we create a vanilla Rails application with the following command:</p>
@@ -542,8 +542,8 @@ traceparent='00-ff19308b1f17fedc5864e929bed1f44e-6ddace73a9debf63-01'*/
 
 <tbody>
 <tr>
-<td><a href="https://github.com/orijtech/sqlcommenter_rails">sqlcommenter_rails</a></td>
-<td><a href="https://github.com/orijtech/sqlcommenter_rails">https://github.com/orijtech/sqlcommenter_rails</a></td>
+<td><a href="https://github.com/google/sqlcommenter/tree/master/ruby/sqlcommenter-ruby/sqlcommenter_rails">sqlcommenter_rails</a></td>
+<td><a href="https://github.com/google/sqlcommenter/tree/master/ruby/sqlcommenter-ruby/sqlcommenter_rails">https://github.com/google/sqlcommenter/tree/master/ruby/sqlcommenter-ruby/sqlcommenter_rails</a></td>
 </tr>
 
 <tr>
@@ -562,8 +562,8 @@ traceparent='00-ff19308b1f17fedc5864e929bed1f44e-6ddace73a9debf63-01'*/
 </tr>
 
 <tr>
-<td><a href="https://github.com/orijtech/marginalia-opencensus">marginalia-opencensus</a></td>
-<td><a href="https://github.com/orijtech/marginalia-opencensus">https://github.com/orijtech/marginalia-opencensus</a></td>
+<td><a href="https://github.com/google/sqlcommenter/tree/master/ruby/sqlcommenter-ruby/marginalia-opencensus">marginalia-opencensus</a></td>
+<td><a href="https://github.com/google/sqlcommenter/tree/master/ruby/sqlcommenter-ruby/marginalia-opencensus">https://github.com/google/sqlcommenter/tree/master/ruby/sqlcommenter-ruby/marginalia-opencensus</a></td>
 </tr>
 </tbody>
 </table>
@@ -616,7 +616,7 @@ traceparent='00-ff19308b1f17fedc5864e929bed1f44e-6ddace73a9debf63-01'*/
 
   
     <ul>
-<li><a href="https://github.com/orijtech/sqlcommenter-website">Github</a></li>
+<li><a href="https://github.com/google/sqlcommenter/">Github</a></li>
 </ul>
 
 <h5 style="color: #fff">sqlcommenter</h5>

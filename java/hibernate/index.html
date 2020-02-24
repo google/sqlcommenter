@@ -381,20 +381,20 @@ setup. It is best used when coupled with other frameworks such as:</p>
 <p>e.g. to your <code>hibernate.cfg.xml</code> file</p>
 
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;property</span> <span style="color:#75af00">name=</span><span style="color:#d88200">&#34;hibernate.session_factory.statement_inspector&#34;</span>
-          <span style="color:#75af00">value=</span><span style="color:#d88200">&#34;io.orijtech.integrations.sqlcommenter.schibernate.SCHibernate&#34;</span> <span style="color:#f92672">/&gt;</span></code></pre></div>
+          <span style="color:#75af00">value=</span><span style="color:#d88200">&#34;com.google.cloud.sqlcommenter.schibernate.SCHibernate&#34;</span> <span style="color:#f92672">/&gt;</span></code></pre></div>
 
 <h4 id="in-java-source-code">In Java source code</h4>
 
 <p>When creating your Hibernate session factory, add our StatementInspector like this:</p>
 
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.schhibernate.SCHibernate</span><span style="color:#f92672">;</span>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">import</span> <span style="color:#111">com.google.cloud.sqlcommenter.schhibernate.SCHibernate</span><span style="color:#f92672">;</span>
 
 <span style="color:#f92672">...</span>
         <span style="color:#111">sessionFactoryBuilder</span><span style="color:#f92672">.</span><span style="color:#75af00">applyStatementInspector</span><span style="color:#f92672">(</span><span style="color:#00a8c8">new</span> <span style="color:#111">SCHibernate</span><span style="color:#f92672">());</span></code></pre></div>
 
 <h3 id="spring-and-jpa-end-to-end-example">Spring and JPA end-to-end example</h3>
 
-<p>First thing you need to do is to download the <a href="https://github.com/orijtech/sqlcommenter-java-guides/tree/master/sqlcommenter-java-guides-spring-jpa">sqlcommenter-java-guides-spring-jpa</a>
+<p>First thing you need to do is to download the <a href="https://github.com/google/sqlcommenter/tree/master/java/sqlcommenter-java#spring">sqlcommenter-java-guides-spring-jpa</a>
 Java project.</p>
 
 <h4 id="source-code">Source code</h4>
@@ -417,7 +417,7 @@ Java project.</p>
   <span class="tabs-body">
     
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// In file Post.java
-</span><span style="color:#75715e"></span><span style="color:#f92672">package</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.jpa.domain</span><span style="color:#f92672">;</span>
+</span><span style="color:#75715e"></span><span style="color:#f92672">package</span> <span style="color:#111">com.google.cloud.sqlcommenter.spring.jpa.domain</span><span style="color:#f92672">;</span>
 
 <span style="color:#f92672">import</span> <span style="color:#111">javax.persistence.*</span><span style="color:#f92672">;</span>
 <span style="color:#f92672">import</span> <span style="color:#111">java.util.ArrayList</span><span style="color:#f92672">;</span>
@@ -462,7 +462,7 @@ Java project.</p>
 <span style="color:#f92672">}</span></code></pre></div>
 
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// In file Tag.java
-</span><span style="color:#75715e"></span><span style="color:#f92672">package</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.jpa.domain</span><span style="color:#f92672">;</span>
+</span><span style="color:#75715e"></span><span style="color:#f92672">package</span> <span style="color:#111">com.google.cloud.sqlcommenter.spring.jpa.domain</span><span style="color:#f92672">;</span>
 
 <span style="color:#f92672">import</span> <span style="color:#111">javax.persistence.Entity</span><span style="color:#f92672">;</span>
 <span style="color:#f92672">import</span> <span style="color:#111">javax.persistence.GeneratedValue</span><span style="color:#f92672">;</span>
@@ -519,9 +519,9 @@ Java project.</p>
     
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// In file PostRepository.java
 </span><span style="color:#75715e"></span>
-<span style="color:#f92672">package</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.jpa.dao</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">package</span> <span style="color:#111">com.google.cloud.sqlcommenter.spring.jpa.dao</span><span style="color:#f92672">;</span>
 
-<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.jpa.domain.Post</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">com.google.cloud.sqlcommenter.spring.jpa.domain.Post</span><span style="color:#f92672">;</span>
 <span style="color:#f92672">import</span> <span style="color:#111">org.springframework.data.repository.CrudRepository</span><span style="color:#f92672">;</span>
 <span style="color:#f92672">import</span> <span style="color:#111">org.springframework.stereotype.Repository</span><span style="color:#f92672">;</span>
 
@@ -535,9 +535,9 @@ Java project.</p>
 
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// In file TagRepository.java
 </span><span style="color:#75715e"></span>
-<span style="color:#f92672">package</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.jpa.dao</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">package</span> <span style="color:#111">com.google.cloud.sqlcommenter.spring.jpa.dao</span><span style="color:#f92672">;</span>
 
-<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.jpa.domain.Tag</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">com.google.cloud.sqlcommenter.spring.jpa.domain.Tag</span><span style="color:#f92672">;</span>
 <span style="color:#f92672">import</span> <span style="color:#111">org.springframework.data.repository.CrudRepository</span><span style="color:#f92672">;</span>
 <span style="color:#f92672">import</span> <span style="color:#111">org.springframework.stereotype.Repository</span><span style="color:#f92672">;</span>
 
@@ -572,9 +572,9 @@ Java project.</p>
     
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// In file ForumService.java
 </span><span style="color:#75715e"></span>
-<span style="color:#f92672">package</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.jpa.service</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">package</span> <span style="color:#111">com.google.cloud.sqlcommenter.spring.jpa.service</span><span style="color:#f92672">;</span>
 
-<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.jpa.domain.Post</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">com.google.cloud.sqlcommenter.spring.jpa.domain.Post</span><span style="color:#f92672">;</span>
 
 <span style="color:#f92672">import</span> <span style="color:#111">java.util.List</span><span style="color:#f92672">;</span>
 
@@ -589,11 +589,11 @@ Java project.</p>
 
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// In file ForumServiceImpl.java
 </span><span style="color:#75715e"></span>
-<span style="color:#f92672">package</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.jpa.service</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">package</span> <span style="color:#111">com.google.cloud.sqlcommenter.spring.jpa.service</span><span style="color:#f92672">;</span>
 
-<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.jpa.dao.PostRepository</span><span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.jpa.dao.TagRepository</span><span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.jpa.domain.Post</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">com.google.cloud.sqlcommenter.spring.jpa.dao.PostRepository</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">com.google.cloud.sqlcommenter.spring.jpa.dao.TagRepository</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">com.google.cloud.sqlcommenter.spring.jpa.domain.Post</span><span style="color:#f92672">;</span>
 <span style="color:#f92672">import</span> <span style="color:#111">org.springframework.beans.factory.annotation.Autowired</span><span style="color:#f92672">;</span>
 <span style="color:#f92672">import</span> <span style="color:#111">org.springframework.stereotype.Service</span><span style="color:#f92672">;</span>
 <span style="color:#f92672">import</span> <span style="color:#111">org.springframework.transaction.annotation.Transactional</span><span style="color:#f92672">;</span>
@@ -639,11 +639,11 @@ Java project.</p>
 <p>The Spring JPA configuration looks as follows:</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// In file JpaTransactionManagerConfiguration.java
 </span><span style="color:#75715e"></span>
-<span style="color:#f92672">package</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.jpa</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">package</span> <span style="color:#111">com.google.cloud.sqlcommenter.spring.jpa</span><span style="color:#f92672">;</span>
 
 <span style="color:#f92672">import</span> <span style="color:#111">com.zaxxer.hikari.HikariConfig</span><span style="color:#f92672">;</span>
 <span style="color:#f92672">import</span> <span style="color:#111">com.zaxxer.hikari.HikariDataSource</span><span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.util.SCHibernateWrapper</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">com.google.cloud.sqlcommenter.spring.util.SCHibernateWrapper</span><span style="color:#f92672">;</span>
 <span style="color:#f92672">import</span> <span style="color:#111">org.hibernate.jpa.HibernatePersistenceProvider</span><span style="color:#f92672">;</span>
 <span style="color:#f92672">import</span> <span style="color:#111">org.springframework.beans.factory.annotation.Value</span><span style="color:#f92672">;</span>
 <span style="color:#f92672">import</span> <span style="color:#111">org.springframework.context.annotation.*</span><span style="color:#f92672">;</span>
@@ -662,7 +662,7 @@ Java project.</p>
 
 <span style="color:#75af00">@Configuration</span>
 <span style="color:#75af00">@PropertySource</span><span style="color:#f92672">({</span><span style="color:#d88200">&#34;/META-INF/jdbc-hsqldb.properties&#34;</span><span style="color:#f92672">})</span>
-<span style="color:#75af00">@ComponentScan</span><span style="color:#f92672">(</span><span style="color:#111">basePackages</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#34;io.orijtech.integrations.sqlcommenter.spring.jpa&#34;</span><span style="color:#f92672">)</span>
+<span style="color:#75af00">@ComponentScan</span><span style="color:#f92672">(</span><span style="color:#111">basePackages</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#34;com.google.cloud.sqlcommenter.spring.jpa&#34;</span><span style="color:#f92672">)</span>
 <span style="color:#75af00">@EnableTransactionManagement</span>
 <span style="color:#75af00">@EnableAspectJAutoProxy</span>
 <span style="color:#75af00">@EnableJpaRepositories</span>
@@ -745,21 +745,21 @@ Java project.</p>
 
     <span style="color:#00a8c8">protected</span> <span style="color:#111">String</span><span style="color:#f92672">[]</span> <span style="color:#75af00">packagesToScan</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
         <span style="color:#00a8c8">return</span> <span style="color:#00a8c8">new</span> <span style="color:#111">String</span><span style="color:#f92672">[]{</span>
-            <span style="color:#d88200">&#34;io.orijtech.integrations.sqlcommenter.spring.jpa.domain&#34;</span>
+            <span style="color:#d88200">&#34;com.google.cloud.sqlcommenter.spring.jpa.domain&#34;</span>
         <span style="color:#f92672">};</span>
     <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span></code></pre></div>
 <p>Now, the test looks as follows:</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// In file JpaTransactionManagerTest.java
 </span><span style="color:#75715e"></span>
-<span style="color:#f92672">package</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.jpa</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">package</span> <span style="color:#111">com.google.cloud.sqlcommenter.spring.jpa</span><span style="color:#f92672">;</span>
 
-<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.jpa.dao.TagRepository</span><span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.jpa.domain.Post</span><span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.jpa.domain.Tag</span><span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.jpa.service.ForumService</span><span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.util.SCHibernateWrapper</span><span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.threadlocalstorage.State</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">com.google.cloud.sqlcommenter.spring.jpa.dao.TagRepository</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">com.google.cloud.sqlcommenter.spring.jpa.domain.Post</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">com.google.cloud.sqlcommenter.spring.jpa.domain.Tag</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">com.google.cloud.sqlcommenter.spring.jpa.service.ForumService</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">com.google.cloud.sqlcommenter.spring.util.SCHibernateWrapper</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">com.google.cloud.sqlcommenter.threadlocalstorage.State</span><span style="color:#f92672">;</span>
 <span style="color:#f92672">import</span> <span style="color:#111">org.junit.Before</span><span style="color:#f92672">;</span>
 <span style="color:#f92672">import</span> <span style="color:#111">org.junit.Test</span><span style="color:#f92672">;</span>
 <span style="color:#f92672">import</span> <span style="color:#111">org.junit.runner.RunWith</span><span style="color:#f92672">;</span>
@@ -895,9 +895,6 @@ Java project.</p>
 <span style="color:#00a8c8">select</span> <span style="color:#111">post0_</span><span style="color:#111">.</span><span style="color:#111">id</span> <span style="color:#00a8c8">as</span> <span style="color:#111">id1_0_0_</span><span style="color:#111">,</span> <span style="color:#111">post0_</span><span style="color:#111">.</span><span style="color:#111">title</span> <span style="color:#00a8c8">as</span> <span style="color:#111">title2_0_0_</span> <span style="color:#00a8c8">from</span> <span style="color:#111">post</span> <span style="color:#111">post0_</span> <span style="color:#00a8c8">where</span> <span style="color:#111">post0_</span><span style="color:#111">.</span><span style="color:#111">id</span><span style="color:#f92672">=?</span> <span style="color:#75715e">/*action=&#39;FindPostById&#39;,controller=&#39;ForumController&#39;,framework=&#39;spring&#39;*/</span></code></pre></div>
 <h3 id="spring-and-hibernate-end-to-end-example">Spring and Hibernate end-to-end example</h3>
 
-<p>First thing you need to do is to download the <a href="https://github.com/orijtech/sqlcommenter-java-guides/tree/master/sqlcommenter-java-guides-spring-hibernate">sqlcommenter-java-guides-spring-hibernate</a>
-Java project.</p>
-
 <h4 id="source-code-1">Source code</h4>
 
 <p>This project uses the following JPA entities:</p>
@@ -918,7 +915,7 @@ Java project.</p>
   <span class="tabs-body">
     
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// In file Post.java
-</span><span style="color:#75715e"></span><span style="color:#f92672">package</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.hibernate.domain</span><span style="color:#f92672">;</span>
+</span><span style="color:#75715e"></span><span style="color:#f92672">package</span> <span style="color:#111">com.google.cloud.sqlcommenter.spring.hibernate.domain</span><span style="color:#f92672">;</span>
 
 <span style="color:#f92672">import</span> <span style="color:#111">javax.persistence.*</span><span style="color:#f92672">;</span>
 <span style="color:#f92672">import</span> <span style="color:#111">java.util.ArrayList</span><span style="color:#f92672">;</span>
@@ -963,7 +960,7 @@ Java project.</p>
 <span style="color:#f92672">}</span></code></pre></div>
 
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// In file Tag.java
-</span><span style="color:#75715e"></span><span style="color:#f92672">package</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.hibernate.domain</span><span style="color:#f92672">;</span>
+</span><span style="color:#75715e"></span><span style="color:#f92672">package</span> <span style="color:#111">com.google.cloud.sqlcommenter.spring.hibernate.domain</span><span style="color:#f92672">;</span>
 
 <span style="color:#f92672">import</span> <span style="color:#111">javax.persistence.Entity</span><span style="color:#f92672">;</span>
 <span style="color:#f92672">import</span> <span style="color:#111">javax.persistence.GeneratedValue</span><span style="color:#f92672">;</span>
@@ -1036,7 +1033,7 @@ Java project.</p>
     
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// In file GenericDAO.java
 </span><span style="color:#75715e"></span>
-<span style="color:#f92672">package</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.hibernate.dao</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">package</span> <span style="color:#111">com.google.cloud.sqlcommenter.spring.hibernate.dao</span><span style="color:#f92672">;</span>
 
 <span style="color:#f92672">import</span> <span style="color:#111">java.io.Serializable</span><span style="color:#f92672">;</span>
 
@@ -1049,7 +1046,7 @@ Java project.</p>
 
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// In file GenericDAOImpl.java
 </span><span style="color:#75715e"></span>
-<span style="color:#f92672">package</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.hibernate.dao</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">package</span> <span style="color:#111">com.google.cloud.sqlcommenter.spring.hibernate.dao</span><span style="color:#f92672">;</span>
 
 <span style="color:#f92672">import</span> <span style="color:#111">org.hibernate.Session</span><span style="color:#f92672">;</span>
 <span style="color:#f92672">import</span> <span style="color:#111">org.hibernate.SessionFactory</span><span style="color:#f92672">;</span>
@@ -1098,9 +1095,9 @@ Java project.</p>
 
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// In file PostDAO.java
 </span><span style="color:#75715e"></span>
-<span style="color:#f92672">package</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.hibernate.dao</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">package</span> <span style="color:#111">com.google.cloud.sqlcommenter.spring.hibernate.dao</span><span style="color:#f92672">;</span>
 
-<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.hibernate.domain.Post</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">com.google.cloud.sqlcommenter.spring.hibernate.domain.Post</span><span style="color:#f92672">;</span>
 
 <span style="color:#f92672">import</span> <span style="color:#111">java.util.List</span><span style="color:#f92672">;</span>
 
@@ -1111,9 +1108,9 @@ Java project.</p>
 
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// In file PostDAOImpl.java
 </span><span style="color:#75715e"></span>
-<span style="color:#f92672">package</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.hibernate.dao</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">package</span> <span style="color:#111">com.google.cloud.sqlcommenter.spring.hibernate.dao</span><span style="color:#f92672">;</span>
 
-<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.hibernate.domain.Post</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">com.google.cloud.sqlcommenter.spring.hibernate.domain.Post</span><span style="color:#f92672">;</span>
 <span style="color:#f92672">import</span> <span style="color:#111">org.springframework.stereotype.Repository</span><span style="color:#f92672">;</span>
 
 <span style="color:#f92672">import</span> <span style="color:#111">java.util.List</span><span style="color:#f92672">;</span>
@@ -1136,9 +1133,9 @@ Java project.</p>
 
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// In file TagDAO.java
 </span><span style="color:#75715e"></span>
-<span style="color:#f92672">package</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.hibernate.dao</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">package</span> <span style="color:#111">com.google.cloud.sqlcommenter.spring.hibernate.dao</span><span style="color:#f92672">;</span>
 
-<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.hibernate.domain.Tag</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">com.google.cloud.sqlcommenter.spring.hibernate.domain.Tag</span><span style="color:#f92672">;</span>
 
 <span style="color:#f92672">import</span> <span style="color:#111">java.util.List</span><span style="color:#f92672">;</span>
 
@@ -1149,9 +1146,9 @@ Java project.</p>
 
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// In file TagDAOImpl.java
 </span><span style="color:#75715e"></span>
-<span style="color:#f92672">package</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.hibernate.dao</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">package</span> <span style="color:#111">com.google.cloud.sqlcommenter.spring.hibernate.dao</span><span style="color:#f92672">;</span>
 
-<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.hibernate.domain.Tag</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">com.google.cloud.sqlcommenter.spring.hibernate.domain.Tag</span><span style="color:#f92672">;</span>
 <span style="color:#f92672">import</span> <span style="color:#111">org.springframework.stereotype.Repository</span><span style="color:#f92672">;</span>
 
 <span style="color:#f92672">import</span> <span style="color:#111">java.util.Arrays</span><span style="color:#f92672">;</span>
@@ -1202,9 +1199,9 @@ Java project.</p>
     
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// In file ForumService.java
 </span><span style="color:#75715e"></span>
-<span style="color:#f92672">package</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.hibernate.service</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">package</span> <span style="color:#111">com.google.cloud.sqlcommenter.spring.hibernate.service</span><span style="color:#f92672">;</span>
 
-<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.hibernate.domain.Post</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">com.google.cloud.sqlcommenter.spring.hibernate.domain.Post</span><span style="color:#f92672">;</span>
 
 <span style="color:#f92672">import</span> <span style="color:#111">java.util.List</span><span style="color:#f92672">;</span>
 
@@ -1219,11 +1216,11 @@ Java project.</p>
 
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// In file ForumServiceImpl.java
 </span><span style="color:#75715e"></span>
-<span style="color:#f92672">package</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.hibernate.service</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">package</span> <span style="color:#111">com.google.cloud.sqlcommenter.spring.hibernate.service</span><span style="color:#f92672">;</span>
 
-<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.hibernate.dao.PostDAO</span><span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.hibernate.dao.TagDAO</span><span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.hibernate.domain.Post</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">com.google.cloud.sqlcommenter.spring.hibernate.dao.PostDAO</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">com.google.cloud.sqlcommenter.spring.hibernate.dao.TagDAO</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">com.google.cloud.sqlcommenter.spring.hibernate.domain.Post</span><span style="color:#f92672">;</span>
 <span style="color:#f92672">import</span> <span style="color:#111">org.springframework.beans.factory.annotation.Autowired</span><span style="color:#f92672">;</span>
 <span style="color:#f92672">import</span> <span style="color:#111">org.springframework.stereotype.Service</span><span style="color:#f92672">;</span>
 <span style="color:#f92672">import</span> <span style="color:#111">org.springframework.transaction.annotation.Transactional</span><span style="color:#f92672">;</span>
@@ -1268,11 +1265,11 @@ Java project.</p>
 <p>The Spring Hibernate configuration looks as follows:</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// In file HibernateTransactionManagerConfiguration.java
 </span><span style="color:#75715e"></span>
-<span style="color:#f92672">package</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.hibernate</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">package</span> <span style="color:#111">com.google.cloud.sqlcommenter.spring.hibernate</span><span style="color:#f92672">;</span>
 
 <span style="color:#f92672">import</span> <span style="color:#111">com.zaxxer.hikari.HikariConfig</span><span style="color:#f92672">;</span>
 <span style="color:#f92672">import</span> <span style="color:#111">com.zaxxer.hikari.HikariDataSource</span><span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.util.SCHibernateWrapper</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">com.google.cloud.sqlcommenter.spring.util.SCHibernateWrapper</span><span style="color:#f92672">;</span>
 <span style="color:#f92672">import</span> <span style="color:#111">org.hibernate.SessionFactory</span><span style="color:#f92672">;</span>
 <span style="color:#f92672">import</span> <span style="color:#111">org.springframework.beans.factory.annotation.Value</span><span style="color:#f92672">;</span>
 <span style="color:#f92672">import</span> <span style="color:#111">org.springframework.context.annotation.*</span><span style="color:#f92672">;</span>
@@ -1287,7 +1284,7 @@ Java project.</p>
 
 <span style="color:#75af00">@Configuration</span>
 <span style="color:#75af00">@PropertySource</span><span style="color:#f92672">({</span><span style="color:#d88200">&#34;/META-INF/jdbc-hsqldb.properties&#34;</span><span style="color:#f92672">})</span>
-<span style="color:#75af00">@ComponentScan</span><span style="color:#f92672">(</span><span style="color:#111">basePackages</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#34;io.orijtech.integrations.sqlcommenter.spring.hibernate&#34;</span><span style="color:#f92672">)</span>
+<span style="color:#75af00">@ComponentScan</span><span style="color:#f92672">(</span><span style="color:#111">basePackages</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#34;com.google.cloud.sqlcommenter.spring.hibernate&#34;</span><span style="color:#f92672">)</span>
 <span style="color:#75af00">@EnableTransactionManagement</span>
 <span style="color:#75af00">@EnableAspectJAutoProxy</span>
 <span style="color:#00a8c8">public</span> <span style="color:#00a8c8">class</span> <span style="color:#75af00">HibernateTransactionManagerConfiguration</span> <span style="color:#f92672">{</span>
@@ -1364,20 +1361,20 @@ Java project.</p>
 
     <span style="color:#00a8c8">protected</span> <span style="color:#111">String</span><span style="color:#f92672">[]</span> <span style="color:#75af00">packagesToScan</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
         <span style="color:#00a8c8">return</span> <span style="color:#00a8c8">new</span> <span style="color:#111">String</span><span style="color:#f92672">[]{</span>
-                <span style="color:#d88200">&#34;io.orijtech.integrations.sqlcommenter.spring.hibernate.domain&#34;</span>
+                <span style="color:#d88200">&#34;com.google.cloud.sqlcommenter.spring.hibernate.domain&#34;</span>
         <span style="color:#f92672">};</span>
     <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span></code></pre></div>
 <p>Now, the test looks as follows:</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// In file HibernateTransactionManagerTest.java
 </span><span style="color:#75715e"></span>
-<span style="color:#f92672">package</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.hibernate</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">package</span> <span style="color:#111">com.google.cloud.sqlcommenter.spring.hibernate</span><span style="color:#f92672">;</span>
 
-<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.hibernate.domain.Post</span><span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.hibernate.domain.Tag</span><span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.hibernate.service.ForumService</span><span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.spring.util.SCHibernateWrapper</span><span style="color:#f92672">;</span>
-<span style="color:#f92672">import</span> <span style="color:#111">io.orijtech.integrations.sqlcommenter.threadlocalstorage.State</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">com.google.cloud.sqlcommenter.spring.hibernate.domain.Post</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">com.google.cloud.sqlcommenter.spring.hibernate.domain.Tag</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">com.google.cloud.sqlcommenter.spring.hibernate.service.ForumService</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">com.google.cloud.sqlcommenter.spring.util.SCHibernateWrapper</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">com.google.cloud.sqlcommenter.threadlocalstorage.State</span><span style="color:#f92672">;</span>
 <span style="color:#f92672">import</span> <span style="color:#111">org.junit.Before</span><span style="color:#f92672">;</span>
 <span style="color:#f92672">import</span> <span style="color:#111">org.junit.Test</span><span style="color:#f92672">;</span>
 <span style="color:#f92672">import</span> <span style="color:#111">org.junit.runner.RunWith</span><span style="color:#f92672">;</span>
@@ -1546,7 +1543,7 @@ Java project.</p>
 
 <tr>
 <td>sqlcommenter-java on Github</td>
-<td><a href="https://github.com/orijtech/sqlcommenter-java">https://github.com/orijtech/sqlcommenter-java</a></td>
+<td><a href="https://github.com/google/sqlcommenter/tree/master/java/sqlcommenter-java">https://github.com/google/sqlcommenter/tree/master/java/sqlcommenter-java</a></td>
 </tr>
 </tbody>
 </table>
@@ -1585,7 +1582,7 @@ Java project.</p>
 
   
     <ul>
-<li><a href="https://github.com/orijtech/sqlcommenter-website">Github</a></li>
+<li><a href="https://github.com/google/sqlcommenter/">Github</a></li>
 </ul>
 
 <h5 style="color: #fff">sqlcommenter</h5>

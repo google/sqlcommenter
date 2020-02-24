@@ -312,6 +312,7 @@
 <li><a href="#building-it">Building it</a></li>
 </ul></li>
 <li><a href="#verify-installation">Verify installation</a></li>
+<li><a href="#tests">Tests</a></li>
 </ul></li>
 </ul>
 
@@ -346,46 +347,8 @@
 
 <h4 id="a-name-install-from-source-a-from-source"><a name="install-from-source"></a> From source</h4>
 
-<p>The first step is to download the source code from sqlcommenter-mono as per <a href="https://google.github.io/sqlcommenter/introduction/#source-code">Source code</a>
-and after unzipping it, navigating to</p>
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">java/
-└── sqlcommenter-java
-    ├── README.md
-    ├── build.gradle
-    ├── gradle
-    │   └── wrapper
-    │       ├── gradle-wrapper.jar
-    │       └── gradle-wrapper.properties
-    ├── gradlew
-    ├── gradlew.bat
-    ├── settings.gradle
-    ├── src
-    │   ├── main
-    │   │   └── java
-    │   │       └── io
-    │   │           └── orijtech
-    │   │               └── integrations
-    │   │                   └── sqlcommenter
-    │   │                       ├── interceptors
-    │   │                       │   └── SpringSQLCommenterInterceptor.java
-    │   │                       ├── schibernate
-    │   │                       │   └── SCHibernate.java
-    │   │                       └── threadlocalstorage
-    │   │                           └── State.java
-    │   └── <span style="color:#111">test</span>
-    │       └── java
-    │           └── io
-    │               └── orijtech
-    │                   └── integrations
-    │                       └── sqlcommenter
-    │                           ├── interceptors
-    │                           │   └── SpringSQLCommenterInterceptorTest.java
-    │                           ├── schibernate
-    │                           │   └── SCHibernateTest.java
-    │                           └── threadlocalstorage
-    │                               ├── StateTest.java
-    │                               └── ThreadLocalStorageTest.java
-    └── travis_script</code></pre></div>
+<p>Please visit <a href="https://github.com/google/sqlcommenter/tree/master/java/sqlcommenter-java">source page on Github</a></p>
+
 <h4 id="building-it">Building it</h4>
 
 <p>Next, after changing directories into <code>java/sqlcommenter-java</code>, run <code>./gradlew install</code>
@@ -400,22 +363,27 @@ BUILD SUCCESSFUL in 1s
 
 <p>The following should be your directory structure:</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">~/.m2/repository/io
-└── orijtech
-    └── integrations
-        └── sqlcommenter-java
-            ├── <span style="color:#ae81ff">0</span>.0.1
-            │   ├── sqlcommenter-java-0.0.1-javadoc.jar
-            │   ├── sqlcommenter-java-0.0.1-javadoc.jar.asc
-            │   ├── sqlcommenter-java-0.0.1-sources.jar
-            │   ├── sqlcommenter-java-0.0.1-sources.jar.asc
-            │   ├── sqlcommenter-java-0.0.1.jar
-            │   ├── sqlcommenter-java-0.0.1.jar.asc
-            │   └── sqlcommenter-java-0.0.1.pom
-            └── maven-metadata-local.xml</code></pre></div>
+└── com
+    └── google
+        └── cloud
+            └── sqlcommenter
+                ├── <span style="color:#ae81ff">0</span>.0.1
+                │   ├── sqlcommenter-java-0.0.1-javadoc.jar
+                │   ├── sqlcommenter-java-0.0.1-javadoc.jar.asc
+                │   ├── sqlcommenter-java-0.0.1-sources.jar
+                │   ├── sqlcommenter-java-0.0.1-sources.jar.asc
+                │   ├── sqlcommenter-java-0.0.1.jar
+                │   ├── sqlcommenter-java-0.0.1.jar.asc
+                │   └── sqlcommenter-java-0.0.1.pom
+                └── maven-metadata-local.xml</code></pre></div>
 <p>and then in your programs that use Maven, when building packages, please do</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">mvn install -nsu</code></pre></div>
 <p>to use look up local packages.</p>
 
+<h4 id="tests">Tests</h4>
+
+<p>Tests can be run by</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ ./gradlew test</code></pre></div>
 
 
     
@@ -450,7 +418,7 @@ BUILD SUCCESSFUL in 1s
 
   
     <ul>
-<li><a href="https://github.com/orijtech/sqlcommenter-website">Github</a></li>
+<li><a href="https://github.com/google/sqlcommenter/">Github</a></li>
 </ul>
 
 <h5 style="color: #fff">sqlcommenter</h5>
