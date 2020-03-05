@@ -12,10 +12,10 @@ gem 'opencensus', '~> 0.4.0'
 gem 'activerecord', '~> 6.0.0.rc1'
 gem 'actionpack', '~> 6.0.0.rc1'
 gem 'railties', '~> 6.0.0.rc1'
-gem 'bundler', '~> 2.0.1'
+gem 'bundler', '>= 2.0.1'
 
 gem 'sqlite3', '~> 1.4'
-gem 'puma', '~> 3.11'
+gem 'puma', '>= 3.12.4'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
