@@ -127,11 +127,13 @@ const sequelizeVersion = resolveSequelizeVersion();
  * 
  * @param {Object} sequelize
  * @param {Object} include A map of variables to include. If unset, we'll use default attributes.
+ * @param {Object} options - A configuration object specifying where to collect trace data from. Accepted fields are:
+ *  TraceProvider: Should be either 'OpenCensus' or 'OpenTelemetry', indicating which library to collect trace data from.
  * @return {Function} A middleware that is compatible with the express framework. 
  */
-exports.wrapSequelizeAsMiddleware = (sequelize, include=null) => {
+exports.wrapSequelizeAsMiddleware = (sequelize, include=null, options) => {
 
-    exports.wrapSequelize(sequelize, include);
+    exports.wrapSequelize(sequelize, include, options);
 
     return (req, res, next) => {
 

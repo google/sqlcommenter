@@ -25,4 +25,4 @@ exports.OpenCensusProvider = class OpenCensusProvider {
             return {};
         }
     }
-}
+};
