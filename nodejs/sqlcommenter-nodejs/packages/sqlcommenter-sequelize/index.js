@@ -12,14 +12,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-const {hasComment, toW3CTraceContext} = require('./util');
-const {tracer} = require('@opencensus/nodejs');
+const {hasComment} = require('./util');
+const {OpenCensusProvider, OpenTelemetryProvider} = require('./provider')
 
 const defaultFields = {
     'route': true,
     'tracestate': false,
     'traceparent': false,
 };
+
+const providerMap = {
+    'OpenCensus': new OpenCensusProvider(),
+    'OpenTelemetry': new OpenTelemetryProvider(),
+}
 
 /**
  * All available variables for the commenter are on the `util.fields` object
@@ -28,13 +33,23 @@ const defaultFields = {
  * 
  * @param {Object} sequelize 
  * @param {Object} includes a map of values to be optionally included.
+ * @param {Object} options - A configuration object specifying where to collect trace data from. Accepted fields are:
+ *  TraceProvider: Should be either 'OpenCensus' or 'OpenTelemetry', indicating which library to collect trace data from.
  * @return {void}
  */
-exports.wrapSequelize = (sequelize, include={}) => {
+exports.wrapSequelize = (sequelize, include={}, options={TraceProvider: 'OpenCensus'}) => {
 
     /* c8 ignore next 2 */
     if (sequelize.___alreadySQLCommenterWrapped___)
         return;
+    // Resolve trace provider
+    if (!options.TraceProvider) {
+        options.TraceProvider = 'OpenCensus'; // Default to OpenCensus
+    }
+    const traceProvider = providerMap[options.TraceProvider];
+    if (!traceProvider) {
+        traceProvider = OpenCensusProvider;
+    }
 
     const run = sequelize.dialect.Query.prototype.run;
 
@@ -58,9 +73,9 @@ exports.wrapSequelize = (sequelize, include={}) => {
             comments.route = req.route.path;
         }
 
-        if (tracer.active) {
-            toW3CTraceContext(tracer.currentRootSpan, comments);
-        }
+        // Add trace context to comments, depending on the current provider.
+        const traceContext = traceProvider.getW3CTraceContext();
+        Object.assign(comments, traceContext);
     
         // Filter out keys whose values are undefined or aren't to be included by default.
         const filtering = typeof include === 'object' && include && Object.keys(include).length > 0; 
