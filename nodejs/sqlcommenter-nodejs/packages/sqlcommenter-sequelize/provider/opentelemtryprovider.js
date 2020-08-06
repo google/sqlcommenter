@@ -12,8 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+const {trace} = require('@opentelemetry/api');
+
 exports.OpenTelemetryProvider = class OpenTelemetryProvider {
     getW3CTraceContext() {
-        return {};
+        let context = trace.getTracer('@opentelemetry/plugin-grpc').getCurrentSpan();
+        return {
+            traceId: context.traceId,
+            spanId: context.spanId,
+        };
     }
 };
