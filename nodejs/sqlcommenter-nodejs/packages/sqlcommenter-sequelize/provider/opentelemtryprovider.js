@@ -12,14 +12,29 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-const {trace} = require('@opentelemetry/api');
+const {trace, TraceFlags} = require('@opentelemetry/api');
+const {DEFAULT_INSTRUMENTATION_PLUGINS} = require('@opentelemetry/node/build/src/config');
 
 exports.OpenTelemetryProvider = class OpenTelemetryProvider {
     getW3CTraceContext() {
-        let context = trace.getTracer('@opentelemetry/plugin-grpc').getCurrentSpan();
-        return {
-            traceId: context.traceId,
-            spanId: context.spanId,
-        };
+        let spanContext = null;
+        // Collect a list of the default loaded nodejs tracers.
+        // The tracer names are required to retrieve the latest span.
+        let validPluginNames = Object.keys(DEFAULT_INSTRUMENTATION_PLUGINS)
+            .map((pluginName) => DEFAULT_INSTRUMENTATION_PLUGINS[pluginName])
+            .filter((pluginConfig) => pluginConfig && pluginConfig.enabled)
+            .map((pluginConfig) => pluginConfig.path);
+        validPluginNames.push('default');
+        validPluginNames.forEach((pluginPath) => {
+            let span = trace.getTracerProvider().getTracer(pluginPath).getCurrentSpan();
+            if (span) {
+                spanContext = span.context();
+            }
+        });
+
+        const traceParent = `00-${spanContext.traceId}-${spanContext.spanId}-0${
+            Number(spanContext.traceFlags || TraceFlags.NONE).toString(16)}`;
+
+        return { traceparent: traceParent };
     }
 };

@@ -32,7 +32,7 @@ const providerMap = {
  * the commenter output
  * 
  * @param {Object} sequelize 
- * @param {Object} includes a map of values to be optionally included.
+ * @param {Object} include -  a map of values to be optionally included.
  * @param {Object} options - A configuration object specifying where to collect trace data from. Accepted fields are:
  *  TraceProvider: Should be either 'OpenCensus' or 'OpenTelemetry', indicating which library to collect trace data from.
  * @return {void}
@@ -46,7 +46,7 @@ exports.wrapSequelize = (sequelize, include={}, options={TraceProvider: 'OpenCen
     if (!options.TraceProvider) {
         options.TraceProvider = 'OpenCensus'; // Default to OpenCensus
     }
-    const traceProvider = providerMap[options.TraceProvider];
+    let traceProvider = providerMap[options.TraceProvider];
     if (!traceProvider) {
         traceProvider = OpenCensusProvider;
     }

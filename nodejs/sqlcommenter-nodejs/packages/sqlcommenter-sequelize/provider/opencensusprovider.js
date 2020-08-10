@@ -18,9 +18,9 @@ const {toW3CTraceContext} = require('../util');
 exports.OpenCensusProvider = class OpenCensusProvider {
     getW3CTraceContext() {
         if (tracer.active) {
-            const traceContext = {};
-            toW3CTraceContext(tracer.currentRootSpan, traceContext);
-            return traceContext;
+            const carrier = {};
+            toW3CTraceContext(tracer.currentRootSpan, carrier);
+            return carrier;
         } else {
             return {};
         }

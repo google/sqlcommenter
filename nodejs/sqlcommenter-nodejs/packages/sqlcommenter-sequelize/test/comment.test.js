@@ -24,7 +24,11 @@ const {fields} = require('../util');
 const chai = require("chai");
 const expect = chai.expect;
 const seq_version = require('sequelize').version;
-const tracing = require('@opencensus/nodejs');
+const opencensus_tracing = require('@opencensus/nodejs');
+const {context, trace} = require('@opentelemetry/api');
+const {NodeTracerProvider} = require('@opentelemetry/node');
+const {AsyncHooksContextManager} = require('@opentelemetry/context-async-hooks');
+const {InMemorySpanExporter, SimpleSpanProcessor} = require('@opentelemetry/tracing');
 
 const createFakeSequelize = () => {
     return {
@@ -59,7 +63,7 @@ describe("Comments for Sequelize", () => {
     });
 
     after(() => {
-        tracing.stop();
+        opencensus_tracing.stop();
     });
 
     describe("Cases", () => {
@@ -142,7 +146,7 @@ describe("Excluding all variables", () => {
     });
 
     after(() => {
-        tracing.stop();
+        opencensus_tracing.stop();
     });
 
     it("when all variables are excluded, no comment should be generated", (done) => {
@@ -160,19 +164,19 @@ describe("Excluding all variables", () => {
     });
 });
 
-describe("With tracing", () => {
+describe("With OpenCensus tracing", () => {
 
     const fakeSequelize = createFakeSequelize();
 
     before(() => {
-        wrapSequelize(fakeSequelize, {traceparent: true, tracestate: true});
+        wrapSequelize(fakeSequelize, {traceparent: true, tracestate: true}, {TraceProvider: "OpenCensus"});
     });
 
     after(() => {
-            tracing.stop();
+            opencensus_tracing.stop();
     });
 
-    it('Starting a trace should produce `traceparent`', (done) => {
+    it('Starting an OpenCensus trace should produce `traceparent`', (done) => {
             // TODO: Follow-up with https://github.com/census-instrumentation/opencensus-node/issues/580
             // and get a proper guide or file bugs against the project to get the proper
             // way to retrieve spans. For now let's skip this test.
@@ -181,16 +185,54 @@ describe("With tracing", () => {
             const traceOptions = {
                 samplingRate: 1, // Always sample
             };
-            const tracer = tracing.start(traceOptions).tracer;
+            const tracer = opencensus_tracing.start(traceOptions).tracer;
 
             tracer.startRootSpan({ name: 'with-tracing' }, rootSpan => {
                 const sql = 'SELECT * FROM foo';
                 fakeSequelize.dialect.Query.prototype.run(sql).then((augmentedSQL) => {
                     const wantSQL = `SELECT * FROM foo /*traceparent='00-${rootSpan.traceId}-${rootSpan.id}-01'*/`;
                     expect(augmentedSQL).equals(wantSQL);
-                    tracing.tracer.stop();
+                    opencensus_tracing.tracer.stop();
                     done();
                 });
             });
+    });
+});
+
+describe("With OpenTelemetry tracing", () => {
+
+    const fakeSequelize = createFakeSequelize();
+
+    // Load OpenTelemetry components
+    const provider = new NodeTracerProvider();
+    const memoryExporter = new InMemorySpanExporter();
+    const spanProcessor = new SimpleSpanProcessor(memoryExporter);
+    provider.addSpanProcessor(spanProcessor);
+    const tracer = provider.getTracer('default');
+    trace.setGlobalTracerProvider(provider);
+    let contextManager;
+
+    before(() => {
+        contextManager = new AsyncHooksContextManager();
+        context.setGlobalContextManager(contextManager.enable());
+        wrapSequelize(fakeSequelize, {traceparent: true, tracestate: true}, {TraceProvider: "OpenTelemetry"});
+    });
+
+    after(() => {
+        memoryExporter.reset();
+        context.disable();
+    });
+
+    it('Starting an OpenTelemetry trace should produce `traceparent`', (done) => {
+        const rootSpan = tracer.startSpan('rootSpan');
+
+        tracer.withSpan(rootSpan,  async () => {
+            const sql = 'SELECT * FROM foo';
+            let augmentedSQL = await fakeSequelize.dialect.Query.prototype.run(sql);
+            const wantSQL = `SELECT * FROM foo /*traceparent='00-${rootSpan.context().traceId}-${rootSpan.context().spanId}-01'*/`;
+            expect(augmentedSQL).equals(wantSQL);
+            rootSpan.end();
+            done();
+        });
     });
 });
