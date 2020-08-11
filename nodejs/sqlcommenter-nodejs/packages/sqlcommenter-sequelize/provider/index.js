@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-const {OpenCensusProvider} = require('./opencensusprovider');
-const {OpenTelemetryProvider} = require('./opentelemtryprovider');
+const {OpenCensus} = require('./opencensus');
+const {OpenTelemetry} = require('./opentelemetry');
 
-exports.OpenCensusProvider = OpenCensusProvider;
-exports.OpenTelemetryProvider = OpenTelemetryProvider;
+exports.OpenCensusProvider = OpenCensus;
+exports.OpenTelemetryProvider = OpenTelemetry;

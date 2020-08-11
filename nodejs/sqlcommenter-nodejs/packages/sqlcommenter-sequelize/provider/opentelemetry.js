@@ -15,7 +15,7 @@
 const {trace, TraceFlags} = require('@opentelemetry/api');
 const {DEFAULT_INSTRUMENTATION_PLUGINS} = require('@opentelemetry/node/build/src/config');
 
-exports.OpenTelemetryProvider = class OpenTelemetryProvider {
+exports.OpenTelemetry = class OpenTelemetry {
     getW3CTraceContext() {
         let spanContext = null;
         // Collect a list of the default loaded nodejs tracers.

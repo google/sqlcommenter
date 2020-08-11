@@ -15,7 +15,7 @@
 const {tracer} = require('@opencensus/nodejs');
 const {toW3CTraceContext} = require('../util');
 
-exports.OpenCensusProvider = class OpenCensusProvider {
+exports.OpenCensus = class OpenCensus {
     getW3CTraceContext() {
         if (tracer.active) {
             const carrier = {};
