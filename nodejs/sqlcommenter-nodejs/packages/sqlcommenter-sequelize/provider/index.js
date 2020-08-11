@@ -15,5 +15,16 @@
 const {OpenCensus} = require('./opencensus');
 const {OpenTelemetry} = require('./opentelemetry');
 
-exports.OpenCensusProvider = OpenCensus;
-exports.OpenTelemetryProvider = OpenTelemetry;
+const providers = {
+    'opentelemetry': OpenTelemetry,
+    'opencensus': OpenCensus,
+}
+
+exports.attachComments = function attachComments(providerName, comments) {
+    // Verify we have a comments object to modify
+    if (!comments || !(typeof(comments) === 'object')) return;
+
+    // Lookup the provider by name, or use the default.
+    let provider = providers[String(providerName).toLowerCase()] || OpenCensus;
+    provider.addW3CTraceContext(comments);
+}

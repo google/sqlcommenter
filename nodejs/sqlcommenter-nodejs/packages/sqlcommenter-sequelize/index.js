@@ -13,18 +13,13 @@
 // limitations under the License.
 
 const {hasComment} = require('./util');
-const {OpenCensusProvider, OpenTelemetryProvider} = require('./provider')
+const provider = require('./provider');
 
 const defaultFields = {
     'route': true,
     'tracestate': false,
     'traceparent': false,
 };
-
-const providerMap = {
-    'OpenCensus': new OpenCensusProvider(),
-    'OpenTelemetry': new OpenTelemetryProvider(),
-}
 
 /**
  * All available variables for the commenter are on the `util.fields` object
@@ -37,30 +32,22 @@ const providerMap = {
  *  TraceProvider: Should be either 'OpenCensus' or 'OpenTelemetry', indicating which library to collect trace data from.
  * @return {void}
  */
-exports.wrapSequelize = (sequelize, include={}, options={TraceProvider: 'OpenCensus'}) => {
+exports.wrapSequelize = (sequelize, include={}, options={}) => {
 
     /* c8 ignore next 2 */
     if (sequelize.___alreadySQLCommenterWrapped___)
         return;
-    // Resolve trace provider
-    if (!options.TraceProvider) {
-        options.TraceProvider = 'OpenCensus'; // Default to OpenCensus
-    }
-    let traceProvider = providerMap[options.TraceProvider];
-    if (!traceProvider) {
-        traceProvider = OpenCensusProvider;
-    }
 
     const run = sequelize.dialect.Query.prototype.run;
 
     // Please don't change this prototype from an explicit function
     // to use arrow functions lest we'll get bugs with not resolving "this".
-    sequelize.dialect.Query.prototype.run = function(sql, options) {
+    sequelize.dialect.Query.prototype.run = function(sql, sql_options) {
 
         // If a comment already exists, do not insert a new one.
         // See internal issue #20.
         if (hasComment(sql)) // Just proceed with the next function ASAP
-            return run.apply(this, [sql, options]);
+            return run.apply(this, [sql, sql_options]);
 
         const comments = {
             client_timezone: this.sequelize.options.timezone,
@@ -73,9 +60,8 @@ exports.wrapSequelize = (sequelize, include={}, options={TraceProvider: 'OpenCen
             comments.route = req.route.path;
         }
 
-        // Add trace context to comments, depending on the current provider.
-        const traceContext = traceProvider.getW3CTraceContext();
-        Object.assign(comments, traceContext);
+        // Add trace context to comments, depending on the provider.
+        provider.attachComments(options.TraceProvider, comments);
     
         // Filter out keys whose values are undefined or aren't to be included by default.
         const filtering = typeof include === 'object' && include && Object.keys(include).length > 0; 
@@ -101,7 +87,7 @@ exports.wrapSequelize = (sequelize, include={}, options={TraceProvider: 'OpenCen
         if (commentStr && commentStr.length > 0)
             sql = `${sql} /*${commentStr}*/`;
         
-        return run.apply(this, [sql, options]);
+        return run.apply(this, [sql, sql_options]);
     }
 
     // Finally mark the object as having already been wrapped.

@@ -16,8 +16,8 @@ const {trace, TraceFlags} = require('@opentelemetry/api');
 const {DEFAULT_INSTRUMENTATION_PLUGINS} = require('@opentelemetry/node/build/src/config');
 
 exports.OpenTelemetry = class OpenTelemetry {
-    getW3CTraceContext() {
-        let spanContext = null;
+    static addW3CTraceContext(comments) {
+    let spanContext = null;
         // Collect a list of the default loaded nodejs tracers.
         // The tracer names are required to retrieve the latest span.
         let validPluginNames = Object.keys(DEFAULT_INSTRUMENTATION_PLUGINS)
@@ -35,6 +35,6 @@ exports.OpenTelemetry = class OpenTelemetry {
         const traceParent = `00-${spanContext.traceId}-${spanContext.spanId}-0${
             Number(spanContext.traceFlags || TraceFlags.NONE).toString(16)}`;
 
-        return { traceparent: traceParent };
+        return Object.assign(comments, { traceparent: traceParent });
     }
 };
