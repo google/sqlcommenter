@@ -12,29 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-const {trace, TraceFlags} = require('@opentelemetry/api');
-const {DEFAULT_INSTRUMENTATION_PLUGINS} = require('@opentelemetry/node/build/src/config');
+const {context, defaultSetter} = require('@opentelemetry/api');
+const {HttpTraceContext} = require('@opentelemetry/core')
 
 exports.OpenTelemetry = class OpenTelemetry {
     static addW3CTraceContext(comments) {
-    let spanContext = null;
-        // Collect a list of the default loaded nodejs tracers.
-        // The tracer names are required to retrieve the latest span.
-        let validPluginNames = Object.keys(DEFAULT_INSTRUMENTATION_PLUGINS)
-            .map((pluginName) => DEFAULT_INSTRUMENTATION_PLUGINS[pluginName])
-            .filter((pluginConfig) => pluginConfig && pluginConfig.enabled)
-            .map((pluginConfig) => pluginConfig.path);
-        validPluginNames.push('default');
-        validPluginNames.forEach((pluginPath) => {
-            let span = trace.getTracerProvider().getTracer(pluginPath).getCurrentSpan();
-            if (span) {
-                spanContext = span.context();
-            }
-        });
-
-        const traceParent = `00-${spanContext.traceId}-${spanContext.spanId}-0${
-            Number(spanContext.traceFlags || TraceFlags.NONE).toString(16)}`;
-
-        return Object.assign(comments, { traceparent: traceParent });
+        let propagator = new HttpTraceContext();
+        propagator.inject(context.active(), comments, defaultSetter);
     }
 };
