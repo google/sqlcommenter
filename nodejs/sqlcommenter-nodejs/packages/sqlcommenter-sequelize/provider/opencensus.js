@@ -15,10 +15,8 @@
 const {tracer} = require('@opencensus/nodejs');
 const {toW3CTraceContext} = require('../util');
 
-exports.OpenCensus = class OpenCensus {
-    static addW3CTraceContext(comments) {
-        if (tracer.active) {
-            toW3CTraceContext(tracer.currentRootSpan, comments);
-        }
+exports.addW3CTraceContext = function(comments) {
+    if (tracer.active) {
+        toW3CTraceContext(tracer.currentRootSpan, comments);
     }
 };

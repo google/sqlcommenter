@@ -12,10 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-const {context, defaultSetter} = require('@opentelemetry/api');
-const {HttpTraceContext} = require('@opentelemetry/core')
+// This module enables pre-configuring rewiremock for all test cases, rather than repeatedly configuring in each test
 
-exports.addW3CTraceContext = function(comments) {
-    let propagator = new HttpTraceContext();
-    propagator.inject(context.active(), comments, defaultSetter);
-};
+const rewiremock = require('rewiremock/node');
+// nothng more than `plugins.node`, but it might change how filename resolution works
+
+rewiremock.overrideEntryPoint(module);
+module.exports = rewiremock;
