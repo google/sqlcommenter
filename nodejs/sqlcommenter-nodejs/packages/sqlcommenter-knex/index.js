@@ -32,7 +32,7 @@ const defaultFields = {
  *  TraceProvider: Should be either 'OpenCensus' or 'OpenTelemetry', indicating which library to collect trace data from.
  * @return {void}
  */
-exports.wrapMainKnex = (Knex, include={}, options={TraceProvider: 'OpenCensus'}) => {
+exports.wrapMainKnex = (Knex, include={}, options={}) => {
 
     /* c8 ignore next 2 */
     if (Knex.___alreadySQLCommenterWrapped___)
