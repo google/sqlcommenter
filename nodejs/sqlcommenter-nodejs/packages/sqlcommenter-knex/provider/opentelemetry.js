@@ -12,19 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-const OpenCensus = require('./opencensus');
-const OpenTelemetry = require('./opentelemetry');
+const {context, defaultSetter} = require('@opentelemetry/api');
+const {HttpTraceContext} = require('@opentelemetry/core')
 
-const providers = {
-    'opentelemetry': OpenTelemetry,
-    'opencensus': OpenCensus,
-}
-
-exports.attachComments = function attachComments(providerName, comments) {
-    // Verify we have a comments object to modify
-    if (!comments || typeof comments !== 'object') return;
-
-    // Lookup the provider by name, or use the default.
-    let provider = providers[String(providerName).toLowerCase()] || OpenCensus;
-    provider.addW3CTraceContext(comments);
-}
+exports.addW3CTraceContext = function(comments) {
+    let propagator = new HttpTraceContext();
+    propagator.inject(context.active(), comments, defaultSetter);
+};

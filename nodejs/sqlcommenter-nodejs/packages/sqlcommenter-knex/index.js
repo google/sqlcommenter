@@ -12,19 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-const {hasComment, toW3CTraceContext} = require('./util');
-const {OpenCensusProvider, OpenTelemetryProvider} = require('./provider')
+const {hasComment} = require('./util');
+const provider = require('./provider');
 
 const defaultFields = {
     'route': true,
     'tracestate': false,
     'traceparent': false,
 };
-
-const providerMap = {
-    'OpenCensus': new OpenCensusProvider(),
-    'OpenTelemetry': new OpenTelemetryProvider(),
-}
 
 /**
  * All available variables for the commenter are on the `util.fields` object
@@ -68,15 +63,6 @@ exports.wrapMainKnex = (Knex, include={}, options={TraceProvider: 'OpenCensus'})
             db_driver: `knex:${knexVersion}`
         };
 
-        // Resolve trace provider
-        if (!options.TraceProvider) {
-            options.TraceProvider = 'OpenCensus'; // Default to OpenCensus
-        }
-        let traceProvider = providerMap[options.TraceProvider];
-        if (!traceProvider) {
-            traceProvider = OpenCensusProvider;
-        }
-
         // TODO: Perhaps remove uuid as it is highly ephemeral?
         // comments.uuid = obj.__knexQueryUid;
 
@@ -90,8 +76,7 @@ exports.wrapMainKnex = (Knex, include={}, options={TraceProvider: 'OpenCensus'})
         }
 
         // Add trace context to comments, depending on the current provider.
-        const traceContext = traceProvider.getW3CTraceContext();
-        Object.assign(comments, traceContext);
+        provider.attachComments(options.TraceProvider, comments);
 
         const filtering = typeof include === 'object' && include && Object.keys(include).length > 0; 
         // Filter out keys whose values are undefined or aren't to be included by default.

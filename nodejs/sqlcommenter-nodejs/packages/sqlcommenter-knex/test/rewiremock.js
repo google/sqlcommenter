@@ -1,4 +1,4 @@
-// Copyright 2019 Google LLC
+// Copyright 2020 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,17 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-const {tracer} = require('@opencensus/nodejs');
-const {toW3CTraceContext} = require('../util');
+// This module enables pre-configuring rewiremock for all test cases, rather than repeatedly configuring in each test
 
-exports.OpenCensusProvider = class OpenCensusProvider {
-    getW3CTraceContext() {
-        if (tracer.active) {
-            const carrier = {};
-            toW3CTraceContext(tracer.currentRootSpan, carrier);
-            return carrier;
-        } else {
-            return {};
-        }
-    }
-};
+const rewiremock = require('rewiremock/node');
+// nothng more than `plugins.node`, but it might change how filename resolution works
+
+rewiremock.overrideEntryPoint(module);
+module.exports = rewiremock;

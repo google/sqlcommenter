@@ -9,14 +9,18 @@
   "devDependencies": {
     "@opencensus/nodejs": "^0.0.22",
     "@opencensus/propagation-tracecontext": "^0.0.15",
-    "@opentelemetry/core": "^0.10.1",
     "@opentelemetry/api": "^0.10.1",
+    "@opentelemetry/core": "^0.10.1",
     "@opentelemetry/node": "^0.10.2",
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
     "express": "^4.17.0",
     "knex": "^0.19.5",
-    "mocha": "^6.1.4"
+    "mocha": "^6.1.4",
+    "rewiremock": "^3.14.3",
+    "sequelize": "^6.3.3",
+    "sinon": "^9.0.3",
+    "sinon-chai": "^3.5.0"
   },
   "engines": {
     "node": ">=6.0.0"
