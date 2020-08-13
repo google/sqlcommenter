@@ -78,6 +78,7 @@ const latestSpan = (span) => {
  * @return {void}
  */
 exports.toW3CTraceContext = (span, dst) => {
+    // TODO: check if tracer.currentRootSpan can be null/undefined when tracer is active
     const curSpan = latestSpan(span);
     if (!curSpan)
         return dst;

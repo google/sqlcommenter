@@ -15,9 +15,13 @@
 "use strict";
 
 const {wrapMainKnex} = require('../index');
-const tracing = require('@opencensus/nodejs');
+const opencensus_tracing = require('@opencensus/nodejs');
 const chai = require("chai");
 const {fields} = require('../util');
+const {context, trace} = require('@opentelemetry/api');
+const {NodeTracerProvider} = require('@opentelemetry/node');
+const {AsyncHooksContextManager} = require('@opentelemetry/context-async-hooks');
+const {InMemorySpanExporter, SimpleSpanProcessor} = require('@opentelemetry/tracing');
 
 const expect = chai.expect;
 
@@ -112,7 +116,7 @@ describe("Comments for Knex", () => {
 });
 
 
-describe("With tracing", () => {
+describe("With OpenCensus tracing", () => {
 
     let fakeKnex = {
         Client: {
@@ -130,16 +134,16 @@ describe("With tracing", () => {
     };
 
     before(() => {
-        wrapMainKnex(fakeKnex, {db_driver: true, traceparent: true, tracestate: true});
+        wrapMainKnex(fakeKnex, {db_driver: true, traceparent: true, tracestate: true}, {TraceProvider: "OpenCensus"});
     });
 
-    it('Starting a trace should produce `traceparent`', (done) => {
+    it('Starting an OpenCensus trace should produce `traceparent`', (done) => {
             // Let's remember  https://github.com/census-instrumentation/opencensus-node/issues/580
 
             const traceOptions = {
                 samplingRate: 1, // Always sample
             };
-            const tracer = tracing.start(traceOptions).tracer;
+            const tracer = opencensus_tracing.start(traceOptions).tracer;
 
             tracer.startRootSpan({ name: 'with-tracing' }, rootSpan => {
                 const obj = {sql: 'SELECT * FROM foo'};
@@ -147,9 +151,62 @@ describe("With tracing", () => {
                     const augmentedSQL = got.sql;
                     const wantSQL = `SELECT * FROM foo /*db_driver='knex%3Afake%3A0.0.1',traceparent='00-${rootSpan.traceId}-${rootSpan.id}-01'*/`;
                     expect(augmentedSQL).equals(wantSQL);
-                    tracing.tracer.stop();
+                    opencensus_tracing.tracer.stop();
                     done();
                 });
             });
+    });
+});
+
+describe("With OpenTelemetry tracing", () => {
+
+    let fakeKnex = {
+        Client: {
+            prototype: {
+                config: { connection: { database: 'fake'}, client: 'fakesql'},
+                version: 'fake-server:0.0.X',
+                query: (conn, obj) => {
+                    return Promise.resolve(obj); // simply returns a resolved promise for inspection.
+                }
+            }
+        },
+        VERSION: () => {
+            return 'fake:0.0.1';
+        }
+    };
+
+    // Load OpenTelemetry components
+    const provider = new NodeTracerProvider();
+    const memoryExporter = new InMemorySpanExporter();
+    const spanProcessor = new SimpleSpanProcessor(memoryExporter);
+    provider.addSpanProcessor(spanProcessor);
+    const tracer = provider.getTracer('default');
+    trace.setGlobalTracerProvider(provider);
+    let contextManager;
+
+    before(() => {
+        contextManager = new AsyncHooksContextManager();
+        context.setGlobalContextManager(contextManager.enable());
+        wrapMainKnex(fakeKnex, {db_driver: true, traceparent: true, tracestate: true}, {TraceProvider: "OpenTelemetry"});
+    });
+
+    after(() => {
+        memoryExporter.reset();
+        context.disable();
+    });
+
+    it('Starting an OpenTelemetry trace should produce `traceparent`', (done) => {
+        const rootSpan = tracer.startSpan('rootSpan');
+
+        tracer.withSpan(rootSpan,  async () => {
+            const obj = {sql: 'SELECT * FROM foo'};
+            fakeKnex.Client.prototype.query(null, obj).then((got) => {
+                const augmentedSQL = got.sql;
+                const wantSQL = `SELECT * FROM foo /*db_driver='knex%3Afake%3A0.0.1',traceparent='00-${rootSpan.context().traceId}-${rootSpan.context().spanId}-01'*/`;
+                expect(augmentedSQL).equals(wantSQL);
+                rootSpan.end();
+                done();
+            });
+        });
     });
 });

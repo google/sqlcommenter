@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-const {tracer} = require('@opencensus/nodejs');
-const {hasComment, toW3CTraceContext} = require('./util');
+const {hasComment} = require('./util');
+const provider = require('./provider');
 
 const defaultFields = {
     'route': true,
@@ -27,10 +27,12 @@ const defaultFields = {
  * the commenter output
  * 
  * @param {Object} Knex
- * @param {Object} includes a map of values to be optionally included.
+ * @param {Object} include - A map of values to be optionally included.
+ * @param {Object} options - A configuration object specifying where to collect trace data from. Accepted fields are:
+ *  TraceProvider: Should be either 'OpenCensus' or 'OpenTelemetry', indicating which library to collect trace data from.
  * @return {void}
  */
-exports.wrapMainKnex = (Knex, include={}) => {
+exports.wrapMainKnex = (Knex, include={}, options={}) => {
 
     /* c8 ignore next 2 */
     if (Knex.___alreadySQLCommenterWrapped___)
@@ -73,10 +75,8 @@ exports.wrapMainKnex = (Knex, include={}) => {
             // Knex.__req__ = null;
         }
 
-        if (tracer.active) {
-            // TODO: check if tracer.currentRootSpan can be null/undefined when tracer is active
-            toW3CTraceContext(tracer.currentRootSpan, comments);
-        }
+        // Add trace context to comments, depending on the current provider.
+        provider.attachComments(options.TraceProvider, comments);
 
         const filtering = typeof include === 'object' && include && Object.keys(include).length > 0; 
         // Filter out keys whose values are undefined or aren't to be included by default.
@@ -140,12 +140,14 @@ const getKnexVersion = (Knex) => {
  * only being included in the comment.
  * 
  * @param {Object} Knex 
- * @param {Object} include A map of variables to include. If unset, we'll use default attributes.
+ * @param {Object} include - A map of variables to include. If unset, we'll use default attributes.
+ * @param {Object} options - A configuration object specifying where to collect trace data from. Accepted fields are:
+ *  TraceProvider: Should be either 'OpenCensus' or 'OpenTelemetry', indicating which library to collect trace data from.
  * @return {Function} A middleware that is compatible with the express framework.
  */
-exports.wrapMainKnexAsMiddleware = (Knex, include=null) => {
+exports.wrapMainKnexAsMiddleware = (Knex, include=null, options) => {
 
-    exports.wrapMainKnex(Knex, include);
+    exports.wrapMainKnex(Knex, include, options);
 
     return (req, res, next) => {
 
