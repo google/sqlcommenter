@@ -30,6 +30,7 @@ RSpec.describe 'Integration tests', type: :feature do
 
   it 'appends OpenCensus information to the query on request' do
     visit internal_app_simple_query_path
+    puts @queries[0]
     expect(@queries[0]).to(
       match(%r{
         SELECT[ ]1;[ ]/\*
@@ -39,7 +40,7 @@ RSpec.describe 'Integration tests', type: :feature do
         db_driver='ActiveRecord::ConnectionAdapters::SQLite3Adapter',
         framework='rails_v[^']+',
         route='/simple_query',
-        trace_parent='[0-9]{2}-[a-z0-9]{32}-[a-z0-9]{16}-[0-9]{2}'
+        traceparent='[0-9]{2}-[a-z0-9]{32}-[a-z0-9]{16}-[0-9]{2}'
         \*/
       }x)
     )
