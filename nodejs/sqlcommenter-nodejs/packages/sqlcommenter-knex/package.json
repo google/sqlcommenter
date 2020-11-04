@@ -1,6 +1,6 @@
 {
   "name": "@google-cloud/sqlcommenter-knex",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Middleware and wrappers to correlate SQL statements from Knex.js and Express.js",
   "main": "index.js",
   "directories": {
