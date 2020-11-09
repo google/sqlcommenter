@@ -5,23 +5,28 @@
   "description": "A sample app express.js app demonstrating SQLCommenter OpenTelemetry integration",
   "main": "index.js",
   "scripts": {
+    "preinstall": "for package_dir in ../../packages/sqlcommenter-*; do pushd $package_dir; npm pack; popd; done",
     "createTodos": "node -e \"const {createSomeTodos} = require('./sequelizeModels');createSomeTodos().then(console.log).catch(console.error)\"",
-    "sequelizeServer": "node sequelizeServer.js"
+    "sequelizeServer": "node sequelizeServer.js",
+    "knexServer": "DEBUG=knex:query node knexServer.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@google-cloud/opentelemetry-cloud-trace-exporter": "^0.6.0",
-    "@google-cloud/sqlcommenter-sequelize": "file:../../packages/sqlcommenter-sequelize",
+    "@google-cloud/sqlcommenter-knex": "file:../../packages/sqlcommenter-knex/google-cloud-sqlcommenter-knex-0.0.3.tgz",
+    "@google-cloud/sqlcommenter-sequelize": "file:../../packages/sqlcommenter-sequelize/google-cloud-sqlcommenter-sequelize-0.0.3.tgz",
+    "@opencensus/nodejs": "0.0.22",
     "@opencensus/propagation-tracecontext": "0.0.22",
     "@opentelemetry/core": "^0.12.0",
     "@opentelemetry/node": "^0.12.0",
-    "@opentelemetry/plugin-express": "^0.10.0",
+    "@opentelemetry/plugin-express": "^0.11.0",
     "@opentelemetry/plugin-http": "^0.12.0",
     "@opentelemetry/plugin-pg": "^0.11.0",
     "@opentelemetry/plugin-pg-pool": "^0.11.0",
     "@opentelemetry/tracing": "^0.12.0",
     "express": "^4.17.1",
+    "knex": "^0.21.12",
     "pg": "^8.4.2",
     "pg-hstore": "^2.3.3",
     "sequelize": "^6.3.5"

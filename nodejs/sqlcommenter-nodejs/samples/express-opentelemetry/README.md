@@ -7,7 +7,8 @@ OpenTelemetry trace and span ID to the queries for correlation.
 
 ## Running
 
-This example reads some environment variables to connect to a Cloud SQL database.
+The examples read some environment variables to connect to a Cloud SQL
+database.
 
 - `DBHOST` - The hostname, ip, or path to unix socket directory for Cloud SQL
 database. For example, if you are using Cloud SQL proxy with a unix socket,
@@ -24,13 +25,22 @@ $ export DBPASSWORD="<database password>"
 $ export DBDIALECT="<postgres | mysql>"
 $ npm install
 
-# on first run, create some data
+# before the first run, create some data
 $ npm run createTodos
+```
 
-# run the sequelize server
+To run the sequelize server example:
+```bash
 $ npm run sequelizeServer
+```
 
-# in a separate terminal
+Or run the knex server:
+```bash
+$ npm run knexServer
+```
+
+In a separate terminal, hit the server with `curl` and check the output:
+```bash
 $ curl http://localhost:8000
 {"todos":[{"id":11,"title":"Do dishes","description":null,"done":false,"createdAt":"2020-11-06T01:59:50.111Z","updatedAt":"2020-11-06T01:59:50.111Z"},{"id":12,"title":"Buy groceries","description":null,"done":false,"createdAt":"2020-11-06T01:59:50.111Z","updatedAt":"2020-11-06T01:59:50.111Z"},{"id":13,"title":"Do laundry","description":"Finish before Thursday!","done":false,"createdAt":"2020-11-06T01:59:50.111Z","updatedAt":"2020-11-06T01:59:50.111Z"},{"id":14,"title":"Clean room","description":null,"done":false,"createdAt":"2020-11-06T01:59:50.111Z","updatedAt":"2020-11-06T01:59:50.111Z"},{"id":15,"title":"Wash car","description":null,"done":false,"createdAt":"2020-11-06T01:59:50.112Z","updatedAt":"2020-11-06T01:59:50.112Z"}]}
 
