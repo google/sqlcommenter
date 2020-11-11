@@ -4,11 +4,12 @@ const Knex = require("knex");
 const sqlcommenterMiddleware = wrapMainKnexAsMiddleware(
   Knex,
   {
-    client_timezone: true,
-    db_driver: true,
-    route: true,
     traceparent: true,
     tracestate: true,
+
+    // These are optional and will cause a high cardinality burst traced queries
+    db_driver: false,
+    route: false,
   },
   { TraceProvider: "OpenTelemetry" }
 );

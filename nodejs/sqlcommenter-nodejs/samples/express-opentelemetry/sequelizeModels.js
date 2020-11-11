@@ -15,11 +15,13 @@ const sequelize = new Sequelize(
 const sqlcommenterMiddleware = wrapSequelizeAsMiddleware(
   sequelize,
   {
-    client_timezone: true,
-    db_driver: true,
-    route: true,
     traceparent: true,
     tracestate: true,
+
+    // These are optional and will cause a high cardinality burst traced queries
+    client_timezone: false,
+    db_driver: false,
+    route: false,
   },
   { TraceProvider: "OpenTelemetry" }
 );
