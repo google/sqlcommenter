@@ -8,10 +8,10 @@
   },
   "devDependencies": {
     "@opencensus/nodejs": "^0.0.22",
-    "@opencensus/propagation-tracecontext": "^0.0.15",
-    "@opentelemetry/api": "^0.10.1",
-    "@opentelemetry/core": "^0.10.1",
-    "@opentelemetry/node": "^0.10.2",
+    "@opencensus/propagation-tracecontext": "^0.0.22",
+    "@opentelemetry/api": "^0.12.0",
+    "@opentelemetry/core": "^0.12.0",
+    "@opentelemetry/node": "^0.12.0",
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
     "express": "^4.17.0",
@@ -21,6 +21,11 @@
     "sequelize": "^6.3.3",
     "sinon": "^9.0.3",
     "sinon-chai": "^3.5.0"
+  },
+  "peerDependencies": {
+    "@opencensus/nodejs": "^0.0.22",
+    "@opencensus/propagation-tracecontext": "^0.0.22",
+    "@opentelemetry/core": "^0.12.0"
   },
   "engines": {
     "node": ">=6.0.0"
