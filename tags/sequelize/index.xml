@@ -17,7 +17,7 @@
       <pubDate>Wed, 29 May 2019 08:40:11 -0600</pubDate>
       
       <guid>https://google.github.io/sqlcommenter/node/sequelize/</guid>
-      <description>Introduction Requirements Installation  Manually Package manager  Usage  Plain sequelize wrapper Express middleware  Fields  Options  Options   End to end example  Source code Results  References  Introduction This package is in the form of Sequelize.Client.prototype.query wrapper whose purpose is to augment a SQL statement right before execution, with information about the controller and user code to help correlate them with SQL statements emitted by Sequelize.</description>
+      <description>Requirements Installation  Manually Package manager  Usage  Plain sequelize wrapper Express middleware  Fields  Options include config options config Options examples  End to end examples  Source code Results References   Introduction This package is in the form of Sequelize.Client.prototype.query wrapper whose purpose is to augment a SQL statement right before execution, with information about the controller and user code to help correlate them with SQL statements emitted by Sequelize.</description>
     </item>
     
   </channel>

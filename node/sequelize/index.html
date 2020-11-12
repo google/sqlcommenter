@@ -303,7 +303,6 @@
 <p><img src="https://google.github.io/sqlcommenter/images/sequelize-logo.png" alt="" /></p>
 
 <ul>
-<li><a href="#introduction">Introduction</a></li>
 <li><a href="#requirements">Requirements</a></li>
 <li><a href="#installation">Installation</a>
 
@@ -320,19 +319,18 @@
 <li><a href="#fields">Fields</a>
 
 <ul>
-<li><a href="#options">Options</a>
-
-<ul>
-<li><a href="#options-example">Options</a></li>
+<li><a href="#options">Options</a></li>
+<li><a href="#include-config"><code>include</code> config</a></li>
+<li><a href="#options-config"><code>options</code> config</a></li>
+<li><a href="#options-examples">Options examples</a></li>
 </ul></li>
-</ul></li>
-<li><a href="#end-to-example">End to end example</a>
+<li><a href="#end-to-end-examples">End to end examples</a>
 
 <ul>
 <li><a href="#source-code">Source code</a></li>
 <li><a href="#results">Results</a></li>
-</ul></li>
 <li><a href="#references">References</a></li>
+</ul></li>
 </ul>
 
 <h4 id="introduction">Introduction</h4>
@@ -441,17 +439,36 @@ information about the controller and user code to help correlate them with SQL s
 <tr>
 <td><code>route</code></td>
 <td><code>&lt;the route used&gt;</code></td>
-<td>The URL-quoted route used to match the express.js controller</td>
+<td>URL quoted route used to match the express.js controller</td>
 <td><code>route='%5E%2Fpolls%2F</code></td>
+</tr>
+
+<tr>
+<td><code>traceparent</code></td>
+<td><code>&lt;traceparent header&gt;</code></td>
+<td>URL quoted <a href="https://www.w3.org/TR/trace-context/#traceparent-header">W3C <code>traceparent</code> header</a></td>
+<td><code>traceparent='00-3e2914ebce6af09508dd1ff1128493a8-81d09ab4d8cde7cf-01'</code></td>
+</tr>
+
+<tr>
+<td><code>tracestate</code></td>
+<td><code>&lt;tracestate header&gt;</code></td>
+<td>URL quoted <a href="https://www.w3.org/TR/trace-context/#tracestate-header">W3C <code>tracestate</code> header</a></td>
+<td><code>tracestate='rojo%253D00f067aa0ba902b7%2Ccongo%253Dt61rcWkgMzE'</code></td>
 </tr>
 </tbody>
 </table>
 
 <h4 id="options">Options</h4>
 
-<p>When creating the middleware, one can optionally toggle attributes to be set in the comments by passing in the option <code>include</code> which is a map</p>
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75af00">wrapMainSequelizeAsMiddleware</span><span style="color:#111">(</span><span style="color:#75af00">Sequelize</span><span style="color:#111">,</span> <span style="color:#75af00">include</span><span style="color:#f92672">=</span><span style="color:#111">{...});</span>
+<p>When creating the middleware, one can optionally configure the injected
+comments by passing in the <code>include</code> and <code>options</code> objects:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75af00">wrapMainSequelizeAsMiddleware</span><span style="color:#111">(</span><span style="color:#75af00">Sequelize</span><span style="color:#111">,</span> <span style="color:#75af00">include</span><span style="color:#f92672">=</span><span style="color:#111">{...},</span> <span style="color:#75af00">options</span><span style="color:#f92672">=</span><span style="color:#111">{...});</span>
 </code></pre></div>
+<h5 id="include-config"><code>include</code> config</h5>
+
+<p>A map of values to be optionally included in the SQL comments.</p>
+
 <table>
 <thead>
 <tr>
@@ -463,27 +480,54 @@ information about the controller and user code to help correlate them with SQL s
 <tbody>
 <tr>
 <td>client_timezone</td>
-<td>No</td>
+<td><div style="text-align: center">&#10060;</div>
+</td>
 </tr>
 
 <tr>
 <td>db_driver</td>
-<td>No</td>
+<td><div style="text-align: center">&#10060;</div>
+</td>
 </tr>
 
 <tr>
 <td>route</td>
-<td>Yes</td>
-</tr>
-
-<tr>
-<td>tracestate</td>
-<td>Yes</td>
+<td><div style="text-align: center">&#10004;</div>
+</td>
 </tr>
 
 <tr>
 <td>traceparent</td>
-<td>Yes</td>
+<td><div style="text-align: center">&#10060;</div>
+</td>
+</tr>
+
+<tr>
+<td>tracestate</td>
+<td><div style="text-align: center">&#10060;</div>
+</td>
+</tr>
+</tbody>
+</table>
+
+<h5 id="options-config"><code>options</code> config</h5>
+
+<p>A configuration object specifying where to collect trace data from. Accepted
+fields are: TraceProvider: Should be either <code>OpenCensus</code> or <code>OpenTelemetry</code>,
+indicating which library to collect trace context from.</p>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Possible values</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>TraceProvider</td>
+<td><code>OpenCensus</code> or <code>OpenTelemetry</code></td>
 </tr>
 </tbody>
 </table>
@@ -518,29 +562,34 @@ information about the controller and user code to help correlate them with SQL s
   <span class="tabs-body">
     
 
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75af00">wrapMainSequelizeAsMiddleware</span><span style="color:#111">(</span><span style="color:#75af00">Sequelize</span><span style="color:#111">,</span> <span style="color:#75af00">include</span><span style="color:#f92672">=</span><span style="color:#111">{</span>
-    <span style="color:#75af00">traceparent</span><span style="color:#f92672">:</span> <span style="color:#00a8c8">true</span><span style="color:#111">,</span>
-    <span style="color:#75af00">tracestate</span><span style="color:#f92672">:</span> <span style="color:#00a8c8">true</span>
-<span style="color:#111">});</span>
-</code></pre></div>
-
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75af00">wrapMainSequelizeAsMiddleware</span><span style="color:#111">(</span><span style="color:#75af00">Sequelize</span><span style="color:#111">,</span> <span style="color:#75af00">include</span><span style="color:#f92672">=</span><span style="color:#111">{</span><span style="color:#75af00">route</span><span style="color:#f92672">:</span> <span style="color:#00a8c8">true</span><span style="color:#111">});</span>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75af00">wrapMainSequelizeAsMiddleware</span><span style="color:#111">(</span>
+    <span style="color:#75af00">Sequelize</span><span style="color:#111">,</span>
+    <span style="color:#75af00">include</span><span style="color:#f92672">=</span><span style="color:#111">{</span> <span style="color:#75af00">traceparent</span><span style="color:#f92672">:</span> <span style="color:#00a8c8">true</span><span style="color:#111">,</span> <span style="color:#75af00">tracestate</span><span style="color:#f92672">:</span> <span style="color:#00a8c8">true</span> <span style="color:#111">},</span>
+    <span style="color:#75af00">options</span><span style="color:#f92672">=</span><span style="color:#111">{</span> <span style="color:#75af00">TraceProvider</span><span style="color:#f92672">:</span> <span style="color:#d88200">&#39;OpenTelemetry&#39;</span> <span style="color:#111">}</span>
+<span style="color:#111">);</span>
 </code></pre></div>
 
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75af00">wrapMainSequelizeAsMiddleware</span><span style="color:#111">(</span><span style="color:#75af00">Sequelize</span><span style="color:#111">,</span> <span style="color:#75af00">include</span><span style="color:#f92672">=</span><span style="color:#111">{</span><span style="color:#75af00">client_timezone</span><span style="color:#f92672">:</span> <span style="color:#00a8c8">true</span><span style="color:#111">});</span>
+</code></pre></div>
+
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75af00">wrapMainSequelizeAsMiddleware</span><span style="color:#111">(</span><span style="color:#75af00">Sequelize</span><span style="color:#111">,</span> <span style="color:#75af00">include</span><span style="color:#f92672">=</span><span style="color:#111">{</span><span style="color:#75af00">route</span><span style="color:#f92672">:</span> <span style="color:#00a8c8">true</span><span style="color:#111">});</span>
 </code></pre></div>
 
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75af00">wrapMainSequelizeAsMiddleware</span><span style="color:#111">(</span><span style="color:#75af00">Sequelize</span><span style="color:#111">,</span> <span style="color:#75af00">include</span><span style="color:#f92672">=</span><span style="color:#111">{</span><span style="color:#75af00">db_driver</span><span style="color:#f92672">:</span> <span style="color:#00a8c8">true</span><span style="color:#111">});</span>
 </code></pre></div>
 
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// Manually set all the variables.
-</span><span style="color:#75715e"></span><span style="color:#75af00">wrapMainSequelizeAsMiddleware</span><span style="color:#111">(</span><span style="color:#75af00">Sequelize</span><span style="color:#111">,</span> <span style="color:#75af00">include</span><span style="color:#f92672">=</span><span style="color:#111">{</span>
-    <span style="color:#75af00">client_timezone</span><span style="color:#f92672">:</span> <span style="color:#00a8c8">true</span><span style="color:#111">,</span>
-    <span style="color:#75af00">db_driver</span><span style="color:#f92672">:</span> <span style="color:#00a8c8">true</span><span style="color:#111">,</span>
-    <span style="color:#75af00">route</span><span style="color:#f92672">:</span> <span style="color:#00a8c8">true</span><span style="color:#111">,</span>
-    <span style="color:#75af00">traceparent</span><span style="color:#f92672">:</span> <span style="color:#00a8c8">true</span><span style="color:#111">,</span>
-    <span style="color:#75af00">tracestate</span><span style="color:#f92672">:</span> <span style="color:#00a8c8">true</span><span style="color:#111">,</span>
-<span style="color:#111">});</span>
+</span><span style="color:#75715e"></span><span style="color:#75af00">wrapMainSequelizeAsMiddleware</span><span style="color:#111">(</span>
+    <span style="color:#75af00">Sequelize</span><span style="color:#111">,</span>
+    <span style="color:#75af00">include</span><span style="color:#f92672">=</span><span style="color:#111">{</span>
+        <span style="color:#75af00">client_timezone</span><span style="color:#f92672">:</span> <span style="color:#00a8c8">true</span><span style="color:#111">,</span>
+        <span style="color:#75af00">db_driver</span><span style="color:#f92672">:</span> <span style="color:#00a8c8">true</span><span style="color:#111">,</span>
+        <span style="color:#75af00">route</span><span style="color:#f92672">:</span> <span style="color:#00a8c8">true</span><span style="color:#111">,</span>
+        <span style="color:#75af00">traceparent</span><span style="color:#f92672">:</span> <span style="color:#00a8c8">true</span><span style="color:#111">,</span>
+        <span style="color:#75af00">tracestate</span><span style="color:#f92672">:</span> <span style="color:#00a8c8">true</span><span style="color:#111">,</span>
+    <span style="color:#111">},</span>
+    <span style="color:#75af00">options</span><span style="color:#f92672">=</span><span style="color:#111">{</span> <span style="color:#75af00">TraceProvider</span><span style="color:#f92672">:</span> <span style="color:#d88200">&#39;OpenTelemetry&#39;</span> <span style="color:#111">}</span>
+<span style="color:#111">);</span>
 </code></pre></div>
 
 
@@ -549,6 +598,9 @@ information about the controller and user code to help correlate them with SQL s
 
 
 <h3 id="end-to-end-examples">End to end examples</h3>
+
+<p>Check out a full express + opentelemetry example
+<a href="https://github.com/google/sqlcommenter/tree/master/nodejs/sqlcommenter-nodejs/samples/express-opentelemetry">here</a>.</p>
 
 <h4 id="source-code">Source code</h4>
 
@@ -560,15 +612,19 @@ information about the controller and user code to help correlate them with SQL s
       </li>
     
       <li class="tab col s3">
-        <a href="#1">With Route</a>
+        <a href="#1">With OpenTelemetry</a>
       </li>
     
       <li class="tab col s3">
-        <a href="#2">With DB Driver and CLIENT TIMEZONE</a>
+        <a href="#2">With Route</a>
       </li>
     
       <li class="tab col s3">
-        <a href="#3">With All Options Set</a>
+        <a href="#3">With DB Driver and CLIENT TIMEZONE</a>
+      </li>
+    
+      <li class="tab col s3">
+        <a href="#4">With All Options Set</a>
       </li>
     
   </ul>
@@ -606,11 +662,11 @@ information about the controller and user code to help correlate them with SQL s
 <span style="color:#00a8c8">const</span> <span style="color:#75af00">port</span> <span style="color:#f92672">=</span> <span style="color:#75af00">process</span><span style="color:#111">.</span><span style="color:#75af00">env</span><span style="color:#111">.</span><span style="color:#75af00">APP_PORT</span> <span style="color:#f92672">||</span> <span style="color:#ae81ff">3000</span><span style="color:#111">;</span>
 
 <span style="color:#75715e">// Use the sequelize+express middleware with trace attributes 
-</span><span style="color:#75715e"></span><span style="color:#75af00">app</span><span style="color:#111">.</span><span style="color:#75af00">use</span><span style="color:#111">(</span><span style="color:#75af00">wrapSequelizeAsMiddleware</span><span style="color:#111">(</span><span style="color:#75af00">sequelize</span><span style="color:#111">,</span> <span style="color:#111">{</span>
-    <span style="color:#75af00">traceparent</span><span style="color:#f92672">:</span> <span style="color:#00a8c8">true</span><span style="color:#111">,</span> 
-    <span style="color:#75af00">tracestate</span><span style="color:#f92672">:</span> <span style="color:#00a8c8">true</span><span style="color:#111">,</span>
-    <span style="color:#75af00">route</span><span style="color:#f92672">:</span> <span style="color:#00a8c8">false</span>
-<span style="color:#111">}));</span>
+</span><span style="color:#75715e"></span><span style="color:#75af00">app</span><span style="color:#111">.</span><span style="color:#75af00">use</span><span style="color:#111">(</span><span style="color:#75af00">wrapSequelizeAsMiddleware</span><span style="color:#111">(</span>
+    <span style="color:#75af00">sequelize</span><span style="color:#111">,</span>
+    <span style="color:#111">{</span> <span style="color:#75af00">traceparent</span><span style="color:#f92672">:</span> <span style="color:#00a8c8">true</span><span style="color:#111">,</span> <span style="color:#75af00">tracestate</span><span style="color:#f92672">:</span> <span style="color:#00a8c8">true</span><span style="color:#111">,</span> <span style="color:#75af00">route</span><span style="color:#f92672">:</span> <span style="color:#00a8c8">false</span> <span style="color:#111">},</span>
+    <span style="color:#111">{</span> <span style="color:#75af00">TraceProvider</span><span style="color:#f92672">:</span> <span style="color:#d88200">&#34;OpenCensus&#34;</span> <span style="color:#111">},</span>
+<span style="color:#111">));</span>
 
 <span style="color:#75af00">app</span><span style="color:#111">.</span><span style="color:#75af00">get</span><span style="color:#111">(</span><span style="color:#d88200">&#39;/&#39;</span><span style="color:#111">,</span> <span style="color:#111">(</span><span style="color:#75af00">req</span><span style="color:#111">,</span> <span style="color:#75af00">res</span><span style="color:#111">)</span> <span style="color:#111">=&gt;</span> <span style="color:#75af00">res</span><span style="color:#111">.</span><span style="color:#75af00">send</span><span style="color:#111">(</span><span style="color:#d88200">&#39;Hello, sqlcommenter-nodejs!!&#39;</span><span style="color:#111">));</span>
 <span style="color:#75af00">app</span><span style="color:#111">.</span><span style="color:#75af00">get</span><span style="color:#111">(</span><span style="color:#d88200">&#39;^/polls/:param&#39;</span><span style="color:#111">,</span> <span style="color:#00a8c8">function</span><span style="color:#111">(</span><span style="color:#75af00">req</span><span style="color:#111">,</span> <span style="color:#75af00">res</span><span style="color:#111">)</span> <span style="color:#111">{</span>
@@ -620,6 +676,67 @@ information about the controller and user code to help correlate them with SQL s
     <span style="color:#111">}).</span><span style="color:#00a8c8">catch</span><span style="color:#111">(</span><span style="color:#00a8c8">function</span><span style="color:#111">(</span><span style="color:#75af00">err</span><span style="color:#111">)</span> <span style="color:#111">{</span>
         <span style="color:#75af00">console</span><span style="color:#111">.</span><span style="color:#75af00">log</span><span style="color:#111">(</span><span style="color:#75af00">err</span><span style="color:#111">);</span>
         <span style="color:#75af00">res</span><span style="color:#111">.</span><span style="color:#75af00">send</span><span style="color:#111">(</span><span style="color:#ae81ff">500</span><span style="color:#111">);</span>
+    <span style="color:#111">});</span>
+<span style="color:#111">});</span>
+<span style="color:#75af00">app</span><span style="color:#111">.</span><span style="color:#75af00">listen</span><span style="color:#111">(</span><span style="color:#75af00">port</span><span style="color:#111">,</span> <span style="color:#111">()</span> <span style="color:#111">=&gt;</span> <span style="color:#75af00">console</span><span style="color:#111">.</span><span style="color:#75af00">log</span><span style="color:#111">(</span><span style="color:#d88200">`Application listening on </span><span style="color:#d88200">${</span><span style="color:#75af00">port</span><span style="color:#d88200">}</span><span style="color:#d88200">`</span><span style="color:#111">));</span>
+</code></pre></div>
+
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// In file app.js.
+</span><span style="color:#75715e"></span><span style="color:#00a8c8">const</span> <span style="color:#111">{</span> <span style="color:#75af00">NodeTracerProvider</span> <span style="color:#111">}</span> <span style="color:#f92672">=</span> <span style="color:#75af00">require</span><span style="color:#111">(</span><span style="color:#d88200">&#34;@opentelemetry/node&#34;</span><span style="color:#111">);</span>
+<span style="color:#00a8c8">const</span> <span style="color:#111">{</span> <span style="color:#75af00">BatchSpanProcessor</span> <span style="color:#111">}</span> <span style="color:#f92672">=</span> <span style="color:#75af00">require</span><span style="color:#111">(</span><span style="color:#d88200">&#34;@opentelemetry/tracing&#34;</span><span style="color:#111">);</span>
+<span style="color:#00a8c8">const</span> <span style="color:#111">{</span>
+  <span style="color:#75af00">TraceExporter</span><span style="color:#111">,</span>
+<span style="color:#111">}</span> <span style="color:#f92672">=</span> <span style="color:#75af00">require</span><span style="color:#111">(</span><span style="color:#d88200">&#34;@google-cloud/opentelemetry-cloud-trace-exporter&#34;</span><span style="color:#111">);</span>
+
+<span style="color:#00a8c8">const</span> <span style="color:#75af00">tracerProvider</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">new</span> <span style="color:#75af00">NodeTracerProvider</span><span style="color:#111">();</span>
+<span style="color:#75715e">// Export to Google Cloud Trace
+</span><span style="color:#75715e"></span><span style="color:#75af00">tracerProvider</span><span style="color:#111">.</span><span style="color:#75af00">addSpanProcessor</span><span style="color:#111">(</span>
+  <span style="color:#00a8c8">new</span> <span style="color:#75af00">BatchSpanProcessor</span><span style="color:#111">(</span><span style="color:#00a8c8">new</span> <span style="color:#75af00">TraceExporter</span><span style="color:#111">({</span> <span style="color:#75af00">logger</span> <span style="color:#111">}),</span> <span style="color:#111">{</span>
+    <span style="color:#75af00">bufferSize</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">500</span><span style="color:#111">,</span>
+    <span style="color:#75af00">bufferTimeout</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">5</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1000</span><span style="color:#111">,</span>
+  <span style="color:#111">})</span>
+<span style="color:#111">);</span>
+<span style="color:#75af00">tracerProvider</span><span style="color:#111">.</span><span style="color:#75af00">register</span><span style="color:#111">();</span>
+
+<span style="color:#75715e">// OpenTelemetry initialization should happen before importing any libraries
+</span><span style="color:#75715e">// that it instruments
+</span><span style="color:#75715e"></span><span style="color:#00a8c8">const</span> <span style="color:#111">{</span> <span style="color:#75af00">Sequelize</span> <span style="color:#111">}</span> <span style="color:#f92672">=</span> <span style="color:#75af00">require</span><span style="color:#111">(</span><span style="color:#d88200">&#34;sequelize&#34;</span><span style="color:#111">);</span>
+<span style="color:#00a8c8">const</span> <span style="color:#111">{</span>
+  <span style="color:#75af00">wrapSequelizeAsMiddleware</span><span style="color:#111">,</span>
+<span style="color:#111">}</span> <span style="color:#f92672">=</span> <span style="color:#75af00">require</span><span style="color:#111">(</span><span style="color:#d88200">&#34;@google-cloud/sqlcommenter-sequelize&#34;</span><span style="color:#111">);</span>
+
+<span style="color:#00a8c8">const</span> <span style="color:#75af00">sequelize</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">new</span> <span style="color:#75af00">Sequelize</span><span style="color:#111">(</span><span style="color:#d88200">&#34;postgres://user:pass@example.com:5432/dbname&#34;</span><span style="color:#111">);</span>
+
+<span style="color:#00a8c8">const</span> <span style="color:#75af00">express</span> <span style="color:#f92672">=</span> <span style="color:#75af00">require</span><span style="color:#111">(</span><span style="color:#d88200">&#34;express&#34;</span><span style="color:#111">);</span>
+<span style="color:#00a8c8">const</span> <span style="color:#75af00">app</span> <span style="color:#f92672">=</span> <span style="color:#75af00">express</span><span style="color:#111">();</span>
+<span style="color:#00a8c8">const</span> <span style="color:#75af00">port</span> <span style="color:#f92672">=</span> <span style="color:#75af00">process</span><span style="color:#111">.</span><span style="color:#75af00">env</span><span style="color:#111">.</span><span style="color:#75af00">APP_PORT</span> <span style="color:#f92672">||</span> <span style="color:#ae81ff">3000</span><span style="color:#111">;</span>
+
+<span style="color:#75715e">// SQLCommenter express middleware injects the route into the traces
+</span><span style="color:#75715e"></span><span style="color:#75af00">app</span><span style="color:#111">.</span><span style="color:#75af00">use</span><span style="color:#111">(</span>
+  <span style="color:#75af00">wrapSequelizeAsMiddleware</span><span style="color:#111">(</span>
+    <span style="color:#75af00">sequelize</span><span style="color:#111">,</span>
+    <span style="color:#111">{</span>
+      <span style="color:#75af00">client_timezone</span><span style="color:#f92672">:</span> <span style="color:#00a8c8">true</span><span style="color:#111">,</span>
+      <span style="color:#75af00">db_driver</span><span style="color:#f92672">:</span> <span style="color:#00a8c8">true</span><span style="color:#111">,</span>
+      <span style="color:#75af00">route</span><span style="color:#f92672">:</span> <span style="color:#00a8c8">true</span><span style="color:#111">,</span>
+      <span style="color:#75af00">traceparent</span><span style="color:#f92672">:</span> <span style="color:#00a8c8">true</span><span style="color:#111">,</span>
+      <span style="color:#75af00">tracestate</span><span style="color:#f92672">:</span> <span style="color:#00a8c8">true</span><span style="color:#111">,</span>
+    <span style="color:#111">},</span>
+    <span style="color:#111">{</span> <span style="color:#75af00">TraceProvider</span><span style="color:#f92672">:</span> <span style="color:#d88200">&#34;OpenTelemetry&#34;</span> <span style="color:#111">}</span>
+  <span style="color:#111">)</span>
+<span style="color:#111">);</span>
+
+<span style="color:#75af00">app</span><span style="color:#111">.</span><span style="color:#75af00">get</span><span style="color:#111">(</span><span style="color:#d88200">&#34;/&#34;</span><span style="color:#111">,</span> <span style="color:#111">(</span><span style="color:#75af00">req</span><span style="color:#111">,</span> <span style="color:#75af00">res</span><span style="color:#111">)</span> <span style="color:#111">=&gt;</span> <span style="color:#75af00">res</span><span style="color:#111">.</span><span style="color:#75af00">send</span><span style="color:#111">(</span><span style="color:#d88200">&#34;Hello, sqlcommenter-nodejs!!&#34;</span><span style="color:#111">));</span>
+<span style="color:#75af00">app</span><span style="color:#111">.</span><span style="color:#75af00">get</span><span style="color:#111">(</span><span style="color:#d88200">&#34;^/polls/:param&#34;</span><span style="color:#111">,</span> <span style="color:#00a8c8">function</span> <span style="color:#111">(</span><span style="color:#75af00">req</span><span style="color:#111">,</span> <span style="color:#75af00">res</span><span style="color:#111">)</span> <span style="color:#111">{</span>
+  <span style="color:#75af00">sequelize</span>
+    <span style="color:#111">.</span><span style="color:#75af00">query</span><span style="color:#111">(</span><span style="color:#d88200">&#34;SELECT * from polls_question&#34;</span><span style="color:#111">)</span>
+    <span style="color:#111">.</span><span style="color:#75af00">then</span><span style="color:#111">(</span><span style="color:#00a8c8">function</span> <span style="color:#111">(</span><span style="color:#75af00">polls</span><span style="color:#111">)</span> <span style="color:#111">{</span>
+      <span style="color:#00a8c8">const</span> <span style="color:#75af00">blob</span> <span style="color:#f92672">=</span> <span style="color:#75af00">JSON</span><span style="color:#111">.</span><span style="color:#75af00">stringify</span><span style="color:#111">(</span><span style="color:#75af00">polls</span><span style="color:#111">);</span>
+      <span style="color:#75af00">res</span><span style="color:#111">.</span><span style="color:#75af00">send</span><span style="color:#111">(</span><span style="color:#75af00">blob</span><span style="color:#111">);</span>
+    <span style="color:#111">})</span>
+    <span style="color:#111">.</span><span style="color:#00a8c8">catch</span><span style="color:#111">(</span><span style="color:#00a8c8">function</span> <span style="color:#111">(</span><span style="color:#75af00">err</span><span style="color:#111">)</span> <span style="color:#111">{</span>
+      <span style="color:#75af00">console</span><span style="color:#111">.</span><span style="color:#75af00">log</span><span style="color:#111">(</span><span style="color:#75af00">err</span><span style="color:#111">);</span>
+      <span style="color:#75af00">res</span><span style="color:#111">.</span><span style="color:#75af00">send</span><span style="color:#111">(</span><span style="color:#ae81ff">500</span><span style="color:#111">);</span>
     <span style="color:#111">});</span>
 <span style="color:#111">});</span>
 <span style="color:#75af00">app</span><span style="color:#111">.</span><span style="color:#75af00">listen</span><span style="color:#111">(</span><span style="color:#75af00">port</span><span style="color:#111">,</span> <span style="color:#111">()</span> <span style="color:#111">=&gt;</span> <span style="color:#75af00">console</span><span style="color:#111">.</span><span style="color:#75af00">log</span><span style="color:#111">(</span><span style="color:#d88200">`Application listening on </span><span style="color:#d88200">${</span><span style="color:#75af00">port</span><span style="color:#d88200">}</span><span style="color:#d88200">`</span><span style="color:#111">));</span>
@@ -713,13 +830,21 @@ information about the controller and user code to help correlate them with SQL s
 <span style="color:#00a8c8">const</span> <span style="color:#75af00">port</span> <span style="color:#f92672">=</span> <span style="color:#75af00">process</span><span style="color:#111">.</span><span style="color:#75af00">env</span><span style="color:#111">.</span><span style="color:#75af00">APP_PORT</span> <span style="color:#f92672">||</span> <span style="color:#ae81ff">3000</span><span style="color:#111">;</span>
 
 <span style="color:#75715e">// Use the sequelize+express middleware with all attributes set
-</span><span style="color:#75715e"></span><span style="color:#75af00">app</span><span style="color:#111">.</span><span style="color:#75af00">use</span><span style="color:#111">(</span><span style="color:#75af00">wrapSequelizeAsMiddleware</span><span style="color:#111">(</span><span style="color:#75af00">sequelize</span><span style="color:#111">,</span> <span style="color:#111">{</span>
-    <span style="color:#75af00">traceparent</span><span style="color:#f92672">:</span> <span style="color:#00a8c8">true</span><span style="color:#111">,</span>
-    <span style="color:#75af00">tracestate</span><span style="color:#f92672">:</span> <span style="color:#00a8c8">true</span><span style="color:#111">,</span>
-    <span style="color:#75af00">route</span><span style="color:#f92672">:</span> <span style="color:#00a8c8">true</span><span style="color:#111">,</span>
-    <span style="color:#75af00">db_driver</span><span style="color:#f92672">:</span> <span style="color:#00a8c8">true</span><span style="color:#111">,</span>
-    <span style="color:#75af00">client_timezone</span><span style="color:#f92672">:</span> <span style="color:#00a8c8">true</span>
-<span style="color:#111">}));</span>
+</span><span style="color:#75715e"></span><span style="color:#75af00">app</span><span style="color:#111">.</span><span style="color:#75af00">use</span><span style="color:#111">(</span><span style="color:#75af00">wrapSequelizeAsMiddleware</span><span style="color:#111">(</span>
+    <span style="color:#75af00">sequelize</span><span style="color:#111">,</span>
+    <span style="color:#111">{</span>
+        <span style="color:#75af00">traceparent</span><span style="color:#f92672">:</span> <span style="color:#00a8c8">true</span><span style="color:#111">,</span>
+        <span style="color:#75af00">tracestate</span><span style="color:#f92672">:</span> <span style="color:#00a8c8">true</span><span style="color:#111">,</span>
+
+        <span style="color:#75715e">// Optional
+</span><span style="color:#75715e"></span>        <span style="color:#75af00">route</span><span style="color:#f92672">:</span> <span style="color:#00a8c8">false</span><span style="color:#111">,</span>
+        <span style="color:#75af00">db_driver</span><span style="color:#f92672">:</span> <span style="color:#00a8c8">false</span><span style="color:#111">,</span>
+        <span style="color:#75af00">client_timezone</span><span style="color:#f92672">:</span> <span style="color:#00a8c8">false</span>
+    <span style="color:#111">},</span>
+    <span style="color:#111">{</span>
+        <span style="color:#75af00">TraceProvider</span><span style="color:#f92672">:</span> <span style="color:#d88200">&#34;OpenCensus&#34;</span><span style="color:#111">,</span>
+    <span style="color:#111">},</span>
+<span style="color:#111">));</span>
 
 <span style="color:#75af00">app</span><span style="color:#111">.</span><span style="color:#75af00">get</span><span style="color:#111">(</span><span style="color:#d88200">&#39;/&#39;</span><span style="color:#111">,</span> <span style="color:#111">(</span><span style="color:#75af00">req</span><span style="color:#111">,</span> <span style="color:#75af00">res</span><span style="color:#111">)</span> <span style="color:#111">=&gt;</span> <span style="color:#75af00">res</span><span style="color:#111">.</span><span style="color:#75af00">send</span><span style="color:#111">(</span><span style="color:#d88200">&#39;Hello, sqlcommenter-nodejs!!&#39;</span><span style="color:#111">));</span>
 <span style="color:#75af00">app</span><span style="color:#111">.</span><span style="color:#75af00">get</span><span style="color:#111">(</span><span style="color:#d88200">&#39;^/polls/:param&#39;</span><span style="color:#111">,</span> <span style="color:#00a8c8">function</span><span style="color:#111">(</span><span style="color:#75af00">req</span><span style="color:#111">,</span> <span style="color:#75af00">res</span><span style="color:#111">)</span> <span style="color:#111">{</span>
@@ -799,13 +924,8 @@ Application listening on <span style="color:#ae81ff">3000</span></code></pre></d
 
 <tbody>
 <tr>
-<td>@google-cloud/sqlcommenter-sequelize on Yarn</td>
-<td><code>&lt;FILL_ME_IN&gt;</code></td>
-</tr>
-
-<tr>
 <td>@google-cloud/sqlcommenter-sequelize on npm</td>
-<td><code>&lt;FILL_ME_IN&gt;</code></td>
+<td><a href="https://www.npmjs.com/package/@google-cloud/sqlcommenter-sequelize">https://www.npmjs.com/package/@google-cloud/sqlcommenter-sequelize</a></td>
 </tr>
 
 <tr>
