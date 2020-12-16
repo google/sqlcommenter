@@ -50,6 +50,7 @@ dependencies {
     compileOnly "com.google.code.findbugs:jsr305:${findBugsJsr305Version}"
     compileOnly "com.google.errorprone:error_prone_annotations:${errorProneVersion}"
     errorprone("com.google.errorprone:error_prone_core:${errorProneVersion}")
+    implementation('io.opentelemetry:opentelemetry-api:0.12.0')
 
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.1.5.RELEASE'

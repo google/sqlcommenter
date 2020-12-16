@@ -12,11 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package com.google.cloud.sqlcommenter.threadlocal;
+package com.google.cloud.sqlcommenter.threadlocalstorage;
 
 import static com.google.common.truth.Truth.assertThat;
 
-import com.google.cloud.sqlcommenter.threadlocalstorage.State;
 import io.opencensus.trace.SpanContext;
 import io.opencensus.trace.SpanId;
 import io.opencensus.trace.TraceId;
@@ -27,7 +26,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-/** Tests for {@link State}. */
+/**
+ * Tests for {@link State}.
+ */
 @RunWith(JUnit4.class)
 public class ThreadLocalStorageTest {
 
@@ -52,15 +53,15 @@ public class ThreadLocalStorageTest {
 
     // 2. Insert some state into thread local storage.
     State inTh1 =
-        State.newBuilder()
-            .withControllerName("foo;DROP TABLE BAR")
-            .withActionName("run this & that")
-            .withSpanContext(
-                SpanContext.create(
-                    TraceId.fromLowerBase16("9a4589fe88dd0fc9ffee11228888ff11"),
-                    SpanId.fromLowerBase16("11fa8b00ff221eec"),
-                    TraceOptions.fromByte(byteSampled)))
-            .build();
+            State.newBuilder()
+                    .withControllerName("foo;DROP TABLE BAR")
+                    .withActionName("run this & that")
+                    .withSpanContextMetadata(
+                            new SpanContextMetadata(SpanContext.create(
+                                    TraceId.fromLowerBase16("9a4589fe88dd0fc9ffee11228888ff11"),
+                                    SpanId.fromLowerBase16("11fa8b00ff221eec"),
+                                    TraceOptions.fromByte(byteSampled))))
+                    .build();
 
     State.Holder.set(inTh1);
 
@@ -82,33 +83,33 @@ public class ThreadLocalStorageTest {
     State.Holder.set(inTh1);
 
     State inTh2 =
-        State.newBuilder()
-            .withControllerName("foo")
-            .withActionName("action")
-            .withSpanContext(
-                SpanContext.create(
-                    TraceId.fromLowerBase16("aa4589fe88dd0faae1f2d3c4dd11f344"),
-                    SpanId.fromLowerBase16("91ea8891ff221eec"),
-                    TraceOptions.fromByte(byteSampled)))
-            .build();
+            State.newBuilder()
+                    .withControllerName("foo")
+                    .withActionName("action")
+                    .withSpanContextMetadata(
+                            new SpanContextMetadata(SpanContext.create(
+                                    TraceId.fromLowerBase16("aa4589fe88dd0faae1f2d3c4dd11f344"),
+                                    SpanId.fromLowerBase16("91ea8891ff221eec"),
+                                    TraceOptions.fromByte(byteSampled))))
+                    .build();
 
     assertThat(inTh2).isNotEqualTo(inTh1);
 
     State.Holder.set(inTh1);
 
     Thread th2 =
-        new Thread(
-            () -> {
-              State stateInOtherThread = State.Holder.get();
-              // 4.1. Check that in a separate thread we start with a null State.
-              assertThat(stateInOtherThread).isEqualTo(null);
+            new Thread(
+                    () -> {
+                      State stateInOtherThread = State.Holder.get();
+                      // 4.1. Check that in a separate thread we start with a null State.
+                      assertThat(stateInOtherThread).isEqualTo(null);
 
-              State.Holder.set(inTh2);
-              State got1 = State.Holder.get();
+                      State.Holder.set(inTh2);
+                      State got1 = State.Holder.get();
 
-              // 4.2. After retrieval, make that insertion in thread 2.
-              assertThat(got1).isEqualTo(inTh2);
-            });
+                      // 4.2. After retrieval, make that insertion in thread 2.
+                      assertThat(got1).isEqualTo(inTh2);
+                    });
     th2.start();
     th2.join();
 

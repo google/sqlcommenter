@@ -14,6 +14,7 @@
 
 package com.google.cloud.sqlcommenter.schibernate;
 
+import com.google.cloud.sqlcommenter.threadlocalstorage.SpanContextMetadata;
 import com.google.cloud.sqlcommenter.threadlocalstorage.State;
 import io.opencensus.trace.SpanContext;
 import io.opencensus.trace.Tracer;
@@ -42,7 +43,7 @@ public class SCHibernate implements StatementInspector {
 
       // Finally replace this mvcState but it'll just be local to this function
       // and not the final ThreadLocalStorage State.
-      state = State.newBuilder(state).withSpanContext(spanContext).build();
+      state = State.newBuilder(state).withSpanContextMetadata(new SpanContextMetadata(spanContext)).build();
     }
 
     if (state == null) return sql;
