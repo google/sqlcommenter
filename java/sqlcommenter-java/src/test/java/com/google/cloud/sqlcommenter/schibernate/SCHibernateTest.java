@@ -19,6 +19,7 @@ import static com.google.common.truth.Truth.assertThat;
 import com.google.cloud.sqlcommenter.threadlocalstorage.State;
 
 import io.opencensus.trace.samplers.Samplers;
+import io.opentelemetry.sdk.trace.TracerSdkProvider;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -86,6 +87,37 @@ public class SCHibernateTest {
                       spanContext.getTraceOptions().getByte());
 
       assertThat(got3).isEqualTo(want3);
+    }
+
+    // Now that that that scope has ended with resources,
+    // assert that the SQL is the same as before.
+    State.Holder.set(state1);
+    String got3 = sch.inspect(stmt1);
+    assertThat(got3)
+            .isEqualTo("SELECT * from FOO /*action='may',controller='baz',framework='jetty'*/");
+  }
+
+  @Test
+  public void testWithOpenTelemetryContext() {
+    State.Holder.set(state1);
+
+    io.opentelemetry.api.trace.Tracer tracer = TracerSdkProvider.builder().build().get("SCHibernateTest");
+    // 2. Now insert a span and assert that the SQL has that OpenTelemetry Trace information.
+    io.opentelemetry.api.trace.Span span = tracer.spanBuilder("TestSpan").startSpan();
+    try (io.opentelemetry.context.Scope ss = span.makeCurrent()) {
+      io.opentelemetry.api.trace.SpanContext spanContext = span.getSpanContext();
+
+      // With that span, now try generating the SQL again.
+      String got = sch.inspect(stmt1);
+      String want3 = String.format("SELECT * from FOO /*action='may',controller='baz',framework='jetty',traceparent='%s-%s-%s-%02X'*/",
+              State.W3C_CONTEXT_VERSION,
+              spanContext.getTraceIdAsHexString(),
+              spanContext.getSpanIdAsHexString(),
+              spanContext.getTraceFlags());
+
+      assertThat(got).isEqualTo(want3);
+    } finally {
+      span.end();
     }
 
     // Now that that that scope has ended with resources,
