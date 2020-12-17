@@ -14,11 +14,6 @@
 
 package com.google.cloud.sqlcommenter.threadlocalstorage;
 
-import io.opencensus.trace.SpanContext;
-import io.opencensus.trace.SpanId;
-import io.opencensus.trace.TraceId;
-import io.opencensus.trace.TraceOptions;
-import io.opencensus.trace.Tracestate;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -94,10 +89,10 @@ public final class State {
     }
 
     return new Builder()
-        .withActionName(copy.actionName)
-        .withControllerName(copy.controllerName)
-        .withSpanContextMetadata(copy.spanContextMetadata)
-        .withFramework(copy.framework);
+            .withActionName(copy.actionName)
+            .withControllerName(copy.controllerName)
+            .withSpanContextMetadata(copy.spanContextMetadata)
+            .withFramework(copy.framework);
   }
 
   private Boolean hasSQLComment(String stmt) {
@@ -150,29 +145,19 @@ public final class State {
 
   @Nullable
   private String traceParent() {
-    if (spanContextMetadata == null || !spanContextMetadata.isValid()) {
-      // According to the W3C TraceContext specification, a blank spanId
-      // is invalid and should not create a TraceParent.
-      return null;
-    }
-
     // A sample:
     //    traceparent='00-a22901f654b534675439f71fbe43783d-7fde95452aa72253-01'
-    return String.format(
-        "%s-%s-%s-%02X",
-        W3C_CONTEXT_VERSION,
-        spanContextMetadata.getTraceId(),
-        spanContextMetadata.getSpanId(),
-        spanContextMetadata.getTraceOptions());
+    return spanContextMetadata == null ? null : String.format(
+            "%s-%s-%s-%02X",
+            W3C_CONTEXT_VERSION,
+            spanContextMetadata.getTraceId(),
+            spanContextMetadata.getSpanId(),
+            spanContextMetadata.getTraceOptions());
   }
 
   @Nullable
   private String traceState() {
-    if (spanContextMetadata == null || !spanContextMetadata.isValid()) {
-      return null;
-    }
-
-    return spanContextMetadata.getTraceState();
+    return spanContextMetadata == null ? null : spanContextMetadata.getTraceState();
   }
 
   public String toString() {
@@ -189,7 +174,7 @@ public final class State {
       try {
         String valueStr = String.format("%s", value);
         String keyValuePairString =
-            String.format("%s='%s'", urlEncode(entry.getKey()), urlEncode(valueStr));
+                String.format("%s='%s'", urlEncode(entry.getKey()), urlEncode(valueStr));
         keyValuePairsList.add(keyValuePairString);
       } catch (Exception e) {
         logger.log(Level.WARNING, "Exception when encoding State", e);

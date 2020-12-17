@@ -54,7 +54,7 @@ public class StateTest {
                     .withControllerName("foo;DROP TABLE BAR")
                     .withActionName("run this & that")
                     .withSpanContextMetadata(
-                            new SpanContextMetadata(SpanContext.create(
+                            SpanContextMetadata.fromOpenCensusContext(SpanContext.create(
                                     TraceId.fromLowerBase16("9a4589fe88dd0fc9ffee11228888ff11"),
                                     SpanId.fromLowerBase16("11fa8b009a4589fe"),
                                     TraceOptions.fromByte(byteSampled))))
@@ -101,7 +101,7 @@ public class StateTest {
                     .withControllerName("foo;DROP TABLE BAR")
                     .withActionName("run this & that")
                     .withSpanContextMetadata(
-                            new SpanContextMetadata(SpanContext.create(
+                            SpanContextMetadata.fromOpenCensusContext(SpanContext.create(
                                     TraceId.fromLowerBase16("9a4589fe88dd0fc911ff2233ffee7899"),
                                     SpanId.fromLowerBase16("11fa8b00dd11eeff"),
                                     TraceOptions.fromByte(byteNotSampled),
@@ -159,7 +159,7 @@ public class StateTest {
                     .withControllerName("foo;DROP TABLE BAR")
                     .withActionName("run this & that")
                     .withSpanContextMetadata(
-                            new SpanContextMetadata(
+                            SpanContextMetadata.fromOpenCensusContext(
                                     SpanContext.create(
                                             TraceId.fromLowerBase16("9a4589fe88dd0fc9ffdd11eedd2233ff"),
                                             SpanId.fromLowerBase16("11fa8b00cc23114f"),

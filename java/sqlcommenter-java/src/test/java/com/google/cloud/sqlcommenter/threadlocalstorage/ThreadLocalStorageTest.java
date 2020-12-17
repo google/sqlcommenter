@@ -57,7 +57,7 @@ public class ThreadLocalStorageTest {
                     .withControllerName("foo;DROP TABLE BAR")
                     .withActionName("run this & that")
                     .withSpanContextMetadata(
-                            new SpanContextMetadata(SpanContext.create(
+                            SpanContextMetadata.fromOpenCensusContext(SpanContext.create(
                                     TraceId.fromLowerBase16("9a4589fe88dd0fc9ffee11228888ff11"),
                                     SpanId.fromLowerBase16("11fa8b00ff221eec"),
                                     TraceOptions.fromByte(byteSampled))))
@@ -87,7 +87,7 @@ public class ThreadLocalStorageTest {
                     .withControllerName("foo")
                     .withActionName("action")
                     .withSpanContextMetadata(
-                            new SpanContextMetadata(SpanContext.create(
+                            SpanContextMetadata.fromOpenCensusContext(SpanContext.create(
                                     TraceId.fromLowerBase16("aa4589fe88dd0faae1f2d3c4dd11f344"),
                                     SpanId.fromLowerBase16("91ea8891ff221eec"),
                                     TraceOptions.fromByte(byteSampled))))

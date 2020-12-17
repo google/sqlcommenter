@@ -32,7 +32,7 @@ public class SCHibernate implements StatementInspector {
     io.opentelemetry.api.trace.SpanContext spanContextOT = io.opentelemetry.api.trace.Span.current().getSpanContext();
 
     if (spanContextOT.isValid() && spanContextOT.isSampled()) {
-      state = State.newBuilder(state).withSpanContextMetadata(new SpanContextMetadata(spanContextOT)).build();
+      state = State.newBuilder(state).withSpanContextMetadata(SpanContextMetadata.fromOpenTelemetryContext(spanContextOT)).build();
     } else {
       // Otherwise it is time to augment the SQL with information about the controller.
       io.opencensus.trace.Tracer tracer = io.opencensus.trace.Tracing.getTracer();
@@ -44,7 +44,7 @@ public class SCHibernate implements StatementInspector {
 
         // Finally replace this mvcState but it'll just be local to this function
         // and not the final ThreadLocalStorage State.
-        state = State.newBuilder(state).withSpanContextMetadata(new SpanContextMetadata(spanContext)).build();
+        state = State.newBuilder(state).withSpanContextMetadata(SpanContextMetadata.fromOpenCensusContext(spanContext)).build();
       }
     }
 

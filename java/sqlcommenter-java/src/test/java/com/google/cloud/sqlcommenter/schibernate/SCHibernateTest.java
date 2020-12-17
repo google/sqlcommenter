@@ -17,10 +17,11 @@ package com.google.cloud.sqlcommenter.schibernate;
 import static com.google.common.truth.Truth.assertThat;
 
 import com.google.cloud.sqlcommenter.threadlocalstorage.State;
-
 import io.opencensus.trace.samplers.Samplers;
 import io.opentelemetry.sdk.trace.TracerSdkProvider;
-import org.junit.*;
+import org.junit.After;
+import org.junit.BeforeClass;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
