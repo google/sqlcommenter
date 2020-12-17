@@ -4,11 +4,13 @@ import javax.annotation.Nullable;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class SpanContextMetadata {
     private static final Logger logger = Logger.getLogger(SpanContextMetadata.class.getName());
+    private static final String UTF8 = StandardCharsets.UTF_8.toString();
 
     private final String traceId;
     private final String spanId;
@@ -36,18 +38,16 @@ public class SpanContextMetadata {
             // Tracestate needs to be serialized in the order of the entries.
             ArrayList<String> pairsList = new ArrayList<>();
             for (io.opencensus.trace.Tracestate.Entry entry : traceState.getEntries()) {
-                try {
-                    String key = entry.getKey();
-                    // Only don't insert if the key is empty.
-                    if (key.isEmpty()) {
-                        continue;
+                String key = entry.getKey();
+                // Only don't insert if the key is empty.
+                if (!key.isEmpty()) {
+                    try {
+                        String value = entry.getValue();
+                        String encoded = URLEncoder.encode((String.format("%s=%s", key, value)), UTF8);
+                        pairsList.add(encoded);
+                    } catch (Exception e) {
+                        logger.log(Level.WARNING, "Exception when encoding Tracestate", e);
                     }
-
-                    String value = entry.getValue();
-                    String encoded = URLEncoder.encode((String.format("%s=%s", key, value)), StandardCharsets.UTF_8.toString());
-                    pairsList.add(encoded);
-                } catch (Exception e) {
-                    logger.log(Level.WARNING, "Exception when encoding Tracestate", e);
                 }
             }
 
@@ -65,8 +65,29 @@ public class SpanContextMetadata {
         String traceId = spanContext.getTraceIdAsHexString();
         String spanId = spanContext.getSpanIdAsHexString();
         byte traceOptions = spanContext.getTraceFlags();
+        String traceStateStr = null;
 
-        return new SpanContextMetadata(traceId, spanId, traceOptions, null);
+        io.opentelemetry.api.trace.TraceState traceState = spanContext.getTraceState();
+        if (!traceState.isEmpty()) {
+            ArrayList<String> pairsList = new ArrayList<>();
+
+            Map<String, String> map = traceState.asMap();
+            for (String key : map.keySet()) {
+                if (key.isEmpty()) {
+                    continue;
+                }
+
+                try {
+                    String value = map.get(key);
+                    String encoded = URLEncoder.encode((String.format("%s=%s", key, value)), UTF8);
+                } catch (Exception e) {
+                    logger.log(Level.WARNING, "Exception when encoding Tracestate", e);
+                }
+            }
+            traceStateStr = String.join(",", pairsList);
+        }
+
+        return new SpanContextMetadata(traceId, spanId, traceOptions, traceStateStr);
     }
 
     public String getTraceId() {
