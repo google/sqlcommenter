@@ -24,7 +24,7 @@ def read_file(filename):
 
 setup(
     name='google-cloud-sqlcommenter',
-    version='0.1.3',
+    version='1.0.0',
     author='Google Developers',
     author_email='sqlcommenter@googlegroups.com',
     description=('Augment SQL statements with meta information about frameworks and the running environment.'),
