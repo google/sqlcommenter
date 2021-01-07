@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@google-cloud/opentelemetry-cloud-trace-exporter": "^0.6.0",
+    "@google-cloud/opentelemetry-cloud-trace-exporter": "^0.7.0",
     "@google-cloud/sqlcommenter-sequelize": "file:../../packages/sqlcommenter-sequelize",
     "@opencensus/propagation-tracecontext": "0.0.22",
     "@opentelemetry/core": "^0.12.0",
