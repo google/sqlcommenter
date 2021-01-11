@@ -280,9 +280,19 @@ match the SQLCommenter format.</p>
 
 <h3 id="installation">Installation</h3>
 
-<p>Add this line to your application&rsquo;s Gemfile</p>
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#111">gem</span> <span style="color:#d88200">&#39;sqlcommenter_rails&#39;</span></code></pre></div>
-<p>Then run <code>bundle</code> and restart your Rails server.</p>
+<p>Currently, this gem is not released on rubygems.
+But can be installed from source.</p>
+<p>The gem requires functionality provided by an <a href="https://github.com/basecamp/marginalia/pull/89">open PR</a> to <a href="https://github.com/basecamp/marginalia">marginalia</a>. Install the PR by cloning <a href="https://github.com/glebm/marginalia">glebm&#39;s fork of marginalia</a> one directory above this folder.</p>
+<pre><code class="lang-bash">git <span class="hljs-keyword">clone</span> <span class="hljs-title">https</span>://github.com/glebm/marginalia.git ../marginalia
+</code></pre>
+<p>Add the following lines to your application&#39;s Gemfile:</p>
+<pre><code class="lang-ruby">gem <span class="hljs-string">'sqlcommenter_rails'</span>, <span class="hljs-string">path:</span> <span class="hljs-string">'../sqlcommenter_rails'</span>
+gem <span class="hljs-string">'marginalia'</span>, <span class="hljs-string">path:</span> <span class="hljs-string">'../marginalia'</span>
+gem <span class="hljs-string">'marginalia-opencensus'</span>, <span class="hljs-string">path:</span> <span class="hljs-string">'../marginalia-opencensus'</span>
+</code></pre>
+<p>Install dependencies:</p>
+<pre><code class="lang-bash">bin/<span class="hljs-built_in">setup</span>
+</code></pre>
 
 <p>To enable <a href="https://opencensus.io/">OpenCensus</a> support, add the <a href="https://github.com/census-instrumentation/opencensus-ruby"><code>opencensus</code></a> gem to
 your Gemfile, and add the following line in the beginning of
