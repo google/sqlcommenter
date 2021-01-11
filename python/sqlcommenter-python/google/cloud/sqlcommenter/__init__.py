@@ -43,6 +43,8 @@ def generate_sql_comment(**meta):
 
 
 def url_quote(s):
+    if not isinstance(s, (str, bytes)):
+        return s
     quoted = url_quote_fn(s)
     # Since SQL uses '%' as a keyword, '%' is a by-product of url quoting
     # e.g. foo,bar --> foo%2Cbar
