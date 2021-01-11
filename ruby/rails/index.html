@@ -283,15 +283,15 @@ match the SQLCommenter format.</p>
 <p>Currently, this gem is not released on rubygems.
 But can be installed from source.</p>
 <p>The gem requires functionality provided by an <a href="https://github.com/basecamp/marginalia/pull/89">open PR</a> to <a href="https://github.com/basecamp/marginalia">marginalia</a>. Install the PR by cloning <a href="https://github.com/glebm/marginalia">glebm&#39;s fork of marginalia</a> one directory above this folder.</p>
-<pre><code class="lang-bash">git <span class="hljs-keyword">clone</span> <span class="hljs-title">https</span>://github.com/glebm/marginalia.git ../marginalia
+<pre><code class="language-ruby" data-lang="ruby">git <span>clone</span> <span>https</span>://github.com/glebm/marginalia.git ../marginalia
 </code></pre>
 <p>Add the following lines to your application&#39;s Gemfile:</p>
-<pre><code class="lang-ruby">gem <span class="hljs-string">'sqlcommenter_rails'</span>, <span class="hljs-string">path:</span> <span class="hljs-string">'../sqlcommenter_rails'</span>
-gem <span class="hljs-string">'marginalia'</span>, <span class="hljs-string">path:</span> <span class="hljs-string">'../marginalia'</span>
-gem <span class="hljs-string">'marginalia-opencensus'</span>, <span class="hljs-string">path:</span> <span class="hljs-string">'../marginalia-opencensus'</span>
+<pre><code class="language-ruby" data-lang="ruby">gem <span>'sqlcommenter_rails'</span>, <span>path:</span> <span>'../sqlcommenter_rails'</span>
+gem <span>'marginalia'</span>, <span>path:</span> <span>'../marginalia'</span>
+gem <span>'marginalia-opencensus'</span>, <span>path:</span> <span>'../marginalia-opencensus'</span>
 </code></pre>
 <p>Install dependencies:</p>
-<pre><code class="lang-bash">bin/<span class="hljs-built_in">setup</span>
+<pre><code class="language-ruby" data-lang="ruby">bin/<span>setup</span>
 </code></pre>
 
 <p>To enable <a href="https://opencensus.io/">OpenCensus</a> support, add the <a href="https://github.com/census-instrumentation/opencensus-ruby"><code>opencensus</code></a> gem to
