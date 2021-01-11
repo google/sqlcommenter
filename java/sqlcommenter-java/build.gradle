@@ -4,12 +4,13 @@ apply plugin: 'com.github.sherter.google-java-format'
 apply plugin: 'idea'
 apply plugin: 'java'
 apply plugin: 'maven'
+apply plugin: "maven-publish"
 apply plugin: "net.ltgt.errorprone"
 apply plugin: "jacoco"
 apply plugin: "signing"
 
 group = "com.google.cloud"
-version = "0.0.2" // CURRENT_VERSION
+version = "1.0.0" // CURRENT_VERSION
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -34,14 +35,16 @@ buildscript {
         maven { url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
-        classpath 'net.ltgt.gradle:gradle-errorprone-plugin:0.0.13'
+        classpath 'net.ltgt.gradle:gradle-errorprone-plugin:0.0.16'
         classpath "gradle.plugin.com.github.sherter.google-java-format:google-java-format-gradle-plugin:0.7.1"
     }
 }
 
+
 def opencensusVersion = '0.22.1'
-def errorProneVersion = '2.3.1'
+def errorProneVersion = '2.3.2'
 def findBugsJsr305Version = '3.0.2'
+
 
 dependencies {
     compile "io.opencensus:opencensus-api:${opencensusVersion}"
@@ -49,6 +52,7 @@ dependencies {
 
     compileOnly "com.google.code.findbugs:jsr305:${findBugsJsr305Version}"
     compileOnly "com.google.errorprone:error_prone_annotations:${errorProneVersion}"
+    errorprone("com.google.errorprone:error_prone_core:${errorProneVersion}")
 
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.1.5.RELEASE'

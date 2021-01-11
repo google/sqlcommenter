@@ -1,4 +1,6 @@
-## sqlcommenter-mono
+## sqlcommenter
+
+[Documentation](https://google.github.io/sqlcommenter/)
 
 Contains all the various `sqlcommenter-*` implementations.
 

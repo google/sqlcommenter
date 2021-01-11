@@ -11,6 +11,15 @@ Powered by [marginalia] and [marginalia-opencensus].
 
 ## Installation
 
+Currently, this gem is not released on rubygems.
+But can be installed from source.
+
+The gem requires functionality provided by an [open PR](https://github.com/basecamp/marginalia/pull/89) to [marginalia](https://github.com/basecamp/marginalia). Install the PR by cloning [glebm's fork of marginalia](https://github.com/glebm/marginalia) one directory above this folder.
+
+```bash
+git clone https://github.com/glebm/marginalia.git ../marginalia
+```
+
 Add the following lines to your application's Gemfile:
 
 ```ruby
@@ -19,19 +28,14 @@ gem 'marginalia', path: '../marginalia'
 gem 'marginalia-opencensus', path: '../marginalia-opencensus'
 ```
 
-Ensure Bundler is configured to access private repositories:
+Install dependencies:
 
-1. Generate an OAuth Token from GitHub with all the `repo` permissions by following
-   [this guide](https://help.github.com/articles/creating-an-access-token-for-command-line-use/).
-2. Configure bundler to use the OAuth token:
+```bash
+bin/setup
+```
 
-   ```bash
-   bundle config --local GITHUB__COM myoauthtoken:x-oauth-basic
-   ```
+Please look at the [sqlcommenter_rails_demo](https://github.com/google/sqlcommenter/tree/master/ruby/sqlcommenter-ruby/sqlcommenter_rails_demo#sqlcommenter_rails-demo) for an example on how to install and use this gem in your project.
 
-And then execute:
-
-    $ bundle
 
 ## Usage
 

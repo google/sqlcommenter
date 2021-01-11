@@ -13,7 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@google-cloud/opentelemetry-cloud-trace-exporter": "^0.6.0",
+    "@google-cloud/opentelemetry-cloud-trace-exporter": "^0.7.0",
     "@google-cloud/sqlcommenter-knex": "file:../../packages/sqlcommenter-knex/google-cloud-sqlcommenter-knex-0.0.3.tgz",
     "@google-cloud/sqlcommenter-sequelize": "file:../../packages/sqlcommenter-sequelize/google-cloud-sqlcommenter-sequelize-0.0.3.tgz",
     "@opencensus/nodejs": "0.0.22",
