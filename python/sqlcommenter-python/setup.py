@@ -37,6 +37,8 @@ setup(
         'flask': ['flask'],
         'psycopg2': ['psycopg2'],
         'sqlalchemy': ['sqlalchemy'],
+        'opencensus': ['opencensus'],
+        'opentelemetry': ["opentelemetry-api; python_version >= '3'"],
     },
     classifiers=[
         'Development Status :: 4 - Beta',

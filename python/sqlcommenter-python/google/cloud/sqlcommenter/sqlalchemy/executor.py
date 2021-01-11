@@ -17,16 +17,21 @@
 # This integration implements the before_cursor_execute hook factory as per:
 #   https://kite.com/python/docs/sqlalchemy.events.ConnectionEvents.before_execute
 from __future__ import absolute_import
+import logging
 
 import sqlalchemy
 from google.cloud.sqlcommenter import generate_sql_comment
 from google.cloud.sqlcommenter.flask import get_flask_info
 from google.cloud.sqlcommenter.opencensus import get_opencensus_values
+from google.cloud.sqlcommenter.opentelemetry import get_opentelemetry_values
 
+
+logger = logging.getLogger(__name__)
 
 def BeforeExecuteFactory(
         with_framework=True, with_controller=True, with_route=True,
-        with_opencensus=False, with_db_driver=False, with_db_framework=False):
+        with_opencensus=False, with_opentelemetry=False, with_db_driver=False,
+        with_db_framework=False):
 
     attributes = {
         'framework': with_framework,
@@ -53,8 +58,15 @@ def BeforeExecuteFactory(
         # Filter down to just the requested attributes.
         data = {k: v for k, v in data.items() if attributes.get(k)}
 
+        if with_opencensus and with_opentelemetry:
+            logger.warning(
+                "with_opencensus and with_opentelemetry were enabled. "
+                "Only use one to avoid unexpected behavior"
+            )
         if with_opencensus:
             data.update(get_opencensus_values())
+        if with_opentelemetry:
+            data.update(get_opentelemetry_values())
 
         sql_comment = generate_sql_comment(**data)
 
