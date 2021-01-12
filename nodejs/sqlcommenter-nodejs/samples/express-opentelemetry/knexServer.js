@@ -1,3 +1,4 @@
+const { LogLevel } = require("@opentelemetry/core");
 const { NodeTracerProvider } = require("@opentelemetry/node");
 const { BatchSpanProcessor } = require("@opentelemetry/tracing");
 const {
@@ -5,7 +6,10 @@ const {
 } = require("@google-cloud/opentelemetry-cloud-trace-exporter");
 const { logger, sleep } = require("./util");
 
-const tracerProvider = new NodeTracerProvider();
+const tracerProvider = new NodeTracerProvider({
+  logLevel: LogLevel.DEBUG,
+  logger,
+});
 tracerProvider.addSpanProcessor(
   new BatchSpanProcessor(new TraceExporter({ logger }), {
     bufferSize: 500,
@@ -18,16 +22,15 @@ tracerProvider.register();
 // that it instruments
 const express = require("express");
 const app = express();
-const {
-  Todo,
-  sequelize,
-  sqlcommenterMiddleware,
-} = require("./sequelizeModels");
+const { sqlcommenterMiddleware, knex } = require("./knexConnection");
 
 const tracer = tracerProvider.getTracer(__filename);
 
 async function main() {
-  await sequelize.sync();
+  if (!(await knex.schema.hasTable("Todos"))) {
+    console.error("Todos table does not exist. Run `npm run createTodos`");
+    process.exit(1);
+  }
 
   const PORT = 8000;
 
@@ -39,16 +42,14 @@ async function main() {
     await sleep(250);
     span.end();
 
-    const getRecordsSpan = tracer.startSpan("query records with sequelize");
+    const getRecordsSpan = tracer.startSpan("query records with knex");
     await tracer.withSpan(getRecordsSpan, async () => {
-      const todos = await Todo.findAll({ limit: 20 });
-      const countByDone = await Todo.findAll({
-        attributes: [
-          "done",
-          [sequelize.fn("COUNT", sequelize.col("id")), "count"],
-        ],
-        group: "done",
-      });
+      tracer.startSpan("testing 123").end();
+      const todos = await knex.select().table("Todos").limit(20);
+      const countByDone = await knex
+        .select("done", knex.raw("COUNT(id) as count"))
+        .table("Todos")
+        .groupBy("done");
       res.json({ countByDone, todos });
     });
     getRecordsSpan.end();
