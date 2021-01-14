@@ -33,28 +33,29 @@ public class SpanContextMetadata {
     String traceId = spanContext.getTraceId().toLowerBase16();
     String spanId = spanContext.getSpanId().toLowerBase16();
     byte traceOptions = spanContext.getTraceOptions().getByte();
-    String traceStateStr = null;
 
     io.opencensus.trace.Tracestate traceState = spanContext.getTracestate();
-    if (!traceState.getEntries().isEmpty()) {
-      // Tracestate needs to be serialized in the order of the entries.
-      ArrayList<String> pairsList = new ArrayList<>();
-      for (io.opencensus.trace.Tracestate.Entry entry : traceState.getEntries()) {
-        String key = entry.getKey();
-        // Only don't insert if the key is empty.
-        if (!key.isEmpty()) {
-          try {
-            String value = entry.getValue();
-            String encoded = URLEncoder.encode((String.format("%s=%s", key, value)), UTF8);
-            pairsList.add(encoded);
-          } catch (Exception e) {
-            logger.log(Level.WARNING, "Exception when encoding Tracestate", e);
-          }
+
+    if (traceState.getEntries().isEmpty()) {
+      return new SpanContextMetadata(traceId, spanId, traceOptions, null);
+    }
+
+    // Tracestate needs to be serialized in the order of the entries.
+    ArrayList<String> pairsList = new ArrayList<>();
+    for (io.opencensus.trace.Tracestate.Entry entry : traceState.getEntries()) {
+      String key = entry.getKey();
+      // Only don't insert if the key is empty.
+      if (!key.isEmpty()) {
+        try {
+          String value = entry.getValue();
+          String encoded = URLEncoder.encode((String.format("%s=%s", key, value)), UTF8);
+          pairsList.add(encoded);
+        } catch (Exception e) {
+          logger.log(Level.WARNING, "Exception when encoding Tracestate", e);
         }
       }
-
-      traceStateStr = String.join(",", pairsList);
     }
+    String traceStateStr = String.join(",", pairsList);
 
     return new SpanContextMetadata(traceId, spanId, traceOptions, traceStateStr);
   }
@@ -68,27 +69,29 @@ public class SpanContextMetadata {
     String traceId = spanContext.getTraceIdAsHexString();
     String spanId = spanContext.getSpanIdAsHexString();
     byte traceOptions = spanContext.getTraceFlags();
-    String traceStateStr = null;
 
     io.opentelemetry.api.trace.TraceState traceState = spanContext.getTraceState();
-    if (!traceState.isEmpty()) {
-      ArrayList<String> pairsList = new ArrayList<>();
 
-      Map<String, String> map = traceState.asMap();
-      for (String key : map.keySet()) {
-        if (key.isEmpty()) {
-          continue;
-        }
-
-        try {
-          String value = map.get(key);
-          String encoded = URLEncoder.encode((String.format("%s=%s", key, value)), UTF8);
-        } catch (Exception e) {
-          logger.log(Level.WARNING, "Exception when encoding Tracestate", e);
-        }
-      }
-      traceStateStr = String.join(",", pairsList);
+    if (traceState.isEmpty()) {
+      return new SpanContextMetadata(traceId, spanId, traceOptions, null);
     }
+
+    ArrayList<String> pairsList = new ArrayList<>();
+    Map<String, String> map = traceState.asMap();
+    for (String key : map.keySet()) {
+      if (key.isEmpty()) {
+        continue;
+      }
+
+      try {
+        String value = map.get(key);
+        String encoded = URLEncoder.encode((String.format("%s=%s", key, value)), UTF8);
+        pairsList.add(encoded);
+      } catch (Exception e) {
+        logger.log(Level.WARNING, "Exception when encoding Tracestate", e);
+      }
+    }
+    String traceStateStr = String.join(",", pairsList);
 
     return new SpanContextMetadata(traceId, spanId, traceOptions, traceStateStr);
   }

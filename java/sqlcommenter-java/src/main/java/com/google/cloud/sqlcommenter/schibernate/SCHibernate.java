@@ -19,6 +19,8 @@ import com.google.cloud.sqlcommenter.threadlocalstorage.State;
 import org.hibernate.resource.jdbc.spi.StatementInspector;
 
 public class SCHibernate implements StatementInspector {
+  private static final io.opencensus.trace.Tracer openCensusTracer = io.opencensus.trace.Tracing.getTracer();
+
   /**
    * inspect augments SQL with statements about the current code setup if any. It tries to check if
    * the current context contains OpenCensus information and if so, will augment the SQL but also it
@@ -32,15 +34,17 @@ public class SCHibernate implements StatementInspector {
     io.opentelemetry.api.trace.SpanContext spanContextOT =
         io.opentelemetry.api.trace.Span.current().getSpanContext();
 
-    if (spanContextOT.isValid() && spanContextOT.isSampled()) {
-      state =
-          State.newBuilder(state)
-              .withSpanContextMetadata(SpanContextMetadata.fromOpenTelemetryContext(spanContextOT))
-              .build();
+    if (spanContextOT.isValid()) {
+      if (spanContextOT.isSampled()) {
+        state =
+            State.newBuilder(state)
+                .withSpanContextMetadata(
+                    SpanContextMetadata.fromOpenTelemetryContext(spanContextOT))
+                .build();
+      }
     } else {
       // Otherwise it is time to augment the SQL with information about the controller.
-      io.opencensus.trace.Tracer tracer = io.opencensus.trace.Tracing.getTracer();
-      io.opencensus.trace.SpanContext spanContext = tracer.getCurrentSpan().getContext();
+      io.opencensus.trace.SpanContext spanContext = openCensusTracer.getCurrentSpan().getContext();
       if (spanContext.isValid() && spanContext.getTraceOptions().isSampled()) {
         // Since our goal at this point is NOT to mutate the threadlocal storage's state.
         // yet we still need to carefully capture the Span information, we'll make
