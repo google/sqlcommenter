@@ -12,11 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package com.google.cloud.sqlcommenter.threadlocal;
+package com.google.cloud.sqlcommenter.threadlocalstorage;
 
 import static com.google.common.truth.Truth.assertThat;
 
-import com.google.cloud.sqlcommenter.threadlocalstorage.State;
 import io.opencensus.trace.SpanContext;
 import io.opencensus.trace.SpanId;
 import io.opencensus.trace.TraceId;
@@ -55,11 +54,12 @@ public class ThreadLocalStorageTest {
         State.newBuilder()
             .withControllerName("foo;DROP TABLE BAR")
             .withActionName("run this & that")
-            .withSpanContext(
-                SpanContext.create(
-                    TraceId.fromLowerBase16("9a4589fe88dd0fc9ffee11228888ff11"),
-                    SpanId.fromLowerBase16("11fa8b00ff221eec"),
-                    TraceOptions.fromByte(byteSampled)))
+            .withSpanContextMetadata(
+                SpanContextMetadata.fromOpenCensusContext(
+                    SpanContext.create(
+                        TraceId.fromLowerBase16("9a4589fe88dd0fc9ffee11228888ff11"),
+                        SpanId.fromLowerBase16("11fa8b00ff221eec"),
+                        TraceOptions.fromByte(byteSampled))))
             .build();
 
     State.Holder.set(inTh1);
@@ -85,11 +85,12 @@ public class ThreadLocalStorageTest {
         State.newBuilder()
             .withControllerName("foo")
             .withActionName("action")
-            .withSpanContext(
-                SpanContext.create(
-                    TraceId.fromLowerBase16("aa4589fe88dd0faae1f2d3c4dd11f344"),
-                    SpanId.fromLowerBase16("91ea8891ff221eec"),
-                    TraceOptions.fromByte(byteSampled)))
+            .withSpanContextMetadata(
+                SpanContextMetadata.fromOpenCensusContext(
+                    SpanContext.create(
+                        TraceId.fromLowerBase16("aa4589fe88dd0faae1f2d3c4dd11f344"),
+                        SpanId.fromLowerBase16("91ea8891ff221eec"),
+                        TraceOptions.fromByte(byteSampled))))
             .build();
 
     assertThat(inTh2).isNotEqualTo(inTh1);

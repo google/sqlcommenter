@@ -14,11 +14,6 @@
 
 package com.google.cloud.sqlcommenter.threadlocalstorage;
 
-import io.opencensus.trace.SpanContext;
-import io.opencensus.trace.SpanId;
-import io.opencensus.trace.TraceId;
-import io.opencensus.trace.TraceOptions;
-import io.opencensus.trace.Tracestate;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -43,7 +38,7 @@ public final class State {
     @Nullable private String actionName;
     @Nullable private String controllerName;
     @Nullable private String framework;
-    @Nullable private SpanContext spanContext;
+    @Nullable private SpanContextMetadata spanContextMetadata;
 
     private Builder() {}
 
@@ -57,8 +52,8 @@ public final class State {
       return this;
     }
 
-    public Builder withSpanContext(SpanContext spanContext) {
-      this.spanContext = spanContext;
+    public Builder withSpanContextMetadata(SpanContextMetadata spanContextMetadata) {
+      this.spanContextMetadata = spanContextMetadata;
       return this;
     }
 
@@ -72,7 +67,7 @@ public final class State {
 
       state.actionName = this.actionName;
       state.controllerName = this.controllerName;
-      state.spanContext = this.spanContext;
+      state.spanContextMetadata = this.spanContextMetadata;
       state.framework = this.framework;
 
       return state;
@@ -82,7 +77,7 @@ public final class State {
   @Nullable private String controllerName;
   @Nullable private String actionName;
   @Nullable private String framework;
-  @Nullable private SpanContext spanContext;
+  @Nullable private SpanContextMetadata spanContextMetadata;
 
   public static Builder newBuilder() {
     return new Builder();
@@ -96,7 +91,7 @@ public final class State {
     return new Builder()
         .withActionName(copy.actionName)
         .withControllerName(copy.controllerName)
-        .withSpanContext(copy.spanContext)
+        .withSpanContextMetadata(copy.spanContextMetadata)
         .withFramework(copy.framework);
   }
 
@@ -150,54 +145,21 @@ public final class State {
 
   @Nullable
   private String traceParent() {
-    if (spanContext == null || !spanContext.isValid()) {
-      // According to the W3C TraceContext specification, a blank spanId
-      // is invalid and should not create a TraceParent.
-      return null;
-    }
-    TraceId traceId = spanContext.getTraceId();
-    SpanId spanId = spanContext.getSpanId();
-
-    TraceOptions traceOptions = spanContext.getTraceOptions();
     // A sample:
     //    traceparent='00-a22901f654b534675439f71fbe43783d-7fde95452aa72253-01'
-    return String.format(
-        "%s-%s-%s-%02X",
-        W3C_CONTEXT_VERSION,
-        traceId.toLowerBase16(),
-        spanId.toLowerBase16(),
-        traceOptions.getByte());
+    return spanContextMetadata == null
+        ? null
+        : String.format(
+            "%s-%s-%s-%02X",
+            W3C_CONTEXT_VERSION,
+            spanContextMetadata.getTraceId(),
+            spanContextMetadata.getSpanId(),
+            spanContextMetadata.getTraceOptions());
   }
 
   @Nullable
   private String traceState() {
-    if (this.spanContext == null || !this.spanContext.isValid()) {
-      return null;
-    }
-    Tracestate traceState = this.spanContext.getTracestate();
-    if (traceState.getEntries().isEmpty()) {
-      return null;
-    }
-
-    // Tracestate needs to be serialized in the order of the entries.
-    ArrayList<String> pairsList = new ArrayList<String>();
-    for (Tracestate.Entry entry : traceState.getEntries()) {
-      try {
-        String key = entry.getKey();
-        // Only don't insert if the key is empty.
-        if (key.isEmpty()) {
-          continue;
-        }
-
-        String value = entry.getValue();
-        String encoded = urlEncode(String.format("%s=%s", key, value));
-        pairsList.add(encoded);
-      } catch (Exception e) {
-        logger.log(Level.WARNING, "Exception when encoding Tracestate", e);
-      }
-    }
-
-    return String.join(",", pairsList);
+    return spanContextMetadata == null ? null : spanContextMetadata.getTraceState();
   }
 
   public String toString() {

@@ -12,11 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package com.google.cloud.sqlcommenter.threadlocal;
+package com.google.cloud.sqlcommenter.threadlocalstorage;
 
 import static com.google.common.truth.Truth.assertThat;
 
-import com.google.cloud.sqlcommenter.threadlocalstorage.State;
 import io.opencensus.trace.SpanContext;
 import io.opencensus.trace.SpanId;
 import io.opencensus.trace.TraceId;
@@ -52,11 +51,12 @@ public class StateTest {
             .withFramework("spring")
             .withControllerName("foo;DROP TABLE BAR")
             .withActionName("run this & that")
-            .withSpanContext(
-                SpanContext.create(
-                    TraceId.fromLowerBase16("9a4589fe88dd0fc9ffee11228888ff11"),
-                    SpanId.fromLowerBase16("11fa8b009a4589fe"),
-                    TraceOptions.fromByte(byteSampled)))
+            .withSpanContextMetadata(
+                SpanContextMetadata.fromOpenCensusContext(
+                    SpanContext.create(
+                        TraceId.fromLowerBase16("9a4589fe88dd0fc9ffee11228888ff11"),
+                        SpanId.fromLowerBase16("11fa8b009a4589fe"),
+                        TraceOptions.fromByte(byteSampled))))
             .build();
 
     // 1. Assert that proper comments are generated.
@@ -99,18 +99,19 @@ public class StateTest {
             .withFramework("spring")
             .withControllerName("foo;DROP TABLE BAR")
             .withActionName("run this & that")
-            .withSpanContext(
-                SpanContext.create(
-                    TraceId.fromLowerBase16("9a4589fe88dd0fc911ff2233ffee7899"),
-                    SpanId.fromLowerBase16("11fa8b00dd11eeff"),
-                    TraceOptions.fromByte(byteNotSampled),
-                    Tracestate.builder()
-                        .build()
-                        .toBuilder()
-                        // A new entry will always be added in the front of the list of entries.
-                        .set("congo", "t61rcWkgMzE")
-                        .set("rojo", "00f067aa0ba902b7")
-                        .build()))
+            .withSpanContextMetadata(
+                SpanContextMetadata.fromOpenCensusContext(
+                    SpanContext.create(
+                        TraceId.fromLowerBase16("9a4589fe88dd0fc911ff2233ffee7899"),
+                        SpanId.fromLowerBase16("11fa8b00dd11eeff"),
+                        TraceOptions.fromByte(byteNotSampled),
+                        Tracestate.builder()
+                            .build()
+                            .toBuilder()
+                            // A new entry will always be added in the front of the list of entries.
+                            .set("congo", "t61rcWkgMzE")
+                            .set("rojo", "00f067aa0ba902b7")
+                            .build())))
             .build();
 
     // 1. Assert that proper comments are generated.
@@ -157,11 +158,12 @@ public class StateTest {
             .withFramework("spring")
             .withControllerName("foo;DROP TABLE BAR")
             .withActionName("run this & that")
-            .withSpanContext(
-                SpanContext.create(
-                    TraceId.fromLowerBase16("9a4589fe88dd0fc9ffdd11eedd2233ff"),
-                    SpanId.fromLowerBase16("11fa8b00cc23114f"),
-                    TraceOptions.fromByte(byteSampled)))
+            .withSpanContextMetadata(
+                SpanContextMetadata.fromOpenCensusContext(
+                    SpanContext.create(
+                        TraceId.fromLowerBase16("9a4589fe88dd0fc9ffdd11eedd2233ff"),
+                        SpanId.fromLowerBase16("11fa8b00cc23114f"),
+                        TraceOptions.fromByte(byteSampled))))
             .build();
     assertThat(state).isNotEqualTo(null);
 
