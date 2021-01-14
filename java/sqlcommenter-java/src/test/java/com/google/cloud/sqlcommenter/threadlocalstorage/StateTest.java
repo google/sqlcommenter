@@ -27,9 +27,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-/**
- * Tests for {@link State}.
- */
+/** Tests for {@link State}. */
 @RunWith(JUnit4.class)
 public class StateTest {
 
@@ -49,22 +47,23 @@ public class StateTest {
   @Test
   public void testFormatAndAppendToSQL() {
     State state =
-            State.newBuilder()
-                    .withFramework("spring")
-                    .withControllerName("foo;DROP TABLE BAR")
-                    .withActionName("run this & that")
-                    .withSpanContextMetadata(
-                            SpanContextMetadata.fromOpenCensusContext(SpanContext.create(
-                                    TraceId.fromLowerBase16("9a4589fe88dd0fc9ffee11228888ff11"),
-                                    SpanId.fromLowerBase16("11fa8b009a4589fe"),
-                                    TraceOptions.fromByte(byteSampled))))
-                    .build();
+        State.newBuilder()
+            .withFramework("spring")
+            .withControllerName("foo;DROP TABLE BAR")
+            .withActionName("run this & that")
+            .withSpanContextMetadata(
+                SpanContextMetadata.fromOpenCensusContext(
+                    SpanContext.create(
+                        TraceId.fromLowerBase16("9a4589fe88dd0fc9ffee11228888ff11"),
+                        SpanId.fromLowerBase16("11fa8b009a4589fe"),
+                        TraceOptions.fromByte(byteSampled))))
+            .build();
 
     // 1. Assert that proper comments are generated.
     assertThat(state.formatAndAppendToSQL("SELECT * from USERS"))
-            .isEqualTo(
-                    // Java's url_encode encodes " " as "+" instead of "%20".
-                    "SELECT * from USERS /*action='run+this+%26+that',controller='foo%3BDROP+TABLE+BAR',framework='spring',traceparent='00-9a4589fe88dd0fc9ffee11228888ff11-11fa8b009a4589fe-01'*/");
+        .isEqualTo(
+            // Java's url_encode encodes " " as "+" instead of "%20".
+            "SELECT * from USERS /*action='run+this+%26+that',controller='foo%3BDROP+TABLE+BAR',framework='spring',traceparent='00-9a4589fe88dd0fc9ffee11228888ff11-11fa8b009a4589fe-01'*/");
 
     // 2. Assert that passing in null returns null.
     assertThat(state.formatAndAppendToSQL(null)).isEqualTo(null);
@@ -72,19 +71,19 @@ public class StateTest {
     // 3.1. Assert that passing in a SQL statement that has comments /*...*/ will return the
     // original, untampered.
     assertThat(state.formatAndAppendToSQL("SELECT * from USERS /*this is a pre-existing comment*/"))
-            .isEqualTo("SELECT * from USERS /*this is a pre-existing comment*/");
+        .isEqualTo("SELECT * from USERS /*this is a pre-existing comment*/");
 
     // 3.2. Assert that passing in a SQL statement that has comments -- will return the original,
     // untampered.
     assertThat(state.formatAndAppendToSQL("SELECT * from USERS -- this is a pre-existing comment"))
-            .isEqualTo("SELECT * from USERS -- this is a pre-existing comment");
+        .isEqualTo("SELECT * from USERS -- this is a pre-existing comment");
 
     // 3.3. Assert that passing in a SQL statement that has comments-- will return the original,
     // untampered.
     assertThat(
             state.formatAndAppendToSQL(
-                    "SELECT * from USERS-- this is a pre-existing but malformed comment"))
-            .isEqualTo("SELECT * from USERS-- this is a pre-existing but malformed comment");
+                "SELECT * from USERS-- this is a pre-existing but malformed comment"))
+        .isEqualTo("SELECT * from USERS-- this is a pre-existing but malformed comment");
 
     // 4.1. Assert that passing in the empty string, returns as is.
     assertThat(state.formatAndAppendToSQL("")).isEqualTo("");
@@ -96,29 +95,30 @@ public class StateTest {
   @Test
   public void testFormatAndAppendToSQLNotSampled() {
     State state =
-            State.newBuilder()
-                    .withFramework("spring")
-                    .withControllerName("foo;DROP TABLE BAR")
-                    .withActionName("run this & that")
-                    .withSpanContextMetadata(
-                            SpanContextMetadata.fromOpenCensusContext(SpanContext.create(
-                                    TraceId.fromLowerBase16("9a4589fe88dd0fc911ff2233ffee7899"),
-                                    SpanId.fromLowerBase16("11fa8b00dd11eeff"),
-                                    TraceOptions.fromByte(byteNotSampled),
-                                    Tracestate.builder()
-                                            .build()
-                                            .toBuilder()
-                                            // A new entry will always be added in the front of the list of entries.
-                                            .set("congo", "t61rcWkgMzE")
-                                            .set("rojo", "00f067aa0ba902b7")
-                                            .build())))
-                    .build();
+        State.newBuilder()
+            .withFramework("spring")
+            .withControllerName("foo;DROP TABLE BAR")
+            .withActionName("run this & that")
+            .withSpanContextMetadata(
+                SpanContextMetadata.fromOpenCensusContext(
+                    SpanContext.create(
+                        TraceId.fromLowerBase16("9a4589fe88dd0fc911ff2233ffee7899"),
+                        SpanId.fromLowerBase16("11fa8b00dd11eeff"),
+                        TraceOptions.fromByte(byteNotSampled),
+                        Tracestate.builder()
+                            .build()
+                            .toBuilder()
+                            // A new entry will always be added in the front of the list of entries.
+                            .set("congo", "t61rcWkgMzE")
+                            .set("rojo", "00f067aa0ba902b7")
+                            .build())))
+            .build();
 
     // 1. Assert that proper comments are generated.
     assertThat(state.formatAndAppendToSQL("SELECT * from USERS"))
-            .isEqualTo(
-                    // Java's url_encode encodes " " as "+" instead of "%20".
-                    "SELECT * from USERS /*action='run+this+%26+that',controller='foo%3BDROP+TABLE+BAR',framework='spring',traceparent='00-9a4589fe88dd0fc911ff2233ffee7899-11fa8b00dd11eeff-00',tracestate='rojo%253D00f067aa0ba902b7%2Ccongo%253Dt61rcWkgMzE'*/");
+        .isEqualTo(
+            // Java's url_encode encodes " " as "+" instead of "%20".
+            "SELECT * from USERS /*action='run+this+%26+that',controller='foo%3BDROP+TABLE+BAR',framework='spring',traceparent='00-9a4589fe88dd0fc911ff2233ffee7899-11fa8b00dd11eeff-00',tracestate='rojo%253D00f067aa0ba902b7%2Ccongo%253Dt61rcWkgMzE'*/");
 
     // 2. Assert that passing in null returns null.
     assertThat(state.formatAndAppendToSQL(null)).isEqualTo(null);
@@ -126,19 +126,19 @@ public class StateTest {
     // 3.1. Assert that passing in a SQL statement that has comments /*...*/ will return the
     // original, untampered.
     assertThat(state.formatAndAppendToSQL("SELECT * from USERS /*this is a pre-existing comment*/"))
-            .isEqualTo("SELECT * from USERS /*this is a pre-existing comment*/");
+        .isEqualTo("SELECT * from USERS /*this is a pre-existing comment*/");
 
     // 3.2. Assert that passing in a SQL statement that has comments -- will return the original,
     // untampered.
     assertThat(state.formatAndAppendToSQL("SELECT * from USERS -- this is a pre-existing comment"))
-            .isEqualTo("SELECT * from USERS -- this is a pre-existing comment");
+        .isEqualTo("SELECT * from USERS -- this is a pre-existing comment");
 
     // 3.3. Assert that passing in a SQL statement that has comments-- will return the original,
     // untampered.
     assertThat(
             state.formatAndAppendToSQL(
-                    "SELECT * from USERS-- this is a pre-existing but malformed comment"))
-            .isEqualTo("SELECT * from USERS-- this is a pre-existing but malformed comment");
+                "SELECT * from USERS-- this is a pre-existing but malformed comment"))
+        .isEqualTo("SELECT * from USERS-- this is a pre-existing but malformed comment");
 
     // 4.1. Assert that passing in the empty string, returns as is.
     assertThat(state.formatAndAppendToSQL("")).isEqualTo("");
@@ -154,17 +154,17 @@ public class StateTest {
     assertThat(sNull).isNotEqualTo(null);
 
     State state =
-            State.newBuilder()
-                    .withFramework("spring")
-                    .withControllerName("foo;DROP TABLE BAR")
-                    .withActionName("run this & that")
-                    .withSpanContextMetadata(
-                            SpanContextMetadata.fromOpenCensusContext(
-                                    SpanContext.create(
-                                            TraceId.fromLowerBase16("9a4589fe88dd0fc9ffdd11eedd2233ff"),
-                                            SpanId.fromLowerBase16("11fa8b00cc23114f"),
-                                            TraceOptions.fromByte(byteSampled))))
-                    .build();
+        State.newBuilder()
+            .withFramework("spring")
+            .withControllerName("foo;DROP TABLE BAR")
+            .withActionName("run this & that")
+            .withSpanContextMetadata(
+                SpanContextMetadata.fromOpenCensusContext(
+                    SpanContext.create(
+                        TraceId.fromLowerBase16("9a4589fe88dd0fc9ffdd11eedd2233ff"),
+                        SpanId.fromLowerBase16("11fa8b00cc23114f"),
+                        TraceOptions.fromByte(byteSampled))))
+            .build();
     assertThat(state).isNotEqualTo(null);
 
     // 1. Reset the state with null, we shouldn't crash.

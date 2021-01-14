@@ -89,10 +89,10 @@ public final class State {
     }
 
     return new Builder()
-            .withActionName(copy.actionName)
-            .withControllerName(copy.controllerName)
-            .withSpanContextMetadata(copy.spanContextMetadata)
-            .withFramework(copy.framework);
+        .withActionName(copy.actionName)
+        .withControllerName(copy.controllerName)
+        .withSpanContextMetadata(copy.spanContextMetadata)
+        .withFramework(copy.framework);
   }
 
   private Boolean hasSQLComment(String stmt) {
@@ -147,7 +147,9 @@ public final class State {
   private String traceParent() {
     // A sample:
     //    traceparent='00-a22901f654b534675439f71fbe43783d-7fde95452aa72253-01'
-    return spanContextMetadata == null ? null : String.format(
+    return spanContextMetadata == null
+        ? null
+        : String.format(
             "%s-%s-%s-%02X",
             W3C_CONTEXT_VERSION,
             spanContextMetadata.getTraceId(),
@@ -174,7 +176,7 @@ public final class State {
       try {
         String valueStr = String.format("%s", value);
         String keyValuePairString =
-                String.format("%s='%s'", urlEncode(entry.getKey()), urlEncode(valueStr));
+            String.format("%s='%s'", urlEncode(entry.getKey()), urlEncode(valueStr));
         keyValuePairsList.add(keyValuePairString);
       } catch (Exception e) {
         logger.log(Level.WARNING, "Exception when encoding State", e);

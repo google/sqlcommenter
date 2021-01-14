@@ -25,19 +25,17 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-/**
- * Tests for {@link SCHibernateTest}.
- */
+/** Tests for {@link SCHibernateTest}. */
 @RunWith(JUnit4.class)
 public class SCHibernateTest {
   private final String stmt1 = "SELECT * from FOO";
   private final SCHibernate sch = new SCHibernate();
   private final State state1 =
-          State.newBuilder()
-                  .withFramework("jetty")
-                  .withControllerName("baz")
-                  .withActionName("may")
-                  .build();
+      State.newBuilder()
+          .withFramework("jetty")
+          .withControllerName("baz")
+          .withActionName("may")
+          .build();
 
   @BeforeClass
   public static void setUp() {
@@ -65,7 +63,7 @@ public class SCHibernateTest {
 
     String got2 = sch.inspect(stmt1);
     assertThat(got2)
-            .isEqualTo("SELECT * from FOO /*action='may',controller='baz',framework='jetty'*/");
+        .isEqualTo("SELECT * from FOO /*action='may',controller='baz',framework='jetty'*/");
   }
 
   @Test
@@ -74,18 +72,19 @@ public class SCHibernateTest {
 
     io.opencensus.trace.Tracer tracer = io.opencensus.trace.Tracing.getTracer();
     // 2. Now insert a span and assert that the SQL has that OpenCensus Trace information.
-    try (io.opencensus.common.Scope ss = tracer.spanBuilder("TestSpan").setSampler(Samplers.alwaysSample()).startScopedSpan()) {
+    try (io.opencensus.common.Scope ss =
+        tracer.spanBuilder("TestSpan").setSampler(Samplers.alwaysSample()).startScopedSpan()) {
       io.opencensus.trace.SpanContext spanContext = tracer.getCurrentSpan().getContext();
 
       // With that span, now try generating the SQL again.
       String got3 = sch.inspect(stmt1);
       String want3 =
-              String.format(
-                      "SELECT * from FOO /*action='may',controller='baz',framework='jetty',traceparent='%s-%s-%s-%02X'*/",
-                      State.W3C_CONTEXT_VERSION,
-                      spanContext.getTraceId().toLowerBase16(),
-                      spanContext.getSpanId().toLowerBase16(),
-                      spanContext.getTraceOptions().getByte());
+          String.format(
+              "SELECT * from FOO /*action='may',controller='baz',framework='jetty',traceparent='%s-%s-%s-%02X'*/",
+              State.W3C_CONTEXT_VERSION,
+              spanContext.getTraceId().toLowerBase16(),
+              spanContext.getSpanId().toLowerBase16(),
+              spanContext.getTraceOptions().getByte());
 
       assertThat(got3).isEqualTo(want3);
     }
@@ -95,14 +94,15 @@ public class SCHibernateTest {
     State.Holder.set(state1);
     String got3 = sch.inspect(stmt1);
     assertThat(got3)
-            .isEqualTo("SELECT * from FOO /*action='may',controller='baz',framework='jetty'*/");
+        .isEqualTo("SELECT * from FOO /*action='may',controller='baz',framework='jetty'*/");
   }
 
   @Test
   public void testWithOpenTelemetryContext() {
     State.Holder.set(state1);
 
-    io.opentelemetry.api.trace.Tracer tracer = TracerSdkProvider.builder().build().get("SCHibernateTest");
+    io.opentelemetry.api.trace.Tracer tracer =
+        TracerSdkProvider.builder().build().get("SCHibernateTest");
     // 2. Now insert a span and assert that the SQL has that OpenTelemetry Trace information.
     io.opentelemetry.api.trace.Span span = tracer.spanBuilder("TestSpan").startSpan();
     try (io.opentelemetry.context.Scope ss = span.makeCurrent()) {
@@ -110,7 +110,9 @@ public class SCHibernateTest {
 
       // With that span, now try generating the SQL again.
       String got = sch.inspect(stmt1);
-      String want3 = String.format("SELECT * from FOO /*action='may',controller='baz',framework='jetty',traceparent='%s-%s-%s-%02X'*/",
+      String want3 =
+          String.format(
+              "SELECT * from FOO /*action='may',controller='baz',framework='jetty',traceparent='%s-%s-%s-%02X'*/",
               State.W3C_CONTEXT_VERSION,
               spanContext.getTraceIdAsHexString(),
               spanContext.getSpanIdAsHexString(),
@@ -126,6 +128,6 @@ public class SCHibernateTest {
     State.Holder.set(state1);
     String got3 = sch.inspect(stmt1);
     assertThat(got3)
-            .isEqualTo("SELECT * from FOO /*action='may',controller='baz',framework='jetty'*/");
+        .isEqualTo("SELECT * from FOO /*action='may',controller='baz',framework='jetty'*/");
   }
 }
