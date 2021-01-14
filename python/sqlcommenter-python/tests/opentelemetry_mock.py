@@ -23,10 +23,6 @@ try:
     def mock_opentelemetry_context(
         trace_id=0xDEADBEEF, span_id=0xBEEF, trace_flags=None, trace_state=None
     ):
-        if not context:
-            yield
-            return
-
         span_context = trace.SpanContext(
             trace_id=trace_id,
             span_id=span_id,
@@ -34,16 +30,17 @@ try:
             trace_flags=trace_flags,
             trace_state=trace.TraceState(
                 **(
-                    trace_state
-                    if trace_state is not None
+                    trace_state if trace_state is not None
                     else {"some_key": "some_value"}
                 )
             ),
         )
         ctx = trace.set_span_in_context(trace.DefaultSpan(span_context))
         token = context.attach(ctx)
-        yield
-        context.detach(token)
+        try:
+            yield
+        finally:
+            context.detach(token)
 
 
 except ImportError:
