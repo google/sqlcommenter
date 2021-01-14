@@ -30,5 +30,5 @@ def skipIfPy2(testcase):
         sys.version_info.major == 2, "Feature only support in python3+"
     )(testcase)
 
-__all__ = ["mock"]
 
+__all__ = ["mock"]

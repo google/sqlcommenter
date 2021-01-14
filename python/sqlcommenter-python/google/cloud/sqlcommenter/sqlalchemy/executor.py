@@ -17,6 +17,7 @@
 # This integration implements the before_cursor_execute hook factory as per:
 #   https://kite.com/python/docs/sqlalchemy.events.ConnectionEvents.before_execute
 from __future__ import absolute_import
+
 import logging
 
 import sqlalchemy
@@ -25,8 +26,8 @@ from google.cloud.sqlcommenter.flask import get_flask_info
 from google.cloud.sqlcommenter.opencensus import get_opencensus_values
 from google.cloud.sqlcommenter.opentelemetry import get_opentelemetry_values
 
-
 logger = logging.getLogger(__name__)
+
 
 def BeforeExecuteFactory(
         with_framework=True, with_controller=True, with_route=True,

@@ -23,8 +23,8 @@ from google.cloud.sqlcommenter.flask import get_flask_info
 from google.cloud.sqlcommenter.opencensus import get_opencensus_values
 from google.cloud.sqlcommenter.opentelemetry import get_opentelemetry_values
 
-
 logger = logging.getLogger(__name__)
+
 
 # This integration extends psycopg2.extensions.cursor
 # by implementing a custom execute method.

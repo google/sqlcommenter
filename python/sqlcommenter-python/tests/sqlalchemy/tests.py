@@ -15,7 +15,6 @@
 # limitations under the License.
 
 from unittest import TestCase
-from unittest.case import skip, skipIf
 
 import sqlalchemy
 from google.cloud.sqlcommenter.sqlalchemy.executor import BeforeExecuteFactory
@@ -127,4 +126,3 @@ class FlaskTests(SQLAlchemyTestCase):
             "SELECT 1; /*controller='c',framework='flask'*/",
             with_route=False,
         )
-

@@ -88,7 +88,7 @@ class Tests(Psycopg2TestCase):
                 "tracestate='some_key%%3Dsome_value'*/",
                 with_opentelemetry=True,
             )
-    
+
     def test_both_opentelemetry_and_opencensus_warn(self):
         with mock.patch(
             "google.cloud.sqlcommenter.psycopg2.extension.logger"
@@ -100,6 +100,7 @@ class Tests(Psycopg2TestCase):
                 with_opencensus=True,
             )
             self.assertEqual(len(logger_mock.warning.mock_calls), 1)
+
 
 class FlaskTests(Psycopg2TestCase):
     flask_info = {
