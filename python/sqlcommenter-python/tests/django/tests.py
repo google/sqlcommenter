@@ -21,7 +21,9 @@ from django.test import TestCase, override_settings
 from django.urls import resolve, reverse
 from google.cloud.sqlcommenter.django.middleware import SqlCommenter
 
+from ..compat import mock
 from ..opencensus_mock import mock_opencensus_tracer
+from ..opentelemetry_mock import mock_opentelemetry_context
 from . import views
 
 
@@ -100,8 +102,14 @@ class Tests(TestCase):
         """Opencensus fields are omitted by default."""
         with mock_opencensus_tracer():
             query = self.get_query()
-            self.assertNotIn('traceparent', query)
-            self.assertNotIn('tracestate', query)
+            self.assertNotIn("traceparent", query)
+            self.assertNotIn("tracestate", query)
+
+    def test_opentelemetry_disabled(self):
+        """OpenTelemetry fields are omitted by default."""
+        query = self.get_query()
+        self.assertNotIn("traceparent", query)
+        self.assertNotIn("tracestate", query)
 
     def test_opencensus_enabled(self):
         with mock_opencensus_tracer(), self.settings(SQLCOMMENTER_WITH_OPENCENSUS=True):
@@ -109,5 +117,25 @@ class Tests(TestCase):
             self.assertIn(
                 "traceparent='00-trace%%20id-span%%20id-00',"
                 "tracestate='congo%%3Dt61rcWkgMzE%%2Crojo%%3D00f067aa0ba902b7'",
-                query
+                query,
             )
+
+    def test_opentelemetry_enabled(self):
+        with mock_opentelemetry_context(), self.settings(SQLCOMMENTER_WITH_OPENTELEMETRY=True):
+            query = self.get_query()
+            self.assertIn(
+                "traceparent='00-000000000000000000000000deadbeef-000000000000beef-00',"
+                "tracestate='some_key%%3Dsome_value'",
+                query,
+            )
+
+    def test_both_opentelemetry_and_opencensus_warn(self):
+        with mock.patch(
+            "google.cloud.sqlcommenter.django.middleware.logger"
+        ) as logger_mock, self.settings(
+            SQLCOMMENTER_WITH_OPENCENSUS=True
+        ), self.settings(
+            SQLCOMMENTER_WITH_OPENTELEMETRY=True
+        ):
+            self.get_query()
+            self.assertEqual(len(logger_mock.warning.mock_calls), 1)

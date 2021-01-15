@@ -15,9 +15,20 @@
 # limitations under the License.
 
 """Python 2 compatibility shims."""
+
+import sys
+import unittest
+
 try:
     from unittest import mock
 except ImportError:  # Python 2
     import mock
 
-__all__ = ['mock']
+
+def skipIfPy2(testcase):
+    return unittest.skipIf(
+        sys.version_info.major == 2, "Feature only support in python3+"
+    )(testcase)
+
+
+__all__ = ["mock"]

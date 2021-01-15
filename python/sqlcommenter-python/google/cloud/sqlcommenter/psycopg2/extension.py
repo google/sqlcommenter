@@ -14,11 +14,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import logging
+
 import psycopg2
 import psycopg2.extensions
 from google.cloud.sqlcommenter import generate_sql_comment
 from google.cloud.sqlcommenter.flask import get_flask_info
 from google.cloud.sqlcommenter.opencensus import get_opencensus_values
+from google.cloud.sqlcommenter.opentelemetry import get_opentelemetry_values
+
+logger = logging.getLogger(__name__)
 
 
 # This integration extends psycopg2.extensions.cursor
@@ -29,8 +34,9 @@ from google.cloud.sqlcommenter.opencensus import get_opencensus_values
 # by instead setting with_opencensus=True
 def CommenterCursorFactory(
         with_framework=True, with_controller=True, with_route=True,
-        with_opencensus=False, with_db_driver=False, with_dbapi_threadsafety=False,
-        with_dbapi_level=False, with_libpq_version=False, with_driver_paramstyle=False):
+        with_opencensus=False, with_opentelemetry=False, with_db_driver=False,
+        with_dbapi_threadsafety=False, with_dbapi_level=False,
+        with_libpq_version=False, with_driver_paramstyle=False):
 
     attributes = {
         'framework': with_framework,
@@ -64,8 +70,15 @@ def CommenterCursorFactory(
             # Filter down to just the requested attributes.
             data = {k: v for k, v in data.items() if attributes.get(k)}
 
+            if with_opencensus and with_opentelemetry:
+                logger.warning(
+                    "with_opencensus and with_opentelemetry were enabled. "
+                    "Only use one to avoid unexpected behavior"
+                )
             if with_opencensus:
                 data.update(get_opencensus_values())
+            if with_opentelemetry:
+                data.update(get_opentelemetry_values())
 
             sql += generate_sql_comment(**data)
 

@@ -14,13 +14,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import logging
+
 import django
 from django.db import connection
 from django.db.backends.utils import CursorDebugWrapper
 from google.cloud.sqlcommenter import generate_sql_comment
 from google.cloud.sqlcommenter.opencensus import get_opencensus_values
+from google.cloud.sqlcommenter.opentelemetry import get_opentelemetry_values
 
 django_version = django.get_version()
+logger = logging.getLogger(__name__)
 
 
 class SqlCommenter:
@@ -46,7 +50,14 @@ class QueryWrapper:
         with_route = getattr(django.conf.settings, 'SQLCOMMENTER_WITH_ROUTE', True)
         with_app_name = getattr(django.conf.settings, 'SQLCOMMENTER_WITH_APP_NAME', False)
         with_opencensus = getattr(django.conf.settings, 'SQLCOMMENTER_WITH_OPENCENSUS', False)
+        with_opentelemetry = getattr(django.conf.settings, 'SQLCOMMENTER_WITH_OPENTELEMETRY', False)
         with_db_driver = getattr(django.conf.settings, 'SQLCOMMENTER_WITH_DB_DRIVER', False)
+
+        if with_opencensus and with_opentelemetry:
+            logger.warning(
+                "SQLCOMMENTER_WITH_OPENCENSUS and SQLCOMMENTER_WITH_OPENTELEMETRY were enabled. "
+                "Only use one to avoid unexpected behavior"
+            )
 
         db_driver = context['connection'].settings_dict.get('ENGINE', '')
         resolver_match = self.request.resolver_match
@@ -65,7 +76,8 @@ class QueryWrapper:
             framework=('django:%s' % django_version) if with_framework else None,
             # Information about the database and driver.
             db_driver=db_driver if with_db_driver else None,
-            **get_opencensus_values() if with_opencensus else {}
+            **get_opencensus_values() if with_opencensus else {},
+            **get_opentelemetry_values() if with_opentelemetry else {}
         )
 
         # TODO: MySQL truncates logs > 1024B so prepend comments

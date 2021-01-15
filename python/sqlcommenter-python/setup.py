@@ -18,9 +18,11 @@ import os
 
 from setuptools import find_packages, setup
 
+
 def read_file(filename):
     with open(os.path.join(os.path.dirname(__file__), filename)) as file:
         return file.read()
+
 
 setup(
     name='google-cloud-sqlcommenter',
@@ -37,6 +39,8 @@ setup(
         'flask': ['flask'],
         'psycopg2': ['psycopg2'],
         'sqlalchemy': ['sqlalchemy'],
+        'opencensus': ['opencensus'],
+        'opentelemetry': ["opentelemetry-api; python_version >= '3'"],
     },
     classifiers=[
         'Development Status :: 4 - Beta',

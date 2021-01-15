@@ -19,8 +19,9 @@ from unittest import TestCase
 import sqlalchemy
 from google.cloud.sqlcommenter.sqlalchemy.executor import BeforeExecuteFactory
 
-from ..compat import mock
+from ..compat import mock, skipIfPy2
 from ..opencensus_mock import mock_opencensus_tracer
+from ..opentelemetry_mock import mock_opentelemetry_context
 
 
 class MockConnection:
@@ -68,6 +69,28 @@ class Tests(SQLAlchemyTestCase):
                 "tracestate='congo%%3Dt61rcWkgMzE%%2Crojo%%3D00f067aa0ba902b7'*/",
                 with_opencensus=True,
             )
+
+    @skipIfPy2
+    def test_opentelemetry(self):
+        with mock_opentelemetry_context():
+            self.assertSQL(
+                "SELECT 1; /*traceparent='00-000000000000000000000000deadbeef-000000000000beef-00',"
+                "tracestate='some_key%%3Dsome_value'*/",
+                with_opentelemetry=True,
+            )
+
+    @skipIfPy2
+    def test_both_opentelemetry_and_opencensus_warn(self):
+        with mock.patch(
+            "google.cloud.sqlcommenter.sqlalchemy.executor.logger"
+        ) as logger_mock, mock_opencensus_tracer(), mock_opentelemetry_context():
+            self.assertSQL(
+                "SELECT 1; /*traceparent='00-000000000000000000000000deadbeef-000000000000beef-00',"
+                "tracestate='some_key%%3Dsome_value'*/",
+                with_opentelemetry=True,
+                with_opencensus=True,
+            )
+            self.assertEqual(len(logger_mock.warning.mock_calls), 1)
 
 
 class FlaskTests(SQLAlchemyTestCase):

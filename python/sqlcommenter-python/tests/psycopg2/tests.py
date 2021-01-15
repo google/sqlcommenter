@@ -23,6 +23,7 @@ from google.cloud.sqlcommenter.psycopg2.extension import CommenterCursorFactory
 
 from ..compat import mock
 from ..opencensus_mock import mock_opencensus_tracer
+from ..opentelemetry_mock import mock_opentelemetry_context
 
 
 class Psycopg2TestCase(TestCase):
@@ -79,6 +80,26 @@ class Tests(Psycopg2TestCase):
                 "tracestate='congo%%3Dt61rcWkgMzE%%2Crojo%%3D00f067aa0ba902b7'*/",
                 with_opencensus=True,
             )
+
+    def test_opentelemetry(self):
+        with mock_opentelemetry_context():
+            self.assertSQL(
+                "SELECT 1; /*traceparent='00-000000000000000000000000deadbeef-000000000000beef-00',"
+                "tracestate='some_key%%3Dsome_value'*/",
+                with_opentelemetry=True,
+            )
+
+    def test_both_opentelemetry_and_opencensus_warn(self):
+        with mock.patch(
+            "google.cloud.sqlcommenter.psycopg2.extension.logger"
+        ) as logger_mock, mock_opencensus_tracer(), mock_opentelemetry_context():
+            self.assertSQL(
+                "SELECT 1; /*traceparent='00-000000000000000000000000deadbeef-000000000000beef-00',"
+                "tracestate='some_key%%3Dsome_value'*/",
+                with_opentelemetry=True,
+                with_opencensus=True,
+            )
+            self.assertEqual(len(logger_mock.warning.mock_calls), 1)
 
 
 class FlaskTests(Psycopg2TestCase):
