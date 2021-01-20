@@ -1,0 +1,7 @@
+../sqlcommenter-python[opentelemetry]
+opentelemetry-api==0.16b1
+opentelemetry-exporter-google-cloud==0.16b1
+opentelemetry-instrumentation-psycopg2==0.16b1
+opentelemetry-sdk==0.16b1
+psycopg2==2.8.6
+psycopg2-binary==2.8.6
