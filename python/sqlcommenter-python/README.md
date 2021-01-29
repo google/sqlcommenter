@@ -29,6 +29,8 @@ pip3 install google-cloud-sqlcommenter[opentelemetry]
 
 ### Django
 
+> Django version 2.0 or higher is required
+
 Add the provided Django middleware to your Django project's settings. All queries executed within the standard request→response cycle will have the SQL comment prepended to them.
 
 ```python
