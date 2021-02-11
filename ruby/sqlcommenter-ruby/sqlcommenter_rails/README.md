@@ -7,7 +7,7 @@ Powered by [marginalia] and [marginalia-opencensus].
 [sqlcommenter]: #todo
 [Ruby on Rails]: https://rubyonrails.org/
 [marginalia]: https://github.com/basecamp/marginalia/
-[marginalia-opencensus]: https://github.com/google/sqlcommenter/ruby/sqlcommenter-ruby/marginalia-opencensus
+[marginalia-opencensus]: https://github.com/google/sqlcommenter/tree/master/ruby/sqlcommenter-ruby/marginalia-opencensus
 
 ## Installation
 
