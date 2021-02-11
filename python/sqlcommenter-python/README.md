@@ -1,3 +1,6 @@
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/google-cloud-sqlcommenter)
+![PyPI](https://img.shields.io/pypi/v/google-cloud-sqlcommenter)
+
 # sqlcommenter
 
 Python modules for popular projects that add meta info to your SQL queries as comments.
