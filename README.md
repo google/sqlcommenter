@@ -6,8 +6,8 @@ Contains all the various `sqlcommenter-*` implementations.
 
 - [X] [Python](python/sqlcommenter-python/README.md)
     - [X] [django](python/sqlcommenter-python/README.md#django)
-    - [X] [psycopg2](python/sqlcommenter-python/README.md#sqlalchemy)
-    - [X] [sqlalchemy](python/sqlcommenter-python/README.md#psycopg2)
+    - [X] [psycopg2](python/sqlcommenter-python/README.md#psycopg2)
+    - [X] [sqlalchemy](python/sqlcommenter-python/README.md#sqlalchemy)
 - [X] [Java](java/sqlcommenter-java/README.md)
     - [X] [Hibernate](java/sqlcommenter-java/README.md#hibernate)
     - [X] [Spring+Hibernate](java/sqlcommenter-java/README.md#spring-hibernate)
