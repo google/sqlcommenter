@@ -17,15 +17,26 @@
 import django
 from django.db import connection
 from django.http import HttpRequest
-from django.test import TestCase, override_settings
+from django.test import TestCase, override_settings, modify_settings
 from django.urls import resolve, reverse
-from google.cloud.sqlcommenter.django.middleware import SqlCommenter
+from google.cloud.sqlcommenter.django.middleware import SqlCommenter, QueryWrapper
 
 from ..compat import mock
 from ..opencensus_mock import mock_opencensus_tracer
 from ..opentelemetry_mock import mock_opentelemetry_context
 from . import views
 
+# Test middleware to call execute_wrapper again
+# Adding the middleware twice in modify_settings
+# doesn't work. The middleware is only used once
+# if used in modify_settings
+class TestMiddleware:
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        with connection.execute_wrapper(QueryWrapper(request)):
+            return self.get_response(request)
 
 # Query log only active if DEBUG=True.
 @override_settings(DEBUG=True)
@@ -97,6 +108,14 @@ class Tests(TestCase):
     def test_db_driver_disabled(self):
         query = self.get_query()
         self.assertNotIn('db_driver=', query)
+
+    @modify_settings(MIDDLEWARE={
+        'prepend': 'tests.django.tests.TestMiddleware',
+        'append': 'google.cloud.sqlcommenter.django.middleware.SqlCommenter',
+    })
+    def test_multi_execute_wrappers(self):
+        # Raises error if execute_wrappers fails
+        self.client.get('/')
 
     def test_opencensus_disabled(self):
         """Opencensus fields are omitted by default."""

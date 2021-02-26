@@ -88,7 +88,7 @@ class QueryWrapper:
         sql += sql_comment
 
         # Add the query to the query log if debugging.
-        if execute.__self__.__class__ is CursorDebugWrapper:
-            execute.__self__.db.queries_log.append(sql)
+        if context['cursor'].__class__ is CursorDebugWrapper:
+            context['connection'].queries_log.append(sql)
 
         return execute(sql, params, many, context)
