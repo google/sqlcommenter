@@ -14,6 +14,7 @@
 
 const {hasComment} = require('./util');
 const provider = require('./provider');
+const hook = require('./hooks');
 
 const defaultFields = {
     'route': true,
@@ -55,9 +56,10 @@ exports.wrapSequelize = (sequelize, include={}, options={}) => {
         };
         
         if (sequelize.__middleware__) {
-            const req = sequelize.__req__;
-
-            comments.route = req.route.path;
+            const context = hook.getContext();
+            if (context && context.req) {
+                comments.route = context.req.route.path;
+            }
         }
 
         // Add trace context to comments, depending on the provider.
@@ -122,10 +124,9 @@ exports.wrapSequelizeAsMiddleware = (sequelize, include=null, options) => {
     exports.wrapSequelize(sequelize, include, options);
 
     return (req, res, next) => {
-
+        data = { req: req };
+        hook.createContext(data);
         sequelize.__middleware__ = true;
-        sequelize.__req__ = req;
-
         next();
     }
 }

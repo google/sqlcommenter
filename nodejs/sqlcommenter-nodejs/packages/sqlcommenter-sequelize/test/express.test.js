@@ -78,15 +78,20 @@ describe("Comments for Sequelize - Express Middleware", function() {
         it("should add expected database/driver and http request properties", function(done) {
 
             const expected = [
+                // db/driver properties
                 "db_driver",
                 "client_timezone",
 
+                // http properties
                 "route"
             ];
 
-            fakeSequelize.dialect.Query.prototype.run('SELECT * from people').then((sql) => {
-                expected.forEach((key) => {
-                        expect(sql.indexOf(key)).to.be.gt(-1);
+            chai.request(app)
+                .get('/test-comment')
+                .end(function (err, res) {
+                    const query = res.body.query;
+                    expected.forEach(function(prop) {
+                        expect(query.indexOf(prop)).to.be.greaterThan(-1);
                     });
                 });
 

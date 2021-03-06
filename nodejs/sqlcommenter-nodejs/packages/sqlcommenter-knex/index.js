@@ -14,6 +14,7 @@
 
 const {hasComment} = require('./util');
 const provider = require('./provider');
+const hook = require('./hooks');
 
 const defaultFields = {
     'route': true,
@@ -63,16 +64,11 @@ exports.wrapMainKnex = (Knex, include={}, options={}) => {
             db_driver: `knex:${knexVersion}`
         };
 
-        // TODO: Perhaps remove uuid as it is highly ephemeral?
-        // comments.uuid = obj.__knexQueryUid;
-
         if (Knex.__middleware__) {
-            const req = Knex.__req__;
-
-            comments['route'] = req.path;
-
-            // TODO: Clear out __req__ for the next usage.
-            // Knex.__req__ = null;
+            const context = hook.getContext();
+            if (context && context.req) {
+                comments.route = context.req.route.path;
+            }
         }
 
         // Add trace context to comments, depending on the current provider.
@@ -150,13 +146,9 @@ exports.wrapMainKnexAsMiddleware = (Knex, include=null, options) => {
     exports.wrapMainKnex(Knex, include, options);
 
     return (req, res, next) => {
-
+        data = { req: req };
+        hook.createContext(data);
         Knex.__middleware__ = true;
-        Knex.__req__ = req;
-
-        // TODO: Perhaps grab the view/controller name.
-        //       Usually req.route.path is useful enough to correlate
-        //       where/what source code originates.
         next();
     }
 }
