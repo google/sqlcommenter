@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Google.Cloud.SqlCommenter.EntityFrameworkCore\Google.Cloud.SqlCommenter.EntityFrameworkCore.csproj" />
+  </ItemGroup>
+
+</Project>
