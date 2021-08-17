@@ -26,10 +26,6 @@ except ImportError:
     propagator = None
 
 
-def _setter(headers, key, value):
-    headers[key] = value
-
-
 def get_opentelemetry_values():
     """
     Return the OpenTelemetry Trace and Span IDs if Span ID is set in the
@@ -38,7 +34,7 @@ def get_opentelemetry_values():
     if propagator:
         # Insert the W3C TraceContext generated
         headers = {}
-        propagator.inject(_setter, headers)
+        propagator.inject(headers)
         return headers
     else:
         raise ImportError("OpenTelemetry is not installed.")

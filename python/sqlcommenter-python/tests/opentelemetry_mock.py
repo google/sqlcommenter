@@ -23,19 +23,17 @@ try:
     def mock_opentelemetry_context(
         trace_id=0xDEADBEEF, span_id=0xBEEF, trace_flags=None, trace_state=None
     ):
+        if trace_state is None:
+            trace_state = [("some_key", "some_value")]
+
         span_context = trace.SpanContext(
             trace_id=trace_id,
             span_id=span_id,
             is_remote=True,
             trace_flags=trace_flags,
-            trace_state=trace.TraceState(
-                **(
-                    trace_state if trace_state is not None
-                    else {"some_key": "some_value"}
-                )
-            ),
+            trace_state=trace.TraceState(trace_state),
         )
-        ctx = trace.set_span_in_context(trace.DefaultSpan(span_context))
+        ctx = trace.set_span_in_context(trace.span.NonRecordingSpan(span_context))
         token = context.attach(ctx)
         try:
             yield
