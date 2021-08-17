@@ -37,10 +37,10 @@ setup(
     extras_require={
         'django': ['django >= 1.11'],
         'flask': ['flask'],
-        'psycopg2': ['psycopg2 == 2.8.6'],
+        'psycopg2': ['psycopg2'],
         'sqlalchemy': ['sqlalchemy'],
         'opencensus': ['opencensus'],
-        'opentelemetry': ["opentelemetry-api ~= 1.0; python_version >= '3'"],
+        'opentelemetry': ["opentelemetry-api ~= 1.0"],
     },
     classifiers=[
         'Development Status :: 4 - Beta',
