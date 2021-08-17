@@ -40,7 +40,7 @@ setup(
         'psycopg2': ['psycopg2 == 2.8.6'],
         'sqlalchemy': ['sqlalchemy'],
         'opencensus': ['opencensus'],
-        'opentelemetry': ["opentelemetry-api == 1.0.0; python_version >= '3'"],
+        'opentelemetry': ["opentelemetry-api ~= 1.0; python_version >= '3'"],
     },
     classifiers=[
         'Development Status :: 4 - Beta',
