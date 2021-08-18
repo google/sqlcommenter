@@ -5,19 +5,17 @@ from opentelemetry import trace
 from opentelemetry.exporter.cloud_trace import CloudTraceSpanExporter
 from opentelemetry.instrumentation.psycopg2 import Psycopg2Instrumentor
 from opentelemetry.sdk.trace import TracerProvider
-from opentelemetry.sdk.trace.export import (
-    BatchExportSpanProcessor,
-    ConsoleSpanExporter,
-    SimpleExportSpanProcessor,
-)
+from opentelemetry.sdk.trace.export import (BatchSpanProcessor,
+                                            ConsoleSpanExporter,
+                                            SimpleSpanProcessor)
 
 # Set up OpenTelemetry tracing
 trace.set_tracer_provider(TracerProvider())
 trace.get_tracer_provider().add_span_processor(
-    SimpleExportSpanProcessor(ConsoleSpanExporter())
+    SimpleSpanProcessor(ConsoleSpanExporter())
 )
 trace.get_tracer_provider().add_span_processor(
-    BatchExportSpanProcessor(CloudTraceSpanExporter(), schedule_delay_millis=5000)
+    BatchSpanProcessor(CloudTraceSpanExporter(), schedule_delay_millis=5000)
 )
 
 # Trace postgres queries as well
