@@ -18,7 +18,7 @@ import static com.google.common.truth.Truth.assertThat;
 
 import com.google.cloud.sqlcommenter.threadlocalstorage.State;
 import io.opencensus.trace.samplers.Samplers;
-import io.opentelemetry.sdk.trace.TracerSdkProvider;
+import io.opentelemetry.sdk.trace.SdkTracerProvider;
 import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -102,7 +102,7 @@ public class SCHibernateTest {
     State.Holder.set(state1);
 
     io.opentelemetry.api.trace.Tracer tracer =
-        TracerSdkProvider.builder().build().get("SCHibernateTest");
+        SdkTracerProvider.builder().build().get("SCHibernateTest");
     // 2. Now insert a span and assert that the SQL has that OpenTelemetry Trace information.
     io.opentelemetry.api.trace.Span span = tracer.spanBuilder("TestSpan").startSpan();
     try (io.opentelemetry.context.Scope ss = span.makeCurrent()) {
@@ -114,9 +114,9 @@ public class SCHibernateTest {
           String.format(
               "SELECT * from FOO /*action='may',controller='baz',framework='jetty',traceparent='%s-%s-%s-%02X'*/",
               State.W3C_CONTEXT_VERSION,
-              spanContext.getTraceIdAsHexString(),
-              spanContext.getSpanIdAsHexString(),
-              spanContext.getTraceFlags());
+              spanContext.getTraceId(),
+              spanContext.getSpanId(),
+              spanContext.getTraceFlags().asByte());
 
       assertThat(got).isEqualTo(want3);
     } finally {

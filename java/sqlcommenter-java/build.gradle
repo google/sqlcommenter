@@ -10,7 +10,7 @@ apply plugin: "jacoco"
 apply plugin: "signing"
 
 group = "com.google.cloud"
-version = "1.0.0" // CURRENT_VERSION
+version = "1.1.0" // CURRENT_VERSION
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -41,10 +41,10 @@ buildscript {
 }
 
 
-def opencensusVersion = '0.22.1'
+def opencensusVersion = '0.28.3'
 def errorProneVersion = '2.3.2'
 def findBugsJsr305Version = '3.0.2'
-def opentelemetryVersion = '0.12.0'
+def opentelemetryVersion = '1.5.0'
 
 
 dependencies {
