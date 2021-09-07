@@ -226,10 +226,10 @@ describe("With OpenTelemetry tracing", () => {
     it('Starting an OpenTelemetry trace should produce `traceparent`', (done) => {
         const rootSpan = tracer.startSpan('rootSpan');
 
-        tracer.withSpan(rootSpan,  async () => {
+        context.with(trace.setSpan(context.active(), rootSpan),  async () => {
             const sql = 'SELECT * FROM foo';
             let augmentedSQL = await fakeSequelize.dialect.Query.prototype.run(sql);
-            const wantSQL = `SELECT * FROM foo /*traceparent='00-${rootSpan.context().traceId}-${rootSpan.context().spanId}-01'*/`;
+            const wantSQL = `SELECT * FROM foo /*traceparent='00-${rootSpan.spanContext().traceId}-${rootSpan.spanContext().spanId}-01'*/`;
             expect(augmentedSQL).equals(wantSQL);
             rootSpan.end();
             done();

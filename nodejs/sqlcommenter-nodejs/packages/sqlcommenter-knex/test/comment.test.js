@@ -197,12 +197,11 @@ describe("With OpenTelemetry tracing", () => {
 
     it('Starting an OpenTelemetry trace should produce `traceparent`', (done) => {
         const rootSpan = tracer.startSpan('rootSpan');
-
-        tracer.withSpan(rootSpan,  async () => {
+        context.with(trace.setSpan(context.active(), rootSpan), async () => {
             const obj = {sql: 'SELECT * FROM foo'};
             fakeKnex.Client.prototype.query(null, obj).then((got) => {
                 const augmentedSQL = got.sql;
-                const wantSQL = `SELECT * FROM foo /*db_driver='knex%3Afake%3A0.0.1',traceparent='00-${rootSpan.context().traceId}-${rootSpan.context().spanId}-01'*/`;
+                const wantSQL = `SELECT * FROM foo /*db_driver='knex%3Afake%3A0.0.1',traceparent='00-${rootSpan.spanContext().traceId}-${rootSpan.spanContext().spanId}-01'*/`;
                 expect(augmentedSQL).equals(wantSQL);
                 rootSpan.end();
                 done();
