@@ -66,9 +66,9 @@ public class SpanContextMetadata {
       return null;
     }
 
-    String traceId = spanContext.getTraceIdAsHexString();
-    String spanId = spanContext.getSpanIdAsHexString();
-    byte traceOptions = spanContext.getTraceFlags();
+    String traceId = spanContext.getTraceId();
+    String spanId = spanContext.getSpanId();
+    byte traceOptions = spanContext.getTraceFlags().asByte();
 
     io.opentelemetry.api.trace.TraceState traceState = spanContext.getTraceState();
 
