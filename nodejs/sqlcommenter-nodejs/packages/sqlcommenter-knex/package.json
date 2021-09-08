@@ -23,9 +23,12 @@
     "sinon-chai": "^3.5.0"
   },
   "peerDependencies": {
+    "@opentelemetry/core": "^0.12.0",
+    "knex": "*"
+  },
+  "dependencies": {
     "@opencensus/nodejs": "^0.0.22",
-    "@opencensus/propagation-tracecontext": "^0.0.22",
-    "@opentelemetry/core": "^0.12.0"
+    "@opencensus/propagation-tracecontext": "^0.0.22"
   },
   "engines": {
     "node": ">=6.0.0"
