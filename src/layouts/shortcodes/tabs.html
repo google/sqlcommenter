@@ -1,0 +1,13 @@
+<div class="tab-container">
+  <ul class="tabs">
+    {{ range $index, $value := .Params }}
+      <li class="tab col s3">
+        <a href="#{{$index}}">{{$value}}</a>
+      </li>
+    {{ end }}
+  </ul>
+
+  <span class="tabs-body">
+    {{ .Inner }}
+  </span>
+</div>

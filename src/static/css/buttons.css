@@ -1,0 +1,33 @@
+.btn.btn-info {
+  background-color: #2196F3;
+  color: #fff;
+}
+
+.btn.btn-info:hover {
+  background-color: #1976D2;
+}
+
+.btn.btn-info:active {
+  background-color: ##0D47A1;
+}
+
+.btn.btn-light {
+  box-shadow: none;
+  border: 1px solid #2196F3;
+  background-color: transparent;
+  color: #0081e8;
+  margin-bottom: 5px;
+}
+
+.btn.btn-light:hover {
+  background-color: #2196F3;
+  color: #fff;
+}
+
+.icon-container {
+  display: flex;
+}
+
+.icon-container i {
+  margin-right: 5px;
+}

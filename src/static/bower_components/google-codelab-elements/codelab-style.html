@@ -1,0 +1,257 @@
+<!--
+Copyright (c) 2015 Google Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not
+use this file except in compliance with the License. You may obtain a copy of
+the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+License for the specific language governing permissions and limitations under
+the License.
+-->
+
+<link rel="import" href="../paper-styles/color.html">
+
+<dom-module id="codelab-style">
+  <template strip-whitespace>
+    <style>
+
+:host {
+  display: block;
+  line-height: 24px;
+
+  --paper-menu: {
+    cursor: pointer;
+    background: inherit;
+    padding: 0;
+  };
+
+  --app-drawer-content-container: {
+    background: var(--google-codelab-background, --paper-grey-100);
+  };
+
+  --nav-height: 64px;
+}
+
+
+:host([theme="minimal"]) {
+  position: relative;
+}
+
+#headerpanel {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  margin-left: 256px; /* drawer width */
+}
+
+#headerpanel[narrow] {
+  margin-left: 0;
+}
+
+app-drawer-layout {
+  overflow-x: hidden;
+}
+
+.drawer-content-wrapper {
+  padding: 16px;
+}
+
+#main-content {
+  background: var(--google-codelab-background, --paper-grey-300);
+}
+
+#pages {
+  top: var(--nav-height);
+}
+
+#controls[narrow] {
+  width: 100%;
+}
+
+#main-toolbar {
+  background: var(--google-codelab-header-background, --paper-blue-600);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--nav-height);
+  padding: 0 16px;
+}
+
+#main-toolbar .title {
+  margin: 0 8px;
+  flex: 1;
+  font-weight: 300;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+paper-icon-button[icon=menu] {
+  margin-right: 0 !important;
+}
+
+paper-fab {
+  --paper-fab-keyboard-focus-background: var(--google-codelab-fab-background, --paper-blue-700);
+  --paper-fab-background: var(--google-codelab-fab-background, --paper-blue-700);
+  flex-shrink: 0;
+}
+
+/* override external styles */
+:host([theme="minimal"]) #resumeDialog > * {
+  margin-top: 20px;
+  padding: 0 24px;
+}
+
+:host([theme="minimal"]) #resumeDialog .buttons {
+  padding: 8px 8px 8px 24px;
+  margin: 0;
+}
+
+.countdown iron-icon {
+  margin-right: 3px;
+}
+
+:host(:not([theme="minimal"])) #drawer .countdown {
+  display: none;
+}
+
+:host([theme="minimal"]) #drawer .countdown {
+  padding: 0 16px 16px 16px;
+  font-style: italic;
+  color: var(--paper-blue-500);
+  -webkit-flex-shrink: 0;
+  flex-shrink: 0;
+}
+
+#controls {
+  position: fixed;
+  right: 0;
+  bottom: 16px;
+  padding: 0 16px;
+  width: calc(100% - 256px); /* width of drawer */
+  box-sizing: border-box;
+  pointer-events: none; /* allow users to scroll */
+}
+
+#controls .fabs {
+  /* Note: custom props don't work in calc(). */
+  max-width: calc(800px + 175px);
+  margin: 0 auto;
+}
+
+.navbutton {
+  pointer-events: initial; /* make sure buttons are clickable */
+}
+
+.navbutton.prevbutton {
+  transition: transform 300ms ease-in-out;
+}
+
+.navbutton.prevbutton[disabled] {
+  background: var(--google-codelab-fab-background);
+  color: white;
+  transform: scale(0);
+}
+
+.navbutton.donebutton {
+  background: var(--google-green-500);
+}
+
+.toc-item {
+  font-size: 14px;
+  color: var(--paper-grey-500);
+  overflow: hidden;
+  border-radius: 4px;
+  padding: 6px 16px;
+  box-sizing: content-box; /* override users that set * selector box-sizing. */
+}
+
+.toc-item i {
+  display: inline-block;
+  font-style: normal;
+  width: 24px;
+  min-width: 24px;
+  background: #fff;
+  border-radius: 50%;
+  text-align: center;
+  height: 24px;
+  vertical-align: middle;
+  line-height: 24px;
+  border: 2px solid var(--paper-grey-400);
+  margin-right: 8px;
+  font-weight: 400;
+}
+
+.toc-item i::before,
+.toc-item i::after {
+  content: '';
+  display: block;
+  border-left: 1px solid var(--paper-grey-400);
+  width: 0;
+  height: 44px;
+  z-index: 1;
+  margin-top: 1px;
+}
+
+.toc-item i::before {
+  margin-top: -44px;
+  margin-left: 11px;
+}
+
+.toc-item i::after {
+  margin-left: 11px;
+}
+
+.toc-item.completed {
+  color: var(--paper-grey-900);
+}
+
+.toc-item.iron-selected {
+  color: var(--paper-grey-900);
+  background-color: var(--paper-grey-300);
+  font-weight: 600;
+}
+
+.toc-item.completed i,
+.toc-item.completed i::before,
+.toc-item.completed i::after,
+.toc-item.iron-selected i,
+.toc-item.iron-selected i:before {
+  border-color: var(--paper-blue-500);
+}
+
+.toc-item:first-of-type i::before,
+.toc-item:last-of-type i::after {
+  display: none;
+}
+
+#metadata {
+  color: var(--google-codelab-footer-text-color, #777);
+  font-size: 0.7em;
+  flex: 0 0 80px;
+}
+
+#feedback a {
+  color: currentcolor;
+}
+
+@media (min-width: 641px) {
+  :host(:not([theme="minimal"])) #pages {
+    margin-top: 32px;
+  }
+  #controls {
+    padding: 0 32px;
+    bottom: 32px;
+  }
+}
+
+    </style>
+  </template>
+</dom-module>
