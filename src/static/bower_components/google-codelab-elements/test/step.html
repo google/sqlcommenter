@@ -1,0 +1,85 @@
+<!--
+Copyright (c) 2015 Google Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not
+use this file except in compliance with the License. You may obtain a copy of
+the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+License for the specific language governing permissions and limitations under
+the License.
+-->
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>step tests</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <script src="../../webcomponentsjs/webcomponents.js"></script>
+  <script src="../../web-component-tester/browser.js"></script>
+  <script src="../../test-fixture/test-fixture-mocha.js"></script>
+
+  <link rel="import" href="../../test-fixture/test-fixture.html">
+  <link rel="import" href="../google-codelab-step.html">
+</head>
+<body>
+
+  <test-fixture id="step">
+    <template>
+      <google-codelab-step label="Test" step="2" duration="5" feedback-link="http://example.org" active>
+        <span>text</span>
+        <pre><code>some code</code></pre>
+        <code>inline</code>
+      </google-codelab-step>
+    </template>
+  </test-fixture>
+
+  <script>
+    suite('<google-codelab-step>', function() {
+
+      var step, content;
+
+      setup(function() {
+        step = fixture('step');
+        content = step.getContentChildren();
+      });
+
+      test('properties', function() {
+        assert.isTrue(step.active);
+        assert.equal(step.label, 'Test');
+        assert.equal(step.step, 2);
+        assert.equal(step.duration, 5);
+      });
+
+      test('title', function() {
+        assert.equal(step.$.title.textContent, '2. Test');
+      });
+
+      test('text body', function() {
+        assert(content.length, 'no content');
+        assert.equal(content[0].textContent, 'text');
+      });
+
+      test('code body', function(done) {
+        var pre = step.querySelector('pre');
+        async.nextTick(function() {
+          assert(content.length, 'no content');
+          assert(pre.children[0].children[0].classList.contains('pln'), '<pre><code> is not highlighted');
+          assert(content[2].children, '<code> is highlighted');
+          done();
+        });
+      });
+
+      // TODO: verify 'google-codelab-step-copy' via document.execCommand('copy')
+      // not sure it'd work w/o user intervention.
+
+    });
+  </script>
+
+</body>

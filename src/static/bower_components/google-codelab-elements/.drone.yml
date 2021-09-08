@@ -1,0 +1,20 @@
+clone:
+  depth: 1
+build:
+  image: crhym3/ci-image:node6-go16
+  environment:
+    - CHROME=https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+  commands:
+    # use custom version of wct-local
+    # until https://github.com/Polymer/wct-local/pull/17 is merged
+    - npm i web-component-tester crhym3/wct-local#args --only=prod --no-optional
+    - bower install --allow-root
+    - curl -sSLo chrome.deb $CHROME && dpkg -i chrome.deb
+    - >
+      xvfb-run -a ./node_modules/.bin/wct
+      --skip-plugin sauce
+      --plugin local
+      --verbose
+      -l chrome
+      --skip-selenium-install
+      --selenium-arg=-Djava.security.egd=file:///dev/urandom
