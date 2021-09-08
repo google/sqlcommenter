@@ -1,0 +1,9 @@
+.trace-exporter,
+.stats-exporter {
+  padding: 5px;
+  border-radius: 4px;
+}
+
+abbr[title] {
+  text-decoration: none;
+}

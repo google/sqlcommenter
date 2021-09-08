@@ -1,0 +1,17 @@
+<div class="user-card-container">
+  <a target="_blank" href="{{.Get "href"}}">
+  {{ if .Get "name" }}
+  <div class="lang-card">
+    <div class="image-container">
+      <img src="{{.Get "src"}}">
+    </div>
+
+    <div class="lang-card-right-panel">
+      <h4>{{.Get "name"}}</h4>
+    </div>
+  </div>
+  {{ else }}
+  <img class="no-padding no-margin {{ if .Get "tall"}} tall {{ end }}" src="{{.Get "src"}}">
+  {{ end }}
+  </a>
+</div>

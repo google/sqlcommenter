@@ -1,0 +1,25 @@
+{{- $tracing :=  .Get "tracing" | default false }}
+{{- $stats :=  .Get "stats" | default false }}
+
+<div class="lang-card-container">
+  <a href="{{.Get "target-url"}}">
+  <div class="lang-card">
+    <div>
+      <img width="auto" height="100" src="{{.Get "src"}}">
+    </div>
+
+    <div class="lang-card-right-panel">
+      <h4>{{.Get "lang"}}</h4>
+      <div>
+        {{- if eq $tracing "true"}}
+        <abbr class="trace-exporter blue white-text">T</abbr>
+        {{end}}
+
+        {{- if eq $stats "true"}}
+        <abbr class="stats-exporter teal white-text">S</abbr>
+        {{end}}
+      </div>
+    </div>
+  </div>
+  </a>
+</div>

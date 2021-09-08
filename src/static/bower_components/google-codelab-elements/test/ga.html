@@ -1,0 +1,128 @@
+<!--
+Copyright (c) 2015 Google Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not
+use this file except in compliance with the License. You may obtain a copy of
+the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+License for the specific language governing permissions and limitations under
+the License.
+-->
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>survey tests</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <script src="../../webcomponentsjs/webcomponents.js"></script>
+  <script src="../../web-component-tester/browser.js"></script>
+
+  <link rel="import" href="../../polymer/polymer.html">
+  <link rel="import" href="../analytics-behavior.html">
+</head>
+<body>
+<script>
+  var DummyElem;
+  HTMLImports.whenReady(function() {
+    DummyElem = Polymer({
+      is: 'dummy-elem',
+      behaviors: [GoogleCodelabs.AnalyticsBehavior]
+    });
+  });
+
+  suite('GoogleCodelabs.AnalyticsBehavior', function() {
+    var dummy;
+
+    setup(function() {
+      dummy = new DummyElem();
+      dummy.title = 'Test codelab';
+      dummy.environment = 'env';
+      dummy.category = 'cat';
+    });
+
+    teardown(function() {
+      window.ga = null;
+    });
+
+    function mockGA(fn) {
+      var tracker = fn;
+      tracker.send = function(params) {
+        tracker('send', params);
+      };
+      window.ga = function(callback) {
+        callback(tracker);
+      };
+      window.ga.getAll = function() {
+        return [tracker];
+      };
+    }
+
+    test('step event', function(done) {
+      mockGA(function(send, obj) {
+        assert.equal(send, 'send');
+        assert.equal(obj.hitType, 'pageview');
+        assert.match(obj.page, /^\/.*#0$/);
+        assert.equal(obj.title, 'Test step');
+        assert.equal(obj.dimension1, 'env');
+        assert.equal(obj.dimension2, 'cat');
+        done();
+      });
+      dummy.fire('google-codelab-step', {
+        index: 0,
+        step: {step: 1, label: 'Test step'}
+      });
+    });
+
+    test('complete event', function(done) {
+      mockGA(function(send, obj) {
+        assert.equal(send, 'send');
+        assert.equal(obj.hitType, 'event');
+        assert.equal(obj.eventCategory, 'codelab');
+        assert.equal(obj.eventAction, 'complete');
+        assert.equal(obj.eventLabel, 'Test codelab');
+        assert.equal(obj.dimension1, 'env');
+        assert.equal(obj.dimension2, 'cat');
+        done();
+      });
+      dummy.fire('google-codelab-complete');
+    });
+
+    test('snippet event', function(done) {
+      mockGA(function(send, obj) {
+        assert.equal(send, 'send');
+        assert.equal(obj.hitType, 'event');
+        assert.equal(obj.eventCategory, 'snippet');
+        assert.equal(obj.eventAction, 'copy');
+        assert.equal(obj.eventLabel, 'var x = 0;');
+        assert.equal(obj.dimension1, 'env');
+        assert.equal(obj.dimension2, 'cat');
+        done();
+      });
+      dummy.fire('google-codelab-snippet-copy', {snippet: 'var x = 0;'});
+    });
+
+    test('survey event', function(done) {
+      mockGA(function(send, obj) {
+        assert.equal(send, 'send');
+        assert.equal(obj.hitType, 'event');
+        assert.equal(obj.eventCategory, 'survey');
+        assert.equal(obj.eventAction, 'Hello?');
+        assert.equal(obj.eventLabel, 'World');
+        assert.equal(obj.dimension1, 'env');
+        assert.equal(obj.dimension2, 'cat');
+        done();
+      });
+      dummy.fire('google-codelab-survey-answer', {question: 'Hello?', answer: 'World'});
+    });
+
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{{- $red :=  .Get "red" | default false }}
+
+<span class="logo brand">
+  <img src="/images/sqlcommenter_logo.png" />
+
+  {{- if eq $red "true"}}
+  <span>sqlcommenter</span>
+  {{- else}}
+  <span>sql</span>commenter
+  {{end}}
+</span>

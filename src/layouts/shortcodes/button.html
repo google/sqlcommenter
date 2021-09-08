@@ -1,0 +1,17 @@
+{{- $icon :=  .Get "icon" | default false }}
+
+{{ with .Get "align" }}<center>{{end}}
+<a
+  class="btn {{with .Get "class"}} {{.}} {{end}}"
+  {{ with .Get "href" }} onclick="location.href='{{.}}'"{{end}}
+>
+{{- if eq $icon "true"}}
+<div class="icon-container">
+  <i class="fa fa-chevron-right"></i>
+  <span>{{.Inner}}</span>
+</div>
+{{- else}}
+{{.Inner}}
+{{end}}
+</a>
+{{ with .Get "align" }}</center>{{end}}
