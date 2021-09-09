@@ -12,10 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-const {context, defaultSetter} = require('@opentelemetry/api');
-const {HttpTraceContext} = require('@opentelemetry/core')
+const {context, defaultTextMapSetter} = require('@opentelemetry/api');
+const {HttpTraceContextPropagator} = require('@opentelemetry/core')
 
 exports.addW3CTraceContext = function(comments) {
-    let propagator = new HttpTraceContext();
-    propagator.inject(context.active(), comments, defaultSetter);
+    let propagator = new HttpTraceContextPropagator();
+    propagator.inject(context.active(), comments, defaultTextMapSetter);
 };
