@@ -111,7 +111,7 @@ Examples are based off the [polls app from the Django introduction tutorial](htt
 # settings.py
 
 MIDDLEWARE = [
-    'sqlcommenter.django.middleware.SqlCommenter',
+    'google.cloud.sqlcommenter.django.middleware.SqlCommenter',
     ...
 ]
 {{</highlight>}}
@@ -150,7 +150,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'opencensus.ext.django.middleware.OpencensusMiddleware',
-    'sqlcommenter.django.middleware.SqlCommenter',
+    'google.cloud.sqlcommenter.django.middleware.SqlCommenter',
     ...
 ]
 
@@ -194,7 +194,7 @@ def index(request):
 # settings.py
 
 MIDDLEWARE = [
-    'sqlcommenter.django.middleware.SqlCommenter',
+    'google.cloud.sqlcommenter.django.middleware.SqlCommenter',
     ...
 ]
 
@@ -234,7 +234,7 @@ def index(request):
 # settings.py
 
 MIDDLEWARE = [
-    'sqlcommenter.django.middleware.SqlCommenter',
+    'google.cloud.sqlcommenter.django.middleware.SqlCommenter',
     ...
 ]
 
