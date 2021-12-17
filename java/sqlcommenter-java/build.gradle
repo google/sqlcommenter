@@ -58,7 +58,10 @@ dependencies {
     implementation "io.opentelemetry:opentelemetry-sdk:${opentelemetryVersion}"
 
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.1.5.RELEASE'
+    compile (group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.1.5.RELEASE') {
+        exclude group: 'org.apache.logging.log4j', module: 'log4j-to-slf4j'
+    }
+    compile 'org.apache.logging.log4j:log4j-to-slf4j:2.16.0'
 
     compile 'org.hibernate:hibernate-core:5.4.3.Final'
 

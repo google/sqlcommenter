@@ -19,7 +19,8 @@ import com.google.cloud.sqlcommenter.threadlocalstorage.State;
 import org.hibernate.resource.jdbc.spi.StatementInspector;
 
 public class SCHibernate implements StatementInspector {
-  private static final io.opencensus.trace.Tracer openCensusTracer = io.opencensus.trace.Tracing.getTracer();
+  private static final io.opencensus.trace.Tracer openCensusTracer =
+      io.opencensus.trace.Tracing.getTracer();
 
   /**
    * inspect augments SQL with statements about the current code setup if any. It tries to check if
