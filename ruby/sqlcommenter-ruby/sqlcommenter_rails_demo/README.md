@@ -9,10 +9,10 @@ This is a demo [Rails API] application to demonstrate [sqlcommenter_rails] integ
 
 Install [Ruby v2.6.3](https://www.ruby-lang.org/en/news/2019/04/17/ruby-2-6-3-released/) if you don't already have it installed.
 
-This demo requires functionality provided by an [open PR](https://github.com/basecamp/marginalia/pull/89) to [marginalia](https://github.com/basecamp/marginalia). Install the PR by cloning [glebm's fork of marginalia](https://github.com/glebm/marginalia) one directory above this demo. Starting from the root directory of this demo:
+This demo requires functionality provided by an [open PR](https://github.com/basecamp/marginalia/pull/130) to [marginalia](https://github.com/basecamp/marginalia). Install the PR by cloning [modulitos's fork of marginalia](https://github.com/modulitos/marginalia) one directory above this demo. Starting from the root directory of this demo:
 
 ```bash
-git clone https://github.com/glebm/marginalia.git ../marginalia
+git clone https://github.com/modulitos/marginalia.git ../marginalia
 git -C ../marginalia checkout formatting
 ```
 
