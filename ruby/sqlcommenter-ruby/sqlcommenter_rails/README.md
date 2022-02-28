@@ -14,7 +14,7 @@ Powered by [marginalia] and [marginalia-opencensus].
 Currently, this gem is not released on rubygems.
 But can be installed from source.
 
-The gem requires functionality provided by an [open PR](https://github.com/basecamp/marginalia/pull/89) to [marginalia](https://github.com/basecamp/marginalia). Install the PR by cloning [glebm's fork of marginalia](https://github.com/glebm/marginalia) one directory above this folder.
+The gem requires functionality provided by an [open PR](https://github.com/basecamp/marginalia/pull/130) to [marginalia](https://github.com/basecamp/marginalia). Install the PR by cloning [modulitos's fork of marginalia](https://github.com/modulitos/marginalia) one directory above this folder.
 
 ```bash
 git clone https://github.com/glebm/marginalia.git ../marginalia
