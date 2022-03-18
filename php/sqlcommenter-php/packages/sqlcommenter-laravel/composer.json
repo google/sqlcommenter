@@ -1,0 +1,14 @@
+{
+  "name": "thiyagu55/sqlcommenter-laravel",
+  "description": "Laravel middleware to add metrics to the sql query log",
+  "require": {
+    "open-telemetry/opentelemetry": ">=0.0.6"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "thiyagu55\\sqlcommenter-laravel\\GoogleSqlCommenterServiceProvider"
+      ]
+    }
+  }
+}
