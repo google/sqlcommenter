@@ -1,6 +1,6 @@
 <?php
 
-namespace thiyagu55\GoogleSqlcommenterLaravel;
+namespace thiyagu55\GoogleSqlCommenterLaravel;
 
 class GoogleSqlCommenterServiceProvider
 {

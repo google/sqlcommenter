@@ -1,6 +1,6 @@
 <?php
 
-namespace thiyagu55\GoogleSqlcommenterLaravel\Middleware;
+namespace thiyagu55\GoogleSqlCommenterLaravel\Middleware;
 
 use Closure;
 
