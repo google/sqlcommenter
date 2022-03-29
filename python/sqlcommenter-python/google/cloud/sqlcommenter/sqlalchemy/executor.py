@@ -22,6 +22,7 @@ import logging
 
 import sqlalchemy
 from google.cloud.sqlcommenter import generate_sql_comment
+from google.cloud.sqlcommenter.fastapi import get_fastapi_info
 from google.cloud.sqlcommenter.flask import get_flask_info
 from google.cloud.sqlcommenter.opencensus import get_opencensus_values
 from google.cloud.sqlcommenter.opentelemetry import get_opentelemetry_values
@@ -54,7 +55,10 @@ def BeforeExecuteFactory(
         # folks using it in a web framework such as flask will
         # use it in unison with flask but initialize the parts disjointly,
         # unlike Django which uses ORMs directly as part of the framework.
-        data.update(get_flask_info())
+        info = get_flask_info()
+        if not info:
+            info = get_fastapi_info()
+        data.update(info)
 
         # Filter down to just the requested attributes.
         data = {k: v for k, v in data.items() if attributes.get(k)}

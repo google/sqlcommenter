@@ -126,3 +126,38 @@ class FlaskTests(SQLAlchemyTestCase):
             "SELECT 1; /*controller='c',framework='flask'*/",
             with_route=False,
         )
+
+
+class FastAPITests(SQLAlchemyTestCase):
+    fastapi_info = {
+        'framework': 'fastapi',
+        'controller': 'c',
+        'route': '/',
+    }
+
+    @mock.patch('google.cloud.sqlcommenter.sqlalchemy.executor.get_fastapi_info', return_value=fastapi_info)
+    def test_all_data(self, get_info):
+        self.assertSQL(
+            "SELECT 1; /*controller='c',framework='fastapi',route='/'*/",
+        )
+
+    @mock.patch('google.cloud.sqlcommenter.sqlalchemy.executor.get_fastapi_info', return_value=fastapi_info)
+    def test_framework_disabled(self, get_info):
+        self.assertSQL(
+            "SELECT 1; /*controller='c',route='/'*/",
+            with_framework=False,
+        )
+
+    @mock.patch('google.cloud.sqlcommenter.sqlalchemy.executor.get_fastapi_info', return_value=fastapi_info)
+    def test_controller_disabled(self, get_info):
+        self.assertSQL(
+            "SELECT 1; /*framework='fastapi',route='/'*/",
+            with_controller=False,
+        )
+
+    @mock.patch('google.cloud.sqlcommenter.sqlalchemy.executor.get_fastapi_info', return_value=fastapi_info)
+    def test_route_disabled(self, get_info):
+        self.assertSQL(
+            "SELECT 1; /*controller='c',framework='fastapi'*/",
+            with_route=False,
+        )
