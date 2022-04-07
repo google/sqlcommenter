@@ -4,6 +4,7 @@ namespace Google\GoogleSqlCommenterLaravel\Database;
 use Illuminate\Database\Connection as BaseConnection;
 use OpenTelemetry\API\Trace\Propagation\TraceContextPropagator;
 use Google\GoogleSqlCommenterLaravel\Opentelemetry;
+use Google\GoogleSqlCommenterLaravel\Utils;
 
 
 class Connection extends BaseConnection
@@ -110,25 +111,7 @@ class Connection extends BaseConnection
             $carrier = Opentelemetry::get_opentelemetry_values();
             $comment = array_merge($comment,$carrier);
         }
-        return $this->format_comments($comment);
-    }
-    public function format_comments($comment)
-    {
-        if (empty($comment)) {
-            return "";
-        }
-        $lastElement = array_key_last($comment);
-        $sql_comment = "/*";
-        foreach($comment as $key=>$value)
-        {
-            if ($key == $lastElement){
-                $sql_comment .=$key ."=". "'".$value."'*/";
-            }
-            else{
-                $sql_comment .=$key ."=". "'".$value."',";
-            }
-        }
-        return $sql_comment;
+        return Utils::format_comments($comment);
     }
 
 }
