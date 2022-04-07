@@ -1,8 +1,10 @@
 <?php
 
-namespace thiyagu55\GoogleSqlCommenterLaravel;
+namespace Google\GoogleSqlCommenterLaravel;
 
-class GoogleSqlCommenterServiceProvider
+use Illuminate\Support\ServiceProvider;
+
+class GoogleSqlCommenterServiceProvider extends ServiceProvider
 {
     /**
      * Register services.
@@ -15,13 +17,20 @@ class GoogleSqlCommenterServiceProvider
     }
 
     /**
-     * Bootstrap services.
+     * Publishes configuration file.
      *
      * @return void
      */
     public function boot()
     {
-        //
+        $this->publishes([
+            __DIR__.'/config/google_sqlcommenter.php' => config_path('google_sqlcommenter.php')
+        ]);
+
+        $this->mergeConfigFrom(
+            __DIR__.'/config/google_sqlcommenter.php',
+            'google_sqlcommenter'
+        );
     }
 
 }

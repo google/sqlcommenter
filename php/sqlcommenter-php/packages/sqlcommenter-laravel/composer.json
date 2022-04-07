@@ -1,20 +1,26 @@
 {
-  "name": "thiyagu55/sqlcommenter-laravel",
+  "name": "google/sqlcommenter-laravel",
   "description": "Laravel middleware to send events to OpenTelemetry",
   "type": "library",
   "license": "MIT",
+  "authors": [
+    {
+      "name": "Google Developers",
+      "email": "sqlcommenter@googlegroups.com",
+      "role": "Developer"
+    }],
   "require": {
     "open-telemetry/opentelemetry": "dev-main"
   },
   "autoload": {
     "psr-4": {
-      "thiyagu55\\GoogleSqlCommenterLaravel\\": "src"
+      "Google\\GoogleSqlCommenterLaravel\\": "src"
     }
   },
   "extra": {
     "laravel": {
       "providers": [
-        "thiyagu55\\GoogleSqlCommenterLaravel\\GoogleSqlCommenterLaravelServiceProvider"
+        "Google\\GoogleSqlCommenterLaravel\\GoogleSqlCommenterServiceProvider"
       ]
     }
   },
