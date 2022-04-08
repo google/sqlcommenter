@@ -43,6 +43,12 @@ def BeforeExecuteFactory(
         'db_framework': with_db_framework,
     }
 
+    def get_framework_info():
+        info = get_flask_info()
+        if not info:
+            info = get_fastapi_info()
+        return info
+
     def before_cursor_execute(conn, cursor, sql, parameters, context, executemany):
         data = dict(
             # TODO: Figure out how to retrieve the exact driver version.
@@ -55,10 +61,7 @@ def BeforeExecuteFactory(
         # folks using it in a web framework such as flask will
         # use it in unison with flask but initialize the parts disjointly,
         # unlike Django which uses ORMs directly as part of the framework.
-        info = get_flask_info()
-        if not info:
-            info = get_fastapi_info()
-        data.update(info)
+        data.update(get_framework_info())
 
         # Filter down to just the requested attributes.
         data = {k: v for k, v in data.items() if attributes.get(k)}

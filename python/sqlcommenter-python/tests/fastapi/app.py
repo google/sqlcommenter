@@ -6,7 +6,7 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from google.cloud.sqlcommenter.fastapi import SQLCommenterMiddleware, get_fastapi_info
 
-app = FastAPI()
+app = FastAPI(title="SQLCommenter")
 
 app.add_middleware(SQLCommenterMiddleware)
 
