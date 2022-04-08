@@ -1,10 +1,11 @@
-# sqlcommenter-laravel
+# sqlcommenter-laravel [In Development]
 
 sqlcommenter is a plugin/middleware/wrapper to augment SQL statements from laravel
 with comments that can be used later to correlate user code with SQL statements.
 
 
 ### Installation
+
 Add this to your composer.json
 ```shell
 "repositories": [
@@ -19,6 +20,7 @@ Install the package
 composer require "google/sqlcommenter-laravel"
 ```
 ### Usage
+
 Publish the config file from library to into laravel app using below command
 
 ```shell
@@ -34,4 +36,10 @@ Add the following class above ``Illuminate\Database\DatabaseServiceProvider::cla
     Illuminate\Database\DatabaseServiceProvider::class,
     ...
 ]
+```
+### Run the tests
+
+Run the tests using below command
+```shell
+./vendor/bin/phpunit tests
 ```
