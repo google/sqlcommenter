@@ -28,7 +28,6 @@ class GoogleSqlCommenterServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
     }
 
     /**

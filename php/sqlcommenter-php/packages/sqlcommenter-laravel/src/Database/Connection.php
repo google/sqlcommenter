@@ -98,12 +98,12 @@ class Connection extends BaseConnection
      */
     public function delete($query, $bindings = [])
     {
-        $query .= $this->get_sqlcomments();
+        $query .= $this->getSqlComments();
 
         return $this->affectingStatement($query, $bindings);
     }
 
-    public function get_sqlcomments()
+    private function getSqlComments()
     {
         $configurationKey = 'google_sqlcommenter.include.';
         $comment = [];
@@ -122,7 +122,7 @@ class Connection extends BaseConnection
             $comment['db_driver'] = config("database.connections.{$connection}.driver");
         }
         if (config($configurationKey . 'opentelemetry', true)) {
-            $carrier = Opentelemetry::get_opentelemetry_values();
+            $carrier = Opentelemetry::getOpentelemetryValues();
             $comment = array_merge($comment, $carrier);
         }
         return Utils::format_comments($comment);
