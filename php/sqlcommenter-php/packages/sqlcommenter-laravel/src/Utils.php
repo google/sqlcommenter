@@ -19,7 +19,7 @@ namespace Google\GoogleSqlCommenterLaravel;
 
 class Utils
 {
-    public static function format_comments($comment)
+    public static function formatComments($comment)
     {
         if (empty($comment)) {
             return "";
@@ -28,11 +28,23 @@ class Utils
         $sql_comment = "/*";
         foreach ($comment as $key => $value) {
             if ($key == $lastElement) {
-                $sql_comment .= $key . "=" . "'" . $value . "'*/";
+                $sql_comment .= Utils::customUrlEncode($key) . "=" . "'" . Utils::customUrlEncode($value) . "'*/";
             } else {
-                $sql_comment .= $key . "=" . "'" . $value . "',";
+                $sql_comment .= Utils::customUrlEncode($key) . "=" . "'" . Utils::customUrlEncode($value) . "',";
             }
         }
         return $sql_comment;
+    }
+
+    private static function customUrlEncode($input)
+    {
+        $encodedString = urlencode($input);
+
+        # Since SQL uses '%' as a keyword, '%' is a by-product of url quoting
+        # e.g. foo,bar --> foo%2Cbar
+        # thus in our quoting, we need to escape it too to finally give
+        #      foo,bar --> foo%%2Cbar
+
+        return str_replace("%", "%%", $encodedString);
     }
 }
