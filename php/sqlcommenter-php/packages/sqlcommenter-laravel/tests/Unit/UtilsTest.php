@@ -20,12 +20,16 @@ use PHPUnit\Framework\TestCase;
 
 final class UtilsTest extends TestCase
 {
-    public function testformatcommentswithkeys(): void
+    public function testFormatCommentsWithKeys(): void
     {
-        $this->assertEquals("/*key1='value1',key2='value2'*/", Utils::format_comments(array("key1" => "value1", "key2" => "value2")));
+        $this->assertEquals("/*key1='value1',key2='value2'*/", Utils::formatComments(array("key1" => "value1", "key2" => "value2")));
     }
-    public function testformatcommentswithoutkeys(): void
+    public function testFormatCommentsWithoutKeys(): void
     {
-        $this->assertEquals("", Utils::format_comments(array()));
+        $this->assertEquals("", Utils::formatComments(array()));
+    }
+    public function testFormatCommentsWithSpecialCharKeys(): void
+    {
+        $this->assertEquals("/*key1='value1%%40',key2='value2'*/", Utils::formatComments(array("key1" => "value1@", "key2" => "value2")));
     }
 }

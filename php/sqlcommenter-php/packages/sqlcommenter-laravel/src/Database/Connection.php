@@ -35,7 +35,7 @@ class Connection extends BaseConnection
      */
     public function selectOne($query, $bindings = [], $useReadPdo = true)
     {
-        $query .= $this->get_sqlcomments();
+        $query .= $this->getSqlComments();
         $records = parent::select($query, $bindings, $useReadPdo);
 
         if (count($records) > 0) {
@@ -54,7 +54,7 @@ class Connection extends BaseConnection
      */
     public function select($query, $bindings = [], $useReadPdo = true)
     {
-        $query .= $this->get_sqlcomments();
+        $query .= $this->getSqlComments();
         $records = parent::select($query, $bindings, $useReadPdo);
         return $records;
     }
@@ -68,7 +68,7 @@ class Connection extends BaseConnection
      */
     public function insert($query, $bindings = [])
     {
-        $query .= $this->get_sqlcomments();
+        $query .= $this->getSqlComments();
 
         $records = parent::insert($query, $bindings);
 
@@ -84,7 +84,7 @@ class Connection extends BaseConnection
      */
     public function update($query, $bindings = [])
     {
-        $query .= $this->get_sqlcomments();
+        $query .= $this->getSqlComments();
 
         return $this->affectingStatement($query, $bindings);
     }
@@ -107,12 +107,19 @@ class Connection extends BaseConnection
     {
         $configurationKey = 'google_sqlcommenter.include.';
         $comment = [];
+        $action = null;
+
+        if (!empty(app('request')->route())) {
+            $action = app('request')->route()->getAction();
+        }
         if (config($configurationKey . 'framework', true)) {
             $comment['framework'] = "laravel-" . app()->version();
         }
-        if (config($configurationKey . 'controller', true)) {
-            $action = app('request')->route()->getAction();
-            $comment['controller'] = class_basename($action['controller']);
+        if (config($configurationKey . 'controller', true) and !empty($action['controller'])) {
+            $comment['controller'] = explode("@", class_basename($action['controller']))[0];
+        }
+        if (config($configurationKey . 'action', true) and !empty($action['controller'] and str_contains($action['controller'], '@'))) {
+            $comment['action'] = explode("@", class_basename($action['controller']))[1];
         }
         if (config($configurationKey . 'route', true)) {
             $comment['route'] = request()->getRequestUri();
@@ -125,6 +132,6 @@ class Connection extends BaseConnection
             $carrier = Opentelemetry::getOpentelemetryValues();
             $comment = array_merge($comment, $carrier);
         }
-        return Utils::format_comments($comment);
+        return Utils::formatComments(array_filter(($comment)));
     }
 }
