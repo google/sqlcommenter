@@ -11,6 +11,22 @@
 |
 */
 
+use OpenTelemetry\SDK\Trace\SpanExporter\ConsoleSpanExporter;
+use OpenTelemetry\SDK\Trace\SpanProcessor\SimpleSpanProcessor;
+use OpenTelemetry\SDK\Trace\TracerProvider;
+
+
+$tracerProvider =  new TracerProvider(
+    new SimpleSpanProcessor(
+        new ConsoleSpanExporter()
+    )
+);
+
+$tracer = $tracerProvider->getTracer('io.opentelemetry.contrib.php');
+
+$rootSpan = $tracer->spanBuilder('root')->startSpan();
+$rootSpan->activate();
+
 $app = new Illuminate\Foundation\Application(
     $_ENV['APP_BASE_PATH'] ?? dirname(__DIR__)
 );

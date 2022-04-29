@@ -17,14 +17,29 @@ class UserController extends Controller
      */
     public function select()
     {
-        DB::raw("delete from laravel.users");
         User::all();
-//        $user_update = new User;
-//        $user_update->name = 'john';
-//        $user_update->email ='assss@d.com';
-//        $user_update->password ='as@d.com';
-//
-//        $user_update->save();
+        return 'Success';
+    }
 
+    public function create()
+    {
+        $user_update = new User;
+        $user_update->name = 'john';
+        $user_update->email ='contact_me@d.com';
+        $user_update->password ='Password$3456';
+        $user_update->save();
+        return 'Success';
+    }
+
+    public function delete()
+    {
+        User::where('email', 'contact_me@d.com')->delete();
+        return 'Success';
+    }
+
+    public function update()
+    {
+        User::where('email', 'contact_me@d.com')->update(["name" =>'johnny']);
+        return 'Success';
     }
 }
