@@ -16,7 +16,7 @@ class RawDBController extends Controller
         DB::update("update users set name='johnny' where name='john';");
     }
     public function delete(){
-        DB::delete("delete from users where name='john';");
+        DB::delete("delete from users where name='johnny';");
     }
     public function selectOne(){
         DB::selectOne("select 1;");
