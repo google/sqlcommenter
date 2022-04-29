@@ -35,7 +35,7 @@ class Connection extends BaseConnection
      */
     public function selectOne($query, $bindings = [], $useReadPdo = true)
     {
-        $query .= $this->getSqlComments();
+        $query = $this->getSqlComments($query);
         $records = parent::select($query, $bindings, $useReadPdo);
 
         if (count($records) > 0) {
@@ -54,7 +54,7 @@ class Connection extends BaseConnection
      */
     public function select($query, $bindings = [], $useReadPdo = true)
     {
-        $query .= $this->getSqlComments();
+        $query = $this->getSqlComments($query);
         $records = parent::select($query, $bindings, $useReadPdo);
         return $records;
     }
@@ -68,7 +68,7 @@ class Connection extends BaseConnection
      */
     public function insert($query, $bindings = [])
     {
-        $query .= $this->getSqlComments();
+        $query = $this->getSqlComments($query);
 
         $records = parent::insert($query, $bindings);
 
@@ -84,7 +84,7 @@ class Connection extends BaseConnection
      */
     public function update($query, $bindings = [])
     {
-        $query .= $this->getSqlComments();
+        $query = $this->getSqlComments($query);
 
         return $this->affectingStatement($query, $bindings);
     }
@@ -98,12 +98,12 @@ class Connection extends BaseConnection
      */
     public function delete($query, $bindings = [])
     {
-        $query .= $this->getSqlComments();
+        $query = $this->getSqlComments($query);
 
         return $this->affectingStatement($query, $bindings);
     }
 
-    private function getSqlComments()
+    private function getSqlComments($query)
     {
         $configurationKey = 'google_sqlcommenter.include.';
         $comment = [];
@@ -132,6 +132,12 @@ class Connection extends BaseConnection
             $carrier = Opentelemetry::getOpentelemetryValues();
             $comment = array_merge($comment, $carrier);
         }
-        return Utils::formatComments(array_filter(($comment)));
+
+        $query=trim($query);
+
+        if ($query[-1] == ';'){
+            return rtrim($query ,";"). Utils::formatComments(array_filter(($comment))). ';';
+        }
+        return $query . Utils::formatComments(array_filter(($comment)));
     }
 }
