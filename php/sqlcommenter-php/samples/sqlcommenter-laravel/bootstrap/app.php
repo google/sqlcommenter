@@ -15,7 +15,6 @@ use OpenTelemetry\SDK\Trace\SpanExporter\ConsoleSpanExporter;
 use OpenTelemetry\SDK\Trace\SpanProcessor\SimpleSpanProcessor;
 use OpenTelemetry\SDK\Trace\TracerProvider;
 
-
 $tracerProvider =  new TracerProvider(
     new SimpleSpanProcessor(
         new ConsoleSpanExporter()
