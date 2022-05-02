@@ -118,7 +118,7 @@ class Connection extends BaseConnection
         if (config($configurationKey . 'controller', true) and !empty($action['controller'])) {
             $comment['controller'] = explode("@", class_basename($action['controller']))[0];
         }
-        if (config($configurationKey . 'action', true) and !empty($action['controller'] and str_contains($action['controller'], '@'))) {
+        if (config($configurationKey . 'action', true) and !empty($action and $action['controller'] and str_contains($action['controller'], '@'))) {
             $comment['action'] = explode("@", class_basename($action['controller']))[1];
         }
         if (config($configurationKey . 'route', true)) {
