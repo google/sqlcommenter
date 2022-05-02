@@ -28,7 +28,6 @@ jobs:
           echo "::set-output name=dir::$(composer config cache-files-dir)"
 
       - uses: actions/cache@v1
-        working-directory: ./php/sqlcommenter-php/samples/sqlcommenter-laravel
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
