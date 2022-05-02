@@ -68,14 +68,11 @@ jobs:
         run: |
           php artisan migrate
 
+      - name: Publish SQLCommenter Configurations
+        working-directory: ./php/sqlcommenter-php/samples/sqlcommenter-laravel
+        run: |
+          php artisan vendor:publish --provider="Google\GoogleSqlCommenterLaravel\GoogleSqlCommenterServiceProvider"
+
       - name: Run Testsuite
         working-directory: ./php/sqlcommenter-php/samples/sqlcommenter-laravel
         run: vendor/bin/phpunit tests/
-
-    # Example: Deploy to Laravel Forge
-    # - name: Deploy to Laravel Forge
-    #   run: curl ${{ secrets.FORGE_STAGING_WEBHOOK }}
-
-    # Example: Deploy to Laravel Vapor
-    # - name: Deploy to Laravel Vapor
-    #   run: vapor deploy
