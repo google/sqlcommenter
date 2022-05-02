@@ -63,6 +63,11 @@ jobs:
           npm install
           npm run dev
 
+      - name: Apply migrations
+        working-directory: ./php/sqlcommenter-php/samples/sqlcommenter-laravel
+        run: |
+          php artisan migrate
+
       - name: Run Testsuite
         working-directory: ./php/sqlcommenter-php/samples/sqlcommenter-laravel
         run: vendor/bin/phpunit tests/
