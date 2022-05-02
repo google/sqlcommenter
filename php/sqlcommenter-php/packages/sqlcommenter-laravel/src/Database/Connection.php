@@ -98,7 +98,7 @@ class Connection extends BaseConnection
     public function delete($query, $bindings = [])
     {
 
-        $query .= $this->getSqlComments();
+        $query = $this->getSqlComments($query);
 
         return $this->affectingStatement($query, $bindings);
     }
