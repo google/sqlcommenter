@@ -1,0 +1,78 @@
+on: push
+name: CI
+jobs:
+  phpunit:
+    runs-on: ubuntu-latest
+    container:
+      image: kirschbaumdevelopment/laravel-test-runner:7.4-beta
+
+    services:
+      mysql:
+        image: mysql:8
+        env:
+          MYSQL_ROOT_PASSWORD: password
+          MYSQL_DATABASE: test
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+
+      - name: Get Composer Cache Directory
+        working-directory: ./php/sqlcommenter-php/samples/sqlcommenter-laravel
+        id: composer-cache
+        run: |
+          echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - uses: actions/cache@v1
+        working-directory: ./php/sqlcommenter-php/samples/sqlcommenter-laravel
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
+      - name: Get yarn cache
+        working-directory: ./php/sqlcommenter-php/samples/sqlcommenter-laravel
+        id: yarn-cache
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - uses: actions/cache@v1
+        working-directory: ./php/sqlcommenter-php/samples/sqlcommenter-laravel
+        with:
+          path: ${{ steps.yarn-cache.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install composer dependencies
+        working-directory: ./php/sqlcommenter-php/samples/sqlcommenter-laravel
+        run: |
+          composer install --no-scripts
+
+      - name: Prepare Laravel Application
+        working-directory: ./php/sqlcommenter-php/samples/sqlcommenter-laravel
+        run: |
+          cp .env.ci .env
+          php artisan key:generate
+
+      - name: Install front-end dependencies
+        working-directory: ./php/sqlcommenter-php/samples/sqlcommenter-laravel
+        run: |
+          npm install
+          npm run dev
+
+      - name: Run Testsuite
+        working-directory: ./php/sqlcommenter-php/samples/sqlcommenter-laravel
+        run: vendor/bin/phpunit tests/
+
+    # Example: Deploy to Laravel Forge
+    # - name: Deploy to Laravel Forge
+    #   run: curl ${{ secrets.FORGE_STAGING_WEBHOOK }}
+
+    # Example: Deploy to Laravel Vapor
+    # - name: Deploy to Laravel Vapor
+    #   run: vapor deploy
