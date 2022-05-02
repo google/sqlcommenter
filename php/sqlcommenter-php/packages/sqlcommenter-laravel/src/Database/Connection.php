@@ -69,7 +69,6 @@ class Connection extends BaseConnection
     public function insert($query, $bindings = [])
     {
         $query = $this->getSqlComments($query);
-
         $records = parent::insert($query, $bindings);
 
         return $records;
@@ -85,7 +84,7 @@ class Connection extends BaseConnection
     public function update($query, $bindings = [])
     {
         $query = $this->getSqlComments($query);
-
+      
         return $this->affectingStatement($query, $bindings);
     }
 
@@ -98,7 +97,8 @@ class Connection extends BaseConnection
      */
     public function delete($query, $bindings = [])
     {
-        $query = $this->getSqlComments($query);
+
+        $query .= $this->getSqlComments();
 
         return $this->affectingStatement($query, $bindings);
     }
@@ -139,5 +139,6 @@ class Connection extends BaseConnection
             return rtrim($query ,";"). Utils::formatComments(array_filter(($comment))). ';';
         }
         return $query . Utils::formatComments(array_filter(($comment)));
+
     }
 }
