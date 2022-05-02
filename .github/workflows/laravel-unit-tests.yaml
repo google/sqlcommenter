@@ -1,20 +1,10 @@
 on: push
-name: Laravel Integration Tests
+name: Laravel Unit Tests
 jobs:
   phpunit:
     runs-on: ubuntu-latest
     container:
       image: kirschbaumdevelopment/laravel-test-runner:8.0
-
-    services:
-      mysql:
-        image: mysql:8
-        env:
-          MYSQL_ROOT_PASSWORD: password
-          MYSQL_DATABASE: test
-        ports:
-          - 33306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
       - uses: actions/checkout@v1
@@ -47,32 +37,16 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - name: Install composer dependencies
-        working-directory: ./php/sqlcommenter-php/samples/sqlcommenter-laravel
+        working-directory: ./php/sqlcommenter-php/packages/sqlcommenter-laravel
         run: |
           composer install --no-scripts
 
       - name: Prepare Laravel Application
-        working-directory: ./php/sqlcommenter-php/samples/sqlcommenter-laravel
+        working-directory: ./php/sqlcommenter-php/packages/sqlcommenter-laravel
         run: |
           cp .env.ci .env
           php artisan key:generate
 
-      - name: Install front-end dependencies
-        working-directory: ./php/sqlcommenter-php/samples/sqlcommenter-laravel
-        run: |
-          npm install
-          npm run dev
-
-      - name: Apply migrations
-        working-directory: ./php/sqlcommenter-php/samples/sqlcommenter-laravel
-        run: |
-          php artisan migrate
-
-      - name: Publish SQLCommenter Configurations
-        working-directory: ./php/sqlcommenter-php/samples/sqlcommenter-laravel
-        run: |
-          php artisan vendor:publish --provider="Google\GoogleSqlCommenterLaravel\GoogleSqlCommenterServiceProvider"
-
       - name: Run Testsuite
-        working-directory: ./php/sqlcommenter-php/samples/sqlcommenter-laravel
+        working-directory: ./php/sqlcommenter-php/packages/sqlcommenter-laravel
         run: vendor/bin/phpunit tests/
