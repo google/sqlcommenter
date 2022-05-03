@@ -85,6 +85,20 @@ traceparent='00-5bd66ef5095369c7b0d1f8f4bd33716a-c532cb4098ac3dd2-01',
 tracestate='congo%%3Dt61rcWkgMzE%%2Crojo%%3D00f067aa0ba902b7'*/
 ```
 
+#### FastAPI
+
+If you are using SQLAlchemy with FastAPI, add the middleware to get: framework, app_name, controller and route.
+
+```python
+from fastapi import FastAPI
+from google.cloud.sqlcommenter.fastapi import SQLCommenterMiddleware
+
+app = FastAPI()
+
+app.add_middleware(SQLCommenterMiddleware)
+```
+
+
 ### Psycopg2
 
 Use the provided cursor factory to generate database cursors. All queries executed with such cursors will have the SQL comment prepended to them.

@@ -37,6 +37,7 @@ setup(
     extras_require={
         'django': ['django >= 1.11'],
         'flask': ['flask'],
+        'fastapi': ['fastapi'],
         'psycopg2': ['psycopg2'],
         'sqlalchemy': ['sqlalchemy'],
         'opencensus': ['opencensus'],
