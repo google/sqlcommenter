@@ -6,39 +6,49 @@ weight: 1
 tags: ["php", "laravel"]
 ---
 
-![](/images/laravel-logo.jpeg)
+![](/images/laravel-logo.png)
 
 - [Introduction](#introduction)
 - [Requirements](#requirements)
 - [Installation](#installation)
-    - [pip install](#pip-install)
-    - [Source](#source)
+    - [composer install](#composer)
+    - [source](#source)
 - [Fields](#fields)
     - [Sample log entry](#sample-log-entry)
     - [Expected fields](#expected-fields)
 - [References](#references)
 
-#### Introduction
+### Introduction
 
-This package is in the form of [Illuminate Database Connector Wrapper] (https://github.com/illuminate/database) whose purpose is to augment a SQL statement right before execution, with information about the controller and user code to help with later making database optimization decisions, after those statements are examined from the database server's logs.
+This package is in the form of [Illuminate Database Connector Wrapper](https://github.com/illuminate/database) whose purpose is to augment a SQL statement right before execution, with information about the controller and user code to help with later making database optimization decisions, after those statements are examined from the database server's logs.
 
 ### Requirements
 
 It requires [php 8](https://www.php.net) & above
 
-#### Installation
+### Installation
 This middleware can be installed by any of the following:
-{{<tabs composer source>}}
-{{<highlight shell>}}
+#### Composer
+```shell
 composer require google/sqlcommenter-laravel
-{{</highlight>}}
-
-{{<highlight shell>}}
+```
+#### Source
+```shell
 git clone https://github.com/google/sqlcommenter.git
-cd php/sqlcommenter-python && python3 setup.py install
-{{</highlight>}}
+```
+```php
+# Add the following to composer.json 
 
-{{</tabs>}}
+"repositories": [
+{
+"type": "path",
+"url": "/full/or/relative/path/to/sqlcommenter/php/sqlcommenter-php/packages/sqlcommenter-laravel/"
+}
+]
+```
+```shell
+composer require "google/sqlcommenter-laravel"
+```
 
 ### Enabling it
 
@@ -69,7 +79,7 @@ In the database server logs, the comment's fields are:
 * values are SQL escaped i.e. `key='value'`
 * URL-quoted except for the equals(`=`) sign e.g `route='%5Epolls/%24'`. so should be URL-unquoted when being consumed
 
-#### Sample log entry
+### Sample log entry
 
 After making a request into the middleware-enabled polls web-app.
 
@@ -78,7 +88,7 @@ After making a request into the middleware-enabled polls web-app.
 /*framework='laravel-9.7.0',controller='UserController',action='index',route='%%2Fapi%%2Ftest',db_driver='pgsql',traceparent='00-1cd60708968a61e942b5dacc2d4a5473-7534abe7ed36ce35-01'*/
 ```
 
-#### Expected Fields
+### Expected Fields
 
 Field| Included <br /> by default?                    |Description
 ---|------------------------------------------------|---
@@ -87,20 +97,15 @@ Field| Included <br /> by default?                    |Description
 `db_driver`| <div style="text-align: center">&#10004;</div> |The name of the php [database engine](https://laravel.com/docs/9.x/database)
 `framework`| <div style="text-align: center">&#10004;</div> |The word "laravel" and the version of laravel being used
 `route`| <div style="text-align: center">&#10004;</div> |The [route](https://laravel.com/docs/9.x/routing) of the matching URL pattern as described in your routes/api.php
-`traceparent`| <div style="text-align: center">#10004;;</div> |The [W3C TraceContext.Traceparent field](https://www.w3.org/TR/trace-context/#traceparent-field) of the OpenTelemetry trace
+`traceparent`| <div style="text-align: center">&#10004;</div> |The [W3C TraceContext.Traceparent field](https://www.w3.org/TR/trace-context/#traceparent-field) of the OpenTelemetry trace
 
 ### End to end examples
 
 Examples are based upon the [sample](https://github.com/google/sqlcommenter/tree/master/php/sqlcommenter-php/samples/sqlcommenter-laravel)
 
 #### Source code
-
-{{<tabs "Defaults">}}
-
-<div>
-{{<highlight python>}}
+```php
 # config/google_sqlcommenter.php
-
 <?php
 return [
 
@@ -119,33 +124,25 @@ return [
     ]
 
 ];
-{{</highlight>}}
-
+```
 From the command line, we run the laravel development server in one terminal:
-
-{{<highlight shell>}}
-# php artisan serve
-{{</highlight>}}
-
+```shell
+php artisan serve
+```
 And we use [curl](https://curl.haxx.se/) to make an HTTP request in another:
-
-{{<highlight shell>}}
-# curl http://127.0.0.1:8000/user/select
-{{</highlight>}}
-
+```shell
+curl http://127.0.0.1:8000/user/select
+```
 #### Results
 
 Examining our Postgresql server logs, with the various options
 
-{{<tabs "Defaults">}}
+```shell
+2022-04-29 13:59:39.922 IST [27935] LOG:  duration: 0.012 ms  execute pdo_stmt_00000003: Select 1/*framework='laravel-9.7.0',controller='UserController',action='index',route='%%2Fapi%%2Ftest',db_driver='pgsql',
+traceparent='00-1cd60708968a61e942b5dacc2d4a5473-7534abe7ed36ce35-01'*/
+```
 
-{{<highlight shell>}}
-2022-04-29 13:59:39.922 IST [27935] LOG:  duration: 0.012 ms  execute pdo_stmt_00000003: Select 1/*framework='laravel-9.7.0',controller='UserController',action='index',route='%%2Fapi%%2Ftest',db_driver='pgsql',traceparent='00-1cd60708968a61e942b5dacc2d4a5473-7534abe7ed36ce35-01'*/
-{{</highlight>}}
-
-{{</tabs>}}
-
-#### References
+### References
 
 Resource|URL
 ---|---

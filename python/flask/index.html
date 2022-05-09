@@ -5,7 +5,7 @@
     
       <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="generator" content="Hugo 0.55.6" />
+<meta name="generator" content="Hugo 0.81.0" />
 <title>Flask :: sqlcommenter</title>
 <link rel="shortcut icon" href="https://google.github.io/sqlcommenter/images/favicon.ico" type="image/x-icon" />
 <link href="https://google.github.io/sqlcommenter/css/font-awesome.min.css" rel="stylesheet">
@@ -84,14 +84,14 @@
 
     
   </head>
-  <body data-url="/python/flask/">
+  <body data-url="https://google.github.io/sqlcommenter/python/flask/">
     
       <header>
   <div class="logo">
     
 	
   
-    <p><a href="https://google.github.io/sqlcommenter/"><img src="https://google.github.io/sqlcommenter/images/sqlcommenter_logo.png" alt="sqlcommenter logo" /> <span>sql</span>commenter</a></p>
+    <p><a href="https://google.github.io/sqlcommenter/"><img src="https://google.github.io/sqlcommenter/images/sqlcommenter_logo.png" alt="sqlcommenter logo"> <!-- raw HTML omitted -->sql<!-- raw HTML omitted -->commenter</a></p>
 
   
 
@@ -162,6 +162,20 @@
         ">
       <div>
       <a href="https://google.github.io/sqlcommenter/python/flask/">Flask</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/php/" class="dd-item haschildren
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/php/">Php</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+    <li data-nav-id="/php/laravel/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/php/laravel/">Laravel</a><i class="fa fa-circle-thin read-icon"></i>
       </div>
     </li>
         </ul>
@@ -298,45 +312,34 @@
     
     
 
-
-
-<p><img src="https://google.github.io/sqlcommenter/images/flask-logo.png" alt="" /></p>
-
+<p><img src="https://google.github.io/sqlcommenter/images/flask-logo.png" alt=""></p>
 <ul>
 <li><a href="#introduction">Introduction</a></li>
 <li><a href="#using-it">Using it</a></li>
 <li><a href="#expected-fields">Expected fields</a></li>
 <li><a href="#end-to-end-examples">End to examples</a>
-
 <ul>
 <li><a href="#with-psycopg2">With psycopg2</a></li>
 <li><a href="#with-sqlalchemy">With sqlalchemy</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="#references">References</a></li>
 </ul>
-
 <h3 id="introduction">Introduction</h3>
-
 <p>We provide Flask middleware which when coupled with:</p>
-
 <ul>
 <li><a href="https://google.github.io/sqlcommenter/python/psycopg2">sqlcommenter-psycopg2</a></li>
 <li><a href="https://google.github.io/sqlcommenter/python/sqlalchemy">sqlcommenter-sqlalchemy</a></li>
 </ul>
-
 <p>allow us to retrieve the <code>controller</code> and <code>route</code> correlated with your source code in your web app.</p>
-
 <h3 id="using-it">Using it</h3>
-
 <p>Having successfully installed <a href="https://google.github.io/sqlcommenter/python#install">sqlcommenter-python&rsquo;s sqlcommenter</a></p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> <span style="color:#111">sqlcommenter</span> <span style="color:#f92672">import</span> <span style="color:#111">FlaskMiddleware</span>
 
 <span style="color:#75715e"># Then in your flask programs just pass in the app</span>
-<span style="color:#111">FlaskMiddleware</span><span style="color:#111">(</span><span style="color:#111">app</span><span style="color:#111">)</span></code></pre></div>
-<h3 id="expected-fields">Expected fields</h3>
-
+<span style="color:#111">FlaskMiddleware</span><span style="color:#111">(</span><span style="color:#111">app</span><span style="color:#111">)</span>
+</code></pre></div><h3 id="expected-fields">Expected fields</h3>
 <p>This Flask integration when coupled with compatible drivers will place the following fields</p>
-
 <table>
 <thead>
 <tr>
@@ -346,35 +349,29 @@
 <th>Turn if off by</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>controller</td>
-<td><div style="text-align: center">&#10004;</div></td>
+<td><!-- raw HTML omitted -->✔<!-- raw HTML omitted --></td>
 <td>The function being used to service an HTTP request</td>
 <td><code>with_controller=False</code></td>
 </tr>
-
 <tr>
 <td>framework</td>
-<td><div style="text-align: center">&#10004;</div></td>
-<td>&ldquo;flask:<FLASK_VERSION>&ldquo;</td>
+<td><!-- raw HTML omitted -->✔<!-- raw HTML omitted --></td>
+<td>&ldquo;flask:&lt;FLASK_VERSION&gt;&rdquo;</td>
 <td><code>with_framework=False</code></td>
 </tr>
-
 <tr>
 <td>route</td>
-<td><div style="text-align: center">&#10004;</div></td>
+<td><!-- raw HTML omitted -->✔<!-- raw HTML omitted --></td>
 <td>The pattern used to match an HTTP request</td>
 <td><code>with_route=False</code></td>
 </tr>
 </tbody>
 </table>
-
 <h3 id="end-to-end-examples">End to end examples</h3>
-
 <h4 id="with-psycopg2">With psycopg2</h4>
-
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#!/usr/bin/env python3</span>
 
 <span style="color:#f92672">import</span> <span style="color:#111">psycopg2</span>
@@ -419,13 +416,11 @@
 
 <span style="color:#00a8c8">if</span> <span style="color:#111">__name__</span> <span style="color:#f92672">==</span> <span style="color:#d88200">&#39;__main__&#39;</span><span style="color:#111">:</span>
     <span style="color:#111">main</span><span style="color:#111">()</span></code></pre></div>
-
-<p>which when run by <code>python3 main.py</code> and on visiting <a href="http://localhost:8088/polls">http://localhost:8088/polls</a> we can see on our database logs</p>
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#ae81ff">2019</span>-06-08 <span style="color:#ae81ff">12</span>:19:11.284 PDT <span style="color:#f92672">[</span><span style="color:#ae81ff">70984</span><span style="color:#f92672">]</span> LOG:  statement: SELECT * FROM polls_question
+<p>which when run by <code>python3 main.py</code> and on visiting http://localhost:8088/polls we can see on our database logs</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">2019-06-08 12:19:11.284 PDT <span style="color:#f92672">[</span>70984<span style="color:#f92672">]</span> LOG:  statement: SELECT * FROM polls_question
 /*controller<span style="color:#f92672">=</span><span style="color:#d88200">&#39;get_polls&#39;</span>,db_driver<span style="color:#f92672">=</span><span style="color:#d88200">&#39;psycopg2&#39;</span>,framework<span style="color:#f92672">=</span><span style="color:#d88200">&#39;sqlalchemy%3A1.3.4&#39;</span>,
-<span style="color:#111">route</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;/polls&#39;</span>,traceparent<span style="color:#f92672">=</span><span style="color:#d88200">&#39;00-5b3df77064f35f091e89fb40022e2a1d-9bbd4868cf0ba2c3-01&#39;</span>*/</code></pre></div>
-<h4 id="with-sqlalchemy">With sqlalchemy</h4>
-
+<span style="color:#111">route</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;/polls&#39;</span>,traceparent<span style="color:#f92672">=</span><span style="color:#d88200">&#39;00-5b3df77064f35f091e89fb40022e2a1d-9bbd4868cf0ba2c3-01&#39;</span>*/
+</code></pre></div><h4 id="with-sqlalchemy">With sqlalchemy</h4>
 <p>Having successfully installed <a href="https://google.github.io/sqlcommenter/python/sqlalchemy">google-cloud-sqlcommenter</a> you can now just run
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#!/usr/bin/env python3</span>
 
@@ -457,14 +452,12 @@
 
 <span style="color:#00a8c8">if</span> <span style="color:#111">__name__</span> <span style="color:#f92672">==</span> <span style="color:#d88200">&#39;__main__&#39;</span><span style="color:#111">:</span>
     <span style="color:#111">main</span><span style="color:#111">()</span></code></pre></div></p>
-
-<p>which when run by <code>python3 main.py</code> and on visiting <a href="http://localhost:8089/polls">http://localhost:8089/polls</a> we can see on our database logs</p>
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#ae81ff">2019</span>-06-08 <span style="color:#ae81ff">12</span>:17:59.518 PDT <span style="color:#f92672">[</span><span style="color:#ae81ff">73546</span><span style="color:#f92672">]</span> LOG:  statement: SELECT * FROM polls_question
+<p>which when run by <code>python3 main.py</code> and on visiting http://localhost:8089/polls we can see on our database logs</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">2019-06-08 12:17:59.518 PDT <span style="color:#f92672">[</span>73546<span style="color:#f92672">]</span> LOG:  statement: SELECT * FROM polls_question
 /*controller<span style="color:#f92672">=</span><span style="color:#d88200">&#39;get_polls&#39;</span>,db_driver<span style="color:#f92672">=</span><span style="color:#d88200">&#39;psycopg2%3A2.8.2%20%28dt%20dec%20pq3%20ext%20lo64%29&#39;</span>,
-<span style="color:#111">dbapi_level</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;2.0&#39;</span>,dbapi_threadsafety<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>,driver_paramstyle<span style="color:#f92672">=</span><span style="color:#d88200">&#39;pyformat&#39;</span>,
-<span style="color:#111">framework</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;flask%3A1.0.3&#39;</span>,libpq_version<span style="color:#f92672">=</span><span style="color:#ae81ff">100001</span>,route<span style="color:#f92672">=</span><span style="color:#d88200">&#39;/polls&#39;</span>*/</code></pre></div>
-<h3 id="references">References</h3>
-
+<span style="color:#111">dbapi_level</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;2.0&#39;</span>,dbapi_threadsafety<span style="color:#f92672">=</span>2,driver_paramstyle<span style="color:#f92672">=</span><span style="color:#d88200">&#39;pyformat&#39;</span>,
+<span style="color:#111">framework</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;flask%3A1.0.3&#39;</span>,libpq_version<span style="color:#f92672">=</span>100001,route<span style="color:#f92672">=</span><span style="color:#d88200">&#39;/polls&#39;</span>*/
+</code></pre></div><h3 id="references">References</h3>
 <table>
 <thead>
 <tr>
@@ -472,18 +465,15 @@
 <th>URL</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>flask web framework</td>
 <td><a href="http://flask.pocoo.org/">http://flask.pocoo.org/</a></td>
 </tr>
-
 <tr>
 <td>sqlcommenter-psycopg2+flask</td>
 <td><a href="https://google.github.io/sqlcommenter/python/psycopg2#with-flask">/python/psycopg2#with-flask</a></td>
 </tr>
-
 <tr>
 <td>sqlcommenter-sqlalchemy+flask</td>
 <td><a href="https://google.github.io/sqlcommenter/python/sqlalchemy#with-flask">/python/sqlalchemy#with-flask</a></td>
@@ -498,7 +488,7 @@
         <div class="chevrons">
     <div id="navigation">
 <a class="nav nav-prev" href="https://google.github.io/sqlcommenter/python/sqlalchemy/" title="SQLAlchemy"> <i class="fa fa-chevron-left"></i><label>SQLAlchemy</label></a>
-    <a class="nav nav-next" href="https://google.github.io/sqlcommenter/ruby/" title="Ruby" style="margin-right: 0px;"><label>Ruby</label><i class="fa fa-chevron-right"></i></a></div>
+    <a class="nav nav-next" href="https://google.github.io/sqlcommenter/php/" title="Php" style="margin-right: 0px;"><label>Php</label><i class="fa fa-chevron-right"></i></a></div>
   </div>
 
   </section>
@@ -522,7 +512,7 @@
   
 
     <div class="github-link">
-      <a href="https://github.com/google/sqlcommenter/tree/gh-pages/src/content/python/flask/_index.md" target="blank"><i class="fa fa-code-fork"></i>
+      <a href="https://github.com/google/sqlcommenter/tree/gh-pages/src/contentpython/flask/_index.md" target="blank"><i class="fa fa-code-fork"></i>
         Edit this page on Github</a>
     </div>
   </div>
@@ -535,8 +525,7 @@
     <ul>
 <li><a href="https://github.com/google/sqlcommenter/">Github</a></li>
 </ul>
-
-<h5 style="color: #fff">sqlcommenter</h5>
+<!-- raw HTML omitted -->
 
   
 

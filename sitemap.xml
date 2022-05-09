@@ -1,350 +1,202 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
+    <loc>https://google.github.io/sqlcommenter/php/laravel/</loc>
+    <lastmod>2022-05-04T18:30:11-06:00</lastmod>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/ruby/rails/</loc>
     <lastmod>2019-06-13T16:04:11-06:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/java/hibernate/</loc>
     <lastmod>2019-05-31T18:21:05-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/python/django/local/</loc>
     <lastmod>2019-05-31T14:20:21-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/python/django/</loc>
     <lastmod>2019-05-29T08:40:11-06:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/node/knex/</loc>
     <lastmod>2019-05-29T08:40:11-06:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/node/sequelize/</loc>
     <lastmod>2019-05-29T08:40:11-06:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/spec/</loc>
     <lastmod>2019-05-28T14:28:03-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/java/spring/</loc>
     <lastmod>2019-05-31T18:20:05-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/python/django/gcp/</loc>
     <lastmod>2019-05-29T17:06:21-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/python/psycopg2/</loc>
     <lastmod>2019-05-29T08:40:11-06:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/node/express/</loc>
     <lastmod>2019-06-03T16:40:11-06:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/python/django/aws/</loc>
     <lastmod>2019-05-31T14:40:33-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/python/</loc>
     <lastmod>2019-05-29T08:40:11-06:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/python/sqlalchemy/</loc>
     <lastmod>2019-05-29T08:40:11-06:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://google.github.io/sqlcommenter/php/</loc>
+    <lastmod>2022-05-04T18:30:11-06:00</lastmod>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/ruby/</loc>
     <lastmod>2019-06-04T18:30:11-06:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/python/flask/</loc>
     <lastmod>2019-05-31T18:22:11-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/node/</loc>
     <lastmod>2019-05-31T18:16:11-06:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/databases/postgresql/</loc>
     <lastmod>2019-05-31T16:23:01-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/java/</loc>
     <lastmod>2019-05-29T08:46:39-06:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/databases/mysql/</loc>
     <lastmod>2019-05-31T16:31:01-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/databases/mariadb/</loc>
     <lastmod>2019-05-31T16:34:01-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/databases/</loc>
     <lastmod>2019-05-31T16:00:01-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/faq/</loc>
     <lastmod>2018-07-16T14:46:09-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://google.github.io/sqlcommenter/tags/laravel/</loc>
+    <lastmod>2022-05-04T18:30:11-06:00</lastmod>
+  </url><url>
+    <loc>https://google.github.io/sqlcommenter/tags/php/</loc>
+    <lastmod>2022-05-04T18:30:11-06:00</lastmod>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/tags/</loc>
-    <lastmod>2019-06-13T16:04:11-06:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+    <lastmod>2022-05-04T18:30:11-06:00</lastmod>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/tags/activerecord/</loc>
     <lastmod>2019-06-13T16:04:11-06:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/tags/marginalia/</loc>
     <lastmod>2019-06-13T16:04:11-06:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/tags/rails/</loc>
     <lastmod>2019-06-13T16:04:11-06:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/tags/ruby/</loc>
     <lastmod>2019-06-13T16:04:11-06:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/tags/rubyonrails/</loc>
     <lastmod>2019-06-13T16:04:11-06:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/tags/express/</loc>
     <lastmod>2019-06-03T16:40:11-06:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/tags/express.js/</loc>
     <lastmod>2019-06-03T16:40:11-06:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/tags/middleware/</loc>
     <lastmod>2019-06-03T16:40:11-06:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/tags/node/</loc>
     <lastmod>2019-06-03T16:40:11-06:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/tags/node.js/</loc>
     <lastmod>2019-06-03T16:40:11-06:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/tags/flask/</loc>
     <lastmod>2019-05-31T18:22:11-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/tags/python/</loc>
     <lastmod>2019-05-31T18:22:11-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/tags/databases/</loc>
     <lastmod>2019-05-31T16:34:01-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/tags/mariadb/</loc>
     <lastmod>2019-05-31T16:34:01-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/tags/mysql/</loc>
     <lastmod>2019-05-31T16:31:01-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/tags/postgresql/</loc>
     <lastmod>2019-05-31T16:23:01-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/tags/cloudsql/</loc>
     <lastmod>2019-05-31T16:00:01-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/tags/sqlite/</loc>
     <lastmod>2019-05-31T16:00:01-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/tags/amazon/</loc>
     <lastmod>2019-05-31T14:40:33-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/tags/aws/</loc>
     <lastmod>2019-05-31T14:40:33-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/tags/compute/</loc>
     <lastmod>2019-05-31T14:40:33-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/tags/django/</loc>
     <lastmod>2019-05-31T14:40:33-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/tags/ec2/</loc>
     <lastmod>2019-05-31T14:40:33-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/tags/lambda/</loc>
     <lastmod>2019-05-31T14:40:33-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/tags/local/</loc>
     <lastmod>2019-05-31T14:20:21-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/</loc>
     <lastmod>2019-05-29T19:58:45-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/tags/appengine/</loc>
     <lastmod>2019-05-29T17:06:21-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/tags/gce/</loc>
     <lastmod>2019-05-29T17:06:21-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/tags/gcp/</loc>
     <lastmod>2019-05-29T17:06:21-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/tags/google/</loc>
     <lastmod>2019-05-29T17:06:21-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/tags/knex/</loc>
     <lastmod>2019-05-29T08:40:11-06:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/tags/knex.js/</loc>
     <lastmod>2019-05-29T08:40:11-06:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/tags/query-builder/</loc>
     <lastmod>2019-05-29T08:40:11-06:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/tags/sequelize/</loc>
     <lastmod>2019-05-29T08:40:11-06:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/tags/sequelize.js/</loc>
     <lastmod>2019-05-29T08:40:11-06:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/_footer/</loc>
     <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/_header/</loc>
     <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://google.github.io/sqlcommenter/categories/</loc>
-    <priority>0</priority>
   </url>
-  
 </urlset>

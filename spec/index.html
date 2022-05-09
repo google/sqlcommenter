@@ -5,7 +5,7 @@
     
       <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="generator" content="Hugo 0.55.6" />
+<meta name="generator" content="Hugo 0.81.0" />
 <title>Specification :: sqlcommenter</title>
 <link rel="shortcut icon" href="https://google.github.io/sqlcommenter/images/favicon.ico" type="image/x-icon" />
 <link href="https://google.github.io/sqlcommenter/css/font-awesome.min.css" rel="stylesheet">
@@ -84,14 +84,14 @@
 
     
   </head>
-  <body data-url="/spec/">
+  <body data-url="https://google.github.io/sqlcommenter/spec/">
     
       <header>
   <div class="logo">
     
 	
   
-    <p><a href="https://google.github.io/sqlcommenter/"><img src="https://google.github.io/sqlcommenter/images/sqlcommenter_logo.png" alt="sqlcommenter logo" /> <span>sql</span>commenter</a></p>
+    <p><a href="https://google.github.io/sqlcommenter/"><img src="https://google.github.io/sqlcommenter/images/sqlcommenter_logo.png" alt="sqlcommenter logo"> <!-- raw HTML omitted -->sql<!-- raw HTML omitted -->commenter</a></p>
 
   
 
@@ -116,6 +116,67 @@
       <a href="https://google.github.io/sqlcommenter/python/">Python</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
       </div>
         <ul>
+    <li data-nav-id="/python/django/" class="dd-item haschildren
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/python/django/">Django</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+      <li data-nav-id="/python/django/local/" class="dd-item">
+        <div>
+          <a href="https://google.github.io/sqlcommenter/python/django/local/">
+            Locally
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/python/django/gcp/" class="dd-item">
+        <div>
+          <a href="https://google.github.io/sqlcommenter/python/django/gcp/">
+            Google Cloud Platform
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/python/django/aws/" class="dd-item">
+        <div>
+          <a href="https://google.github.io/sqlcommenter/python/django/aws/">
+            Amazon Web Services
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/python/psycopg2/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/python/psycopg2/">psycopg2</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/python/sqlalchemy/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/python/sqlalchemy/">SQLAlchemy</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/python/flask/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/python/flask/">Flask</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/php/" class="dd-item haschildren
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/php/">Php</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+    <li data-nav-id="/php/laravel/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/php/laravel/">Laravel</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
         </ul>
     </li>
     <li data-nav-id="/ruby/" class="dd-item haschildren
@@ -250,147 +311,125 @@
     
     
 
-
-
-<p><img src="https://google.github.io/sqlcommenter/images/sqlcommenter_logo.png" alt="" /></p>
-
+<p><img src="https://google.github.io/sqlcommenter/images/sqlcommenter_logo.png" alt=""></p>
 <ul>
 <li><a href="#introduction">Introduction</a></li>
 <li><a href="#format">Format</a></li>
 <li><a href="#comment-escaping">Comment escaping</a></li>
 <li><a href="#meta-characters">Meta characters</a>
-
 <ul>
 <li><a href="#meta-characters-algorithm">Algorithm</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="#key-value-serialization">Key-Value serialization</a>
-
 <ul>
 <li><a href="#key-serialization">Key serialization</a>
-
 <ul>
 <li><a href="#key-serialization-algorithm">Algorithm</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="#key-serialization">Value serialization</a>
-
 <ul>
 <li><a href="#value-serialization-algorithm">Algorithm</a></li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a href="#sorting">Sorting</a>
-
 <ul>
 <li><a href="#sorting-algorithm">Algorithm</a></li>
 <li><a href="#sorting-exhibit">Exhibit</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="#contentation">Concatenation</a>
-
 <ul>
 <li><a href="#separator">Separator</a></li>
 <li><a href="#concatenation-algorithm">Algorithm</a></li>
 <li><a href="#concatenation-exhibit">Exhibit</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="#affix-comment">Affix comment</a>
-
 <ul>
 <li><a href="#affix-comment-algorithm">Algorithm</a></li>
 <li><a href="#affix-comment-exhibit">Exhibit</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="#sql-commenter">SQL commenter</a>
-
 <ul>
 <li><a href="#sql-commenter-exhibit">Exhibit</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="#parsing">Parsing</a>
-
 <ul>
 <li><a href="#parsing-algorithm">Algorithm</a></li>
 <li><a href="#parsing-exhibit">Exhibit</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="#references">References</a></li>
 </ul>
-
 <h3 id="introduction">Introduction</h3>
-
 <p>This section defines the <a href="https://google.github.io/sqlcommenter/">SQL commenter algorithm</a> which augments a SQL statement with a comment containing serialized
 key value pairs that are retrieved from the various ORMs and frameworks in your programming language and environment of choice.</p>
-
 <p>A preview of the result can be seen as per <a href="#sql-commenter-exhibit">exhibit</a></p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#111">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#111">FROM</span> <span style="color:#111">FOO</span> <span style="color:#f92672">/*</span><span style="color:#111">action</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;</span><span style="color:#d88200">%2F</span><span style="color:#d88200">param*d&#39;</span><span style="color:#111">,</span><span style="color:#111">controller</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;index,&#39;</span><span style="color:#111">framework</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;spring&#39;</span><span style="color:#111">,</span>
 <span style="color:#111">traceparent</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;00-5bd66ef5095369c7b0d1f8f4bd33716a-c532cb4098ac3dd2-01&#39;</span><span style="color:#111">,</span>
-<span style="color:#111">tracestate</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;congo%3Dt61rcWkgMzE%2Crojo%3D00f067aa0ba902b7&#39;</span><span style="color:#f92672">*/</span></code></pre></div>
-<p>Read along to see how you can conform to the specification and produce similar output.</p>
-
+<span style="color:#111">tracestate</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;congo%3Dt61rcWkgMzE%2Crojo%3D00f067aa0ba902b7&#39;</span><span style="color:#f92672">*/</span>
+</code></pre></div><p>Read along to see how you can conform to the specification and produce similar output.</p>
 <h3 id="format">Format</h3>
-
 <p>The final comment SHOULD be affixed to the final SQL statement in the format</p>
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">&lt;SQL STATEMENT&gt; /*&lt;ATTRIBUTE_KEY_VALUE_PAIRS&gt;*/</code></pre></div>
-<h3 id="comment-escaping">Comment escaping</h3>
-
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">&lt;SQL STATEMENT&gt; /*&lt;ATTRIBUTE_KEY_VALUE_PAIRS&gt;*/
+</code></pre></div><h3 id="comment-escaping">Comment escaping</h3>
 <p><a href="https://docs.oracle.com/cd/B12037_01/server.101/b10759/sql_elements006.htm">Comments within SQL comments</a> are of the format</p>
-
 <ul>
 <li>Following <code>--</code> e.g. <code>SELECT * from FOO -- this is the comment</code></li>
 <li>Contained within <code>/*</code> and <code>*/</code> e.g. <code>SELECT * from FOO /* this is the comment */</code></li>
 </ul>
-
 <p>If a comment already exists within a SQL statement, we MUST NOT mutate that statement.</p>
-
 <h3 id="separator">Separator</h3>
-
 <p>Each key value pair MUST be separated by a comma &ldquo;,&rdquo; so for example, given</p>
-
 <p>Values: <code>[&lt;FIELD_1&gt;, &lt;FIELD_2&gt;, &lt;FIELD_3&gt;, ...]</code></p>
-
 <p>Expected concatenation result: <code>&lt;FIELD_1&gt;,&lt;FIELD_2&gt;,&lt;FIELD_3&gt;,&lt;FIELD_N...&gt;</code></p>
-
 <h3 id="meta-characters">Meta characters</h3>
-
 <p>Meta characters such as <code>'</code> should be escaped with a slash <code>\</code>. That creates the following algorithm:</p>
-
-<h4 id="a-name-meta-characters-algorithm-a-algorithm"><a name="meta-characters-algorithm"></a> Algorithm</h4>
+<h4 id="a-namemeta-characters-algorithma-algorithm"><!-- raw HTML omitted --><!-- raw HTML omitted --> Algorithm</h4>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#111">algorithm</span><span style="color:#111">(</span><span style="color:#111">value</span><span style="color:#111">):</span>
-    <span style="color:#111">escaped</span> <span style="color:#111">:</span><span style="color:#f92672">=</span> <span style="color:#111">value</span><span style="color:#f92672">.</span><span style="color:#111">escape_with_slash_any_of</span><span style="color:#111">(</span><span style="color:#d88200">&#39;)</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#d88200">    return escaped</span></code></pre></div>
-<h3 id="key-serialization">Key serialization</h3>
+    <span style="color:#111">escaped</span> <span style="color:#111">:</span><span style="color:#f92672">=</span> <span style="color:#111">value</span><span style="color:#f92672">.</span><span style="color:#111">escape_with_slash_any_of</span><span style="color:#111">(</span><span style="color:#d88200">&#39;)</span>
 
+    <span style="color:#00a8c8">return</span> <span style="color:#111">escaped</span>
+</code></pre></div><h3 id="key-serialization">Key serialization</h3>
 <ol>
 <li><a href="#url-encode">URL encode</a> the key e.g. given <code>route parameter</code>, that&rsquo;ll become <code>route%20parameter</code></li>
 </ol>
-
 <p>Which produces the following algorithm:</p>
-
-<h4 id="a-name-key-serialization-algorithm-a-algorithm"><a name="key-serialization-algorithm"></a> Algorithm</h4>
+<h4 id="a-namekey-serialization-algorithma-algorithm"><!-- raw HTML omitted --><!-- raw HTML omitted --> Algorithm</h4>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#111">key_serialization</span><span style="color:#111">(</span><span style="color:#111">key</span><span style="color:#111">):</span>
     <span style="color:#111">encoded</span> <span style="color:#111">:</span><span style="color:#f92672">=</span> <span style="color:#111">url_encode</span><span style="color:#111">(</span><span style="color:#111">key</span><span style="color:#111">)</span>
     <span style="color:#111">meta_escaped</span> <span style="color:#111">:</span><span style="color:#f92672">=</span> <span style="color:#111">escape_meta_characters</span><span style="color:#111">(</span><span style="color:#111">encoded</span><span style="color:#111">)</span>
 
-    <span style="color:#00a8c8">return</span> <span style="color:#111">meta_escaped</span></code></pre></div>
-<h3 id="value-serialization">Value serialization</h3>
-
+    <span style="color:#00a8c8">return</span> <span style="color:#111">meta_escaped</span>
+</code></pre></div><h3 id="value-serialization">Value serialization</h3>
 <ol>
-<li><a href="#url-encode">URL encode</a> the value e.g. given <code>/param first</code>, that SHOULD become <code>%2Fparam%20first</code></li>
-<li>Escape meta-characters within the raw value; a single quote <code>'</code> becomes <code>\'</code></li>
-
-<li><p>SQL escape the value by placing it within two single quotes e.g.</p>
-
+<li>
+<p><a href="#url-encode">URL encode</a> the value e.g. given <code>/param first</code>, that SHOULD become <code>%2Fparam%20first</code></p>
+</li>
+<li>
+<p>Escape meta-characters within the raw value; a single quote <code>'</code> becomes <code>\'</code></p>
+</li>
+<li>
+<p>SQL escape the value by placing it within two single quotes e.g.</p>
 <p><code>DROP</code> should become <code>'DROP'</code></p>
-
-<p><code>FOO 'BAR</code> should become <code>'FOO%20\'BAR'</code></p></li>
+<p><code>FOO 'BAR</code> should become <code>'FOO%20\'BAR'</code></p>
+</li>
 </ol>
-
 <p>And when generalized into an algorithm:</p>
-
-<h4 id="a-name-value-serialization-algorithm-a-algorithm"><a name="value-serialization-algorithm"></a> Algorithm</h4>
+<h4 id="a-namevalue-serialization-algorithma-algorithm"><!-- raw HTML omitted --><!-- raw HTML omitted --> Algorithm</h4>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#111">value_serialization</span><span style="color:#111">(</span><span style="color:#111">value</span><span style="color:#111">):</span>
     <span style="color:#111">encoded</span> <span style="color:#111">:</span><span style="color:#f92672">=</span> <span style="color:#111">url_encode</span><span style="color:#111">(</span><span style="color:#111">value</span><span style="color:#111">)</span>
     <span style="color:#111">meta_escaped</span> <span style="color:#111">:</span><span style="color:#f92672">=</span> <span style="color:#111">escape_meta_characters</span><span style="color:#111">(</span><span style="color:#111">encoded</span><span style="color:#111">)</span>
     <span style="color:#111">final</span> <span style="color:#111">:</span><span style="color:#f92672">=</span> <span style="color:#111">sql_escape_with_single_quotes</span><span style="color:#111">(</span><span style="color:#111">meta_escaped</span><span style="color:#111">)</span>
 
-    <span style="color:#00a8c8">return</span> <span style="color:#111">final</span></code></pre></div>
-<p>and running the algorithm on the following table will produce</p>
-
+    <span style="color:#00a8c8">return</span> <span style="color:#111">final</span>
+</code></pre></div><p>and running the algorithm on the following table will produce</p>
 <table>
 <thead>
 <tr>
@@ -399,20 +438,17 @@ key value pairs that are retrieved from the various ORMs and frameworks in your 
 <th>sql_escape_with_single_quotes</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td><code>DROP TABLE FOO</code></td>
 <td><code>DROP%20TABLE%20FOO</code></td>
 <td><code>'DROP%20TABLE%20FOO'</code></td>
 </tr>
-
 <tr>
 <td><code>/param first</code></td>
 <td><code>%2Fparam%20first</code></td>
 <td><code>'%2Fparam%20first'</code></td>
 </tr>
-
 <tr>
 <td><code>1234</code></td>
 <td><code>1234</code></td>
@@ -420,25 +456,23 @@ key value pairs that are retrieved from the various ORMs and frameworks in your 
 </tr>
 </tbody>
 </table>
-
 <h3 id="key-value-format">Key Value format</h3>
-
 <p>Given a key value pair (key, value):</p>
-
 <ol>
-<li>Run the <a href="#key-serialization-algorithm">Key serialization algorithm</a> on <code>key</code></li>
-<li>Run the <a href="#value-serialization-algorithm">Value serialization algorithm</a> on <code>value</code></li>
-
-<li><p>Using an equals sign <code>=</code>, concatenate the result from 1. and 2. to give</p>
-
+<li>
+<p>Run the <a href="#key-serialization-algorithm">Key serialization algorithm</a> on <code>key</code></p>
+</li>
+<li>
+<p>Run the <a href="#value-serialization-algorithm">Value serialization algorithm</a> on <code>value</code></p>
+</li>
+<li>
+<p>Using an equals sign <code>=</code>, concatenate the result from 1. and 2. to give</p>
 <p><code>&lt;SERIALIZED_KEY&gt;=&lt;SERIALIZED_VALUE&gt;</code>
 gotten from:</p>
-
-<p><code>serialize_key(key)=serialize_value(value)</code></p></li>
+<p><code>serialize_key(key)=serialize_value(value)</code></p>
+</li>
 </ol>
-
 <p>Thus given for example the following key value pairs</p>
-
 <table>
 <thead>
 <tr>
@@ -448,7 +482,6 @@ gotten from:</p>
 <th>Final</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td><code>route=/polls 1000</code></td>
@@ -456,94 +489,81 @@ gotten from:</p>
 <td><code>'%2Fpolls%201000'</code></td>
 <td><code>route='%2Fpolls%201000'</code></td>
 </tr>
-
 <tr>
 <td><code>name='DROP TABLE FOO'</code></td>
 <td><code>route</code></td>
 <td><code>'%2Fpolls%201000'</code></td>
 <td><code>route='%2Fpolls%201000'</code></td>
 </tr>
-
 <tr>
 <td><code>name''=&quot;DROP TABLE USERS'&quot;</code></td>
-<td>name=\&rsquo;\&rsquo;</td>
-<td>DROP%20TABLE%20USERS\&rsquo;</td>
-<td>name=\&rsquo;\&lsquo;=&lsquo;DROP%20TABLE%20USERS\&rdquo;</td>
+<td>name=''</td>
+<td>DROP%20TABLE%20USERS'</td>
+<td>name=''=&lsquo;DROP%20TABLE%20USERS'&rsquo;</td>
 </tr>
 </tbody>
 </table>
-
 <h3 id="sorting">Sorting</h3>
-
 <p>With a list of serialized <code>key=value</code> pairs, sort them by lexicographic order.</p>
-
-<h4 id="a-name-sorting-algorithm-a-algorithm"><a name="sorting-algorithm"></a> Algorithm</h4>
+<h4 id="a-namesorting-algorithma-algorithm"><!-- raw HTML omitted --><!-- raw HTML omitted --> Algorithm</h4>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#111">sort</span><span style="color:#111">(</span><span style="color:#111">key_value_pairs</span><span style="color:#111">):</span>
     <span style="color:#111">sorted</span> <span style="color:#f92672">=</span> <span style="color:#111">lexicographically_sort</span><span style="color:#111">(</span><span style="color:#111">key_value_pairs</span><span style="color:#111">)</span>
 
-    <span style="color:#00a8c8">return</span> <span style="color:#111">sorted</span></code></pre></div>
-<h4 id="a-name-sorting-exhibit-a-exhibit"><a name="sorting-exhibit"></a> Exhibit</h4>
-
+    <span style="color:#00a8c8">return</span> <span style="color:#111">sorted</span>
+</code></pre></div><h4 id="a-namesorting-exhibita-exhibit"><!-- raw HTML omitted --><!-- raw HTML omitted --> Exhibit</h4>
 <p>Thus</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#111">sort</span><span style="color:#111">([</span>
         <span style="color:#111">traceparent</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;00-5bd66ef5095369c7b0d1f8f4bd33716a-c532cb4098ac3dd2-01&#39;</span><span style="color:#111">,</span>
         <span style="color:#111">tracestate</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;congo%3Dt61rcWkgMzE%2Crojo%3D00f067aa0ba902b7&#39;</span><span style="color:#111">,</span>
         <span style="color:#111">route</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;</span><span style="color:#d88200">%2F</span><span style="color:#d88200">param*d&#39;</span><span style="color:#111">,</span>
         <span style="color:#111">controller</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;index&#39;</span><span style="color:#111">,</span>
-    <span style="color:#111">])</span></code></pre></div>
-<p>produces</p>
+    <span style="color:#111">])</span>
+</code></pre></div><p>produces</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"> <span style="color:#111">[</span>
         <span style="color:#111">controller</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;index&#39;</span><span style="color:#111">,</span>
         <span style="color:#111">route</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;</span><span style="color:#d88200">%2F</span><span style="color:#d88200">param*d&#39;</span><span style="color:#111">,</span>
         <span style="color:#111">traceparent</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;00-5bd66ef5095369c7b0d1f8f4bd33716a-c532cb4098ac3dd2-01&#39;</span><span style="color:#111">,</span>
         <span style="color:#111">tracestate</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;congo%3Dt61rcWkgMzE%2Crojo%3D00f067aa0ba902b7&#39;</span><span style="color:#111">,</span>
- <span style="color:#111">]</span></code></pre></div>
-<h3 id="concatenation">Concatenation</h3>
-
+ <span style="color:#111">]</span>
+</code></pre></div><h3 id="concatenation">Concatenation</h3>
 <p>After all the keys and values have been serialized and sorted, they MUST be joined by a comma <code>,</code>.</p>
-
 <p>If no values are present, <code>concatenate</code> MUST return the empty value <code>''</code></p>
-
-<h4 id="a-name-concatenation-algorithm-a-algorithm"><a name="concatenation-algorithm"></a> Algorithm</h4>
+<h4 id="a-nameconcatenation-algorithma-algorithm"><!-- raw HTML omitted --><!-- raw HTML omitted --> Algorithm</h4>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#111">concatenate</span><span style="color:#111">(</span><span style="color:#111">key_value_pairs</span><span style="color:#111">):</span>
 
     <span style="color:#00a8c8">if</span> <span style="color:#111">len</span><span style="color:#111">(</span><span style="color:#111">key_value_pairs</span><span style="color:#111">)</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span><span style="color:#111">:</span>
         <span style="color:#00a8c8">return</span> <span style="color:#d88200">&#39;&#39;</span>
 
-    <span style="color:#00a8c8">return</span> <span style="color:#d88200">&#39;,&#39;</span><span style="color:#f92672">.</span><span style="color:#111">join</span><span style="color:#111">(</span><span style="color:#111">key_value_pairs</span><span style="color:#111">)</span></code></pre></div>
-<h4 id="a-name-concatenation-exhibit-a-exhibit"><a name="concatenation-exhibit"></a> Exhibit</h4>
-
+    <span style="color:#00a8c8">return</span> <span style="color:#d88200">&#39;,&#39;</span><span style="color:#f92672">.</span><span style="color:#111">join</span><span style="color:#111">(</span><span style="color:#111">key_value_pairs</span><span style="color:#111">)</span>
+</code></pre></div><h4 id="a-nameconcatenation-exhibita-exhibit"><!-- raw HTML omitted --><!-- raw HTML omitted --> Exhibit</h4>
 <p>Therefore</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#111">concatenate</span><span style="color:#111">([</span>
         <span style="color:#111">controller</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;index&#39;</span><span style="color:#111">,</span>
         <span style="color:#111">route</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;</span><span style="color:#d88200">%2F</span><span style="color:#d88200">param*d&#39;</span><span style="color:#111">,</span>
         <span style="color:#111">traceparent</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;00-5bd66ef5095369c7b0d1f8f4bd33716a-c532cb4098ac3dd2-01&#39;</span><span style="color:#111">,</span>
         <span style="color:#111">tracestate</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;congo%3Dt61rcWkgMzE%2Crojo%3D00f067aa0ba902b7&#39;</span><span style="color:#111">,</span>
-    <span style="color:#111">])</span></code></pre></div>
-<p>produces</p>
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#111">controller</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;index&#39;</span><span style="color:#111">,</span><span style="color:#111">route</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;</span><span style="color:#d88200">%2F</span><span style="color:#d88200">param*d&#39;</span><span style="color:#111">,</span><span style="color:#111">traceparent</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;00-5bd66ef5095369c7b0d1f8f4bd33716a-c532cb4098ac3dd2-01&#39;</span><span style="color:#111">,</span><span style="color:#111">tracestate</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;congo%3Dt61rcWkgMzE%2Crojo%3D00f067aa0ba902b7&#39;</span></code></pre></div>
-<h3 id="affix-comment">Affix comment</h3>
-
+    <span style="color:#111">])</span>
+</code></pre></div><p>produces</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#111">controller</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;index&#39;</span><span style="color:#111">,</span><span style="color:#111">route</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;</span><span style="color:#d88200">%2F</span><span style="color:#d88200">param*d&#39;</span><span style="color:#111">,</span><span style="color:#111">traceparent</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;00-5bd66ef5095369c7b0d1f8f4bd33716a-c532cb4098ac3dd2-01&#39;</span><span style="color:#111">,</span><span style="color:#111">tracestate</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;congo%3Dt61rcWkgMzE%2Crojo%3D00f067aa0ba902b7&#39;</span>
+</code></pre></div><h3 id="affix-comment">Affix comment</h3>
 <p>After <a href="#serialization">serialization</a>, <a href="#sorting">sorting</a>, <a href="#concatenation">concatenation</a>, the final form MUST be placed between <code>/*</code> and <code>*/</code></p>
-
-<h4 id="a-name-affix-comment-a-algorithm"><a name="affix-comment"></a> Algorithm</h4>
+<h4 id="a-nameaffix-commenta-algorithm"><!-- raw HTML omitted --><!-- raw HTML omitted --> Algorithm</h4>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#111">affix_comment</span><span style="color:#111">(</span><span style="color:#111">sql</span><span style="color:#111">,</span> <span style="color:#111">concatenated</span><span style="color:#111">):</span>
     <span style="color:#00a8c8">if</span> <span style="color:#111">is_empty</span><span style="color:#111">(</span><span style="color:#111">concatenated</span><span style="color:#111">):</span>
         <span style="color:#00a8c8">return</span> <span style="color:#111">sql</span> <span style="color:#f92672">//</span> <span style="color:#111">Do</span> <span style="color:#111">NOT</span> <span style="color:#111">modify</span> <span style="color:#111">the</span> <span style="color:#111">SQL</span> <span style="color:#00a8c8">if</span> <span style="color:#111">concatenated</span> <span style="color:#f92672">is</span> <span style="color:#111">blank</span><span style="color:#f92672">.</span>
 
     <span style="color:#111">affixed</span> <span style="color:#111">:</span><span style="color:#f92672">=</span> <span style="color:#111">sql</span> <span style="color:#f92672">+</span> <span style="color:#d88200">&#39;/*&#39;</span> <span style="color:#f92672">+</span> <span style="color:#111">concatenated</span> <span style="color:#f92672">+</span> <span style="color:#d88200">&#39;*/&#39;</span>
 
-    <span style="color:#00a8c8">return</span> <span style="color:#111">affixed</span></code></pre></div>
-<h4 id="a-name-affix-comment-exhibit-a-exhibit"><a name="affix-comment-exhibit"></a> Exhibit</h4>
-
+    <span style="color:#00a8c8">return</span> <span style="color:#111">affixed</span>
+</code></pre></div><h4 id="a-nameaffix-comment-exhibita-exhibit"><!-- raw HTML omitted --><!-- raw HTML omitted --> Exhibit</h4>
 <p>for example given</p>
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#111">affix_comment</span><span style="color:#111">(</span><span style="color:#d88200">&#39;SELECT * from FOO&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">&#39;&#39;</span><span style="color:#111">)</span></code></pre></div>
-<p>produces</p>
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#111">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#f92672">from</span> <span style="color:#111">FOO</span></code></pre></div><div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#111">affix_comment</span><span style="color:#111">(</span><span style="color:#d88200">&#39;SELECT * from FOO&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">&#34;route=&#39;</span><span style="color:#d88200">%2F</span><span style="color:#d88200">param*d&#39;&#34;</span><span style="color:#111">)</span></code></pre></div>
-<p>produces</p>
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#111">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#f92672">from</span> <span style="color:#111">FOO</span> <span style="color:#f92672">/*</span><span style="color:#111">route</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;</span><span style="color:#d88200">%2F</span><span style="color:#d88200">param*d&#39;</span><span style="color:#f92672">*/</span></code></pre></div>
-<h3 id="sql-commenter">SQL commenter</h3>
-
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#111">affix_comment</span><span style="color:#111">(</span><span style="color:#d88200">&#39;SELECT * from FOO&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">&#39;&#39;</span><span style="color:#111">)</span>
+</code></pre></div><p>produces</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#111">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#f92672">from</span> <span style="color:#111">FOO</span>
+</code></pre></div><div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#111">affix_comment</span><span style="color:#111">(</span><span style="color:#d88200">&#39;SELECT * from FOO&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">&#34;route=&#39;</span><span style="color:#d88200">%2F</span><span style="color:#d88200">param*d&#39;&#34;</span><span style="color:#111">)</span>
+</code></pre></div><p>produces</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#111">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#f92672">from</span> <span style="color:#111">FOO</span> <span style="color:#f92672">/*</span><span style="color:#111">route</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;</span><span style="color:#d88200">%2F</span><span style="color:#d88200">param*d&#39;</span><span style="color:#f92672">*/</span>
+</code></pre></div><h3 id="sql-commenter">SQL commenter</h3>
 <p>Wrapping all the steps together, we thus have the following algorithm</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#111">sql_commenter</span><span style="color:#111">(</span><span style="color:#111">sql</span><span style="color:#111">,</span> <span style="color:#111">attributes</span><span style="color:#111">):</span>
     <span style="color:#00a8c8">if</span> <span style="color:#111">contains_sql_comment</span><span style="color:#111">(</span><span style="color:#111">sql</span><span style="color:#111">):</span>
@@ -560,9 +580,8 @@ gotten from:</p>
     <span style="color:#111">concatenated</span> <span style="color:#111">:</span><span style="color:#f92672">=</span> <span style="color:#111">concatenate</span><span style="color:#111">(</span><span style="color:#111">sorted</span><span style="color:#111">)</span>
     <span style="color:#111">final</span> <span style="color:#111">:</span><span style="color:#f92672">=</span> <span style="color:#111">affix_comment</span><span style="color:#111">(</span><span style="color:#111">sql</span><span style="color:#111">,</span> <span style="color:#111">concatenated</span><span style="color:#111">)</span>
 
-    <span style="color:#00a8c8">return</span> <span style="color:#111">final</span></code></pre></div>
-<h4 id="a-name-sql-commenter-exhibit-a-exhibit"><a name="sql-commenter-exhibit"></a> Exhibit</h4>
-
+    <span style="color:#00a8c8">return</span> <span style="color:#111">final</span>
+</code></pre></div><h4 id="a-namesql-commenter-exhibita-exhibit"><!-- raw HTML omitted --><!-- raw HTML omitted --> Exhibit</h4>
 <p>Running <a href="#sql-commenter">sql_commenter</a> on an ORM integration that extracts the respective attributes:</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#111">sql_commenter</span><span style="color:#111">(</span><span style="color:#d88200">&#39;SELECT * FROM FOO&#39;</span><span style="color:#111">,</span> <span style="color:#111">[</span>
         <span style="color:#111">tracestate</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;congo%3Dt61rcWkgMzE%2Crojo%3D00f067aa0ba902b7&#39;</span><span style="color:#111">,</span>
@@ -570,34 +589,30 @@ gotten from:</p>
         <span style="color:#111">framework</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;spring&#39;</span><span style="color:#111">,</span>
         <span style="color:#111">action</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;</span><span style="color:#d88200">%2F</span><span style="color:#d88200">param*d&#39;</span><span style="color:#111">,</span>
         <span style="color:#111">controller</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;index&#39;</span><span style="color:#111">,</span>
-<span style="color:#111">])</span></code></pre></div>
-<p>finally produces</p>
+<span style="color:#111">])</span>
+</code></pre></div><p>finally produces</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#111">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#111">FROM</span> <span style="color:#111">FOO</span> <span style="color:#f92672">/*</span><span style="color:#111">action</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;</span><span style="color:#d88200">%2F</span><span style="color:#d88200">param*d&#39;</span><span style="color:#111">,</span><span style="color:#111">controller</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;index,&#39;</span><span style="color:#111">framework</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;spring&#39;</span><span style="color:#111">,</span>
 <span style="color:#111">traceparent</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;00-5bd66ef5095369c7b0d1f8f4bd33716a-c532cb4098ac3dd2-01&#39;</span><span style="color:#111">,</span>
-<span style="color:#111">tracestate</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;congo%3Dt61rcWkgMzE%2Crojo%3D00f067aa0ba902b7&#39;</span><span style="color:#f92672">*/</span></code></pre></div>
-<h3 id="parsing">Parsing</h3>
-
+<span style="color:#111">tracestate</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;congo%3Dt61rcWkgMzE%2Crojo%3D00f067aa0ba902b7&#39;</span><span style="color:#f92672">*/</span>
+</code></pre></div><h3 id="parsing">Parsing</h3>
 <p>Parsing is the step to reverse sql-commenter and extract the key value attributes.</p>
-
 <p>It&rsquo;ll follow the following steps:</p>
-
 <ol>
 <li>Find the last comment so search for and strip out <code>/*</code> and <code>*/</code></li>
 <li>Split the comment by comma <code>,</code></li>
 <li>Split each <code>key='value'</code> pair so extract <code>key</code> and <code>'value'</code>
-
 <ul>
 <li>3.1. For <code>key</code>, <code>unescape_meta_characters</code> then <code>url_decode</code></li>
 <li>3.2. For <code>value</code>, sql_unescape/trim the <code>'</code> at the beginning and end of <code>'value'</code> -&gt; <code>value</code>
-
 <ul>
 <li>3.2.1. Unescape the meta characters in <code>value</code></li>
 <li>3.2.2. URL Decode the value</li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
 </ol>
-
-<h4 id="a-name-parsing-algorithm-a-algorithm"><a name="parsing-algorithm"></a> Algorithm</h4>
+<h4 id="a-nameparsing-algorithma-algorithm"><!-- raw HTML omitted --><!-- raw HTML omitted --> Algorithm</h4>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75af00">parse</span><span style="color:#111">(</span><span style="color:#75af00">sql_with_comment</span><span style="color:#111">):</span>
     <span style="color:#00a8c8">if</span> <span style="color:#111">!</span><span style="color:#75af00">contains_sql_comment</span><span style="color:#111">(</span><span style="color:#75af00">sql_with_comment</span><span style="color:#111">):</span>
         <span style="color:#00a8c8">return</span> <span style="color:#75af00">sql_with_comment</span><span style="color:#111">,</span> <span style="color:#75af00">null</span>
@@ -621,19 +636,18 @@ gotten from:</p>
 </span><span style="color:#75715e"></span>    <span style="color:#75715e">// might need need some grouping and reconstruction.
 </span><span style="color:#75715e"></span>    <span style="color:#75af00">final</span> <span style="color:#f92672">:=</span> <span style="color:#75af00">deconstruct_and_group_attributes</span><span style="color:#111">(</span><span style="color:#75af00">attrs</span><span style="color:#111">)</span>
 
-    <span style="color:#00a8c8">return</span> <span style="color:#75af00">sql_stmt</span><span style="color:#111">,</span> <span style="color:#75af00">final</span></code></pre></div>
-<h4 id="a-name-parsing-exhibit-a-exhibit"><a name="parsing-exhibit"></a> Exhibit</h4>
-
+    <span style="color:#00a8c8">return</span> <span style="color:#75af00">sql_stmt</span><span style="color:#111">,</span> <span style="color:#75af00">final</span>
+</code></pre></div><h4 id="a-nameparsing-exhibita-exhibit"><!-- raw HTML omitted --><!-- raw HTML omitted --> Exhibit</h4>
 <p>Given the value from <a href="#sql-commenter-exhibit">SQLCommenter exhibit</a></p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#111">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#111">FROM</span> <span style="color:#111">FOO</span> <span style="color:#f92672">/*</span><span style="color:#111">action</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;</span><span style="color:#d88200">%2F</span><span style="color:#d88200">param*d&#39;</span><span style="color:#111">,</span><span style="color:#111">controller</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;index,&#39;</span><span style="color:#111">framework</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;spring&#39;</span><span style="color:#111">,</span>
 <span style="color:#111">traceparent</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;00-5bd66ef5095369c7b0d1f8f4bd33716a-c532cb4098ac3dd2-01&#39;</span><span style="color:#111">,</span>
-<span style="color:#111">tracestate</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;congo%3Dt61rcWkgMzE%2Crojo%3D00f067aa0ba902b7&#39;</span><span style="color:#f92672">*/</span></code></pre></div>
-<p>Running <code>parse</code> on the value</p>
+<span style="color:#111">tracestate</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;congo%3Dt61rcWkgMzE%2Crojo%3D00f067aa0ba902b7&#39;</span><span style="color:#f92672">*/</span>
+</code></pre></div><p>Running <code>parse</code> on the value</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75af00">sql</span><span style="color:#111">,</span> <span style="color:#75af00">attributes</span> <span style="color:#111">=</span> <span style="color:#75af00">parse</span><span style="color:#111">(</span><span style="color:#d88200">`SELECT * FROM FOO
 </span><span style="color:#d88200">/*action=&#39;%2Fparam*d&#39;,controller=&#39;index,&#39;framework=&#39;spring&#39;,
 </span><span style="color:#d88200">traceparent=&#39;00-5bd66ef5095369c7b0d1f8f4bd33716a-c532cb4098ac3dd2-01&#39;,
-</span><span style="color:#d88200">tracestate=&#39;congo%3Dt61rcWkgMzE%2Crojo%3D00f067aa0ba902b7&#39;*/`</span><span style="color:#111">)</span></code></pre></div>
-<p>produces</p>
+</span><span style="color:#d88200">tracestate=&#39;congo%3Dt61rcWkgMzE%2Crojo%3D00f067aa0ba902b7&#39;*/`</span><span style="color:#111">)</span>
+</code></pre></div><p>produces</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#111">sql</span><span style="color:#111">:</span> <span style="color:#111">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#111">FROM</span> <span style="color:#111">FOO</span>
 <span style="color:#111">attributes</span><span style="color:#111">:</span> <span style="color:#111">{</span>
     <span style="color:#111">controller</span><span style="color:#111">:</span> <span style="color:#d88200">&#39;index&#39;</span><span style="color:#111">,</span>
@@ -645,9 +659,8 @@ gotten from:</p>
         <span style="color:#111">trace_id</span><span style="color:#111">:</span> <span style="color:#d88200">&#39;5bd66ef5095369c7b0d1f8f4bd33716a&#39;</span><span style="color:#111">,</span>
         <span style="color:#111">trace_state</span><span style="color:#111">:</span> <span style="color:#111">[{</span><span style="color:#d88200">&#39;congo&#39;</span><span style="color:#111">:</span> <span style="color:#d88200">&#39;t61rcWkgMzE&#39;</span><span style="color:#111">},</span> <span style="color:#111">{</span><span style="color:#d88200">&#39;rojo&#39;</span><span style="color:#111">:</span> <span style="color:#d88200">&#39;00f067aa0ba902b7&#39;</span><span style="color:#111">}],</span>
     <span style="color:#111">},</span>
-<span style="color:#111">}</span></code></pre></div>
-<h3 id="references">References</h3>
-
+<span style="color:#111">}</span>
+</code></pre></div><h3 id="references">References</h3>
 <table>
 <thead>
 <tr>
@@ -655,13 +668,11 @@ gotten from:</p>
 <th>URL</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>URL Encoding</td>
 <td><a href="https://en.wikipedia.org/wiki/Percent-encoding">https://en.wikipedia.org/wiki/Percent-encoding</a></td>
 </tr>
-
 <tr>
 <td>Comments within SQL comments</td>
 <td><a href="https://docs.oracle.com/cd/B12037_01/server.101/b10759/sql_elements006.htm">https://docs.oracle.com/cd/B12037_01/server.101/b10759/sql_elements006.htm</a></td>
@@ -692,7 +703,7 @@ gotten from:</p>
   
 
     <div class="github-link">
-      <a href="https://github.com/google/sqlcommenter/tree/gh-pages/src/content/spec/_index.md" target="blank"><i class="fa fa-code-fork"></i>
+      <a href="https://github.com/google/sqlcommenter/tree/gh-pages/src/contentspec/_index.md" target="blank"><i class="fa fa-code-fork"></i>
         Edit this page on Github</a>
     </div>
   </div>
@@ -705,8 +716,7 @@ gotten from:</p>
     <ul>
 <li><a href="https://github.com/google/sqlcommenter/">Github</a></li>
 </ul>
-
-<h5 style="color: #fff">sqlcommenter</h5>
+<!-- raw HTML omitted -->
 
   
 

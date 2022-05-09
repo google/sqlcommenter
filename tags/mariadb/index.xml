@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>mariadb on sqlcommenter</title>
@@ -6,18 +6,14 @@
     <description>Recent content in mariadb on sqlcommenter</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 31 May 2019 16:34:01 -0700</lastBuildDate>
-    
-	<atom:link href="https://google.github.io/sqlcommenter/tags/mariadb/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Fri, 31 May 2019 16:34:01 -0700</lastBuildDate><atom:link href="https://google.github.io/sqlcommenter/tags/mariadb/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>MariaDB</title>
       <link>https://google.github.io/sqlcommenter/databases/mariadb/</link>
       <pubDate>Fri, 31 May 2019 16:34:01 -0700</pubDate>
       
       <guid>https://google.github.io/sqlcommenter/databases/mariadb/</guid>
-      <description> If you host your own instance of MariaDB, you can run it with logs to examine statements by following the guide at Query log output destination
+      <description>If you host your own instance of MariaDB, you can run it with logs to examine statements by following the guide at Query log output destination
 References    Resource URL     Log output https://mariadb.com/kb/en/library/general-query-log/#choosing-the-general-query-log-output-destination   MariaDB Docker https://hub.docker.com/_/mariadb/    </description>
     </item>
     

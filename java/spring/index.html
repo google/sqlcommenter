@@ -5,7 +5,7 @@
     
       <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="generator" content="Hugo 0.55.6" />
+<meta name="generator" content="Hugo 0.81.0" />
 <title>Spring :: sqlcommenter</title>
 <link rel="shortcut icon" href="https://google.github.io/sqlcommenter/images/favicon.ico" type="image/x-icon" />
 <link href="https://google.github.io/sqlcommenter/css/font-awesome.min.css" rel="stylesheet">
@@ -84,14 +84,14 @@
 
     
   </head>
-  <body data-url="/java/spring/">
+  <body data-url="https://google.github.io/sqlcommenter/java/spring/">
     
       <header>
   <div class="logo">
     
 	
   
-    <p><a href="https://google.github.io/sqlcommenter/"><img src="https://google.github.io/sqlcommenter/images/sqlcommenter_logo.png" alt="sqlcommenter logo" /> <span>sql</span>commenter</a></p>
+    <p><a href="https://google.github.io/sqlcommenter/"><img src="https://google.github.io/sqlcommenter/images/sqlcommenter_logo.png" alt="sqlcommenter logo"> <!-- raw HTML omitted -->sql<!-- raw HTML omitted -->commenter</a></p>
 
   
 
@@ -161,6 +161,20 @@
         ">
       <div>
       <a href="https://google.github.io/sqlcommenter/python/flask/">Flask</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/php/" class="dd-item haschildren
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/php/">Php</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+    <li data-nav-id="/php/laravel/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/php/laravel/">Laravel</a><i class="fa fa-circle-thin read-icon"></i>
       </div>
     </li>
         </ul>
@@ -298,36 +312,30 @@
     
     
 
-
-
-<p><img src="https://google.github.io/sqlcommenter/images/spring-logo.png" alt="" /></p>
-
+<p><img src="https://google.github.io/sqlcommenter/images/spring-logo.png" alt=""></p>
 <ul>
 <li><a href="#introduction">Introduction</a></li>
 <li><a href="#requirements">Requirements</a></li>
 <li><a href="#dependency-management">Dependency management</a>
-
 <ul>
 <li><a href="#manually">Manually</a></li>
 <li><a href="#package-management">Package management</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="#expected-fields">Expected fields</a></li>
 <li><a href="#using-it">Using it</a>
-
 <ul>
 <li><a href="#spring-5">Spring 5</a></li>
 <li><a href="#before-spring-5">Before Spring 5</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="#xml-based-configuration">XML based configuration</a></li>
 <li><a href="#hibernate">Hibernate</a></li>
 <li><a href="#references">References</a></li>
 </ul>
-
 <h3 id="introduction">Introduction</h3>
-
 <p>We provide an integration for the Spring framework. The integration is an <a href="https://docs.spring.io/spring/docs/5.0.4.BUILD-SNAPSHOT/javadoc-api/org/aopalliance/intercept/Interceptor.html">interceptor</a> that will record properties about your MVC application per HTTP request, and then
 later those properties will be picked up by the actual ORMs and augment your SQL statements. It is best used with the following ORM integrations:</p>
-
 <div class="user-card-container">
   <a target="_blank" href="https://google.github.io/sqlcommenter/java/hibernate">
   
@@ -336,26 +344,17 @@ later those properties will be picked up by the actual ORMs and augment your SQL
   </a>
 </div>
 
-
 <h3 id="requirements">Requirements</h3>
-
 <ul>
 <li>Java 8+</li>
 <li>Successfully installed <a href="https://google.github.io/sqlcommenter/java/#install">sqlcommenter-java</a></li>
 </ul>
-
 <h3 id="dependency-management">Dependency management</h3>
-
 <p>We can add the integration to our applications in the following ways:</p>
-
 <h4 id="manually">Manually</h4>
-
 <p>Please read <a href="https://google.github.io/sqlcommenter/java/#install-from-source">installing sqlcommenter-java from source</a></p>
-
 <h4 id="package-management">Package management</h4>
-
 <p>Please include this in your dependency management system as follows</p>
-
 <div class="tab-container">
   <ul class="tabs">
     
@@ -384,11 +383,8 @@ later those properties will be picked up by the actual ORMs and augment your SQL
   </span>
 </div>
 
-
 <h3 id="expected-fields">Expected fields</h3>
-
 <p>When coupled say with <a href="https://google.github.io/sqlcommenter/java/hibernate">sqlcommenter for Hibernate</a>, the following fields will be added to your SQL statement as comments</p>
-
 <table>
 <thead>
 <tr>
@@ -396,34 +392,26 @@ later those properties will be picked up by the actual ORMs and augment your SQL
 <th>Description</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>action</td>
 <td>The name of the command that execute the logical behavior e.g. <code>'/fees'</code></td>
 </tr>
-
 <tr>
 <td>controller</td>
 <td>The name of your controller e.g. <code>'fees_controller'</code></td>
 </tr>
-
 <tr>
 <td>web_framework</td>
 <td>The name of the framework, it will always be <code>'spring'</code></td>
 </tr>
 </tbody>
 </table>
-
 <h3 id="using-it">Using it</h3>
-
 <p>There are 2 different flavors of Spring &ndash; Spring 5 and later vs before Spring 5. Please read along to see
 how to enable it for the different versions:</p>
-
 <h4 id="spring-5">Spring 5</h4>
-
 <p>If using Spring 5, please import the <code>SpringSQLCommenterInterceptor</code> class by:</p>
-
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">import</span> <span style="color:#111">com.google.cloud.sqlcommenter.interceptors.SpringSQLCommenterInterceptor</span><span style="color:#f92672">;</span>
 
 <span style="color:#75af00">@EnableWebMvc</span>
@@ -440,11 +428,8 @@ how to enable it for the different versions:</p>
         <span style="color:#111">registry</span><span style="color:#f92672">.</span><span style="color:#75af00">addInterceptor</span><span style="color:#f92672">(</span><span style="color:#111">sqlInterceptor</span><span style="color:#f92672">());</span>
     <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span></code></pre></div>
-
 <h4 id="before-spring-5">Before Spring 5</h4>
-
 <p>If using a version before Spring 5, your <code>WebConfig</code> class needs to extend the <a href="https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/servlet/config/annotation/WebMvcConfigurerAdapter.html">WebMVCConfigureAdapter</a> class instead like this:</p>
-
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">import</span> <span style="color:#111">com.google.cloud.sqlcommenter.interceptors.SpringSQLCommenterInterceptor</span><span style="color:#f92672">;</span>
 
 <span style="color:#75af00">@EnableWebMvc</span>
@@ -461,11 +446,8 @@ how to enable it for the different versions:</p>
         <span style="color:#111">registry</span><span style="color:#f92672">.</span><span style="color:#75af00">addInterceptor</span><span style="color:#f92672">(</span><span style="color:#111">sqlInterceptor</span><span style="color:#f92672">());</span>
     <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span></code></pre></div>
-
 <h3 id="xml-based-configuration">XML based configuration</h3>
-
 <p>You can add the interceptor as a bean in your XML configuration</p>
-
 <div class="tab-container">
   <ul class="tabs">
     
@@ -495,13 +477,10 @@ how to enable it for the different versions:</p>
   </span>
 </div>
 
-
 <h3 id="hibernate">Hibernate</h3>
-
 <p>If Spring is using Hibernate, in addtion to the step <a href="#xml-based-configuration">XML based configuration</a>,
 since you might not be using a <code>persistence.xml</code> file, we can setup in Java code the
 <code>hibernate.session_factory.statement_inspector</code> configuration property in your <code>additionalProperties</code> method as per</p>
-
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">import</span> <span style="color:#111">com.google.cloud.sqlcommenter.schhibernate.SCHibernate</span><span style="color:#f92672">;</span>
 
 <span style="color:#75af00">@Configuration</span>
@@ -528,9 +507,7 @@ since you might not be using a <code>persistence.xml</code> file, we can setup i
         <span style="color:#00a8c8">return</span> <span style="color:#111">properties</span><span style="color:#f92672">;</span>
     <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span></code></pre></div>
-
 <h3 id="references">References</h3>
-
 <table>
 <thead>
 <tr>
@@ -538,23 +515,19 @@ since you might not be using a <code>persistence.xml</code> file, we can setup i
 <th>URL</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>Spring framework homepage</td>
 <td><a href="https://spring.io/">https://spring.io/</a></td>
 </tr>
-
 <tr>
 <td>sqlcommenter-java on Github</td>
 <td><a href="https://github.com/google/sqlcommenter/tree/master/java/sqlcommenter-java">https://github.com/google/sqlcommenter/tree/master/java/sqlcommenter-java</a></td>
 </tr>
-
 <tr>
 <td>Spring Interceptor</td>
 <td><a href="https://docs.spring.io/spring/docs/5.0.4.BUILD-SNAPSHOT/javadoc-api/org/aopalliance/intercept/Interceptor.html">https://docs.spring.io/spring/docs/5.0.4.BUILD-SNAPSHOT/javadoc-api/org/aopalliance/intercept/Interceptor.html</a></td>
 </tr>
-
 <tr>
 <td>Hibernate SQLCommenter integration</td>
 <td><a href="https://google.github.io/sqlcommenter/java/hibernate">/java/hibernate</a></td>
@@ -585,7 +558,7 @@ since you might not be using a <code>persistence.xml</code> file, we can setup i
   
 
     <div class="github-link">
-      <a href="https://github.com/google/sqlcommenter/tree/gh-pages/src/content/java/spring/_index.md" target="blank"><i class="fa fa-code-fork"></i>
+      <a href="https://github.com/google/sqlcommenter/tree/gh-pages/src/contentjava/spring/_index.md" target="blank"><i class="fa fa-code-fork"></i>
         Edit this page on Github</a>
     </div>
   </div>
@@ -598,8 +571,7 @@ since you might not be using a <code>persistence.xml</code> file, we can setup i
     <ul>
 <li><a href="https://github.com/google/sqlcommenter/">Github</a></li>
 </ul>
-
-<h5 style="color: #fff">sqlcommenter</h5>
+<!-- raw HTML omitted -->
 
   
 

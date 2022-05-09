@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on sqlcommenter</title>
@@ -6,10 +6,24 @@
     <description>Recent content in Tags on sqlcommenter</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 13 Jun 2019 16:04:11 -0600</lastBuildDate>
+    <lastBuildDate>Wed, 04 May 2022 18:30:11 -0600</lastBuildDate><atom:link href="https://google.github.io/sqlcommenter/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>laravel</title>
+      <link>https://google.github.io/sqlcommenter/tags/laravel/</link>
+      <pubDate>Wed, 04 May 2022 18:30:11 -0600</pubDate>
+      
+      <guid>https://google.github.io/sqlcommenter/tags/laravel/</guid>
+      <description></description>
+    </item>
     
-	<atom:link href="https://google.github.io/sqlcommenter/tags/index.xml" rel="self" type="application/rss+xml" />
-    
+    <item>
+      <title>php</title>
+      <link>https://google.github.io/sqlcommenter/tags/php/</link>
+      <pubDate>Wed, 04 May 2022 18:30:11 -0600</pubDate>
+      
+      <guid>https://google.github.io/sqlcommenter/tags/php/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>activerecord</title>

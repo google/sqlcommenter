@@ -5,7 +5,7 @@
     
       <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="generator" content="Hugo 0.55.6" />
+<meta name="generator" content="Hugo 0.81.0" />
 <title>Postgresql :: sqlcommenter</title>
 <link rel="shortcut icon" href="https://google.github.io/sqlcommenter/images/favicon.ico" type="image/x-icon" />
 <link href="https://google.github.io/sqlcommenter/css/font-awesome.min.css" rel="stylesheet">
@@ -84,14 +84,14 @@
 
     
   </head>
-  <body data-url="/databases/postgresql/">
+  <body data-url="https://google.github.io/sqlcommenter/databases/postgresql/">
     
       <header>
   <div class="logo">
     
 	
   
-    <p><a href="https://google.github.io/sqlcommenter/"><img src="https://google.github.io/sqlcommenter/images/sqlcommenter_logo.png" alt="sqlcommenter logo" /> <span>sql</span>commenter</a></p>
+    <p><a href="https://google.github.io/sqlcommenter/"><img src="https://google.github.io/sqlcommenter/images/sqlcommenter_logo.png" alt="sqlcommenter logo"> <!-- raw HTML omitted -->sql<!-- raw HTML omitted -->commenter</a></p>
 
   
 
@@ -116,6 +116,67 @@
       <a href="https://google.github.io/sqlcommenter/python/">Python</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
       </div>
         <ul>
+    <li data-nav-id="/python/django/" class="dd-item haschildren
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/python/django/">Django</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+      <li data-nav-id="/python/django/local/" class="dd-item">
+        <div>
+          <a href="https://google.github.io/sqlcommenter/python/django/local/">
+            Locally
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/python/django/gcp/" class="dd-item">
+        <div>
+          <a href="https://google.github.io/sqlcommenter/python/django/gcp/">
+            Google Cloud Platform
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/python/django/aws/" class="dd-item">
+        <div>
+          <a href="https://google.github.io/sqlcommenter/python/django/aws/">
+            Amazon Web Services
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/python/psycopg2/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/python/psycopg2/">psycopg2</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/python/sqlalchemy/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/python/sqlalchemy/">SQLAlchemy</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/python/flask/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/python/flask/">Flask</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/php/" class="dd-item haschildren
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/php/">Php</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+    <li data-nav-id="/php/laravel/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/php/laravel/">Laravel</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
         </ul>
     </li>
     <li data-nav-id="/ruby/" class="dd-item haschildren
@@ -250,13 +311,9 @@
     
     
     
-    
-
-<p><img src="https://google.github.io/sqlcommenter/images/postgresql-logo.png" alt="" /></p>
-
+    <p><img src="https://google.github.io/sqlcommenter/images/postgresql-logo.png" alt=""></p>
 <p>If you host your own instance of Postgresql, you can run it with logs to examine statements by following the guide at
 <a href="https://www.postgresql.org/docs/11/runtime-config-logging.html#RUNTIME-CONFIG-LOGGING-WHERE">Runtime config logging</a></p>
-
 <p>i.e. on macOS, edit <code>/usr/local/var/postgres/postgresql.conf</code> and set <code>log_destination</code> to <code>'stderr'</code> as per:</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#------------------------------------------------------------------------------</span>
 <span style="color:#75715e"># REPORTING AND LOGGING</span>
@@ -267,22 +324,21 @@
 <span style="color:#111">log_destination</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#39;stderr&#39;</span>             <span style="color:#75715e"># Valid values are combinations of</span>
                                     <span style="color:#75715e"># stderr, csvlog, syslog, and eventlog,</span>
                                     <span style="color:#75715e"># depending on platform.  csvlog</span>
-                                    <span style="color:#75715e"># requires logging_collector to be on.</span></code></pre></div>
-<p>and then when run as per</p>
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ <span style="color:#111">PGDATA</span><span style="color:#f92672">=</span>/usr/local/var/postgres postgres</code></pre></div>
-<p>produces such output</p>
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#ae81ff">2019</span>-05-31 <span style="color:#ae81ff">16</span>:27:27.482 PDT <span style="color:#f92672">[</span><span style="color:#ae81ff">19175</span><span style="color:#f92672">]</span> LOG:  listening on IPv4 address <span style="color:#d88200">&#34;127.0.0.1&#34;</span>, port <span style="color:#ae81ff">5432</span>
-<span style="color:#ae81ff">2019</span>-05-31 <span style="color:#ae81ff">16</span>:27:27.482 PDT <span style="color:#f92672">[</span><span style="color:#ae81ff">19175</span><span style="color:#f92672">]</span> LOG:  listening on IPv6 address <span style="color:#d88200">&#34;::1&#34;</span>, port <span style="color:#ae81ff">5432</span>
-<span style="color:#ae81ff">2019</span>-05-31 <span style="color:#ae81ff">16</span>:27:27.482 PDT <span style="color:#f92672">[</span><span style="color:#ae81ff">19175</span><span style="color:#f92672">]</span> LOG:  listening on Unix socket <span style="color:#d88200">&#34;/tmp/.s.PGSQL.5432&#34;</span>
-<span style="color:#ae81ff">2019</span>-05-31 <span style="color:#ae81ff">16</span>:27:27.503 PDT <span style="color:#f92672">[</span><span style="color:#ae81ff">19176</span><span style="color:#f92672">]</span> LOG:  database system was shut down at <span style="color:#ae81ff">2019</span>-05-31 <span style="color:#ae81ff">16</span>:27:06 PDT
-<span style="color:#ae81ff">2019</span>-05-31 <span style="color:#ae81ff">16</span>:27:27.508 PDT <span style="color:#f92672">[</span><span style="color:#ae81ff">19175</span><span style="color:#f92672">]</span> LOG:  database system is ready to accept connections
-<span style="color:#ae81ff">2019</span>-05-31 <span style="color:#ae81ff">16</span>:27:31.190 PDT <span style="color:#f92672">[</span><span style="color:#ae81ff">19183</span><span style="color:#f92672">]</span> LOG:  statement: SET TIME ZONE <span style="color:#d88200">&#39;UTC&#39;</span>
-<span style="color:#ae81ff">2019</span>-05-31 <span style="color:#ae81ff">16</span>:27:31.195 PDT <span style="color:#f92672">[</span><span style="color:#ae81ff">19183</span><span style="color:#f92672">]</span> LOG:  statement: INSERT INTO <span style="color:#d88200">&#34;polls_question&#34;</span>
+                                    <span style="color:#75715e"># requires logging_collector to be on.</span>
+</code></pre></div><p>and then when run as per</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ <span style="color:#111">PGDATA</span><span style="color:#f92672">=</span>/usr/local/var/postgres postgres
+</code></pre></div><p>produces such output</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">2019-05-31 16:27:27.482 PDT <span style="color:#f92672">[</span>19175<span style="color:#f92672">]</span> LOG:  listening on IPv4 address <span style="color:#d88200">&#34;127.0.0.1&#34;</span>, port <span style="color:#ae81ff">5432</span>
+2019-05-31 16:27:27.482 PDT <span style="color:#f92672">[</span>19175<span style="color:#f92672">]</span> LOG:  listening on IPv6 address <span style="color:#d88200">&#34;::1&#34;</span>, port <span style="color:#ae81ff">5432</span>
+2019-05-31 16:27:27.482 PDT <span style="color:#f92672">[</span>19175<span style="color:#f92672">]</span> LOG:  listening on Unix socket <span style="color:#d88200">&#34;/tmp/.s.PGSQL.5432&#34;</span>
+2019-05-31 16:27:27.503 PDT <span style="color:#f92672">[</span>19176<span style="color:#f92672">]</span> LOG:  database system was shut down at 2019-05-31 16:27:06 PDT
+2019-05-31 16:27:27.508 PDT <span style="color:#f92672">[</span>19175<span style="color:#f92672">]</span> LOG:  database system is ready to accept connections
+2019-05-31 16:27:31.190 PDT <span style="color:#f92672">[</span>19183<span style="color:#f92672">]</span> LOG:  statement: SET TIME ZONE <span style="color:#d88200">&#39;UTC&#39;</span>
+2019-05-31 16:27:31.195 PDT <span style="color:#f92672">[</span>19183<span style="color:#f92672">]</span> LOG:  statement: INSERT INTO <span style="color:#d88200">&#34;polls_question&#34;</span>
 <span style="color:#f92672">(</span><span style="color:#d88200">&#34;question_text&#34;</span>, <span style="color:#d88200">&#34;pub_date&#34;</span><span style="color:#f92672">)</span> VALUES <span style="color:#f92672">(</span><span style="color:#d88200">&#39;Wassup?&#39;</span>, <span style="color:#d88200">&#39;2019-05-31T23:27:31.175952+00:00&#39;</span>::timestamptz<span style="color:#f92672">)</span>
 RETURNING <span style="color:#d88200">&#34;polls_question&#34;</span>.<span style="color:#d88200">&#34;id&#34;</span> /*controller<span style="color:#f92672">=</span><span style="color:#d88200">&#39;index&#39;</span>,db_driver<span style="color:#f92672">=</span><span style="color:#d88200">&#39;django.db.backends.postgresql&#39;</span>,
-<span style="color:#111">framework</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;django%3A2.2.1&#39;</span>,route<span style="color:#f92672">=</span><span style="color:#d88200">&#39;%5Epolls/%24&#39;</span>*/</code></pre></div>
-<h3 id="references">References</h3>
-
+<span style="color:#111">framework</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;django%3A2.2.1&#39;</span>,route<span style="color:#f92672">=</span><span style="color:#d88200">&#39;%5Epolls/%24&#39;</span>*/
+</code></pre></div><h3 id="references">References</h3>
 <table>
 <thead>
 <tr>
@@ -290,7 +346,6 @@ RETURNING <span style="color:#d88200">&#34;polls_question&#34;</span>.<span styl
 <th>URL</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>Runtime config logging</td>
@@ -329,7 +384,7 @@ RETURNING <span style="color:#d88200">&#34;polls_question&#34;</span>.<span styl
   
 
     <div class="github-link">
-      <a href="https://github.com/google/sqlcommenter/tree/gh-pages/src/content/databases/postgresql.md" target="blank"><i class="fa fa-code-fork"></i>
+      <a href="https://github.com/google/sqlcommenter/tree/gh-pages/src/contentdatabases/postgresql.md" target="blank"><i class="fa fa-code-fork"></i>
         Edit this page on Github</a>
     </div>
   </div>
@@ -342,8 +397,7 @@ RETURNING <span style="color:#d88200">&#34;polls_question&#34;</span>.<span styl
     <ul>
 <li><a href="https://github.com/google/sqlcommenter/">Github</a></li>
 </ul>
-
-<h5 style="color: #fff">sqlcommenter</h5>
+<!-- raw HTML omitted -->
 
   
 

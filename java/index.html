@@ -5,7 +5,7 @@
     
       <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="generator" content="Hugo 0.55.6" />
+<meta name="generator" content="Hugo 0.81.0" />
 <title>Java :: sqlcommenter</title>
 <link rel="shortcut icon" href="https://google.github.io/sqlcommenter/images/favicon.ico" type="image/x-icon" />
 <link href="https://google.github.io/sqlcommenter/css/font-awesome.min.css" rel="stylesheet">
@@ -84,14 +84,14 @@
 
     
   </head>
-  <body data-url="/java/">
+  <body data-url="https://google.github.io/sqlcommenter/java/">
     
       <header>
   <div class="logo">
     
 	
   
-    <p><a href="https://google.github.io/sqlcommenter/"><img src="https://google.github.io/sqlcommenter/images/sqlcommenter_logo.png" alt="sqlcommenter logo" /> <span>sql</span>commenter</a></p>
+    <p><a href="https://google.github.io/sqlcommenter/"><img src="https://google.github.io/sqlcommenter/images/sqlcommenter_logo.png" alt="sqlcommenter logo"> <!-- raw HTML omitted -->sql<!-- raw HTML omitted -->commenter</a></p>
 
   
 
@@ -161,6 +161,20 @@
         ">
       <div>
       <a href="https://google.github.io/sqlcommenter/python/flask/">Flask</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/php/" class="dd-item haschildren
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/php/">Php</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+    <li data-nav-id="/php/laravel/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/php/laravel/">Laravel</a><i class="fa fa-circle-thin read-icon"></i>
       </div>
     </li>
         </ul>
@@ -298,32 +312,25 @@
     
     
 
-
-
 <ul>
 <li><a href="#introduction">Introduction</a></li>
 <li><a href="#integrations">Integrations</a></li>
 <li><a href="#install">Installing it</a>
-
 <ul>
 <li><a href="#install-from-source">From source</a>
-
 <ul>
 <li><a href="#building-it">Building it</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="#verify-installation">Verify installation</a></li>
 <li><a href="#tests">Tests</a></li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h3 id="introduction">Introduction</h3>
-
 <p>sqlcommenter-java is the implementation of <a href="https://google.github.io/sqlcommenter/">sqlcommenter</a> in the Java programming language.</p>
-
 <h3 id="integrations">Integrations</h3>
-
 <p>sqlcommenter-java provides support for the following plugins/ORMs:</p>
-
 <p><div class="user-card-container">
   <a target="_blank" href="https://google.github.io/sqlcommenter/java/hibernate">
   
@@ -340,34 +347,26 @@
   </a>
 </div>
 </p>
-
-<h3 id="a-name-install-a-installing-it"><a name="install"></a> Installing it</h3>
-
+<h3 id="a-nameinstalla-installing-it"><!-- raw HTML omitted --><!-- raw HTML omitted --> Installing it</h3>
 <p>sqlcommenter-java can installed in a couple of ways:</p>
-
-<h4 id="a-name-install-from-source-a-from-source"><a name="install-from-source"></a> From source</h4>
-
+<h4 id="a-nameinstall-from-sourcea-from-source"><!-- raw HTML omitted --><!-- raw HTML omitted --> From source</h4>
 <p>Please visit <a href="https://github.com/google/sqlcommenter/tree/master/java/sqlcommenter-java">source page on Github</a></p>
-
 <h4 id="building-it">Building it</h4>
-
 <p>Next, after changing directories into <code>java/sqlcommenter-java</code>, run <code>./gradlew install</code>
 which should produce should output</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ ./gradlew install
 
 BUILD SUCCESSFUL in 1s
-<span style="color:#ae81ff">7</span> actionable tasks: <span style="color:#ae81ff">1</span> executed, <span style="color:#ae81ff">6</span> up-to-date</code></pre></div>
-<h4 id="verify-installation">Verify installation</h4>
-
+<span style="color:#ae81ff">7</span> actionable tasks: <span style="color:#ae81ff">1</span> executed, <span style="color:#ae81ff">6</span> up-to-date
+</code></pre></div><h4 id="verify-installation">Verify installation</h4>
 <p>sqlcommenter-java if properly installed should appear in the directory <code>$HOME/.m2/integrations/repository/io</code>.</p>
-
 <p>The following should be your directory structure:</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">~/.m2/repository/io
 └── com
     └── google
         └── cloud
             └── sqlcommenter
-                ├── <span style="color:#ae81ff">0</span>.0.1
+                ├── 0.0.1
                 │   ├── sqlcommenter-java-0.0.1-javadoc.jar
                 │   ├── sqlcommenter-java-0.0.1-javadoc.jar.asc
                 │   ├── sqlcommenter-java-0.0.1-sources.jar
@@ -375,15 +374,14 @@ BUILD SUCCESSFUL in 1s
                 │   ├── sqlcommenter-java-0.0.1.jar
                 │   ├── sqlcommenter-java-0.0.1.jar.asc
                 │   └── sqlcommenter-java-0.0.1.pom
-                └── maven-metadata-local.xml</code></pre></div>
-<p>and then in your programs that use Maven, when building packages, please do</p>
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">mvn install -nsu</code></pre></div>
-<p>to use look up local packages.</p>
-
+                └── maven-metadata-local.xml
+</code></pre></div><p>and then in your programs that use Maven, when building packages, please do</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">mvn install -nsu
+</code></pre></div><p>to use look up local packages.</p>
 <h4 id="tests">Tests</h4>
-
 <p>Tests can be run by</p>
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ ./gradlew test</code></pre></div>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ ./gradlew <span style="color:#111">test</span>
+</code></pre></div>
 
 
     
@@ -407,7 +405,7 @@ BUILD SUCCESSFUL in 1s
   
 
     <div class="github-link">
-      <a href="https://github.com/google/sqlcommenter/tree/gh-pages/src/content/java/_index.md" target="blank"><i class="fa fa-code-fork"></i>
+      <a href="https://github.com/google/sqlcommenter/tree/gh-pages/src/contentjava/_index.md" target="blank"><i class="fa fa-code-fork"></i>
         Edit this page on Github</a>
     </div>
   </div>
@@ -420,8 +418,7 @@ BUILD SUCCESSFUL in 1s
     <ul>
 <li><a href="https://github.com/google/sqlcommenter/">Github</a></li>
 </ul>
-
-<h5 style="color: #fff">sqlcommenter</h5>
+<!-- raw HTML omitted -->
 
   
 
