@@ -12,7 +12,7 @@ jobs:
           fetch-depth: 1
 
       - name: Get Composer Cache Directory
-        working-directory: ./php/sqlcommenter-php/samples/sqlcommenter-laravel
+        working-directory: ./php/sqlcommenter-php/packages/sqlcommenter-laravel
         id: composer-cache
         run: |
           echo "::set-output name=dir::$(composer config cache-files-dir)"
@@ -25,7 +25,7 @@ jobs:
             ${{ runner.os }}-composer-
 
       - name: Get yarn cache
-        working-directory: ./php/sqlcommenter-php/samples/sqlcommenter-laravel
+        working-directory: ./php/sqlcommenter-php/packages/sqlcommenter-laravel
         id: yarn-cache
         run: echo "::set-output name=dir::$(yarn cache dir)"
 
