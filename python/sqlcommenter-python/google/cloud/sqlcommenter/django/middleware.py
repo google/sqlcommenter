@@ -62,7 +62,8 @@ class QueryWrapper:
         db_driver = context['connection'].settings_dict.get('ENGINE', '')
         resolver_match = self.request.resolver_match
 
-        sql_comment = generate_sql_comment(
+        sql = generate_sql_comment(
+            sql,
             # Information about the controller.
             controller=resolver_match.view_name if resolver_match and with_controller else None,
             # route is the pattern that matched a request with a controller i.e. the regex
@@ -85,7 +86,6 @@ class QueryWrapper:
         # See:
         #  * https://github.com/basecamp/marginalia/issues/61
         #  * https://github.com/basecamp/marginalia/pull/80
-        sql += sql_comment
 
         # Add the query to the query log if debugging.
         if context['cursor'].__class__ is CursorDebugWrapper:

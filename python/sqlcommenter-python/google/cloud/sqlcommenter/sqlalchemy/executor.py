@@ -76,7 +76,7 @@ def BeforeExecuteFactory(
         if with_opentelemetry:
             data.update(get_opentelemetry_values())
 
-        sql_comment = generate_sql_comment(**data)
+        sql = generate_sql_comment(sql, **data)
 
         # TODO: Check if the database type is MySQL and figure out
         # if we should prepend comments because MySQL server truncates
@@ -84,7 +84,6 @@ def BeforeExecuteFactory(
         # See:
         #  * https://github.com/basecamp/marginalia/issues/61
         #  * https://github.com/basecamp/marginalia/pull/80
-        sql += sql_comment
 
         return sql, parameters
 
