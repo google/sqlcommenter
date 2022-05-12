@@ -21,13 +21,16 @@ from google.cloud.sqlcommenter import generate_sql_comment
 
 class GenerateSqlCommentTests(TestCase):
     def test_no_args(self):
-        self.assertEqual(generate_sql_comment(), '')
+        self.assertEqual(generate_sql_comment(''), '')
 
     def test_end_comment_escaping(self):
-        self.assertIn("a='%%2A/abc'", generate_sql_comment(a='*/abc'))
+        self.assertEqual("Select 1 /*a='%%2A/abc'*/", generate_sql_comment("Select 1", a='*/abc'))
 
     def test_bytes(self):
-        self.assertIn("a='%%2A/abc'", generate_sql_comment(a=b'*/abc'))
+        self.assertIn("Select 1 /*a='%%2A/abc'*/", generate_sql_comment("Select 1",a=b'*/abc'))
 
     def test_url_quoting(self):
-        self.assertIn("foo='bar%%2Cbaz'", generate_sql_comment(foo='bar,baz'))
+        self.assertIn("Select 1 /*foo='bar%%2Cbaz'*/", generate_sql_comment("Select 1",foo='bar,baz'))
+
+    def test_sql_with_semicolon(self):
+        self.assertIn("Select 1 /*foo='bar%%2Cbaz'*/;", generate_sql_comment("Select 1;",foo='bar,baz'))
