@@ -24,7 +24,8 @@ composer require "google/sqlcommenter-laravel"
 Publish the config file from library to into laravel app using below command
 
 ```shell
-php artisan vendor:publish --provider="google\GoogleSqlCommenterLaravel\GoogleSqlCommenterServiceProvider"
+php artisan vendor:publish --provider="Google\GoogleSqlCommenterLaravel\GoogleSqlCommenterServiceProvider"
+
 ```
 
 Add the following class above ``Illuminate\Database\DatabaseServiceProvider::class,
