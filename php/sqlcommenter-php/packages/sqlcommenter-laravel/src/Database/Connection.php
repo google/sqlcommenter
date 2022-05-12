@@ -35,7 +35,7 @@ class Connection extends BaseConnection
      */
     public function selectOne($query, $bindings = [], $useReadPdo = true)
     {
-        $query .= $this->getSqlComments();
+        $query = $this->getSqlComments($query);
         $records = parent::select($query, $bindings, $useReadPdo);
 
         if (count($records) > 0) {
@@ -54,7 +54,7 @@ class Connection extends BaseConnection
      */
     public function select($query, $bindings = [], $useReadPdo = true)
     {
-        $query .= $this->getSqlComments();
+        $query = $this->getSqlComments($query);
         $records = parent::select($query, $bindings, $useReadPdo);
         return $records;
     }
@@ -68,8 +68,7 @@ class Connection extends BaseConnection
      */
     public function insert($query, $bindings = [])
     {
-        $query .= $this->getSqlComments();
-
+        $query = $this->getSqlComments($query);
         $records = parent::insert($query, $bindings);
 
         return $records;
@@ -84,8 +83,8 @@ class Connection extends BaseConnection
      */
     public function update($query, $bindings = [])
     {
-        $query .= $this->getSqlComments();
-
+        $query = $this->getSqlComments($query);
+      
         return $this->affectingStatement($query, $bindings);
     }
 
@@ -98,12 +97,13 @@ class Connection extends BaseConnection
      */
     public function delete($query, $bindings = [])
     {
-        $query .= $this->getSqlComments();
+
+        $query = $this->getSqlComments($query);
 
         return $this->affectingStatement($query, $bindings);
     }
 
-    private function getSqlComments()
+    private function getSqlComments($query)
     {
         $configurationKey = 'google_sqlcommenter.include.';
         $comment = [];
@@ -118,7 +118,7 @@ class Connection extends BaseConnection
         if (config($configurationKey . 'controller', true) and !empty($action['controller'])) {
             $comment['controller'] = explode("@", class_basename($action['controller']))[0];
         }
-        if (config($configurationKey . 'action', true) and !empty($action['controller'] and str_contains($action['controller'], '@'))) {
+        if (config($configurationKey . 'action', true) and !empty($action and $action['controller'] and str_contains($action['controller'], '@'))) {
             $comment['action'] = explode("@", class_basename($action['controller']))[1];
         }
         if (config($configurationKey . 'route', true)) {
@@ -132,6 +132,13 @@ class Connection extends BaseConnection
             $carrier = Opentelemetry::getOpentelemetryValues();
             $comment = array_merge($comment, $carrier);
         }
-        return Utils::formatComments(array_filter(($comment)));
+
+        $query=trim($query);
+
+        if ($query[-1] == ';'){
+            return rtrim($query ,";"). Utils::formatComments(array_filter(($comment))). ';';
+        }
+        return $query . Utils::formatComments(array_filter(($comment)));
+
     }
 }
