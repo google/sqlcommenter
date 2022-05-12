@@ -1,4 +1,11 @@
-on: push
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - php/sqlcommenter-php/packages/sqlcommenter-laravel/**
+      - php/sqlcommenter-php/samples/sqlcommenter-laravel/**
+
 name: Laravel Integration Tests
 jobs:
   phpunit:
