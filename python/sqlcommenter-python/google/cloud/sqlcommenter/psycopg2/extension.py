@@ -18,7 +18,7 @@ import logging
 
 import psycopg2
 import psycopg2.extensions
-from google.cloud.sqlcommenter import generate_sql_comment
+from google.cloud.sqlcommenter import add_sql_comment
 from google.cloud.sqlcommenter.flask import get_flask_info
 from google.cloud.sqlcommenter.opencensus import get_opencensus_values
 from google.cloud.sqlcommenter.opentelemetry import get_opentelemetry_values
@@ -80,12 +80,7 @@ def CommenterCursorFactory(
             if with_opentelemetry:
                 data.update(get_opentelemetry_values())
 
-            if len(data) != 0:
-                sql = sql.rstrip()
-                if sql[-1] == ';':
-                    sql = sql[:-1] + generate_sql_comment(**data) + ';'
-                else:
-                    sql = sql + generate_sql_comment(**data)
+            sql = add_sql_comment(sql, **data)
 
             return psycopg2.extensions.cursor.execute(self, sql, args)
 
