@@ -21,7 +21,7 @@ from __future__ import absolute_import
 import logging
 
 import sqlalchemy
-from google.cloud.sqlcommenter import generate_sql_comment
+from google.cloud.sqlcommenter import add_sql_comment
 from google.cloud.sqlcommenter.fastapi import get_fastapi_info
 from google.cloud.sqlcommenter.flask import get_flask_info
 from google.cloud.sqlcommenter.opencensus import get_opencensus_values
@@ -76,7 +76,7 @@ def BeforeExecuteFactory(
         if with_opentelemetry:
             data.update(get_opentelemetry_values())
 
-        sql = generate_sql_comment(sql, **data)
+        sql = add_sql_comment(sql, **data)
 
         # TODO: Check if the database type is MySQL and figure out
         # if we should prepend comments because MySQL server truncates

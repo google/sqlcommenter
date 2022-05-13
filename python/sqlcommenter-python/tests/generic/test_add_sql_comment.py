@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #
-# Copyright 2019 Google LLC
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,18 +16,21 @@
 
 from unittest import TestCase
 
-from google.cloud.sqlcommenter import generate_sql_comment
+from google.cloud.sqlcommenter import add_sql_comment
 
 
-class GenerateSqlCommentTests(TestCase):
+class AddSqlCommentTests(TestCase):
     def test_no_args(self):
-        self.assertEqual(generate_sql_comment(), '')
+        self.assertEqual(add_sql_comment('Select 1'), 'Select 1')
 
     def test_end_comment_escaping(self):
-        self.assertIn("a='%%2A/abc'", generate_sql_comment(a='*/abc'))
+        self.assertEqual("Select 1 /*a='%%2A/abc'*/", add_sql_comment("Select 1", a='*/abc'))
 
     def test_bytes(self):
-        self.assertIn("a='%%2A/abc'", generate_sql_comment(a=b'*/abc'))
+        self.assertIn("Select 1 /*a='%%2A/abc'*/", add_sql_comment("Select 1",a=b'*/abc'))
 
     def test_url_quoting(self):
-        self.assertIn("foo='bar%%2Cbaz'", generate_sql_comment(foo='bar,baz'))
+        self.assertIn("Select 1 /*foo='bar%%2Cbaz'*/", add_sql_comment("Select 1",foo='bar,baz'))
+
+    def test_sql_with_semicolon(self):
+        self.assertIn("Select 1 /*foo='bar%%2Cbaz'*/;", add_sql_comment("Select 1;",foo='bar,baz'))

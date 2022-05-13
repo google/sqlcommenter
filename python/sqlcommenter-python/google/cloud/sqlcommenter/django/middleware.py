@@ -19,7 +19,7 @@ import logging
 import django
 from django.db import connection
 from django.db.backends.utils import CursorDebugWrapper
-from google.cloud.sqlcommenter import generate_sql_comment
+from google.cloud.sqlcommenter import add_sql_comment
 from google.cloud.sqlcommenter.opencensus import get_opencensus_values
 from google.cloud.sqlcommenter.opentelemetry import get_opentelemetry_values
 
@@ -62,7 +62,7 @@ class QueryWrapper:
         db_driver = context['connection'].settings_dict.get('ENGINE', '')
         resolver_match = self.request.resolver_match
 
-        sql = generate_sql_comment(
+        sql = add_sql_comment(
             sql,
             # Information about the controller.
             controller=resolver_match.view_name if resolver_match and with_controller else None,

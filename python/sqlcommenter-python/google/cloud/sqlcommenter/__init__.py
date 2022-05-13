@@ -26,7 +26,7 @@ else:
 KEY_VALUE_DELIMITER = ','
 
 
-def generate_sql_comment(sql, **meta):
+def generate_sql_comment(**meta):
     """
     Return a SQL comment with comma delimited key=value pairs created from
     **meta kwargs.
@@ -37,11 +37,14 @@ def generate_sql_comment(sql, **meta):
     # Sort the keywords to ensure that caching works and that testing is
     # deterministic. It eases visual inspection as well.
 
-    comment = ' /*' + KEY_VALUE_DELIMITER.join(
+    return ' /*' + KEY_VALUE_DELIMITER.join(
         '{}={!r}'.format(url_quote(key), url_quote(value)) for key, value in sorted(meta.items())
         if value is not None
     ) + '*/'
 
+
+def add_sql_comment(sql, **meta):
+    comment = generate_sql_comment(**meta)
     sql = sql.rstrip()
     if sql[-1] == ';':
         sql = sql[:-1] + comment + ';'
