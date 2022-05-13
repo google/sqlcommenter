@@ -52,21 +52,21 @@ class Tests(SQLAlchemyTestCase):
 
     def test_db_driver(self):
         self.assertSQL(
-            "SELECT 1; /*db_driver='driver'*/",
+            "SELECT 1 /*db_driver='driver'*/;",
             with_db_driver=True,
         )
 
     def test_db_framework(self):
         self.assertSQL(
-            "SELECT 1; /*db_framework='sqlalchemy%%3A{}'*/".format(sqlalchemy.__version__),
+            "SELECT 1 /*db_framework='sqlalchemy%%3A{}'*/;".format(sqlalchemy.__version__),
             with_db_framework=True,
         )
 
     def test_opencensus(self):
         with mock_opencensus_tracer():
             self.assertSQL(
-                "SELECT 1; /*traceparent='00-trace%%20id-span%%20id-00',"
-                "tracestate='congo%%3Dt61rcWkgMzE%%2Crojo%%3D00f067aa0ba902b7'*/",
+                "SELECT 1 /*traceparent='00-trace%%20id-span%%20id-00',"
+                "tracestate='congo%%3Dt61rcWkgMzE%%2Crojo%%3D00f067aa0ba902b7'*/;",
                 with_opencensus=True,
             )
 
@@ -74,8 +74,8 @@ class Tests(SQLAlchemyTestCase):
     def test_opentelemetry(self):
         with mock_opentelemetry_context():
             self.assertSQL(
-                "SELECT 1; /*traceparent='00-000000000000000000000000deadbeef-000000000000beef-00',"
-                "tracestate='some_key%%3Dsome_value'*/",
+                "SELECT 1 /*traceparent='00-000000000000000000000000deadbeef-000000000000beef-00',"
+                "tracestate='some_key%%3Dsome_value'*/;",
                 with_opentelemetry=True,
             )
 
@@ -85,8 +85,8 @@ class Tests(SQLAlchemyTestCase):
             "google.cloud.sqlcommenter.sqlalchemy.executor.logger"
         ) as logger_mock, mock_opencensus_tracer(), mock_opentelemetry_context():
             self.assertSQL(
-                "SELECT 1; /*traceparent='00-000000000000000000000000deadbeef-000000000000beef-00',"
-                "tracestate='some_key%%3Dsome_value'*/",
+                "SELECT 1 /*traceparent='00-000000000000000000000000deadbeef-000000000000beef-00',"
+                "tracestate='some_key%%3Dsome_value'*/;",
                 with_opentelemetry=True,
                 with_opencensus=True,
             )
@@ -103,27 +103,27 @@ class FlaskTests(SQLAlchemyTestCase):
     @mock.patch('google.cloud.sqlcommenter.sqlalchemy.executor.get_flask_info', return_value=flask_info)
     def test_all_data(self, get_info):
         self.assertSQL(
-            "SELECT 1; /*controller='c',framework='flask',route='/'*/",
+            "SELECT 1 /*controller='c',framework='flask',route='/'*/;",
         )
 
     @mock.patch('google.cloud.sqlcommenter.sqlalchemy.executor.get_flask_info', return_value=flask_info)
     def test_framework_disabled(self, get_info):
         self.assertSQL(
-            "SELECT 1; /*controller='c',route='/'*/",
+            "SELECT 1 /*controller='c',route='/'*/;",
             with_framework=False,
         )
 
     @mock.patch('google.cloud.sqlcommenter.sqlalchemy.executor.get_flask_info', return_value=flask_info)
     def test_controller_disabled(self, get_info):
         self.assertSQL(
-            "SELECT 1; /*framework='flask',route='/'*/",
+            "SELECT 1 /*framework='flask',route='/'*/;",
             with_controller=False,
         )
 
     @mock.patch('google.cloud.sqlcommenter.sqlalchemy.executor.get_flask_info', return_value=flask_info)
     def test_route_disabled(self, get_info):
         self.assertSQL(
-            "SELECT 1; /*controller='c',framework='flask'*/",
+            "SELECT 1 /*controller='c',framework='flask'*/;",
             with_route=False,
         )
 
@@ -138,26 +138,26 @@ class FastAPITests(SQLAlchemyTestCase):
     @mock.patch('google.cloud.sqlcommenter.sqlalchemy.executor.get_fastapi_info', return_value=fastapi_info)
     def test_all_data(self, get_info):
         self.assertSQL(
-            "SELECT 1; /*controller='c',framework='fastapi',route='/'*/",
+            "SELECT 1 /*controller='c',framework='fastapi',route='/'*/;",
         )
 
     @mock.patch('google.cloud.sqlcommenter.sqlalchemy.executor.get_fastapi_info', return_value=fastapi_info)
     def test_framework_disabled(self, get_info):
         self.assertSQL(
-            "SELECT 1; /*controller='c',route='/'*/",
+            "SELECT 1 /*controller='c',route='/'*/;",
             with_framework=False,
         )
 
     @mock.patch('google.cloud.sqlcommenter.sqlalchemy.executor.get_fastapi_info', return_value=fastapi_info)
     def test_controller_disabled(self, get_info):
         self.assertSQL(
-            "SELECT 1; /*framework='fastapi',route='/'*/",
+            "SELECT 1 /*framework='fastapi',route='/'*/;",
             with_controller=False,
         )
 
     @mock.patch('google.cloud.sqlcommenter.sqlalchemy.executor.get_fastapi_info', return_value=fastapi_info)
     def test_route_disabled(self, get_info):
         self.assertSQL(
-            "SELECT 1; /*controller='c',framework='fastapi'*/",
+            "SELECT 1 /*controller='c',framework='fastapi'*/;",
             with_route=False,
         )
