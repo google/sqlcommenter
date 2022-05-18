@@ -20,5 +20,10 @@ from .models import Author
 
 
 def home(request):
-    list(Author.objects.all())
+    list(Author.objects.all().using('default'))
+    return HttpResponse()
+
+
+def home_other_db(request):
+    list(Author.objects.all().using('other'))
     return HttpResponse()

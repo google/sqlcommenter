@@ -21,5 +21,6 @@ from . import views
 urlpatterns = [
     path('', views.home, name='home'),
     path('path/', views.home, name='some-path'),
+    path('other/', views.home_other_db, name='some-other-db-path'),
     path('app-urls/', include('tests.django.app_urls')),
 ]
