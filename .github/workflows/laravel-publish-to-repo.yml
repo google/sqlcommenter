@@ -1,0 +1,22 @@
+name: Publish
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - php/sqlcommenter-php/packages/sqlcommenter-laravel/**
+      - php/sqlcommenter-php/samples/sqlcommenter-laravel/**
+jobs:
+  publishphptorepo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Pushes to another repository
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        with:
+          source-directory: 'php/sqlcommenter-php/packages/sqlcommenter-laravel'
+          destination-github-username: 'google'
+          destination-repository-name: 'sqlcommenter-php'
+          target-branch: master
