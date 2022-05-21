@@ -1,3 +1,4 @@
+name: Laravel Tests
 on:
   push:
     branches:
@@ -5,10 +6,13 @@ on:
     paths:
       - php/sqlcommenter-php/packages/sqlcommenter-laravel/**
       - php/sqlcommenter-php/samples/sqlcommenter-laravel/**
+  pull_request:
+    paths:
+      - php/sqlcommenter-php/packages/sqlcommenter-laravel/**
+      - php/sqlcommenter-php/samples/sqlcommenter-laravel/**
 
-name: Laravel Unit Tests
 jobs:
-  phpunit:
+  phpunittests:
     runs-on: ubuntu-latest
     container:
       image: kirschbaumdevelopment/laravel-test-runner:8.0
