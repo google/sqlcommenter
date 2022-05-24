@@ -6,7 +6,7 @@ with comments that can be used later to correlate user code with SQL statements.
 
 ### Installation
 
-Add this to your composer.json
+Add this to your `composer.json`
 ```shell
 "repositories": [
     {
@@ -28,8 +28,8 @@ php artisan vendor:publish --provider="Google\GoogleSqlCommenterLaravel\GoogleSq
 
 ```
 
-Add the following class above ``Illuminate\Database\DatabaseServiceProvider::class,
-`` in config/app.php
+Add the following class above `Illuminate\Database\DatabaseServiceProvider::class`,
+ in `config/app.php`
 ```php
 'providers' => [
     ...
