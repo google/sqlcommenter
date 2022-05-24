@@ -18,4 +18,4 @@ jobs:
           source-directory: 'php/sqlcommenter-php/packages/sqlcommenter-laravel'
           destination-github-username: 'google'
           destination-repository-name: 'sqlcommenter-php'
-          target-branch: master
+          target-branch: main
