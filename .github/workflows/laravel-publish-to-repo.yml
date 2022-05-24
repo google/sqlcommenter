@@ -13,7 +13,7 @@ jobs:
       - name: Pushes to another repository
         uses: cpina/github-action-push-to-another-repository@main
         env:
-          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+          API_TOKEN_GITHUB: ${{ secrets.PHP_SQLCOMMENTER_PUSH_TOKEN }}
         with:
           source-directory: 'php/sqlcommenter-php/packages/sqlcommenter-laravel'
           destination-github-username: 'google'
