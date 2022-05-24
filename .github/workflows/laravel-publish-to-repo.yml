@@ -1,13 +1,12 @@
-name: Publish
+name: Publish to Sqlcommenter-php repository
 on:
   push:
     branches:
       - master
     paths:
       - php/sqlcommenter-php/packages/sqlcommenter-laravel/**
-      - php/sqlcommenter-php/samples/sqlcommenter-laravel/**
 jobs:
-  publishphptorepo:
+  push-to-repo:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
