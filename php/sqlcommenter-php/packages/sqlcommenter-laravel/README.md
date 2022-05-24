@@ -38,9 +38,9 @@ Add the following class above ``Illuminate\Database\DatabaseServiceProvider::cla
     ...
 ]
 ```
-### Run the tests
+### Run unit tests
 
-Run the tests using below command
+Run unit tests using below command
 ```shell
 ./vendor/bin/phpunit tests
 ```
