@@ -55,12 +55,12 @@ class Tests(TestCase):
         self.assertEqual(len(connection.queries), 2)
         return connection.queries[0]
 
-    def get_query_other_db(self, path='/'):
+    def get_query_other_db(self, path='/', connection_name='default'):
         SqlCommenter(views.home_other_db)(self.get_request(path))
         # Query with comment added by QueryWrapper and unaltered query added
         # by Django's CursorDebugWrapper.
-        self.assertEqual(len(connections['other'].queries), 2)
-        return connections['other'].queries[0]
+        self.assertEqual(len(connections[connection_name].queries), 2)
+        return connections[connection_name].queries[0]
 
     def assertRoute(self, route, query):
         # route available in Django 2.2 and later.
@@ -77,7 +77,7 @@ class Tests(TestCase):
         self.assertRoute('', query)
 
     def test_basic_multiple_db_support(self):
-        query = self.get_query_other_db(path='/other/')
+        query = self.get_query_other_db(path='/other/', connection_name='other')
         self.assertIn("/*controller='some-other-db-path'", query)
         # Expecting url_quoted("framework='django:'")
         self.assertIn("framework='django%%3A" + django.get_version(), query)
