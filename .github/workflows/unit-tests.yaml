@@ -5,7 +5,7 @@ on:
         - php/sqlcommenter-php/packages/sqlcommenter-laravel/**
         - php/sqlcommenter-php/samples/sqlcommenter-laravel/**
 jobs:
-  build:
+  unittests:
     runs-on: ubuntu-latest
     steps:
       - run: 'echo "No build required" '
