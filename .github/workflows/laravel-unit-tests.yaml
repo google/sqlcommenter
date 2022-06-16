@@ -1,4 +1,4 @@
-name: Laravel Unit Tests
+name: Unit Tests
 on:
   push:
     branches:
@@ -12,7 +12,7 @@ on:
       - php/sqlcommenter-php/samples/sqlcommenter-laravel/**
 
 jobs:
-  run-unittests:
+  laravel-unittests:
     runs-on: ubuntu-latest
     container:
       image: kirschbaumdevelopment/laravel-test-runner:8.0

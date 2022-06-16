@@ -1,4 +1,4 @@
-name: Laravel Integration Tests
+name: Integration Tests
 on:
   push:
     branches:
@@ -11,7 +11,7 @@ on:
       - php/sqlcommenter-php/packages/sqlcommenter-laravel/**
       - php/sqlcommenter-php/samples/sqlcommenter-laravel/**
 jobs:
-  run-integrationtests:
+  laravel-integrationtests:
     runs-on: ubuntu-latest
     container:
       image: kirschbaumdevelopment/laravel-test-runner:8.0

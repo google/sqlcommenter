@@ -1,0 +1,11 @@
+name: Integration Tests
+on:
+  pull_request:
+    paths-ignore:
+        - php/sqlcommenter-php/packages/sqlcommenter-laravel/**
+        - php/sqlcommenter-php/samples/sqlcommenter-laravel/**
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: 'echo "No build required" '
