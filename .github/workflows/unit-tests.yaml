@@ -1,9 +1,15 @@
 name: Unit Tests
 on:
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - php/sqlcommenter-php/packages/sqlcommenter-laravel/**
+      - php/sqlcommenter-php/samples/sqlcommenter-laravel/**
   pull_request:
     paths-ignore:
-        - php/sqlcommenter-php/packages/sqlcommenter-laravel/**
-        - php/sqlcommenter-php/samples/sqlcommenter-laravel/**
+      - php/sqlcommenter-php/packages/sqlcommenter-laravel/**
+      - php/sqlcommenter-php/samples/sqlcommenter-laravel/**
 jobs:
   unittests:
     runs-on: ubuntu-latest
