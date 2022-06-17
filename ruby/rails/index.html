@@ -5,7 +5,7 @@
     
       <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="generator" content="Hugo 0.55.6" />
+<meta name="generator" content="Hugo 0.81.0" />
 <title>Ruby on Rails :: sqlcommenter</title>
 <link rel="shortcut icon" href="https://google.github.io/sqlcommenter/images/favicon.ico" type="image/x-icon" />
 <link href="https://google.github.io/sqlcommenter/css/font-awesome.min.css" rel="stylesheet">
@@ -84,14 +84,14 @@
 
     
   </head>
-  <body data-url="/ruby/rails/">
+  <body data-url="https://google.github.io/sqlcommenter/ruby/rails/">
     
       <header>
   <div class="logo">
     
 	
   
-    <p><a href="https://google.github.io/sqlcommenter/"><img src="https://google.github.io/sqlcommenter/images/sqlcommenter_logo.png" alt="sqlcommenter logo" /> <span>sql</span>commenter</a></p>
+    <p><a href="https://google.github.io/sqlcommenter/"><img src="https://google.github.io/sqlcommenter/images/sqlcommenter_logo.png" alt="sqlcommenter logo"> <!-- raw HTML omitted -->sql<!-- raw HTML omitted -->commenter</a></p>
 
   
 
@@ -116,6 +116,67 @@
       <a href="https://google.github.io/sqlcommenter/python/">Python</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
       </div>
         <ul>
+    <li data-nav-id="/python/django/" class="dd-item haschildren
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/python/django/">Django</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+      <li data-nav-id="/python/django/local/" class="dd-item">
+        <div>
+          <a href="https://google.github.io/sqlcommenter/python/django/local/">
+            Locally
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/python/django/gcp/" class="dd-item">
+        <div>
+          <a href="https://google.github.io/sqlcommenter/python/django/gcp/">
+            Google Cloud Platform
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/python/django/aws/" class="dd-item">
+        <div>
+          <a href="https://google.github.io/sqlcommenter/python/django/aws/">
+            Amazon Web Services
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/python/psycopg2/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/python/psycopg2/">psycopg2</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/python/sqlalchemy/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/python/sqlalchemy/">SQLAlchemy</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/python/flask/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/python/flask/">Flask</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/php/" class="dd-item haschildren
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/php/">Php</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+    <li data-nav-id="/php/laravel/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/php/laravel/">Laravel</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
         </ul>
     </li>
     <li data-nav-id="/ruby/" class="dd-item parent haschildren
@@ -251,197 +312,153 @@
     
     
 
-
-
-<p><img src="https://google.github.io/sqlcommenter/images/activerecord_marginalia-logo.png" alt="" /></p>
-
+<p><img src="https://google.github.io/sqlcommenter/images/activerecord_marginalia-logo.png" alt=""></p>
 <ul>
 <li><a href="#introduction">Introduction</a></li>
 <li><a href="#installation">Installation</a></li>
 <li><a href="#usage">Usage</a></li>
 <li><a href="#fields">Fields</a></li>
 <li><a href="#end-to-end-example">End-to-end example</a>
-
 <ul>
 <li><a href="#results">Results</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="#references">References</a></li>
 </ul>
-
 <h3 id="introduction">Introduction</h3>
-
 <p><a href="https://github.com/google/sqlcommenter/tree/master/ruby/sqlcommenter-ruby/sqlcommenter_rails">sqlcommenter_rails</a> adds comments to your SQL statements.</p>
-
 <p>It is powered by <a href="https://github.com/basecamp/marginalia">marginalia</a> and also adds <a href="https://opencensus.io/">OpenCensus</a> information to the
 comments if you use the <a href="https://github.com/census-instrumentation/opencensus-ruby">opencensus gem</a>.</p>
-
 <p><a href="https://github.com/google/sqlcommenter/tree/master/ruby/sqlcommenter-ruby/sqlcommenter_rails">sqlcommenter_rails</a> configures <a href="https://github.com/basecamp/marginalia">marginalia</a> and <a href="https://github.com/google/sqlcommenter/tree/master/ruby/sqlcommenter-ruby/marginalia-opencensus">marginalia-opencensus</a> to
 match the SQLCommenter format.</p>
-
 <h3 id="installation">Installation</h3>
-
-<p>Currently, this gem is not released on rubygems.
-But can be installed from source.</p>
-<p>The gem requires functionality provided by an <a href="https://github.com/basecamp/marginalia/pull/89">open PR</a> to <a href="https://github.com/basecamp/marginalia">marginalia</a>. Install the PR by cloning <a href="https://github.com/glebm/marginalia">glebm&#39;s fork of marginalia</a> one directory above this folder.</p>
-<pre><code class="language-ruby" data-lang="ruby">git <span>clone</span> <span>https</span>://github.com/glebm/marginalia.git ../marginalia
-</code></pre>
-<p>Add the following lines to your application&#39;s Gemfile:</p>
-<pre><code class="language-ruby" data-lang="ruby">gem <span>'sqlcommenter_rails'</span>, <span>path:</span> <span>'../sqlcommenter_rails'</span>
-gem <span>'marginalia'</span>, <span>path:</span> <span>'../marginalia'</span>
-gem <span>'marginalia-opencensus'</span>, <span>path:</span> <span>'../marginalia-opencensus'</span>
-</code></pre>
-<p>Install dependencies:</p>
-<pre><code class="language-ruby" data-lang="ruby">bin/<span>setup</span>
-</code></pre>
-
+<p>Add this line to your application&rsquo;s Gemfile</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#111">gem</span> <span style="color:#d88200">&#39;sqlcommenter_rails&#39;</span>
+</code></pre></div><p>Then run <code>bundle</code> and restart your Rails server.</p>
 <p>To enable <a href="https://opencensus.io/">OpenCensus</a> support, add the <a href="https://github.com/census-instrumentation/opencensus-ruby"><code>opencensus</code></a> gem to
 your Gemfile, and add the following line in the beginning of
 <code>config/application.rb</code>:</p>
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#111">require</span> <span style="color:#d88200">&#39;opencensus/trace/integrations/rails&#39;</span></code></pre></div>
-<h3 id="usage">Usage</h3>
-
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#111">require</span> <span style="color:#d88200">&#39;opencensus/trace/integrations/rails&#39;</span>
+</code></pre></div><h3 id="usage">Usage</h3>
 <p>All of the SQL queries initiated by the application will now come with comments!</p>
-
 <h3 id="fields">Fields</h3>
-
 <p>The following fields will be added to your SQL statements as comments:</p>
-
 <table>
 <thead>
 <tr>
 <th>Field</th>
-<th>Included <br /> by default?</th>
+<th>Included <!-- raw HTML omitted --> by default?</th>
 <th>Description</th>
 <th>Provided by</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td><code>action</code></td>
-<td><div style="text-align: center">&#10004;</div></td>
+<td><!-- raw HTML omitted -->✔<!-- raw HTML omitted --></td>
 <td>Controller action name</td>
 <td><a href="https://github.com/basecamp/marginalia">marginalia</a></td>
 </tr>
-
 <tr>
 <td><code>application</code></td>
-<td><div style="text-align: center">&#10004;</div></td>
+<td><!-- raw HTML omitted -->✔<!-- raw HTML omitted --></td>
 <td>Application name</td>
 <td><a href="https://github.com/basecamp/marginalia">marginalia</a></td>
 </tr>
-
 <tr>
 <td><code>controller</code></td>
-<td><div style="text-align: center">&#10004;</div></td>
+<td><!-- raw HTML omitted -->✔<!-- raw HTML omitted --></td>
 <td>Controller name</td>
 <td><a href="https://github.com/basecamp/marginalia">marginalia</a></td>
 </tr>
-
 <tr>
 <td><code>controller_with_namespace</code></td>
-<td><div style="text-align: center">&#10060;</div></td>
+<td><!-- raw HTML omitted -->❌<!-- raw HTML omitted --></td>
 <td>Full classname (including namespace) of the controller</td>
 <td><a href="https://github.com/basecamp/marginalia">marginalia</a></td>
 </tr>
-
 <tr>
 <td><code>database</code></td>
-<td><div style="text-align: center">&#10060;</div></td>
+<td><!-- raw HTML omitted -->❌<!-- raw HTML omitted --></td>
 <td>Database name</td>
 <td><a href="https://github.com/basecamp/marginalia">marginalia</a></td>
 </tr>
-
 <tr>
 <td><code>db_driver</code></td>
-<td><div style="text-align: center">&#10004;</div></td>
+<td><!-- raw HTML omitted -->✔<!-- raw HTML omitted --></td>
 <td>Database adapter class name</td>
 <td><a href="https://github.com/google/sqlcommenter/tree/master/ruby/sqlcommenter-ruby/sqlcommenter_rails">sqlcommenter_rails</a></td>
 </tr>
-
 <tr>
 <td><code>db_host</code></td>
-<td><div style="text-align: center">&#10060;</div></td>
+<td><!-- raw HTML omitted -->❌<!-- raw HTML omitted --></td>
 <td>Database hostname</td>
 <td><a href="https://github.com/basecamp/marginalia">marginalia</a></td>
 </tr>
-
 <tr>
 <td><code>framework</code></td>
-<td><div style="text-align: center">&#10004;</div></td>
+<td><!-- raw HTML omitted -->✔<!-- raw HTML omitted --></td>
 <td><code>rails_v</code> followed by <code>Rails::VERSION</code></td>
 <td><a href="https://github.com/google/sqlcommenter/tree/master/ruby/sqlcommenter-ruby/sqlcommenter_rails">sqlcommenter_rails</a></td>
 </tr>
-
 <tr>
 <td><code>hostname</code></td>
-<td><div style="text-align: center">&#10060;</div></td>
+<td><!-- raw HTML omitted -->❌<!-- raw HTML omitted --></td>
 <td>Socket.gethostname</td>
 <td><a href="https://github.com/basecamp/marginalia">marginalia</a></td>
 </tr>
-
 <tr>
 <td><code>job</code></td>
-<td><div style="text-align: center">&#10060;</div></td>
+<td><!-- raw HTML omitted -->❌<!-- raw HTML omitted --></td>
 <td>Classname of the ActiveJob being performed</td>
 <td><a href="https://github.com/basecamp/marginalia">marginalia</a></td>
 </tr>
-
 <tr>
 <td><code>line</code></td>
-<td><div style="text-align: center">&#10060;</div></td>
+<td><!-- raw HTML omitted -->❌<!-- raw HTML omitted --></td>
 <td>File and line number calling query</td>
 <td><a href="https://github.com/basecamp/marginalia">marginalia</a></td>
 </tr>
-
 <tr>
 <td><code>pid</code></td>
-<td><div style="text-align: center">&#10060;</div></td>
+<td><!-- raw HTML omitted -->❌<!-- raw HTML omitted --></td>
 <td>Current process id</td>
 <td><a href="https://github.com/basecamp/marginalia">marginalia</a></td>
 </tr>
-
 <tr>
 <td><code>route</code></td>
-<td><div style="text-align: center">&#10004;</div></td>
+<td><!-- raw HTML omitted -->✔<!-- raw HTML omitted --></td>
 <td>Request&rsquo;s full path</td>
 <td><a href="https://github.com/google/sqlcommenter/tree/master/ruby/sqlcommenter-ruby/sqlcommenter_rails">sqlcommenter_rails</a></td>
 </tr>
-
 <tr>
 <td><code>socket</code></td>
-<td><div style="text-align: center">&#10060;</div></td>
+<td><!-- raw HTML omitted -->❌<!-- raw HTML omitted --></td>
 <td>Database socket</td>
 <td><a href="https://github.com/basecamp/marginalia">marginalia</a></td>
 </tr>
-
 <tr>
 <td><code>traceparent</code></td>
-<td><div style="text-align: center">&#10060;</div></td>
+<td><!-- raw HTML omitted -->❌<!-- raw HTML omitted --></td>
 <td>The <a href="https://www.w3.org/TR/trace-context/#traceparent-field">W3C TraceContext.Traceparent field</a> of the OpenCensus trace</td>
 <td><a href="https://github.com/google/sqlcommenter/tree/master/ruby/sqlcommenter-ruby/marginalia-opencensus">marginalia-opencensus</a></td>
 </tr>
 </tbody>
 </table>
-
 <p>To include the <code>traceparent</code> field, install the <a href="https://github.com/google/sqlcommenter/tree/master/ruby/sqlcommenter-ruby/marginalia-opencensus">marginalia-opencensus</a> gem and it will be automatically included by default.</p>
-
 <p>To change which fields are included, set <code>Marginalia::Comment.components = [ :field1, :field2, ... ]</code> in <code>config/initializers/marginalia.rb</code> as described in the <a href="https://github.com/basecamp/marginalia#components">marginalia documentation</a>.</p>
-
 <h3 id="end-to-end-example">End to end example</h3>
-
 <p>A Rails 6 <a href="https://github.com/google/sqlcommenter/tree/master/ruby/sqlcommenter-ruby/sqlcommenter_rails">sqlcommenter_rails</a> demo is available at:
 <a href="https://github.com/google/sqlcommenter/tree/master/ruby/sqlcommenter-ruby/sqlcommenter_rails_demo">https://github.com/google/sqlcommenter/tree/master/ruby/sqlcommenter-ruby/sqlcommenter_rails_demo</a></p>
-
 <p>The demo is a vanilla Rails API application with <a href="https://github.com/google/sqlcommenter/tree/master/ruby/sqlcommenter-ruby/sqlcommenter_rails">sqlcommenter_rails</a> and
 OpenCensus enabled.</p>
-
 <p>First, we create a vanilla Rails application with the following command:</p>
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">gem install rails -v <span style="color:#ae81ff">6</span>.0.0.rc1
-rails _6.0.0.rc1_ new sqlcommenter_rails_demo --api</code></pre></div>
-<p>Then, we add and implement a basic <code>Post</code> model and controller:</p>
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">bin/rails g model Post title:text</code></pre></div><div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">bin/rails g controller Posts index create</code></pre></div>
-<p>Implement the controller:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">gem install rails -v 6.0.0.rc1
+rails _6.0.0.rc1_ new sqlcommenter_rails_demo --api
+</code></pre></div><p>Then, we add and implement a basic <code>Post</code> model and controller:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">bin/rails g model Post title:text
+</code></pre></div><div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">bin/rails g controller Posts index create
+</code></pre></div><p>Implement the controller:</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># app/controllers/posts_controller.rb</span>
 <span style="color:#00a8c8">class</span> <span style="color:#75af00">PostsController</span> <span style="color:#f92672">&lt;</span> <span style="color:#00a8c8">ApplicationController</span>
   <span style="color:#00a8c8">def</span> <span style="color:#75af00">index</span>
@@ -453,48 +470,42 @@ rails _6.0.0.rc1_ new sqlcommenter_rails_demo --api</code></pre></div>
     <span style="color:#111">head</span> <span style="color:#d88200">:bad_request</span> <span style="color:#00a8c8">if</span> <span style="color:#111">title</span><span style="color:#f92672">.</span><span style="color:#111">empty?</span>
     <span style="color:#111">render</span> <span style="color:#d88200">json</span><span style="color:#111">:</span> <span style="color:#00a8c8">Post</span><span style="color:#f92672">.</span><span style="color:#111">create!</span><span style="color:#111">(</span><span style="color:#d88200">title</span><span style="color:#111">:</span> <span style="color:#111">title</span><span style="color:#111">)</span>
   <span style="color:#00a8c8">end</span>
-<span style="color:#00a8c8">end</span></code></pre></div>
-<p>Configure the routes:</p>
+<span style="color:#00a8c8">end</span>
+</code></pre></div><p>Configure the routes:</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># config/routes.rb</span>
 <span style="color:#00a8c8">Rails</span><span style="color:#f92672">.</span><span style="color:#111">application</span><span style="color:#f92672">.</span><span style="color:#111">routes</span><span style="color:#f92672">.</span><span style="color:#111">draw</span> <span style="color:#00a8c8">do</span>
  <span style="color:#111">resources</span> <span style="color:#d88200">:posts</span><span style="color:#111">,</span> <span style="color:#d88200">only</span><span style="color:#111">:</span> <span style="color:#f92672">%</span><span style="color:#111">i</span><span style="color:#f92672">[</span><span style="color:#111">index</span> <span style="color:#111">create</span><span style="color:#f92672">]</span>
-<span style="color:#00a8c8">end</span></code></pre></div>
-<p>Then, we add <code>sqlcommenter_rails</code> and OpenCensus:</p>
+<span style="color:#00a8c8">end</span>
+</code></pre></div><p>Then, we add <code>sqlcommenter_rails</code> and OpenCensus:</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># Gemfile</span>
 <span style="color:#111">gem</span> <span style="color:#d88200">&#39;opencensus&#39;</span>
-<span style="color:#111">gem</span> <span style="color:#d88200">&#39;sqlcommenter_rails&#39;</span></code></pre></div><div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># config/application.rb</span>
-<span style="color:#111">require</span> <span style="color:#d88200">&#34;opencensus/trace/integrations/rails&#34;</span></code></pre></div>
-<p>Finally, we run <code>bundle</code> to install the newly added gems:</p>
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">bundle</code></pre></div>
-<p>Now, we can start the server:</p>
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">bin/rails s</code></pre></div>
-<p>In a separate terminal, you can monitor the relevant SQL statements in the server
+<span style="color:#111">gem</span> <span style="color:#d88200">&#39;sqlcommenter_rails&#39;</span>
+</code></pre></div><div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># config/application.rb</span>
+<span style="color:#111">require</span> <span style="color:#d88200">&#34;opencensus/trace/integrations/rails&#34;</span>
+</code></pre></div><p>Finally, we run <code>bundle</code> to install the newly added gems:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">bundle
+</code></pre></div><p>Now, we can start the server:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">bin/rails s
+</code></pre></div><p>In a separate terminal, you can monitor the relevant SQL statements in the server
 log with the following command:</p>
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">tail -f log/development.log <span style="color:#111">|</span> grep <span style="color:#d88200">&#39;Post &#39;</span></code></pre></div>
-<h4 id="results">Results</h4>
-
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">tail -f log/development.log <span style="color:#111">|</span> grep <span style="color:#d88200">&#39;Post &#39;</span>
+</code></pre></div><h4 id="results">Results</h4>
 <p>The demo application has 2 endpoints: <code>GET /posts</code> and <code>POST /posts</code>.</p>
-
 <h5 id="get-posts">GET /posts</h5>
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">curl localhost:3000/posts</code></pre></div>
-<pre><code>Post Load (0.1ms)  SELECT &quot;posts&quot;.* FROM &quot;posts&quot; /*
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">curl localhost:3000/posts
+</code></pre></div><pre><code>Post Load (0.1ms)  SELECT &quot;posts&quot;.* FROM &quot;posts&quot; /*
 action='index',application='SqlcommenterRailsDemo',controller='posts',
 db_driver='ActiveRecord::ConnectionAdapters::SQLite3Adapter',
 framework='rails_v6.0.0.rc1',route='/posts',
 traceparent='00-ff19308b1f17fedc5864e929bed1f44e-6ddace73a9debf63-01'*/
-</code></pre>
-
-<h5 id="post-posts">POST /posts</h5>
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">curl -X POST localhost:3000/posts -d <span style="color:#d88200">&#39;title=my-post&#39;</span></code></pre></div>
-<pre><code>Post Create (0.2ms)  INSERT INTO &quot;posts&quot; (&quot;title&quot;, &quot;created_at&quot;, &quot;updated_at&quot;)
+</code></pre><h5 id="post-posts">POST /posts</h5>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">curl -X POST localhost:3000/posts -d <span style="color:#d88200">&#39;title=my-post&#39;</span>
+</code></pre></div><pre><code>Post Create (0.2ms)  INSERT INTO &quot;posts&quot; (&quot;title&quot;, &quot;created_at&quot;, &quot;updated_at&quot;)
 VALUES (?, ?, ?) /*action='create',application='SqlcommenterRailsDemo',
 controller='posts',db_driver='ActiveRecord::ConnectionAdapters::SQLite3Adapter',
 framework='rails_v6.0.0.rc1',route='/posts',
 traceparent='00-ff19308b1f17fedc5864e929bed1f44e-6ddace73a9debf63-01'*/
-</code></pre>
-
-<h3 id="references">References</h3>
-
+</code></pre><h3 id="references">References</h3>
 <table>
 <thead>
 <tr>
@@ -502,28 +513,23 @@ traceparent='00-ff19308b1f17fedc5864e929bed1f44e-6ddace73a9debf63-01'*/
 <th>URL</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td><a href="https://github.com/google/sqlcommenter/tree/master/ruby/sqlcommenter-ruby/sqlcommenter_rails">sqlcommenter_rails</a></td>
 <td><a href="https://github.com/google/sqlcommenter/tree/master/ruby/sqlcommenter-ruby/sqlcommenter_rails">https://github.com/google/sqlcommenter/tree/master/ruby/sqlcommenter-ruby/sqlcommenter_rails</a></td>
 </tr>
-
 <tr>
 <td><a href="https://github.com/basecamp/marginalia">marginalia</a></td>
 <td><a href="https://github.com/basecamp/marginalia">https://github.com/basecamp/marginalia</a></td>
 </tr>
-
 <tr>
 <td><a href="https://opencensus.io/">OpenCensus</a></td>
 <td><a href="https://opencensus.io/">https://opencensus.io/</a></td>
 </tr>
-
 <tr>
 <td>The <a href="https://github.com/census-instrumentation/opencensus-ruby">opencensus gem</a></td>
 <td><a href="https://github.com/census-instrumentation/opencensus-ruby">https://github.com/census-instrumentation/opencensus-ruby</a></td>
 </tr>
-
 <tr>
 <td><a href="https://github.com/google/sqlcommenter/tree/master/ruby/sqlcommenter-ruby/marginalia-opencensus">marginalia-opencensus</a></td>
 <td><a href="https://github.com/google/sqlcommenter/tree/master/ruby/sqlcommenter-ruby/marginalia-opencensus">https://github.com/google/sqlcommenter/tree/master/ruby/sqlcommenter-ruby/marginalia-opencensus</a></td>
@@ -568,7 +574,7 @@ traceparent='00-ff19308b1f17fedc5864e929bed1f44e-6ddace73a9debf63-01'*/
   
 
     <div class="github-link">
-      <a href="https://github.com/google/sqlcommenter/tree/gh-pages/src/content/ruby/rails/_index.md" target="blank"><i class="fa fa-code-fork"></i>
+      <a href="https://github.com/google/sqlcommenter/tree/gh-pages/src/contentruby/rails/_index.md" target="blank"><i class="fa fa-code-fork"></i>
         Edit this page on Github</a>
     </div>
   </div>
@@ -581,8 +587,7 @@ traceparent='00-ff19308b1f17fedc5864e929bed1f44e-6ddace73a9debf63-01'*/
     <ul>
 <li><a href="https://github.com/google/sqlcommenter/">Github</a></li>
 </ul>
-
-<h5 style="color: #fff">sqlcommenter</h5>
+<!-- raw HTML omitted -->
 
   
 

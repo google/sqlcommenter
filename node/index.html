@@ -5,7 +5,7 @@
     
       <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="generator" content="Hugo 0.55.6" />
+<meta name="generator" content="Hugo 0.81.0" />
 <title>Node.js :: sqlcommenter</title>
 <link rel="shortcut icon" href="https://google.github.io/sqlcommenter/images/favicon.ico" type="image/x-icon" />
 <link href="https://google.github.io/sqlcommenter/css/font-awesome.min.css" rel="stylesheet">
@@ -84,14 +84,14 @@
 
     
   </head>
-  <body data-url="/node/">
+  <body data-url="https://google.github.io/sqlcommenter/node/">
     
       <header>
   <div class="logo">
     
 	
   
-    <p><a href="https://google.github.io/sqlcommenter/"><img src="https://google.github.io/sqlcommenter/images/sqlcommenter_logo.png" alt="sqlcommenter logo" /> <span>sql</span>commenter</a></p>
+    <p><a href="https://google.github.io/sqlcommenter/"><img src="https://google.github.io/sqlcommenter/images/sqlcommenter_logo.png" alt="sqlcommenter logo"> <!-- raw HTML omitted -->sql<!-- raw HTML omitted -->commenter</a></p>
 
   
 
@@ -161,6 +161,20 @@
         ">
       <div>
       <a href="https://google.github.io/sqlcommenter/python/flask/">Flask</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/php/" class="dd-item haschildren
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/php/">Php</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+    <li data-nav-id="/php/laravel/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/php/laravel/">Laravel</a><i class="fa fa-circle-thin read-icon"></i>
       </div>
     </li>
         </ul>
@@ -298,27 +312,20 @@
     
     
 
-
-
 <ul>
 <li><a href="#introduction">Introduction</a></li>
 <li><a href="#integrations">Integrations</a></li>
 <li><a href="#install">Installation</a>
-
 <ul>
 <li><a href="#install-from-source">From source</a></li>
 <li><a href="#verify-installation">Verify installation</a></li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h3 id="introduction">Introduction</h3>
-
 <p>sqlcommenter is a suite of plugins/middleware/wrappers to augment SQL statements from ORMs/Querybuilders with comments that can be used later to correlate user code with SQL statements.</p>
-
 <h3 id="integrations">Integrations</h3>
-
 <p>sqlcommenter-nodejs provides support for the following:</p>
-
 <p><div class="user-card-container">
   <a target="_blank" href="https://google.github.io/sqlcommenter/node/knex">
   
@@ -343,13 +350,9 @@
   </a>
 </div>
 </p>
-
-<h3 id="a-name-install-a-installing-it"><a name="install"></a> Installing it</h3>
-
+<h3 id="a-nameinstalla-installing-it"><!-- raw HTML omitted --><!-- raw HTML omitted --> Installing it</h3>
 <p>sqlcommenter-nodejs can installed in a couple of ways:</p>
-
-<h4 id="a-name-install-from-source-a-from-source"><a name="install-from-source"></a> From source</h4>
-
+<h4 id="a-nameinstall-from-sourcea-from-source"><!-- raw HTML omitted --><!-- raw HTML omitted --> From source</h4>
 <p>The first step is to clone the repository. This can be done with <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">git</a> by running:
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">git clone https://github.com/google/sqlcommenter.git</code></pre></div>
 Inspect the source code and note the path to the package you want installed.</p>
@@ -364,25 +367,22 @@ Inspect the source code and note the path to the package you want installed.</p>
         ├── index.js
         ├── package.json
         ├── <span style="color:#111">test</span>
-        └── ...</code></pre></div>
-<p>Each folder in the <code>packages</code> directory can be installed by running</p>
-
+        └── ...
+</code></pre></div><p>Each folder in the <code>packages</code> directory can be installed by running</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">npm install &lt;path/to/package&gt;</code></pre></div>
-
 <p>for example to install <code>@google-cloud/sqlcommenter-knex</code> in a given location, run <code>npm install /path/to/sqlcommenter-nodejs/packages/knex</code>. Same for every package(folder) in the <code>packages</code> directory.</p>
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># install</span> 
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># install </span>
 &gt; npm install /path/to/sqlcommenter-nodejs/packages/knex
 
-+ @google-cloud/sqlcommenter-knex@0.0.1</code></pre></div>
-<h4 id="a-name-verify-installation-a-verify-installation"><a name="verify-installation"></a> Verify Installation</h4>
-
++ @google-cloud/sqlcommenter-knex@0.0.1
+</code></pre></div><h4 id="a-nameverify-installationa-verify-installation"><!-- raw HTML omitted --><!-- raw HTML omitted --> Verify Installation</h4>
 <p>If package is properly installed, running <code>npm list &lt;package-name&gt;</code> will output details of the package. Let&rsquo;s verify the installation of <code>@google-cloud/sqlcommenter-knex</code> below:</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># verify</span>
 &gt; npm list @google-cloud/sqlcommenter-knex
 
 project@0.0.0 path/to/project
-└── @google-cloud/sqlcommenter-knex@0.0.1  -&gt; /path/to/sqlcommenter-nodejs/packages/knex</code></pre></div>
-<p>Inspecting the <code>package.json</code> file after installation should also show the installed pacakge.</p>
+└── @google-cloud/sqlcommenter-knex@0.0.1  -&gt; /path/to/sqlcommenter-nodejs/packages/knex
+</code></pre></div><p>Inspecting the <code>package.json</code> file after installation should also show the installed pacakge.</p>
 
 
 
@@ -407,7 +407,7 @@ project@0.0.0 path/to/project
   
 
     <div class="github-link">
-      <a href="https://github.com/google/sqlcommenter/tree/gh-pages/src/content/node/_index.md" target="blank"><i class="fa fa-code-fork"></i>
+      <a href="https://github.com/google/sqlcommenter/tree/gh-pages/src/contentnode/_index.md" target="blank"><i class="fa fa-code-fork"></i>
         Edit this page on Github</a>
     </div>
   </div>
@@ -420,8 +420,7 @@ project@0.0.0 path/to/project
     <ul>
 <li><a href="https://github.com/google/sqlcommenter/">Github</a></li>
 </ul>
-
-<h5 style="color: #fff">sqlcommenter</h5>
+<!-- raw HTML omitted -->
 
   
 

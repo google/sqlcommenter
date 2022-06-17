@@ -7,7 +7,7 @@ title = "sqlcommenter"
 # themesdir = "../.."
 pygmentsCodeFences = true
 pygmentsStyle = "monokailight"
-
+publishdir = "../"
 defaultContentLanguage = "en"
 defaultContentLanguageInSubdir= false
 enableMissingTranslationPlaceholders = false

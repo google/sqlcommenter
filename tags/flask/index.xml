@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>flask on sqlcommenter</title>
@@ -6,18 +6,14 @@
     <description>Recent content in flask on sqlcommenter</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 31 May 2019 18:22:11 -0700</lastBuildDate>
-    
-	<atom:link href="https://google.github.io/sqlcommenter/tags/flask/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Fri, 31 May 2019 18:22:11 -0700</lastBuildDate><atom:link href="https://google.github.io/sqlcommenter/tags/flask/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Flask</title>
       <link>https://google.github.io/sqlcommenter/python/flask/</link>
       <pubDate>Fri, 31 May 2019 18:22:11 -0700</pubDate>
       
       <guid>https://google.github.io/sqlcommenter/python/flask/</guid>
-      <description>Introduction Using it Expected fields End to examples  With psycopg2 With sqlalchemy  References  Introduction We provide Flask middleware which when coupled with:
+      <description>Introduction Using it Expected fields End to examples  With psycopg2 With sqlalchemy   References  Introduction We provide Flask middleware which when coupled with:
  sqlcommenter-psycopg2 sqlcommenter-sqlalchemy  allow us to retrieve the controller and route correlated with your source code in your web app.
 Using it Having successfully installed sqlcommenter-python&amp;rsquo;s sqlcommenter
 from sqlcommenter import FlaskMiddleware # Then in your flask programs just pass in the app FlaskMiddleware(app) Expected fields This Flask integration when coupled with compatible drivers will place the following fields</description>

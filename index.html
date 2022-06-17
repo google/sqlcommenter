@@ -5,7 +5,7 @@
     
       <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="generator" content="Hugo 0.55.6" />
+<meta name="generator" content="Hugo 0.81.0" />
 <title> :: sqlcommenter</title>
 <link rel="shortcut icon" href="https://google.github.io/sqlcommenter/images/favicon.ico" type="image/x-icon" />
 <link href="https://google.github.io/sqlcommenter/css/font-awesome.min.css" rel="stylesheet">
@@ -84,14 +84,14 @@
 
     
   </head>
-  <body data-url="/">
+  <body data-url="https://google.github.io/sqlcommenter/">
     
       <header>
   <div class="logo">
     
 	
   
-    <p><a href="https://google.github.io/sqlcommenter/"><img src="https://google.github.io/sqlcommenter/images/sqlcommenter_logo.png" alt="sqlcommenter logo" /> <span>sql</span>commenter</a></p>
+    <p><a href="https://google.github.io/sqlcommenter/"><img src="https://google.github.io/sqlcommenter/images/sqlcommenter_logo.png" alt="sqlcommenter logo"> <!-- raw HTML omitted -->sql<!-- raw HTML omitted -->commenter</a></p>
 
   
 
@@ -161,6 +161,20 @@
         ">
       <div>
       <a href="https://google.github.io/sqlcommenter/python/flask/">Flask</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/php/" class="dd-item haschildren
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/php/">Php</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+    <li data-nav-id="/php/laravel/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/php/laravel/">Laravel</a><i class="fa fa-circle-thin read-icon"></i>
       </div>
     </li>
         </ul>
@@ -295,8 +309,6 @@
 <a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fa fa-bars"></i> navigation</a>
 </span>
  
-
-
 <div class="title-card" style="">
   <div>
     <h2 class="logo"><span>sql</span>commenter</h2>
@@ -304,9 +316,7 @@
   </div>
 </div>
 
-
-<p><img src="https://google.github.io/sqlcommenter/images/sqlcommenter_logo.png" alt="" /></p>
-
+<p><img src="https://google.github.io/sqlcommenter/images/sqlcommenter_logo.png" alt=""></p>
 <p>
 
 <span class="logo brand">
@@ -316,47 +326,40 @@
 </span>
  is a suite of middlewares/plugins that enable your ORMs to augment SQL statements before execution, with comments containing
 information about the code that caused its execution. This helps in easily correlating slow performance with source code and giving insights into backend database performance. In short it provides some observability into the state of your client-side applications and their impact on the database&rsquo;s server-side.</p>
-
 <ul>
 <li><a href="#value">Value</a></li>
 <li><a href="#sample">Sample</a></li>
 <li><a href="#interpretation">Interpretation</a></li>
 <li><a href="#getting-started">Getting started</a></li>
 <li><a href="#support">Support</a>
-
 <ul>
 <li><a href="#languages">Languages</a></li>
 <li><a href="#frameworks">Frameworks</a></li>
 <li><a href="#databases">Databases</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="#source-code">Source code</a></li>
 </ul>
-
 <h3 id="value">Value</h3>
-
 <p>sqlcommenter provides instrumentation/wrappers to augment SQL from frameworks and ORMs. The augmented SQL provides key=&lsquo;value&rsquo; comments
 that help correlate usercode with ORM generated SQL statements and they can be examined in your database server logs. It provides deeper
 observability insights into the state of your applications all the way to your database server.</p>
-
 <h3 id="sample">Sample</h3>
-
 <p>This log was extracted from a live web application</p>
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#ae81ff">2019</span>-05-28 <span style="color:#ae81ff">11</span>:54:50.780 PDT <span style="color:#f92672">[</span><span style="color:#ae81ff">64128</span><span style="color:#f92672">]</span> LOG:  statement: INSERT INTO <span style="color:#d88200">&#34;polls_question&#34;</span>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">2019-05-28 11:54:50.780 PDT <span style="color:#f92672">[</span>64128<span style="color:#f92672">]</span> LOG:  statement: INSERT INTO <span style="color:#d88200">&#34;polls_question&#34;</span>
 <span style="color:#f92672">(</span><span style="color:#d88200">&#34;question_text&#34;</span>, <span style="color:#d88200">&#34;pub_date&#34;</span><span style="color:#f92672">)</span> VALUES
 <span style="color:#f92672">(</span><span style="color:#d88200">&#39;What is this?&#39;</span>, <span style="color:#d88200">&#39;2019-05-28T18:54:50.767481+00:00&#39;</span>::timestamptz<span style="color:#f92672">)</span> RETURNING
 <span style="color:#d88200">&#34;polls_question&#34;</span>.<span style="color:#d88200">&#34;id&#34;</span> /*controller<span style="color:#f92672">=</span><span style="color:#d88200">&#39;index&#39;</span>,db_driver<span style="color:#f92672">=</span><span style="color:#d88200">&#39;django.db.backends.postgresql&#39;</span>,
 <span style="color:#111">framework</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;django%3A2.2.1&#39;</span>,route<span style="color:#f92672">=</span><span style="color:#d88200">&#39;%5Epolls/%24&#39;</span>,
 <span style="color:#111">traceparent</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;00-5bd66ef5095369c7b0d1f8f4bd33716a-c532cb4098ac3dd2-01&#39;</span>,
-<span style="color:#111">tracestate</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;congo%3Dt61rcWkgMzE%2Crojo%3D00f067aa0ba902b7&#39;</span>*/</code></pre></div>
-<h3 id="interpretation">Interpretation</h3>
-
+<span style="color:#111">tracestate</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;congo%3Dt61rcWkgMzE%2Crojo%3D00f067aa0ba902b7&#39;</span>*/
+</code></pre></div><h3 id="interpretation">Interpretation</h3>
 <p>On examining the SQL statement from above in <a href="#sample">Sample</a> and examining the comment in <code>/*...*/</code></p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#75715e">/*controller=&#39;index&#39;,db_driver=&#39;django.db.backends.postgresql&#39;,
 </span><span style="color:#75715e">framework=&#39;django%3A2.2.1&#39;,route=&#39;%5Epolls/%24&#39;,
 </span><span style="color:#75715e">traceparent=&#39;00-5bd66ef5095369c7b0d1f8f4bd33716a-c532cb4098ac3dd2-01&#39;,
-</span><span style="color:#75715e">tracestate=&#39;congo%3Dt61rcWkgMzE%2Crojo%3D00f067aa0ba902b7&#39;*/</span></code></pre></div>
-<p>we can now correlate and pinpoint the fields in the above slow SQL query to our source code in our web application:</p>
-
+</span><span style="color:#75715e">tracestate=&#39;congo%3Dt61rcWkgMzE%2Crojo%3D00f067aa0ba902b7&#39;*/</span>
+</code></pre></div><p>we can now correlate and pinpoint the fields in the above slow SQL query to our source code in our web application:</p>
 <table>
 <thead>
 <tr>
@@ -364,46 +367,36 @@ observability insights into the state of your applications all the way to your d
 <th>Interpretation</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td><code>controller='index'</code></td>
 <td>Controller name <code>^/polls/$</code></td>
 </tr>
-
 <tr>
 <td><code>db_driver='django.db.backends.postgresql'</code></td>
 <td>Database driver <code>django.db.backends.postgresql</code></td>
 </tr>
-
 <tr>
 <td><code>framework='django%3A2.2.1'</code></td>
 <td>Framework version of <code>django 2.2.1</code></td>
 </tr>
-
 <tr>
 <td><code>route='%5Epolls/%24'</code></td>
 <td>Route of <code>^/polls/$</code></td>
 </tr>
-
 <tr>
 <td><code>traceparent='00-5bd66ef5095369c7b0d1f8f4bd33716a-c532cb4098ac3dd2-01'</code></td>
 <td><a href="https://www.w3.org/TR/trace-context/#traceparent-field">W3C TraceContext.Traceparent</a> of &lsquo;00-5bd66ef5095369c7b0d1f8f4bd33716a-c532cb4098ac3dd2-01&rsquo;</td>
 </tr>
-
 <tr>
 <td><code>tracestate='congo%3Dt61rcWkgMzE%2Crojo%3D00f067aa0ba902b7'</code></td>
 <td><a href="https://www.w3.org/TR/trace-context/#tracestate-field">W3C TraceContext.Tracestate</a> with entries congo=t61rcWkgMzE,rojo=00f067aa0ba902b7</td>
 </tr>
 </tbody>
 </table>
-
 <h3 id="support">Support</h3>
-
 <p>We support a variety of languages and frameworks such as:</p>
-
 <h4 id="languages">Languages</h4>
-
 <p><div class="user-card-container">
   <a target="_blank" href="https://google.github.io/sqlcommenter/python">
   
@@ -435,10 +428,16 @@ observability insights into the state of your applications all the way to your d
   
   </a>
 </div>
+
+<div class="user-card-container">
+  <a target="_blank" href="https://google.github.io/sqlcommenter/php">
+  
+  <img class="no-padding no-margin " src="https://google.github.io/sqlcommenter/images/php-logo.png">
+  
+  </a>
+</div>
 </p>
-
 <h4 id="frameworks">Frameworks</h4>
-
 <p><div class="user-card-container">
   <a target="_blank" href="https://google.github.io/sqlcommenter/python/django">
   
@@ -518,12 +517,17 @@ observability insights into the state of your applications all the way to your d
   
   </a>
 </div>
+
+<div class="user-card-container">
+  <a target="_blank" href="https://google.github.io/sqlcommenter/php/laravel">
+  
+  <img class="no-padding no-margin " src="https://google.github.io/sqlcommenter/images/laravel-logo.png">
+  
+  </a>
+</div>
 </p>
-
 <h4 id="databases">Databases</h4>
-
 <p>We have tested the instrumentation on the following databases:</p>
-
 <p><div class="user-card-container">
   <a target="_blank" href="https://google.github.io/sqlcommenter/databases/postgresql">
   
@@ -564,9 +568,7 @@ observability insights into the state of your applications all the way to your d
   </a>
 </div>
 </p>
-
 <h3 id="source-code">Source code</h3>
-
 <p>The project is hosted on <a href="https://github.com/google/sqlcommenter/">Github</a></p>
 
 
@@ -605,8 +607,7 @@ observability insights into the state of your applications all the way to your d
     <ul>
 <li><a href="https://github.com/google/sqlcommenter/">Github</a></li>
 </ul>
-
-<h5 style="color: #fff">sqlcommenter</h5>
+<!-- raw HTML omitted -->
 
   
 

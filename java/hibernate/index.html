@@ -5,7 +5,7 @@
     
       <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="generator" content="Hugo 0.55.6" />
+<meta name="generator" content="Hugo 0.81.0" />
 <title>Hibernate :: sqlcommenter</title>
 <link rel="shortcut icon" href="https://google.github.io/sqlcommenter/images/favicon.ico" type="image/x-icon" />
 <link href="https://google.github.io/sqlcommenter/css/font-awesome.min.css" rel="stylesheet">
@@ -84,14 +84,14 @@
 
     
   </head>
-  <body data-url="/java/hibernate/">
+  <body data-url="https://google.github.io/sqlcommenter/java/hibernate/">
     
       <header>
   <div class="logo">
     
 	
   
-    <p><a href="https://google.github.io/sqlcommenter/"><img src="https://google.github.io/sqlcommenter/images/sqlcommenter_logo.png" alt="sqlcommenter logo" /> <span>sql</span>commenter</a></p>
+    <p><a href="https://google.github.io/sqlcommenter/"><img src="https://google.github.io/sqlcommenter/images/sqlcommenter_logo.png" alt="sqlcommenter logo"> <!-- raw HTML omitted -->sql<!-- raw HTML omitted -->commenter</a></p>
 
   
 
@@ -161,6 +161,20 @@
         ">
       <div>
       <a href="https://google.github.io/sqlcommenter/python/flask/">Flask</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/php/" class="dd-item haschildren
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/php/">Php</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+    <li data-nav-id="/php/laravel/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/php/laravel/">Laravel</a><i class="fa fa-circle-thin read-icon"></i>
       </div>
     </li>
         </ul>
@@ -298,21 +312,17 @@
     
     
 
-
-
-<p><img src="https://google.github.io/sqlcommenter/images/hibernate-logo.svg" alt="" /></p>
-
+<p><img src="https://google.github.io/sqlcommenter/images/hibernate-logo.svg" alt=""></p>
 <ul>
 <li><a href="#introduction">Introduction</a></li>
 <li><a href="#requirements">Requirements</a></li>
 <li><a href="#using-the-integration">Using the integration</a>
-
 <ul>
 <li><a href="#imports">Imports</a></li>
 <li><a href="#imports#0">Maven imports</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="#end-to-end-example">End to end example</a>
-
 <ul>
 <li><a href="#directory-structure">Directory structure</a></li>
 <li><a href="#source-code">Source code</a></li>
@@ -320,16 +330,14 @@
 <li><a href="#1">ListQuestions.java</a></li>
 <li><a href="#2">hibernate.cfg.xml</a></li>
 <li><a href="#3">Question.hbm.xml</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="#references">References</a></li>
 </ul>
-
 <h3 id="introduction">Introduction</h3>
-
 <p>We provide an integration for Hibernate ORM that will inspect and augment your SQL with information about your
 setup. It is best used when coupled with other frameworks such as:</p>
-
-<p><div class="user-card-container">
+<div class="user-card-container">
   <a target="_blank" href="https://google.github.io/sqlcommenter/java/spring">
   
   <img class="no-padding no-margin " src="https://google.github.io/sqlcommenter/images/spring-logo.png">
@@ -337,70 +345,32 @@ setup. It is best used when coupled with other frameworks such as:</p>
   </a>
 </div>
 
-<!-- <div class="user-card-container">
-  <a target="_blank" href="https://google.github.io/sqlcommenter/java/jetty">
-  
-  <img class="no-padding no-margin " src="https://google.github.io/sqlcommenter/images/jetty-logo.png">
-  
-  </a>
-</div>
-
-<div class="user-card-container">
-  <a target="_blank" href="https://google.github.io/sqlcommenter/java/grpc">
-  
-  <img class="no-padding no-margin " src="https://google.github.io/sqlcommenter/images/grpc-logo.png">
-  
-  </a>
-</div>
-
-<div class="user-card-container">
-  <a target="_blank" href="https://google.github.io/sqlcommenter/java/tomcat">
-  
-  <img class="no-padding no-margin " src="https://google.github.io/sqlcommenter/images/tomcat-logo.png">
-  
-  </a>
-</div>
- --></p>
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <h3 id="requirements">Requirements</h3>
-
 <ul>
 <li>Java 8+</li>
 <li>Successfully installed <a href="https://google.github.io/sqlcommenter/java/#install">sqlcommenter-java</a></li>
 </ul>
-
 <h3 id="using-the-integration">Using the integration</h3>
-
 <p>You can include this integration in your Java programs in 2 ways.</p>
-
 <h4 id="persistance-xml-file">Persistance XML file</h4>
-
 <p>By simply adding to your persistence XML file the property
 <code>&quot;hibernate.session_factory.statement_inspector&quot;</code></p>
-
 <p>e.g. to your <code>hibernate.cfg.xml</code> file</p>
-
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;property</span> <span style="color:#75af00">name=</span><span style="color:#d88200">&#34;hibernate.session_factory.statement_inspector&#34;</span>
           <span style="color:#75af00">value=</span><span style="color:#d88200">&#34;com.google.cloud.sqlcommenter.schibernate.SCHibernate&#34;</span> <span style="color:#f92672">/&gt;</span></code></pre></div>
-
 <h4 id="in-java-source-code">In Java source code</h4>
-
 <p>When creating your Hibernate session factory, add our StatementInspector like this:</p>
-
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">import</span> <span style="color:#111">com.google.cloud.sqlcommenter.schhibernate.SCHibernate</span><span style="color:#f92672">;</span>
 
 <span style="color:#f92672">...</span>
         <span style="color:#111">sessionFactoryBuilder</span><span style="color:#f92672">.</span><span style="color:#75af00">applyStatementInspector</span><span style="color:#f92672">(</span><span style="color:#00a8c8">new</span> <span style="color:#111">SCHibernate</span><span style="color:#f92672">());</span></code></pre></div>
-
 <h3 id="spring-and-jpa-end-to-end-example">Spring and JPA end-to-end example</h3>
-
 <p>First thing you need to do is to download the <a href="https://github.com/google/sqlcommenter/tree/master/java/sqlcommenter-java#spring">sqlcommenter-java-guides-spring-jpa</a>
 Java project.</p>
-
 <h4 id="source-code">Source code</h4>
-
 <p>This project uses the following JPA entities:</p>
-
 <div class="tab-container">
   <ul class="tabs">
     
@@ -499,9 +469,7 @@ Java project.</p>
   </span>
 </div>
 
-
 <p>The Repository layer looks as follows:</p>
-
 <div class="tab-container">
   <ul class="tabs">
     
@@ -552,9 +520,7 @@ Java project.</p>
   </span>
 </div>
 
-
 <p>The Service layer looks as follows:</p>
-
 <div class="tab-container">
   <ul class="tabs">
     
@@ -634,7 +600,6 @@ Java project.</p>
 
   </span>
 </div>
-
 
 <p>The Spring JPA configuration looks as follows:</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// In file JpaTransactionManagerConfiguration.java
@@ -748,8 +713,8 @@ Java project.</p>
             <span style="color:#d88200">&#34;com.google.cloud.sqlcommenter.spring.jpa.domain&#34;</span>
         <span style="color:#f92672">};</span>
     <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span></code></pre></div>
-<p>Now, the test looks as follows:</p>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>Now, the test looks as follows:</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// In file JpaTransactionManagerTest.java
 </span><span style="color:#75715e"></span>
 <span style="color:#f92672">package</span> <span style="color:#111">com.google.cloud.sqlcommenter.spring.jpa</span><span style="color:#f92672">;</span>
@@ -878,8 +843,8 @@ Java project.</p>
                     <span style="color:#f92672">.</span><span style="color:#75af00">count</span><span style="color:#f92672">()</span>
         <span style="color:#f92672">);</span>
     <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span></code></pre></div>
-<p>When running the unit test above, we can see that the SQL statements include the comments as well:</p>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>When running the unit test above, we can see that the SQL statements include the comments as well:</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#00a8c8">select</span> <span style="color:#111">tag0_</span><span style="color:#111">.</span><span style="color:#111">id</span> <span style="color:#00a8c8">as</span> <span style="color:#111">id1_2_</span><span style="color:#111">,</span> <span style="color:#111">tag0_</span><span style="color:#111">.</span><span style="color:#111">name</span> <span style="color:#00a8c8">as</span> <span style="color:#111">name2_2_</span> <span style="color:#00a8c8">from</span> <span style="color:#111">tag</span> <span style="color:#111">tag0_</span> <span style="color:#00a8c8">where</span> <span style="color:#111">tag0_</span><span style="color:#111">.</span><span style="color:#111">name</span> <span style="color:#00a8c8">in</span> <span style="color:#111">(</span><span style="color:#f92672">?</span> <span style="color:#111">,</span> <span style="color:#f92672">?</span><span style="color:#111">)</span> <span style="color:#75715e">/*action=&#39;CreatePost&#39;,controller=&#39;ForumController&#39;,framework=&#39;spring&#39;*/</span>
 
 <span style="color:#00a8c8">call</span> <span style="color:#00a8c8">next</span> <span style="color:#111">value</span> <span style="color:#00a8c8">for</span> <span style="color:#111">hibernate_sequence</span> <span style="color:#75715e">/*action=&#39;CreatePost&#39;,controller=&#39;ForumController&#39;,framework=&#39;spring&#39;*/</span>
@@ -892,13 +857,10 @@ Java project.</p>
 
 <span style="color:#00a8c8">select</span> <span style="color:#111">post0_</span><span style="color:#111">.</span><span style="color:#111">id</span> <span style="color:#00a8c8">as</span> <span style="color:#111">id1_0_</span><span style="color:#111">,</span> <span style="color:#111">post0_</span><span style="color:#111">.</span><span style="color:#111">title</span> <span style="color:#00a8c8">as</span> <span style="color:#111">title2_0_</span> <span style="color:#00a8c8">from</span> <span style="color:#111">post</span> <span style="color:#111">post0_</span> <span style="color:#00a8c8">where</span> <span style="color:#111">post0_</span><span style="color:#111">.</span><span style="color:#111">title</span><span style="color:#f92672">=?</span> <span style="color:#75715e">/*action=&#39;FindPostsByTitle&#39;,controller=&#39;ForumController&#39;,framework=&#39;spring&#39;*/</span>
 
-<span style="color:#00a8c8">select</span> <span style="color:#111">post0_</span><span style="color:#111">.</span><span style="color:#111">id</span> <span style="color:#00a8c8">as</span> <span style="color:#111">id1_0_0_</span><span style="color:#111">,</span> <span style="color:#111">post0_</span><span style="color:#111">.</span><span style="color:#111">title</span> <span style="color:#00a8c8">as</span> <span style="color:#111">title2_0_0_</span> <span style="color:#00a8c8">from</span> <span style="color:#111">post</span> <span style="color:#111">post0_</span> <span style="color:#00a8c8">where</span> <span style="color:#111">post0_</span><span style="color:#111">.</span><span style="color:#111">id</span><span style="color:#f92672">=?</span> <span style="color:#75715e">/*action=&#39;FindPostById&#39;,controller=&#39;ForumController&#39;,framework=&#39;spring&#39;*/</span></code></pre></div>
-<h3 id="spring-and-hibernate-end-to-end-example">Spring and Hibernate end-to-end example</h3>
-
+<span style="color:#00a8c8">select</span> <span style="color:#111">post0_</span><span style="color:#111">.</span><span style="color:#111">id</span> <span style="color:#00a8c8">as</span> <span style="color:#111">id1_0_0_</span><span style="color:#111">,</span> <span style="color:#111">post0_</span><span style="color:#111">.</span><span style="color:#111">title</span> <span style="color:#00a8c8">as</span> <span style="color:#111">title2_0_0_</span> <span style="color:#00a8c8">from</span> <span style="color:#111">post</span> <span style="color:#111">post0_</span> <span style="color:#00a8c8">where</span> <span style="color:#111">post0_</span><span style="color:#111">.</span><span style="color:#111">id</span><span style="color:#f92672">=?</span> <span style="color:#75715e">/*action=&#39;FindPostById&#39;,controller=&#39;ForumController&#39;,framework=&#39;spring&#39;*/</span>
+</code></pre></div><h3 id="spring-and-hibernate-end-to-end-example">Spring and Hibernate end-to-end example</h3>
 <h4 id="source-code-1">Source code</h4>
-
 <p>This project uses the following JPA entities:</p>
-
 <div class="tab-container">
   <ul class="tabs">
     
@@ -997,9 +959,7 @@ Java project.</p>
   </span>
 </div>
 
-
 <p>The DAO (Data Access Object) layer looks as follows:</p>
-
 <div class="tab-container">
   <ul class="tabs">
     
@@ -1179,9 +1139,7 @@ Java project.</p>
   </span>
 </div>
 
-
 <p>The Service layer looks as follows:</p>
-
 <div class="tab-container">
   <ul class="tabs">
     
@@ -1260,7 +1218,6 @@ Java project.</p>
 
   </span>
 </div>
-
 
 <p>The Spring Hibernate configuration looks as follows:</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// In file HibernateTransactionManagerConfiguration.java
@@ -1364,8 +1321,8 @@ Java project.</p>
                 <span style="color:#d88200">&#34;com.google.cloud.sqlcommenter.spring.hibernate.domain&#34;</span>
         <span style="color:#f92672">};</span>
     <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span></code></pre></div>
-<p>Now, the test looks as follows:</p>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>Now, the test looks as follows:</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// In file HibernateTransactionManagerTest.java
 </span><span style="color:#75715e"></span>
 <span style="color:#f92672">package</span> <span style="color:#111">com.google.cloud.sqlcommenter.spring.hibernate</span><span style="color:#f92672">;</span>
@@ -1510,8 +1467,8 @@ Java project.</p>
                     <span style="color:#f92672">.</span><span style="color:#75af00">count</span><span style="color:#f92672">()</span>
         <span style="color:#f92672">);</span>
     <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span></code></pre></div>
-<p>When running the unit test above, we can see that the SQL statements include the comments as well:</p>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>When running the unit test above, we can see that the SQL statements include the comments as well:</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#00a8c8">select</span> <span style="color:#111">tag0_</span><span style="color:#111">.</span><span style="color:#111">id</span> <span style="color:#00a8c8">as</span> <span style="color:#111">id1_2_</span><span style="color:#111">,</span> <span style="color:#111">tag0_</span><span style="color:#111">.</span><span style="color:#111">name</span> <span style="color:#00a8c8">as</span> <span style="color:#111">name2_2_</span> <span style="color:#00a8c8">from</span> <span style="color:#111">tag</span> <span style="color:#111">tag0_</span> <span style="color:#00a8c8">where</span> <span style="color:#111">tag0_</span><span style="color:#111">.</span><span style="color:#111">name</span> <span style="color:#00a8c8">in</span> <span style="color:#111">(</span><span style="color:#f92672">?</span> <span style="color:#111">,</span> <span style="color:#f92672">?</span><span style="color:#111">)</span> <span style="color:#75715e">/*action=&#39;CreatePost&#39;,controller=&#39;ForumController&#39;,framework=&#39;spring&#39;*/</span>
 
 <span style="color:#00a8c8">call</span> <span style="color:#00a8c8">next</span> <span style="color:#111">value</span> <span style="color:#00a8c8">for</span> <span style="color:#111">hibernate_sequence</span> <span style="color:#75715e">/*action=&#39;CreatePost&#39;,controller=&#39;ForumController&#39;,framework=&#39;spring&#39;*/</span>
@@ -1524,9 +1481,8 @@ Java project.</p>
 
 <span style="color:#00a8c8">select</span> <span style="color:#111">post0_</span><span style="color:#111">.</span><span style="color:#111">id</span> <span style="color:#00a8c8">as</span> <span style="color:#111">id1_0_</span><span style="color:#111">,</span> <span style="color:#111">post0_</span><span style="color:#111">.</span><span style="color:#111">title</span> <span style="color:#00a8c8">as</span> <span style="color:#111">title2_0_</span> <span style="color:#00a8c8">from</span> <span style="color:#111">post</span> <span style="color:#111">post0_</span> <span style="color:#00a8c8">where</span> <span style="color:#111">post0_</span><span style="color:#111">.</span><span style="color:#111">title</span><span style="color:#f92672">=?</span> <span style="color:#75715e">/*action=&#39;FindPostsByTitle&#39;,controller=&#39;ForumController&#39;,framework=&#39;spring&#39;*/</span>
 
-<span style="color:#00a8c8">select</span> <span style="color:#111">post0_</span><span style="color:#111">.</span><span style="color:#111">id</span> <span style="color:#00a8c8">as</span> <span style="color:#111">id1_0_0_</span><span style="color:#111">,</span> <span style="color:#111">post0_</span><span style="color:#111">.</span><span style="color:#111">title</span> <span style="color:#00a8c8">as</span> <span style="color:#111">title2_0_0_</span> <span style="color:#00a8c8">from</span> <span style="color:#111">post</span> <span style="color:#111">post0_</span> <span style="color:#00a8c8">where</span> <span style="color:#111">post0_</span><span style="color:#111">.</span><span style="color:#111">id</span><span style="color:#f92672">=?</span> <span style="color:#75715e">/*action=&#39;FindPostById&#39;,controller=&#39;ForumController&#39;,framework=&#39;spring&#39;*/</span></code></pre></div>
-<h3 id="references">References</h3>
-
+<span style="color:#00a8c8">select</span> <span style="color:#111">post0_</span><span style="color:#111">.</span><span style="color:#111">id</span> <span style="color:#00a8c8">as</span> <span style="color:#111">id1_0_0_</span><span style="color:#111">,</span> <span style="color:#111">post0_</span><span style="color:#111">.</span><span style="color:#111">title</span> <span style="color:#00a8c8">as</span> <span style="color:#111">title2_0_0_</span> <span style="color:#00a8c8">from</span> <span style="color:#111">post</span> <span style="color:#111">post0_</span> <span style="color:#00a8c8">where</span> <span style="color:#111">post0_</span><span style="color:#111">.</span><span style="color:#111">id</span><span style="color:#f92672">=?</span> <span style="color:#75715e">/*action=&#39;FindPostById&#39;,controller=&#39;ForumController&#39;,framework=&#39;spring&#39;*/</span>
+</code></pre></div><h3 id="references">References</h3>
 <table>
 <thead>
 <tr>
@@ -1534,13 +1490,11 @@ Java project.</p>
 <th>URL</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>Hibernate ORM project</td>
 <td><a href="https://hibernate.org/orm/">https://hibernate.org/orm/</a></td>
 </tr>
-
 <tr>
 <td>sqlcommenter-java on Github</td>
 <td><a href="https://github.com/google/sqlcommenter/tree/master/java/sqlcommenter-java">https://github.com/google/sqlcommenter/tree/master/java/sqlcommenter-java</a></td>
@@ -1571,7 +1525,7 @@ Java project.</p>
   
 
     <div class="github-link">
-      <a href="https://github.com/google/sqlcommenter/tree/gh-pages/src/content/java/hibernate/_index.md" target="blank"><i class="fa fa-code-fork"></i>
+      <a href="https://github.com/google/sqlcommenter/tree/gh-pages/src/contentjava/hibernate/_index.md" target="blank"><i class="fa fa-code-fork"></i>
         Edit this page on Github</a>
     </div>
   </div>
@@ -1584,8 +1538,7 @@ Java project.</p>
     <ul>
 <li><a href="https://github.com/google/sqlcommenter/">Github</a></li>
 </ul>
-
-<h5 style="color: #fff">sqlcommenter</h5>
+<!-- raw HTML omitted -->
 
   
 

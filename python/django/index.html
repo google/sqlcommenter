@@ -5,7 +5,7 @@
     
       <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="generator" content="Hugo 0.55.6" />
+<meta name="generator" content="Hugo 0.81.0" />
 <title>Django :: sqlcommenter</title>
 <link rel="shortcut icon" href="https://google.github.io/sqlcommenter/images/favicon.ico" type="image/x-icon" />
 <link href="https://google.github.io/sqlcommenter/css/font-awesome.min.css" rel="stylesheet">
@@ -84,14 +84,14 @@
 
     
   </head>
-  <body data-url="/python/django/">
+  <body data-url="https://google.github.io/sqlcommenter/python/django/">
     
       <header>
   <div class="logo">
     
 	
   
-    <p><a href="https://google.github.io/sqlcommenter/"><img src="https://google.github.io/sqlcommenter/images/sqlcommenter_logo.png" alt="sqlcommenter logo" /> <span>sql</span>commenter</a></p>
+    <p><a href="https://google.github.io/sqlcommenter/"><img src="https://google.github.io/sqlcommenter/images/sqlcommenter_logo.png" alt="sqlcommenter logo"> <!-- raw HTML omitted -->sql<!-- raw HTML omitted -->commenter</a></p>
 
   
 
@@ -117,6 +117,68 @@
             <i class="fa fa-angle-down fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
       </div>
         <ul>
+    <li data-nav-id="/python/django/" class="dd-item parent active haschildren
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/python/django/">Django</a>
+            <i class="fa fa-angle-down fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+      <li data-nav-id="/python/django/local/" class="dd-item">
+        <div>
+          <a href="https://google.github.io/sqlcommenter/python/django/local/">
+            Locally
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/python/django/gcp/" class="dd-item">
+        <div>
+          <a href="https://google.github.io/sqlcommenter/python/django/gcp/">
+            Google Cloud Platform
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/python/django/aws/" class="dd-item">
+        <div>
+          <a href="https://google.github.io/sqlcommenter/python/django/aws/">
+            Amazon Web Services
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/python/psycopg2/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/python/psycopg2/">psycopg2</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/python/sqlalchemy/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/python/sqlalchemy/">SQLAlchemy</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/python/flask/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/python/flask/">Flask</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/php/" class="dd-item haschildren
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/php/">Php</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+    <li data-nav-id="/php/laravel/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/php/laravel/">Laravel</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
         </ul>
     </li>
     <li data-nav-id="/ruby/" class="dd-item haschildren
@@ -251,10 +313,7 @@
     
     
 
-
-
-<p><img src="https://google.github.io/sqlcommenter/images/django-logo.png" alt="" /></p>
-
+<p><img src="https://google.github.io/sqlcommenter/images/django-logo.png" alt=""></p>
 <p><div class="user-card-container">
   <a target="_blank" href="https://google.github.io/sqlcommenter/python/django/aws">
   
@@ -279,39 +338,30 @@
   </a>
 </div>
 </p>
-
 <ul>
 <li><a href="#introduction">Introduction</a></li>
 <li><a href="#requirements">Requirements</a></li>
 <li><a href="#installation">Installation</a>
-
 <ul>
 <li><a href="#pip-install">pip install</a></li>
 <li><a href="#source">Source</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="#fields">Fields</a>
-
 <ul>
 <li><a href="#sample-log-entry">Sample log entry</a></li>
 <li><a href="#expected-fields">Expected fields</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="#references">References</a></li>
 </ul>
-
 <h4 id="introduction">Introduction</h4>
-
 <p>This package is in the form of <a href="https://docs.djangoproject.com/en/2.2/topics/http/middleware/">Django middleware</a> whose purpose is to augment a SQL statement right before execution, with information about the controller and user code to help with later making database optimization decisions, after those statements are examined from the database server&rsquo;s logs.</p>
-
 <p>The middleware uses Django&rsquo;s <code>connection.execute_wrapper</code>.</p>
-
 <h3 id="requirements">Requirements</h3>
-
 <p>The middleware uses Django&rsquo;s <a href="https://docs.djangoproject.com/en/stable/topics/db/instrumentation/#connection-execute-wrapper"><code>connection.execute_wrapper</code></a> and therefore requires <a href="https://docs.djangoproject.com/en/stable/faq/install">Django 2.0</a> or later (which <a href="https://docs.djangoproject.com/en/stable/faq/install/#what-python-version-can-i-use-with-django">support various versions</a> of <a href="https://www.python.org/downloads/">Python 3</a>).</p>
-
 <p>To record <a href="https://opencensus.io/">OpenCensus</a> information <a href="https://pypi.org/project/opencensus-ext-django/">opencensus-ext-django</a>, version 0.7 or greater, is required.</p>
-
 <h4 id="installation">Installation</h4>
-
 <p>This middleware can be installed by any of the following:
 <div class="tab-container">
   <ul class="tabs">
@@ -337,9 +387,7 @@
   </span>
 </div>
 </p>
-
 <h3 id="enabling-it">Enabling it</h3>
-
 <p>Please edit your <code>settings.py</code> file to include <code>google.cloud.sqlcommenter.django.middleware.SqlCommenter</code> in your <code>MIDDLEWARE</code> section like this:</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff">--- settings.py
 +++ settings.py
@@ -348,91 +396,70 @@
 +  &#39;google.cloud.sqlcommenter.django.middleware.SqlCommenter&#39;,
    ...
  ]
-</code></pre></div>
-<div class="notices tip" >
-If any middleware execute database queries (that you'd like commented by SqlCommenter), those middleware MUST appear after
-'google.cloud.sqlcommenter.django.middleware.SqlCommenter'
-</div>
-
+</code></pre></div><!-- raw HTML omitted -->
 <h3 id="fields">Fields</h3>
-
 <p>In the database server logs, the comment&rsquo;s fields are:</p>
-
 <ul>
 <li>comma separated key-value pairs e.g. <code>controller='index'</code></li>
 <li>values are SQL escaped i.e. <code>key='value'</code></li>
 <li>URL-quoted except for the equals(<code>=</code>) sign e.g <code>route='%5Epolls/%24'</code>. so should be URL-unquoted when being consumed</li>
 </ul>
-
 <h4 id="sample-log-entry">Sample log entry</h4>
-
 <p>After making a request into the middleware-enabled polls web-app.</p>
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#ae81ff">2019</span>-05-28 <span style="color:#ae81ff">11</span>:54:50.780 PDT <span style="color:#f92672">[</span><span style="color:#ae81ff">64128</span><span style="color:#f92672">]</span> LOG:  statement: INSERT INTO <span style="color:#d88200">&#34;polls_question&#34;</span>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">2019-05-28 11:54:50.780 PDT <span style="color:#f92672">[</span>64128<span style="color:#f92672">]</span> LOG:  statement: INSERT INTO <span style="color:#d88200">&#34;polls_question&#34;</span>
 <span style="color:#f92672">(</span><span style="color:#d88200">&#34;question_text&#34;</span>, <span style="color:#d88200">&#34;pub_date&#34;</span><span style="color:#f92672">)</span> VALUES
 <span style="color:#f92672">(</span><span style="color:#d88200">&#39;Wassup?&#39;</span>, <span style="color:#d88200">&#39;2019-05-28T18:54:50.767481+00:00&#39;</span>::timestamptz<span style="color:#f92672">)</span> RETURNING <span style="color:#d88200">&#34;polls_question&#34;</span>.<span style="color:#d88200">&#34;id&#34;</span>
-/*controller<span style="color:#f92672">=</span><span style="color:#d88200">&#39;index&#39;</span>,framework<span style="color:#f92672">=</span><span style="color:#d88200">&#39;django%3A2.2.1&#39;</span>,route<span style="color:#f92672">=</span><span style="color:#d88200">&#39;%5Epolls/%24&#39;</span>*/</code></pre></div>
-<h4 id="expected-fields">Expected Fields</h4>
-
+/*controller<span style="color:#f92672">=</span><span style="color:#d88200">&#39;index&#39;</span>,framework<span style="color:#f92672">=</span><span style="color:#d88200">&#39;django%3A2.2.1&#39;</span>,route<span style="color:#f92672">=</span><span style="color:#d88200">&#39;%5Epolls/%24&#39;</span>*/
+</code></pre></div><h4 id="expected-fields">Expected Fields</h4>
 <table>
 <thead>
 <tr>
 <th>Field</th>
-<th>Included <br /> by default?</th>
+<th>Included <!-- raw HTML omitted --> by default?</th>
 <th>Description</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td><code>app_name</code></td>
-<td><div style="text-align: center">&#10060;</div></td>
+<td><!-- raw HTML omitted -->❌<!-- raw HTML omitted --></td>
 <td>The <a href="https://docs.djangoproject.com/en/2.2/ref/urlresolvers/#django.urls.ResolverMatch.app_name">application namespace</a> of the matching URL pattern in your urls.py</td>
 </tr>
-
 <tr>
 <td><code>controller</code></td>
-<td><div style="text-align: center">&#10004;</div></td>
+<td><!-- raw HTML omitted -->✔<!-- raw HTML omitted --></td>
 <td>The <a href="https://docs.djangoproject.com/en/2.2/ref/urls/#path">name</a> of the matching URL pattern as described in your urls.py</td>
 </tr>
-
 <tr>
 <td><code>db_driver</code></td>
-<td><div style="text-align: center">&#10060;</div></td>
+<td><!-- raw HTML omitted -->❌<!-- raw HTML omitted --></td>
 <td>The name of the Django <a href="https://docs.djangoproject.com/en/2.2/ref/settings/#engine">database engine</a></td>
 </tr>
-
 <tr>
 <td><code>framework</code></td>
-<td><div style="text-align: center">&#10004;</div></td>
+<td><!-- raw HTML omitted -->✔<!-- raw HTML omitted --></td>
 <td>The word &ldquo;django&rdquo; and the version of Django being used</td>
 </tr>
-
 <tr>
 <td><code>route</code></td>
-<td><div style="text-align: center">&#10004;</div></td>
+<td><!-- raw HTML omitted -->✔<!-- raw HTML omitted --></td>
 <td>The <a href="https://docs.djangoproject.com/en/2.2/ref/urlresolvers/#django.urls.ResolverMatch.route">route</a> of the matching URL pattern as described in your urls.py</td>
 </tr>
-
 <tr>
 <td><code>traceparent</code></td>
-<td><div style="text-align: center">&#10060;</div></td>
+<td><!-- raw HTML omitted -->❌<!-- raw HTML omitted --></td>
 <td>The <a href="https://www.w3.org/TR/trace-context/#traceparent-field">W3C TraceContext.Traceparent field</a> of the OpenCensus trace</td>
 </tr>
-
 <tr>
 <td><code>tracestate</code></td>
-<td><div style="text-align: center">&#10060;</div></td>
+<td><!-- raw HTML omitted -->❌<!-- raw HTML omitted --></td>
 <td>The <a href="https://www.w3.org/TR/trace-context/#tracestate-field">W3C TraceContext.Tracestate field</a> of the OpenCensus trace</td>
 </tr>
 </tbody>
 </table>
-
 <h3 id="end-to-end-examples">End to end examples</h3>
-
 <p>Examples are based off the <a href="https://docs.djangoproject.com/en/2.2/intro/tutorial01/">polls app from the Django introduction tutorial</a>.</p>
-
 <h4 id="source-code">Source code</h4>
-
 <div class="tab-container">
   <ul class="tabs">
     
@@ -598,19 +625,12 @@ If any middleware execute database queries (that you'd like commented by SqlComm
   </span>
 </div>
 
-
 <p>From the command line, we run the django development server in one terminal:</p>
-
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># python manage.py runserver</span></code></pre></div>
-
 <p>And we use <a href="https://curl.haxx.se/">curl</a> to make an HTTP request in another:</p>
-
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># curl http://127.0.0.1:8000/polls/</span></code></pre></div>
-
 <h4 id="results">Results</h4>
-
 <p>Examining our Postgresql server logs, with the various options</p>
-
 <div class="tab-container">
   <ul class="tabs">
     
@@ -635,25 +655,23 @@ If any middleware execute database queries (that you'd like commented by SqlComm
   <span class="tabs-body">
     
 
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#ae81ff">2019</span>-07-19 <span style="color:#ae81ff">14</span>:27:51.370 -03 <span style="color:#f92672">[</span><span style="color:#ae81ff">41382</span><span style="color:#f92672">]</span> LOG:  statement: SELECT COUNT<span style="color:#f92672">(</span>*<span style="color:#f92672">)</span> AS <span style="color:#d88200">&#34;__count&#34;</span> FROM <span style="color:#d88200">&#34;polls_question&#34;</span>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">2019-07-19 14:27:51.370 -03 <span style="color:#f92672">[</span>41382<span style="color:#f92672">]</span> LOG:  statement: SELECT COUNT<span style="color:#f92672">(</span>*<span style="color:#f92672">)</span> AS <span style="color:#d88200">&#34;__count&#34;</span> FROM <span style="color:#d88200">&#34;polls_question&#34;</span>
 /*controller<span style="color:#f92672">=</span><span style="color:#d88200">&#39;index&#39;</span>,framework<span style="color:#f92672">=</span><span style="color:#d88200">&#39;django%3A2.2.3&#39;</span>,route<span style="color:#f92672">=</span><span style="color:#d88200">&#39;polls/&#39;</span>*/</code></pre></div>
 
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#ae81ff">2019</span>-07-19 <span style="color:#ae81ff">17</span>:39:27.430 -03 <span style="color:#f92672">[</span><span style="color:#ae81ff">46170</span><span style="color:#f92672">]</span> LOG:  statement: SELECT COUNT<span style="color:#f92672">(</span>*<span style="color:#f92672">)</span> AS <span style="color:#d88200">&#34;__count&#34;</span> FROM <span style="color:#d88200">&#34;polls_question&#34;</span>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">2019-07-19 17:39:27.430 -03 <span style="color:#f92672">[</span>46170<span style="color:#f92672">]</span> LOG:  statement: SELECT COUNT<span style="color:#f92672">(</span>*<span style="color:#f92672">)</span> AS <span style="color:#d88200">&#34;__count&#34;</span> FROM <span style="color:#d88200">&#34;polls_question&#34;</span>
 /*traceparent<span style="color:#f92672">=</span><span style="color:#d88200">&#39;00-fd720cffceba94bbf75940ff3caaf3cc-4fd1a2bdacf56388-01&#39;</span>*/</code></pre></div>
 
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#ae81ff">2019</span>-07-19 <span style="color:#ae81ff">15</span>:31:33.681 -03 <span style="color:#f92672">[</span><span style="color:#ae81ff">42962</span><span style="color:#f92672">]</span> LOG:  statement: SELECT COUNT<span style="color:#f92672">(</span>*<span style="color:#f92672">)</span> AS <span style="color:#d88200">&#34;__count&#34;</span> FROM <span style="color:#d88200">&#34;polls_question&#34;</span>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">2019-07-19 15:31:33.681 -03 <span style="color:#f92672">[</span>42962<span style="color:#f92672">]</span> LOG:  statement: SELECT COUNT<span style="color:#f92672">(</span>*<span style="color:#f92672">)</span> AS <span style="color:#d88200">&#34;__count&#34;</span> FROM <span style="color:#d88200">&#34;polls_question&#34;</span>
 /*app_name<span style="color:#f92672">=</span><span style="color:#d88200">&#39;polls&#39;</span>*/</code></pre></div>
 
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#ae81ff">2019</span>-07-19 <span style="color:#ae81ff">14</span>:47:53.066 -03 <span style="color:#f92672">[</span><span style="color:#ae81ff">41602</span><span style="color:#f92672">]</span> LOG:  statement: SELECT COUNT<span style="color:#f92672">(</span>*<span style="color:#f92672">)</span> AS <span style="color:#d88200">&#34;__count&#34;</span> FROM <span style="color:#d88200">&#34;polls_question&#34;</span>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">2019-07-19 14:47:53.066 -03 <span style="color:#f92672">[</span>41602<span style="color:#f92672">]</span> LOG:  statement: SELECT COUNT<span style="color:#f92672">(</span>*<span style="color:#f92672">)</span> AS <span style="color:#d88200">&#34;__count&#34;</span> FROM <span style="color:#d88200">&#34;polls_question&#34;</span>
 /*db_driver<span style="color:#f92672">=</span><span style="color:#d88200">&#39;django.db.backends.postgresql&#39;</span>*/</code></pre></div>
 
 
   </span>
 </div>
 
-
 <h4 id="references">References</h4>
-
 <table>
 <thead>
 <tr>
@@ -661,28 +679,23 @@ If any middleware execute database queries (that you'd like commented by SqlComm
 <th>URL</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>Django</td>
 <td><a href="https://www.djangoproject.com/">https://www.djangoproject.com/</a></td>
 </tr>
-
 <tr>
 <td>OpenCensus</td>
 <td><a href="https://opencensus.io/">https://opencensus.io/</a></td>
 </tr>
-
 <tr>
 <td>opencensus-ext-django</td>
 <td><a href="https://github.com/census-instrumentation/opencensus-python/tree/master/contrib/opencensus-ext-django">https://github.com/census-instrumentation/opencensus-python/tree/master/contrib/opencensus-ext-django</a></td>
 </tr>
-
 <tr>
 <td>sqlcommenter on PyPi</td>
 <td><a href="https://pypi.org/project/google-cloud-sqlcommenter">https://pypi.org/project/google-cloud-sqlcommenter</a></td>
 </tr>
-
 <tr>
 <td>sqlcommenter on Github</td>
 <td><a href="https://github.com/google/sqlcommenter">https://github.com/google/sqlcommenter</a></td>
@@ -721,7 +734,7 @@ If any middleware execute database queries (that you'd like commented by SqlComm
   
 
     <div class="github-link">
-      <a href="https://github.com/google/sqlcommenter/tree/gh-pages/src/content/python/django/_index.md" target="blank"><i class="fa fa-code-fork"></i>
+      <a href="https://github.com/google/sqlcommenter/tree/gh-pages/src/contentpython/django/_index.md" target="blank"><i class="fa fa-code-fork"></i>
         Edit this page on Github</a>
     </div>
   </div>
@@ -734,8 +747,7 @@ If any middleware execute database queries (that you'd like commented by SqlComm
     <ul>
 <li><a href="https://github.com/google/sqlcommenter/">Github</a></li>
 </ul>
-
-<h5 style="color: #fff">sqlcommenter</h5>
+<!-- raw HTML omitted -->
 
   
 

@@ -5,7 +5,7 @@
     
       <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="generator" content="Hugo 0.55.6" />
+<meta name="generator" content="Hugo 0.81.0" />
 <title>psycopg2 :: sqlcommenter</title>
 <link rel="shortcut icon" href="https://google.github.io/sqlcommenter/images/favicon.ico" type="image/x-icon" />
 <link href="https://google.github.io/sqlcommenter/css/font-awesome.min.css" rel="stylesheet">
@@ -84,14 +84,14 @@
 
     
   </head>
-  <body data-url="/python/psycopg2/">
+  <body data-url="https://google.github.io/sqlcommenter/python/psycopg2/">
     
       <header>
   <div class="logo">
     
 	
   
-    <p><a href="https://google.github.io/sqlcommenter/"><img src="https://google.github.io/sqlcommenter/images/sqlcommenter_logo.png" alt="sqlcommenter logo" /> <span>sql</span>commenter</a></p>
+    <p><a href="https://google.github.io/sqlcommenter/"><img src="https://google.github.io/sqlcommenter/images/sqlcommenter_logo.png" alt="sqlcommenter logo"> <!-- raw HTML omitted -->sql<!-- raw HTML omitted -->commenter</a></p>
 
   
 
@@ -162,6 +162,20 @@
         ">
       <div>
       <a href="https://google.github.io/sqlcommenter/python/flask/">Flask</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/php/" class="dd-item haschildren
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/php/">Php</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+    <li data-nav-id="/php/laravel/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/php/laravel/">Laravel</a><i class="fa fa-circle-thin read-icon"></i>
       </div>
     </li>
         </ul>
@@ -302,51 +316,42 @@
     
     
 
-
-
 <ul>
 <li><a href="#introduction">Introduction</a></li>
 <li><a href="#requirements">Requirements</a></li>
 <li><a href="#installation">Installation</a>
-
 <ul>
 <li><a href="#pip-install">pip install</a></li>
 <li><a href="#source-install">Source install</a></li>
 <li><a href="#usage">Usage</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="#commentercursor">CommenterCursor</a>
-
 <ul>
 <li><a href="#with-opencensus">with_opencensus=True</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="#expected-fields">Expected fields</a>
-
 <ul>
 <li><a href="#default-options-with-flask">Default options with Flask</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="#end-to-end-examples">End to end examples</a>
-
 <ul>
 <li><a href="#source-code">Source code</a></li>
 <li><a href="#results">Results</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="#with-flask">With flask</a></li>
 <li><a href="#references">References</a></li>
 </ul>
-
 <h4 id="introduction">Introduction</h4>
-
-<p>This package is in the form of a <a href="http://initd.org/psycopg/docs/advanced.html#connection-and-cursor-factories">psycopg2 cursor factory</a> whose purpose is to augment a SQL statement right before execution, with information about the [driver and user code]() to help correlate user code with executed SQL statements.</p>
-
+<p>This package is in the form of a <a href="http://initd.org/psycopg/docs/advanced.html#connection-and-cursor-factories">psycopg2 cursor factory</a> whose purpose is to augment a SQL statement right before execution, with information about the <a href="">driver and user code</a> to help correlate user code with executed SQL statements.</p>
 <p>We provide a <code>CommenterCursorFactory</code> that takes options such as</p>
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#111">CommenterCursorFactory</span><span style="color:#111">(</span><span style="color:#111">with_opencensus</span><span style="color:#f92672">=&lt;</span><span style="color:#111">True</span> <span style="color:#f92672">or</span> <span style="color:#111">False</span><span style="color:#f92672">&gt;</span><span style="color:#111">)</span></code></pre></div>
-<p>We provide options such as <code>with_opencensus</code> because
-<div class="notices warning" >
-Since OpenCensus <a href="https://opencensus.io/tracing/span/traceid"><code>trace_id</code></a> and <a href="https://opencensus.io/tracing/span/spanid/"><code>span_id</code></a> are highly ephemeral, including them in SQL comments will likely break any form of statement-based caching that doesn&rsquo;t strip out comments.
-</div></p>
-
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#111">CommenterCursorFactory</span><span style="color:#111">(</span><span style="color:#111">with_opencensus</span><span style="color:#f92672">=&lt;</span><span style="color:#111">True</span> <span style="color:#f92672">or</span> <span style="color:#111">False</span><span style="color:#f92672">&gt;</span><span style="color:#111">)</span>
+</code></pre></div><p>We provide options such as <code>with_opencensus</code> because</p>
+<!-- raw HTML omitted -->
 <h3 id="requirements">Requirements</h3>
-
 <table>
 <thead>
 <tr>
@@ -354,50 +359,36 @@ Since OpenCensus <a href="https://opencensus.io/tracing/span/traceid"><code>trac
 <th>Restriction</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>psycopg2 <strong>(any version)</strong></td>
 <td><a href="http://initd.org/psycopg/docs/index.html">http://initd.org/psycopg/docs/index.html</a></td>
 </tr>
-
 <tr>
 <td>Python <strong>(any version)</strong></td>
 <td><a href="https://www.python.org/downloads/">https://www.python.org/downloads/</a></td>
 </tr>
 </tbody>
 </table>
-
 <h4 id="installation">Installation</h4>
-
 <p>This cursor factory can be installed by any of the following:</p>
-
 <h4 id="pip-install">Pip install</h4>
-
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">pip3 install google-cloud-sqlcommenter</code></pre></div>
-
 <h4 id="source-install">Source install</h4>
-
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">git clone https://github.com/google/sqlcommenter.git
 <span style="color:#111">cd</span> python/sqlcommenter-python <span style="color:#f92672">&amp;&amp;</span> python3 setup.py install</code></pre></div>
-
 <h4 id="usage">Usage</h4>
-
 <p>We&rsquo;ll perform the following imports in our source code:</p>
-
 <h3 id="commentercursorfactory">CommenterCursorFactory</h3>
-
 <p><code>CommenterCursorFactory</code> is a factory for a <code>cursor_factory</code> that when used to create a psycopg2.Connection engine will grab information about your application and augment it as a comment to your SQL statement.</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> <span style="color:#111">psycopg2</span>
 <span style="color:#f92672">from</span> <span style="color:#111">google.cloud.sqlcommenter.psycopg2.extension</span> <span style="color:#f92672">import</span> <span style="color:#111">CommenterCursorFactory</span>
 
-<span style="color:#111">conn</span> <span style="color:#f92672">=</span> <span style="color:#111">psycopg2</span><span style="color:#f92672">.</span><span style="color:#111">connect</span><span style="color:#111">(</span><span style="color:#f92672">...</span><span style="color:#111">,</span> <span style="color:#111">cursor_factory</span><span style="color:#f92672">=</span><span style="color:#111">CommenterCursorFactory</span><span style="color:#111">())</span></code></pre></div>
-<h4 id="a-name-with-opencensus-a-with-opencensus-true"><a name="with-opencensus"></a> with_openCensus=True</h4>
-
+<span style="color:#111">conn</span> <span style="color:#f92672">=</span> <span style="color:#111">psycopg2</span><span style="color:#f92672">.</span><span style="color:#111">connect</span><span style="color:#111">(</span><span style="color:#f92672">...</span><span style="color:#111">,</span> <span style="color:#111">cursor_factory</span><span style="color:#f92672">=</span><span style="color:#111">CommenterCursorFactory</span><span style="color:#111">())</span>
+</code></pre></div><h4 id="a-namewith-opencensusa-with_opencensustrue"><!-- raw HTML omitted --><!-- raw HTML omitted --> with_openCensus=True</h4>
 <p>To enable the comment cursor to also attach information about the current OpenCensus span (if any exists), pass in option <code>with_opencensus=True</code> when invoking <code>CommenterCursorFactory</code>, so</p>
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#111">conn</span> <span style="color:#f92672">=</span> <span style="color:#111">psycopg2</span><span style="color:#f92672">.</span><span style="color:#111">connect</span><span style="color:#111">(</span><span style="color:#f92672">...</span><span style="color:#111">,</span> <span style="color:#111">cursor_factory</span><span style="color:#f92672">=</span><span style="color:#111">CommenterCursorFactory</span><span style="color:#111">(</span><span style="color:#111">with_opencensus</span><span style="color:#f92672">=</span><span style="color:#111">True</span><span style="color:#111">))</span></code></pre></div>
-<h3 id="expected-fields">Expected fields</h3>
-
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#111">conn</span> <span style="color:#f92672">=</span> <span style="color:#111">psycopg2</span><span style="color:#f92672">.</span><span style="color:#111">connect</span><span style="color:#111">(</span><span style="color:#f92672">...</span><span style="color:#111">,</span> <span style="color:#111">cursor_factory</span><span style="color:#f92672">=</span><span style="color:#111">CommenterCursorFactory</span><span style="color:#111">(</span><span style="color:#111">with_opencensus</span><span style="color:#f92672">=</span><span style="color:#111">True</span><span style="color:#111">))</span>
+</code></pre></div><h3 id="expected-fields">Expected fields</h3>
 <table>
 <thead>
 <tr>
@@ -406,50 +397,41 @@ Since OpenCensus <a href="https://opencensus.io/tracing/span/traceid"><code>trac
 <th>Included by default</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td><code>db_driver</code></td>
 <td>The underlying database driver e.g. <code>'psycopg2'</code></td>
-<td><div style="text-align: center">&#10060;</div></td>
+<td><!-- raw HTML omitted -->❌<!-- raw HTML omitted --></td>
 </tr>
-
 <tr>
 <td><code>dbapi_threadsafety</code></td>
 <td>The threadsafety API assignment e.g. 2</td>
-<td><div style="text-align: center">&#10060;</div></td>
+<td><!-- raw HTML omitted -->❌<!-- raw HTML omitted --></td>
 </tr>
-
 <tr>
 <td><code>driver_paramstyle</code></td>
 <td>The Python DB API style of parameters e.g. <code>pyformat</code></td>
-<td><div style="text-align: center">&#10060;</div></td>
+<td><!-- raw HTML omitted -->❌<!-- raw HTML omitted --></td>
 </tr>
-
 <tr>
 <td><code>libpq_version</code></td>
-<td>The underlying version of [libpq]() that was used by psycopg2</td>
-<td><div style="text-align: center">&#10060;</div></td>
+<td>The underlying version of <a href="">libpq</a> that was used by psycopg2</td>
+<td><!-- raw HTML omitted -->❌<!-- raw HTML omitted --></td>
 </tr>
-
 <tr>
 <td><code>traceparent</code></td>
 <td>The <a href="https://www.w3.org/TR/trace-context/#traceparent-field">W3C TraceContext.Traceparent field</a> of the OpenCensus trace &ndash; optionally defined with <a href="#with-opencensus"><code>with_opencensus=True</code></a></td>
-<td><div style="text-align: center">&#10060;</div></td>
+<td><!-- raw HTML omitted -->❌<!-- raw HTML omitted --></td>
 </tr>
-
 <tr>
 <td><code>tracestate</code></td>
 <td>The <a href="https://www.w3.org/TR/trace-context/#tracestate-field">W3C TraceContext.Tracestate field</a> of the OpenCensus trace &ndash; optionally defined with <a href="#with-opencensus"><code>with_opencensus=True</code></a></td>
-<td><div style="text-align: center">&#10060;</div></td>
+<td><!-- raw HTML omitted -->❌<!-- raw HTML omitted --></td>
 </tr>
 </tbody>
 </table>
-
 <h4 id="default-options-with-flask">Default options with flask</h4>
-
 <p>If combined with <a href="https://google.github.io/sqlcommenter/python/flask">Flask</a>, the following options will be turned on by default</p>
-
 <table>
 <thead>
 <tr>
@@ -458,20 +440,17 @@ Since OpenCensus <a href="https://opencensus.io/tracing/span/traceid"><code>trac
 <th>**kwargs field name</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td><code>controller</code></td>
 <td>Grabs the controller being used</td>
 <td><code>with_controller</code></td>
 </tr>
-
 <tr>
 <td><code>framework</code></td>
 <td>Grabs the framework and its version</td>
 <td><code>with_framework</code></td>
 </tr>
-
 <tr>
 <td><code>route</code></td>
 <td>Grabs the route being used</td>
@@ -479,11 +458,8 @@ Since OpenCensus <a href="https://opencensus.io/tracing/span/traceid"><code>trac
 </tr>
 </tbody>
 </table>
-
 <h3 id="end-to-end-examples">End to end examples</h3>
-
 <h4 id="source-code">Source code</h4>
-
 <div class="tab-container">
   <ul class="tabs">
     
@@ -647,15 +623,13 @@ Since OpenCensus <a href="https://opencensus.io/tracing/span/traceid"><code>trac
 </div>
 
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">python3 main.py
-<span style="color:#f92672">(</span><span style="color:#ae81ff">1</span>, <span style="color:#d88200">&#39;Wassup?&#39;</span>, datetime.datetime<span style="color:#f92672">(</span><span style="color:#ae81ff">2019</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">30</span>, <span style="color:#ae81ff">13</span>, <span style="color:#ae81ff">51</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">910545</span>, <span style="color:#111">tzinfo</span><span style="color:#f92672">=</span>psycopg2.tz.FixedOffsetTimezone<span style="color:#f92672">(</span><span style="color:#111">offset</span><span style="color:#f92672">=</span>-420, <span style="color:#111">name</span><span style="color:#f92672">=</span>None<span style="color:#f92672">)))</span>
-<span style="color:#f92672">(</span><span style="color:#ae81ff">2</span>, <span style="color:#d88200">&#39;Wassup?&#39;</span>, datetime.datetime<span style="color:#f92672">(</span><span style="color:#ae81ff">2019</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">30</span>, <span style="color:#ae81ff">13</span>, <span style="color:#ae81ff">57</span>, <span style="color:#ae81ff">45</span>, <span style="color:#ae81ff">905771</span>, <span style="color:#111">tzinfo</span><span style="color:#f92672">=</span>psycopg2.tz.FixedOffsetTimezone<span style="color:#f92672">(</span><span style="color:#111">offset</span><span style="color:#f92672">=</span>-420, <span style="color:#111">name</span><span style="color:#f92672">=</span>None<span style="color:#f92672">)))</span>
-<span style="color:#f92672">(</span><span style="color:#ae81ff">3</span>, <span style="color:#d88200">&#39;Wassup?&#39;</span>, datetime.datetime<span style="color:#f92672">(</span><span style="color:#ae81ff">2019</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">30</span>, <span style="color:#ae81ff">13</span>, <span style="color:#ae81ff">57</span>, <span style="color:#ae81ff">46</span>, <span style="color:#ae81ff">908185</span>, <span style="color:#111">tzinfo</span><span style="color:#f92672">=</span>psycopg2.tz.FixedOffsetTimezone<span style="color:#f92672">(</span><span style="color:#111">offset</span><span style="color:#f92672">=</span>-420, <span style="color:#111">name</span><span style="color:#f92672">=</span>None<span style="color:#f92672">)))</span>
-<span style="color:#f92672">(</span><span style="color:#ae81ff">4</span>, <span style="color:#d88200">&#39;Wassup?&#39;</span>, datetime.datetime<span style="color:#f92672">(</span><span style="color:#ae81ff">2019</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">30</span>, <span style="color:#ae81ff">13</span>, <span style="color:#ae81ff">57</span>, <span style="color:#ae81ff">47</span>, <span style="color:#ae81ff">557196</span>, <span style="color:#111">tzinfo</span><span style="color:#f92672">=</span>psycopg2.tz.FixedOffsetTimezone<span style="color:#f92672">(</span><span style="color:#111">offset</span><span style="color:#f92672">=</span>-420, <span style="color:#111">name</span><span style="color:#f92672">=</span>None<span style="color:#f92672">)))</span>
-<span style="color:#f92672">(</span><span style="color:#ae81ff">5</span>, <span style="color:#d88200">&#39;Wassup?&#39;</span>, datetime.datetime<span style="color:#f92672">(</span><span style="color:#ae81ff">2019</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">30</span>, <span style="color:#ae81ff">13</span>, <span style="color:#ae81ff">57</span>, <span style="color:#ae81ff">47</span>, <span style="color:#ae81ff">853424</span>, <span style="color:#111">tzinfo</span><span style="color:#f92672">=</span>psycopg2.tz.FixedOffsetTimezone<span style="color:#f92672">(</span><span style="color:#111">offset</span><span style="color:#f92672">=</span>-420, <span style="color:#111">name</span><span style="color:#f92672">=</span>None<span style="color:#f92672">)))</span></code></pre></div>
-<h4 id="results">Results</h4>
-
+<span style="color:#f92672">(</span>1, <span style="color:#d88200">&#39;Wassup?&#39;</span>, datetime.datetime<span style="color:#f92672">(</span>2019, 5, 30, 13, 51, 12, 910545, <span style="color:#111">tzinfo</span><span style="color:#f92672">=</span>psycopg2.tz.FixedOffsetTimezone<span style="color:#f92672">(</span><span style="color:#111">offset</span><span style="color:#f92672">=</span>-420, <span style="color:#111">name</span><span style="color:#f92672">=</span>None<span style="color:#f92672">)))</span>
+<span style="color:#f92672">(</span>2, <span style="color:#d88200">&#39;Wassup?&#39;</span>, datetime.datetime<span style="color:#f92672">(</span>2019, 5, 30, 13, 57, 45, 905771, <span style="color:#111">tzinfo</span><span style="color:#f92672">=</span>psycopg2.tz.FixedOffsetTimezone<span style="color:#f92672">(</span><span style="color:#111">offset</span><span style="color:#f92672">=</span>-420, <span style="color:#111">name</span><span style="color:#f92672">=</span>None<span style="color:#f92672">)))</span>
+<span style="color:#f92672">(</span>3, <span style="color:#d88200">&#39;Wassup?&#39;</span>, datetime.datetime<span style="color:#f92672">(</span>2019, 5, 30, 13, 57, 46, 908185, <span style="color:#111">tzinfo</span><span style="color:#f92672">=</span>psycopg2.tz.FixedOffsetTimezone<span style="color:#f92672">(</span><span style="color:#111">offset</span><span style="color:#f92672">=</span>-420, <span style="color:#111">name</span><span style="color:#f92672">=</span>None<span style="color:#f92672">)))</span>
+<span style="color:#f92672">(</span>4, <span style="color:#d88200">&#39;Wassup?&#39;</span>, datetime.datetime<span style="color:#f92672">(</span>2019, 5, 30, 13, 57, 47, 557196, <span style="color:#111">tzinfo</span><span style="color:#f92672">=</span>psycopg2.tz.FixedOffsetTimezone<span style="color:#f92672">(</span><span style="color:#111">offset</span><span style="color:#f92672">=</span>-420, <span style="color:#111">name</span><span style="color:#f92672">=</span>None<span style="color:#f92672">)))</span>
+<span style="color:#f92672">(</span>5, <span style="color:#d88200">&#39;Wassup?&#39;</span>, datetime.datetime<span style="color:#f92672">(</span>2019, 5, 30, 13, 57, 47, 853424, <span style="color:#111">tzinfo</span><span style="color:#f92672">=</span>psycopg2.tz.FixedOffsetTimezone<span style="color:#f92672">(</span><span style="color:#111">offset</span><span style="color:#f92672">=</span>-420, <span style="color:#111">name</span><span style="color:#f92672">=</span>None<span style="color:#f92672">)))</span>
+</code></pre></div><h4 id="results">Results</h4>
 <p>Examining our Postgresql server logs, with the various options</p>
-
 <div class="tab-container">
   <ul class="tabs">
     
@@ -688,31 +662,29 @@ Since OpenCensus <a href="https://opencensus.io/tracing/span/traceid"><code>trac
   <span class="tabs-body">
     
 
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#ae81ff">2019</span>-07-17 <span style="color:#ae81ff">15</span>:45:12.254 -03 <span style="color:#f92672">[</span><span style="color:#ae81ff">16353</span><span style="color:#f92672">]</span> LOG:  statement: SELECT * FROM polls_question
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">2019-07-17 15:45:12.254 -03 <span style="color:#f92672">[</span>16353<span style="color:#f92672">]</span> LOG:  statement: SELECT * FROM polls_question
 /*traceparent<span style="color:#f92672">=</span><span style="color:#d88200">&#39;00-fdda4e35e3083efdd6ee9ca4df5f3402-b3139d365faa0f43-01&#39;</span>*/</code></pre></div>
 
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#ae81ff">2019</span>-07-17 <span style="color:#ae81ff">15</span>:56:05.192 -03 <span style="color:#f92672">[</span><span style="color:#ae81ff">16491</span><span style="color:#f92672">]</span> LOG:  statement: SELECT * FROM polls_question
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">2019-07-17 15:56:05.192 -03 <span style="color:#f92672">[</span>16491<span style="color:#f92672">]</span> LOG:  statement: SELECT * FROM polls_question
 /*db_driver<span style="color:#f92672">=</span><span style="color:#d88200">&#39;psycopg2%3A2.8.3%20%28dt%20dec%20pq3%20ext%20lo64%29&#39;</span>*/</code></pre></div>
 
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#ae81ff">2019</span>-07-17 <span style="color:#ae81ff">15</span>:59:45.935 -03 <span style="color:#f92672">[</span><span style="color:#ae81ff">16566</span><span style="color:#f92672">]</span> LOG:  statement: SELECT * FROM polls_question
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">2019-07-17 15:59:45.935 -03 <span style="color:#f92672">[</span>16566<span style="color:#f92672">]</span> LOG:  statement: SELECT * FROM polls_question
 /*dbapi_level<span style="color:#f92672">=</span><span style="color:#d88200">&#39;2.0&#39;</span>*/</code></pre></div>
 
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#ae81ff">2019</span>-07-17 <span style="color:#ae81ff">16</span>:01:15.533 -03 <span style="color:#f92672">[</span><span style="color:#ae81ff">16600</span><span style="color:#f92672">]</span> LOG:  statement: SELECT * FROM polls_question
-/*dbapi_threadsafety<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>*/</code></pre></div>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">2019-07-17 16:01:15.533 -03 <span style="color:#f92672">[</span>16600<span style="color:#f92672">]</span> LOG:  statement: SELECT * FROM polls_question
+/*dbapi_threadsafety<span style="color:#f92672">=</span>2*/</code></pre></div>
 
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#ae81ff">2019</span>-07-17 <span style="color:#ae81ff">16</span>:03:54.687 -03 <span style="color:#f92672">[</span><span style="color:#ae81ff">16652</span><span style="color:#f92672">]</span> LOG:  statement: SELECT * FROM polls_question
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">2019-07-17 16:03:54.687 -03 <span style="color:#f92672">[</span>16652<span style="color:#f92672">]</span> LOG:  statement: SELECT * FROM polls_question
 /*driver_paramstyle<span style="color:#f92672">=</span><span style="color:#d88200">&#39;pyformat&#39;</span>*/</code></pre></div>
 
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#ae81ff">2019</span>-07-17 <span style="color:#ae81ff">16</span>:05:37.618 -03 <span style="color:#f92672">[</span><span style="color:#ae81ff">16708</span><span style="color:#f92672">]</span> LOG:  statement: SELECT * FROM polls_question
-/*libpq_version<span style="color:#f92672">=</span><span style="color:#ae81ff">110002</span>*/</code></pre></div>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">2019-07-17 16:05:37.618 -03 <span style="color:#f92672">[</span>16708<span style="color:#f92672">]</span> LOG:  statement: SELECT * FROM polls_question
+/*libpq_version<span style="color:#f92672">=</span>110002*/</code></pre></div>
 
 
   </span>
 </div>
 
-
 <h3 id="with-flask">With flask</h3>
-
 <p>When coupled with the web framework <a href="http://flask.pocoo.org">flask</a>, we still provide middleware to correlate
 your web applications with your SQL statements from psycopg2. Please see this end-to-end guide below:
 <div class="user-card-container">
@@ -723,9 +695,7 @@ your web applications with your SQL statements from psycopg2. Please see this en
   </a>
 </div>
 </p>
-
 <h3 id="references">References</h3>
-
 <table>
 <thead>
 <tr>
@@ -733,33 +703,27 @@ your web applications with your SQL statements from psycopg2. Please see this en
 <th>URL</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>psycopg2 project</td>
 <td><a href="http://initd.org/psycopg/docs/index.html">http://initd.org/psycopg/docs/index.html</a></td>
 </tr>
-
 <tr>
 <td>sqlcommenter-psycopg2 on PyPi</td>
 <td><a href="https://pypi.org/project/google-cloud-sqlcommenter">https://pypi.org/project/google-cloud-sqlcommenter</a></td>
 </tr>
-
 <tr>
 <td>sqlcommenter-psycopg2 on Github</td>
 <td><a href="https://github.com/google/sqlcommenter">https://github.com/google/sqlcommenter</a></td>
 </tr>
-
 <tr>
 <td>OpenCensus</td>
 <td><a href="https://opencensus.io/">https://opencensus.io/</a></td>
 </tr>
-
 <tr>
 <td>OpenCensus SpanID</td>
 <td><a href="https://opencensus.io/tracing/span/spanid">https://opencensus.io/tracing/span/spanid</a></td>
 </tr>
-
 <tr>
 <td>OpenCensus TraceID</td>
 <td><a href="https://opencensus.io/tracing/span/traceid">https://opencensus.io/tracing/span/traceid</a></td>
@@ -790,7 +754,7 @@ your web applications with your SQL statements from psycopg2. Please see this en
   
 
     <div class="github-link">
-      <a href="https://github.com/google/sqlcommenter/tree/gh-pages/src/content/python/psycopg2/_index.md" target="blank"><i class="fa fa-code-fork"></i>
+      <a href="https://github.com/google/sqlcommenter/tree/gh-pages/src/contentpython/psycopg2/_index.md" target="blank"><i class="fa fa-code-fork"></i>
         Edit this page on Github</a>
     </div>
   </div>
@@ -803,8 +767,7 @@ your web applications with your SQL statements from psycopg2. Please see this en
     <ul>
 <li><a href="https://github.com/google/sqlcommenter/">Github</a></li>
 </ul>
-
-<h5 style="color: #fff">sqlcommenter</h5>
+<!-- raw HTML omitted -->
 
   
 

@@ -5,7 +5,7 @@
     
       <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="generator" content="Hugo 0.55.6" />
+<meta name="generator" content="Hugo 0.81.0" />
 <title>Knex.js :: sqlcommenter</title>
 <link rel="shortcut icon" href="https://google.github.io/sqlcommenter/images/favicon.ico" type="image/x-icon" />
 <link href="https://google.github.io/sqlcommenter/css/font-awesome.min.css" rel="stylesheet">
@@ -84,14 +84,14 @@
 
     
   </head>
-  <body data-url="/node/knex/">
+  <body data-url="https://google.github.io/sqlcommenter/node/knex/">
     
       <header>
   <div class="logo">
     
 	
   
-    <p><a href="https://google.github.io/sqlcommenter/"><img src="https://google.github.io/sqlcommenter/images/sqlcommenter_logo.png" alt="sqlcommenter logo" /> <span>sql</span>commenter</a></p>
+    <p><a href="https://google.github.io/sqlcommenter/"><img src="https://google.github.io/sqlcommenter/images/sqlcommenter_logo.png" alt="sqlcommenter logo"> <!-- raw HTML omitted -->sql<!-- raw HTML omitted -->commenter</a></p>
 
   
 
@@ -116,6 +116,67 @@
       <a href="https://google.github.io/sqlcommenter/python/">Python</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
       </div>
         <ul>
+    <li data-nav-id="/python/django/" class="dd-item haschildren
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/python/django/">Django</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+      <li data-nav-id="/python/django/local/" class="dd-item">
+        <div>
+          <a href="https://google.github.io/sqlcommenter/python/django/local/">
+            Locally
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/python/django/gcp/" class="dd-item">
+        <div>
+          <a href="https://google.github.io/sqlcommenter/python/django/gcp/">
+            Google Cloud Platform
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/python/django/aws/" class="dd-item">
+        <div>
+          <a href="https://google.github.io/sqlcommenter/python/django/aws/">
+            Amazon Web Services
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/python/psycopg2/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/python/psycopg2/">psycopg2</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/python/sqlalchemy/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/python/sqlalchemy/">SQLAlchemy</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/python/flask/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/python/flask/">Flask</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/php/" class="dd-item haschildren
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/php/">Php</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+    <li data-nav-id="/php/laravel/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/php/laravel/">Laravel</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
         </ul>
     </li>
     <li data-nav-id="/ruby/" class="dd-item haschildren
@@ -251,52 +312,45 @@
     
     
 
-
-
-<p><img src="https://google.github.io/sqlcommenter/images/knex-logo.png" alt="" /></p>
-
+<p><img src="https://google.github.io/sqlcommenter/images/knex-logo.png" alt=""></p>
 <ul>
 <li><a href="#introduction">Introduction</a></li>
 <li><a href="#requirements">Requirements</a></li>
 <li><a href="#installation">Installation</a>
-
 <ul>
 <li><a href="#manually">Manually</a></li>
 <li><a href="#package-manager">Package manager</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="#usage">Usage</a>
-
 <ul>
 <li><a href="#plain-knex-wrapper">Plain knex wrapper</a></li>
 <li><a href="#express-middleware">Express middleware</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="#fields">Fields</a>
-
 <ul>
 <li><a href="#options">Options</a>
-
 <ul>
 <li><a href="#include-config"><code>include</code> config</a></li>
 <li><a href="#options-config"><code>options</code> config</a></li>
 <li><a href="#options-examples">Options examples</a></li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a href="#end-to-examples">End to end examples</a>
-
 <ul>
 <li><a href="#source-code">Source code</a></li>
 <li><a href="#results">Results</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="#references">References</a></li>
 </ul>
-
 <h4 id="introduction">Introduction</h4>
-
 <p>This package is in the form of <code>Knex.Client.prototype.query</code> wrapper whose purpose is to augment a SQL statement right before execution, with
 information about the controller and user code to help correlate them with SQL statements emitted by Knex.js.</p>
-
 <p>Besides plain knex.js wrapping, we also provide a wrapper for the following frameworks:</p>
-
 <div class="user-card-container">
   <a target="_blank" href="#express-middleware">
   
@@ -305,9 +359,7 @@ information about the controller and user code to help correlate them with SQL s
   </a>
 </div>
 
-
 <h3 id="requirements">Requirements</h3>
-
 <table>
 <thead>
 <tr>
@@ -315,41 +367,30 @@ information about the controller and user code to help correlate them with SQL s
 <th>Resource</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>Knex.js</td>
 <td><a href="https://knexjs.org/">https://knexjs.org/</a></td>
 </tr>
-
 <tr>
 <td>Node.js</td>
 <td><a href="https://nodejs.org/">https://nodejs.org/</a></td>
 </tr>
 </tbody>
 </table>
-
 <h3 id="installation">Installation</h3>
-
 <p>We can add integration into our applications in the following ways:</p>
-
 <h4 id="manually">Manually</h4>
-
 <p>Please read <a href="https://google.github.io/sqlcommenter/node/#install-from-source">installing sqlcommenter-nodejs from source</a></p>
-
 <h4 id="package-manager">Package manager</h4>
-
 <p>Add to your package.json the dependency
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#111">{</span>
     <span style="color:#f92672">&#34;@google-cloud/sqlcommenter-knex&#34;</span><span style="color:#111">:</span> <span style="color:#d88200">&#34;*&#34;</span>
 <span style="color:#111">}</span></code></pre></div>
 and then run <code>npm install</code> to get the latest version or
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">npm install @google-cloud/sqlcommenter-knex --save</code></pre></div></p>
-
 <h3 id="usage">Usage</h3>
-
 <h4 id="plain-knex-wrapper">Plain knex wrapper</h4>
-
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#00a8c8">const</span> <span style="color:#111">{</span><span style="color:#75af00">wrapMainKnex</span><span style="color:#111">}</span> <span style="color:#f92672">=</span> <span style="color:#75af00">require</span><span style="color:#111">(</span><span style="color:#d88200">&#39;@google-cloud/sqlcommenter-knex&#39;</span><span style="color:#111">);</span>
 <span style="color:#00a8c8">const</span> <span style="color:#75af00">Knex</span> <span style="color:#f92672">=</span> <span style="color:#75af00">require</span><span style="color:#111">(</span><span style="color:#d88200">&#39;knex&#39;</span><span style="color:#111">);</span>
 <span style="color:#75af00">wrapMainKnex</span><span style="color:#111">(</span><span style="color:#75af00">Knex</span><span style="color:#111">);</span>
@@ -357,9 +398,7 @@ and then run <code>npm install</code> to get the latest version or
 <span style="color:#75715e">// Now you can create the knex client.
 </span><span style="color:#75715e"></span><span style="color:#00a8c8">const</span> <span style="color:#75af00">knex</span> <span style="color:#f92672">=</span> <span style="color:#75af00">Knex</span><span style="color:#111">(</span><span style="color:#75af00">options</span><span style="color:#111">);</span>
 </code></pre></div>
-
 <h4 id="express-middleware">Express middleware</h4>
-
 <p>This wrapper/middleware can be used as is or better with <a href="https://expressjs.com/">express.js</a>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#00a8c8">const</span> <span style="color:#111">{</span><span style="color:#75af00">wrapMainKnexAsMiddleware</span><span style="color:#111">}</span> <span style="color:#f92672">=</span> <span style="color:#75af00">require</span><span style="color:#111">(</span><span style="color:#d88200">&#39;@google-cloud/sqlcommenter-knex&#39;</span><span style="color:#111">);</span>
 <span style="color:#00a8c8">const</span> <span style="color:#75af00">Knex</span> <span style="color:#f92672">=</span> <span style="color:#75af00">require</span><span style="color:#111">(</span><span style="color:#d88200">&#39;knex&#39;</span><span style="color:#111">);</span>
@@ -371,17 +410,13 @@ and then run <code>npm install</code> to get the latest version or
 <span style="color:#75715e">// Now you can create the knex client.
 </span><span style="color:#75715e"></span><span style="color:#00a8c8">const</span> <span style="color:#75af00">knex</span> <span style="color:#f92672">=</span> <span style="color:#75af00">Knex</span><span style="color:#111">(</span><span style="color:#75af00">options</span><span style="color:#111">);</span>
 </code></pre></div></p>
-
 <h3 id="fields">Fields</h3>
-
 <p>In the database server logs, the comment&rsquo;s fields are:</p>
-
 <ul>
 <li>comma separated key-value pairs e.g. <code>route='%5Epolls/%24'</code></li>
 <li>values are SQL escaped i.e. <code>key='value'</code></li>
 <li>URL-quoted except for the equals(<code>=</code>) sign e.g <code>route='%5Epolls/%24'</code>. so should be URL-unquoted</li>
 </ul>
-
 <table>
 <thead>
 <tr>
@@ -391,7 +426,6 @@ and then run <code>npm install</code> to get the latest version or
 <th>Example</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td><code>db_driver</code></td>
@@ -399,21 +433,18 @@ and then run <code>npm install</code> to get the latest version or
 <td>URL quoted name and version of the database driver</td>
 <td><code>db_driver='knex%3A0.16.5'</code></td>
 </tr>
-
 <tr>
 <td><code>route</code></td>
 <td><code>&lt;the route used&gt;</code></td>
 <td>URL quoted route used to match the express.js controller</td>
 <td><code>route='%5E%2Fpolls%2F</code></td>
 </tr>
-
 <tr>
 <td><code>traceparent</code></td>
 <td><code>&lt;traceparent header&gt;</code></td>
 <td>URL quoted <a href="https://www.w3.org/TR/trace-context/#traceparent-header">W3C <code>traceparent</code> header</a></td>
 <td><code>traceparent='00-3e2914ebce6af09508dd1ff1128493a8-81d09ab4d8cde7cf-01'</code></td>
 </tr>
-
 <tr>
 <td><code>tracestate</code></td>
 <td><code>&lt;tracestate header&gt;</code></td>
@@ -422,17 +453,12 @@ and then run <code>npm install</code> to get the latest version or
 </tr>
 </tbody>
 </table>
-
 <h4 id="options">Options</h4>
-
 <p>When creating the middleware, one can optionally configure the injected
 comments by passing in the <code>include</code> and <code>options</code> objects:</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75af00">wrapMainKnexAsMiddleware</span><span style="color:#111">(</span><span style="color:#75af00">Knex</span><span style="color:#111">,</span> <span style="color:#75af00">include</span><span style="color:#f92672">=</span><span style="color:#111">{...},</span> <span style="color:#75af00">options</span><span style="color:#f92672">=</span><span style="color:#111">{...});</span>
-</code></pre></div>
-<h5 id="include-config"><code>include</code> config</h5>
-
+</code></pre></div><h5 id="include-config"><code>include</code> config</h5>
 <p>A map of values to be optionally included in the SQL comments.</p>
-
 <table>
 <thead>
 <tr>
@@ -440,26 +466,22 @@ comments by passing in the <code>include</code> and <code>options</code> objects
 <th>On by default</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>db_driver</td>
 <td><div style="text-align: center">&#10060;</div>
 </td>
 </tr>
-
 <tr>
 <td>route</td>
 <td><div style="text-align: center">&#10004;</div>
 </td>
 </tr>
-
 <tr>
 <td>traceparent</td>
 <td><div style="text-align: center">&#10060;</div>
 </td>
 </tr>
-
 <tr>
 <td>tracestate</td>
 <td><div style="text-align: center">&#10060;</div>
@@ -467,13 +489,10 @@ comments by passing in the <code>include</code> and <code>options</code> objects
 </tr>
 </tbody>
 </table>
-
 <h5 id="options-config"><code>options</code> config</h5>
-
 <p>A configuration object specifying where to collect trace data from. Accepted
 fields are: TraceProvider: Should be either <code>OpenCensus</code> or <code>OpenTelemetry</code>,
 indicating which library to collect trace context from.</p>
-
 <table>
 <thead>
 <tr>
@@ -481,7 +500,6 @@ indicating which library to collect trace context from.</p>
 <th>Possible values</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>TraceProvider</td>
@@ -489,9 +507,7 @@ indicating which library to collect trace context from.</p>
 </tr>
 </tbody>
 </table>
-
 <h5 id="options-examples">Options examples</h5>
-
 <div class="tab-container">
   <ul class="tabs">
     
@@ -546,14 +562,10 @@ indicating which library to collect trace context from.</p>
   </span>
 </div>
 
-
 <h3 id="end-to-end-examples">End to end examples</h3>
-
 <p>Check out a full express + opentelemetry example
 <a href="https://github.com/google/sqlcommenter/tree/master/nodejs/sqlcommenter-nodejs/samples/express-opentelemetry">here</a>.</p>
-
 <h4 id="source-code">Source code</h4>
-
 <div class="tab-container">
   <ul class="tabs">
     
@@ -833,14 +845,11 @@ indicating which library to collect trace context from.</p>
   </span>
 </div>
 
-
 <p>which after running by</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ node app.js 
-Application listening on <span style="color:#ae81ff">3000</span></code></pre></div>
-<h4 id="results">Results</h4>
-
+Application listening on <span style="color:#ae81ff">3000</span>
+</code></pre></div><h4 id="results">Results</h4>
 <p>On making a request to that server at <code>http://localhost:3000/polls/1000</code>, the PostgreSQL logs show:</p>
-
 <div class="tab-container">
   <ul class="tabs">
     
@@ -865,25 +874,23 @@ Application listening on <span style="color:#ae81ff">3000</span></code></pre></d
   <span class="tabs-body">
     
 
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#ae81ff">2019</span>-06-03 <span style="color:#ae81ff">14</span>:32:10.842 PDT <span style="color:#f92672">[</span><span style="color:#ae81ff">32004</span><span style="color:#f92672">]</span> LOG:  statement: SELECT * from polls_question 
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">2019-06-03 14:32:10.842 PDT <span style="color:#f92672">[</span>32004<span style="color:#f92672">]</span> LOG:  statement: SELECT * from polls_question 
 /*traceparent<span style="color:#f92672">=</span><span style="color:#d88200">&#39;00-11000000000000ff-020000ee-01&#39;</span>,tracestate<span style="color:#f92672">=</span><span style="color:#d88200">&#39;brazzaville=t61rcWkgMzE,rondo=00f067aa0ba902b7&#39;</span>*/</code></pre></div>
 
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#ae81ff">2019</span>-06-03 <span style="color:#ae81ff">14</span>:32:10.842 PDT <span style="color:#f92672">[</span><span style="color:#ae81ff">32004</span><span style="color:#f92672">]</span> LOG:  statement: SELECT * from polls_question 
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">2019-06-03 14:32:10.842 PDT <span style="color:#f92672">[</span>32004<span style="color:#f92672">]</span> LOG:  statement: SELECT * from polls_question 
 /*route<span style="color:#f92672">=</span><span style="color:#d88200">&#39;%5E%2Fpolls%2F%1000&#39;</span>*/</code></pre></div>
 
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#ae81ff">2019</span>-06-03 <span style="color:#ae81ff">14</span>:32:10.842 PDT <span style="color:#f92672">[</span><span style="color:#ae81ff">32004</span><span style="color:#f92672">]</span> LOG:  statement: SELECT * from polls_question 
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">2019-06-03 14:32:10.842 PDT <span style="color:#f92672">[</span>32004<span style="color:#f92672">]</span> LOG:  statement: SELECT * from polls_question 
 /*db_driver<span style="color:#f92672">=</span><span style="color:#d88200">&#39;knex%3A0.0.1&#39;</span>*/</code></pre></div>
 
-<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#ae81ff">2019</span>-06-03 <span style="color:#ae81ff">14</span>:32:10.842 PDT <span style="color:#f92672">[</span><span style="color:#ae81ff">32004</span><span style="color:#f92672">]</span> LOG:  statement: SELECT * from polls_question 
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">2019-06-03 14:32:10.842 PDT <span style="color:#f92672">[</span>32004<span style="color:#f92672">]</span> LOG:  statement: SELECT * from polls_question 
 /*db_driver<span style="color:#f92672">=</span><span style="color:#d88200">&#39;knex%3A0.0.1&#39;</span>,route<span style="color:#f92672">=</span><span style="color:#d88200">&#39;%5E%2Fpolls%2F%1000&#39;</span>,traceparent<span style="color:#f92672">=</span><span style="color:#d88200">&#39;00-11000000000000ff-020000ee-01&#39;</span>,tracestate<span style="color:#f92672">=</span><span style="color:#d88200">&#39;brazzaville=t61rcWkgMzE,rondo=00f067aa0ba902b7&#39;</span>*/</code></pre></div>
 
 
   </span>
 </div>
 
-
 <h4 id="references">References</h4>
-
 <table>
 <thead>
 <tr>
@@ -891,13 +898,11 @@ Application listening on <span style="color:#ae81ff">3000</span></code></pre></d
 <th>URL</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>@google-cloud/sqlcommenter-knex on npm</td>
 <td><a href="https://www.npmjs.com/package/@google-cloud/sqlcommenter-knex">https://www.npmjs.com/package/@google-cloud/sqlcommenter-knex</a></td>
 </tr>
-
 <tr>
 <td>express.js</td>
 <td><a href="https://expressjs.com/">https://expressjs.com/</a></td>
@@ -946,7 +951,7 @@ Application listening on <span style="color:#ae81ff">3000</span></code></pre></d
   
 
     <div class="github-link">
-      <a href="https://github.com/google/sqlcommenter/tree/gh-pages/src/content/node/knex/_index.md" target="blank"><i class="fa fa-code-fork"></i>
+      <a href="https://github.com/google/sqlcommenter/tree/gh-pages/src/contentnode/knex/_index.md" target="blank"><i class="fa fa-code-fork"></i>
         Edit this page on Github</a>
     </div>
   </div>
@@ -959,8 +964,7 @@ Application listening on <span style="color:#ae81ff">3000</span></code></pre></d
     <ul>
 <li><a href="https://github.com/google/sqlcommenter/">Github</a></li>
 </ul>
-
-<h5 style="color: #fff">sqlcommenter</h5>
+<!-- raw HTML omitted -->
 
   
 

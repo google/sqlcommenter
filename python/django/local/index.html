@@ -5,7 +5,7 @@
     
       <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="generator" content="Hugo 0.55.6" />
+<meta name="generator" content="Hugo 0.81.0" />
 <title>Locally :: sqlcommenter</title>
 <link rel="shortcut icon" href="https://google.github.io/sqlcommenter/images/favicon.ico" type="image/x-icon" />
 <link href="https://google.github.io/sqlcommenter/css/font-awesome.min.css" rel="stylesheet">
@@ -84,14 +84,14 @@
 
     
   </head>
-  <body data-url="/python/django/local/">
+  <body data-url="https://google.github.io/sqlcommenter/python/django/local/">
     
       <header>
   <div class="logo">
     
 	
   
-    <p><a href="https://google.github.io/sqlcommenter/"><img src="https://google.github.io/sqlcommenter/images/sqlcommenter_logo.png" alt="sqlcommenter logo" /> <span>sql</span>commenter</a></p>
+    <p><a href="https://google.github.io/sqlcommenter/"><img src="https://google.github.io/sqlcommenter/images/sqlcommenter_logo.png" alt="sqlcommenter logo"> <!-- raw HTML omitted -->sql<!-- raw HTML omitted -->commenter</a></p>
 
   
 
@@ -117,6 +117,68 @@
             <i class="fa fa-angle-down fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
       </div>
         <ul>
+    <li data-nav-id="/python/django/" class="dd-item parent haschildren
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/python/django/">Django</a>
+            <i class="fa fa-angle-down fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+      <li data-nav-id="/python/django/local/" class="dd-item active">
+        <div>
+          <a href="https://google.github.io/sqlcommenter/python/django/local/">
+            Locally
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/python/django/gcp/" class="dd-item">
+        <div>
+          <a href="https://google.github.io/sqlcommenter/python/django/gcp/">
+            Google Cloud Platform
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/python/django/aws/" class="dd-item">
+        <div>
+          <a href="https://google.github.io/sqlcommenter/python/django/aws/">
+            Amazon Web Services
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/python/psycopg2/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/python/psycopg2/">psycopg2</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/python/sqlalchemy/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/python/sqlalchemy/">SQLAlchemy</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/python/flask/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/python/flask/">Flask</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/php/" class="dd-item haschildren
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/php/">Php</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+    <li data-nav-id="/php/laravel/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/php/laravel/">Laravel</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
         </ul>
     </li>
     <li data-nav-id="/ruby/" class="dd-item haschildren
@@ -254,23 +316,16 @@
     
     
     
-    
-
-<ul>
+    <ul>
 <li><a href="#introduction">Introduction</a></li>
 <li><a href="#requirements">Requirements</a></li>
 <li><a href="#addition-to-your-code">Addition to your code</a></li>
 <li><a href="#references">References</a></li>
 </ul>
-
 <h3 id="introduction">Introduction</h3>
-
 <p>This guide will help you add <a href="https://google.github.io/sqlcommenter/introduction">sqlcommenter</a> to your Django applications running locally.</p>
-
 <p>Please see the reference for the fields added in the SQL comments <a href="https://google.github.io/sqlcommenter/python/django#fields">google-cloud-sqlcommenter.Fields</a></p>
-
 <h3 id="requirements">Requirements</h3>
-
 <table>
 <thead>
 <tr>
@@ -278,46 +333,34 @@
 <th>Resource</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>Django</td>
 <td><a href="https://docs.djangoproject.com/en/stable/intro/">https://docs.djangoproject.com/en/stable/intro/</a></td>
 </tr>
-
 <tr>
 <td>google-cloud-sqlcommenter</td>
 <td><a href="https://pypi.org/project/google-cloud-sqlcommenter">https://pypi.org/project/google-cloud-sqlcommenter</a></td>
 </tr>
-
 <tr>
 <td>Django 2.X</td>
 <td><a href="https://docs.djangoproject.com/en/stable/faq/install">https://docs.djangoproject.com/en/stable/faq/install</a></td>
 </tr>
-
 <tr>
 <td>Python 3.X</td>
 <td><a href="https://www.python.org/downloads/">https://www.python.org/downloads/</a></td>
 </tr>
 </tbody>
 </table>
-
 <h3 id="addition-to-your-code">Addition to your code</h3>
-
 <p>Firstly, please install <a href="https://google.github.io/sqlcommenter/python/django#installation">google-cloud-sqlcommenter</a>.</p>
-
 <p>For any Django deployment, we can just edit our settings.py file and update the <code>MIDDLEWARE</code> section as per:</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#111">MIDDLEWARE</span> <span style="color:#f92672">=</span> <span style="color:#111">[</span>
   <span style="color:#d88200">&#39;google.cloud.sqlcommenter.django.middleware.SqlCommenter&#39;</span><span style="color:#111">,</span>
   <span style="color:#f92672">...</span>
-<span style="color:#111">]</span></code></pre></div>
-<div class="notices tip" >
-If any middleware execute database queries (that you'd like commented by SqlCommenter), those middleware MUST appear after
-'google.cloud.sqlcommenter.django.middleware.SqlCommenter'
-</div>
-
+<span style="color:#111">]</span>
+</code></pre></div><!-- raw HTML omitted -->
 <h3 id="references">References</h3>
-
 <table>
 <thead>
 <tr>
@@ -325,13 +368,11 @@ If any middleware execute database queries (that you'd like commented by SqlComm
 <th>URL</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>Django quickstart</td>
 <td><a href="https://docs.djangoproject.com/en/stable/intro/">https://docs.djangoproject.com/en/stable/intro/</a></td>
 </tr>
-
 <tr>
 <td>Installing Django middleware</td>
 <td><a href="https://google.github.io/sqlcommenter/python/django#installation">/python/django#installation</a></td>
@@ -371,7 +412,7 @@ If any middleware execute database queries (that you'd like commented by SqlComm
   
 
     <div class="github-link">
-      <a href="https://github.com/google/sqlcommenter/tree/gh-pages/src/content/python/django/local.md" target="blank"><i class="fa fa-code-fork"></i>
+      <a href="https://github.com/google/sqlcommenter/tree/gh-pages/src/contentpython/django/local.md" target="blank"><i class="fa fa-code-fork"></i>
         Edit this page on Github</a>
     </div>
   </div>
@@ -384,8 +425,7 @@ If any middleware execute database queries (that you'd like commented by SqlComm
     <ul>
 <li><a href="https://github.com/google/sqlcommenter/">Github</a></li>
 </ul>
-
-<h5 style="color: #fff">sqlcommenter</h5>
+<!-- raw HTML omitted -->
 
   
 
