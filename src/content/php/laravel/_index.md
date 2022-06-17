@@ -20,14 +20,16 @@ tags: ["php", "laravel"]
 
 ### Introduction
 
-This package is in the form of [Illuminate Database Connector Wrapper](https://github.com/illuminate/database) whose purpose is to augment a SQL statement right before execution, with information about the controller and user code to help with later making database optimization decisions, after those statements are examined from the database server's logs.
+This package is in the form of [Illuminate Database Connector Wrapper](https://github.com/illuminate/database) whose purpose is to augment a SQL statement right before execution, with information about the controller and user code to help with later making database optimization decisions, after examining the statements.
 
 ### Requirements
 
-It requires [php 8](https://www.php.net) & above
+It requires [php 8](https://www.php.net) & above.
 
 ### Installation
-This middleware can be installed by any of the following:
+At present, we can install `sqlcommenter-laravel` from source.
+
+This middleware can be installed by one of the following methods:
 #### Composer
 ```shell
 composer require google/sqlcommenter-laravel
@@ -73,15 +75,15 @@ Add the following class above ``Illuminate\Database\DatabaseServiceProvider::cla
 
 ### Fields
 
-In the database server logs, the comment's fields are:
+SQL Statements generated are appended with a comment having fields:
 
-* comma separated key-value pairs e.g. `controller='index'`
-* values are SQL escaped i.e. `key='value'`
-* URL-quoted except for the equals(`=`) sign e.g `route='%5Epolls/%24'`. so should be URL-unquoted when being consumed
+* comma separated key-value pairs e.g. `controller='index'`.
+* values are SQL escaped i.e. `key='value'`.
+* URL-quoted except for the equals(`=`) sign e.g `route='%5Epolls/%24'`. So, should be URL-unquoted when being consumed.
 
 ### Sample log entry
 
-After making a request into the middleware-enabled polls web-app.
+After making requests to the sample middleware-enabled `polls` web-app, we can see logs like:
 
 ```shell
 2022-04-29 13:59:39.922 IST [27935] LOG:  duration: 0.012 ms  execute pdo_stmt_00000003: Select * from users
@@ -101,7 +103,7 @@ Field| Included <br /> by default?                    |Description
 
 ### End to end examples
 
-Examples are based upon the [sample](https://github.com/google/sqlcommenter/tree/master/php/sqlcommenter-php/samples/sqlcommenter-laravel)
+Examples are based upon the [sample app](https://github.com/google/sqlcommenter/tree/master/php/sqlcommenter-php/samples/sqlcommenter-laravel).
 
 #### Source code
 ```php
