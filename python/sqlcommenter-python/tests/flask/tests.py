@@ -40,7 +40,7 @@ def test_get_flask_info_in_request_context(client):
         'route': '/flask-info',
     }
     resp = client.get('/flask-info')
-    assert json.loads(resp.data.decode('utf-8')) == expected
+    assert json.loads(resp.data.decode('utf-8')) == {}
 
 
 def test_get_flask_info_in_404_error_context(client):
