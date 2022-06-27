@@ -1,10 +1,10 @@
-name: Contrib Repo Tests
+name: Python Packages Test
 
 on:
   push:
 
 jobs:
-  build:
+  unittests:
     env:
       # We use these variables to convert between tox and GHA version literals
       py36: 3.6
@@ -28,6 +28,7 @@ jobs:
       - name: Install tox
         run: pip install -U tox-factor
       - name: run tox
-        run: tox -e '${{ matrix.python-version }}-{flask,django21,psycopg2}'
+        run: tox -e '${{ matrix.python-version }}-{django21,django22,django30,django31,django32,
+        psycopg2,flask,generic,sqlalchemy}'
         working-directory: ./python/sqlcommenter-python
 
