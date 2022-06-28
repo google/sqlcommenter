@@ -19,3 +19,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: 'echo "No build required" '
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - run: 'echo "No build required" '

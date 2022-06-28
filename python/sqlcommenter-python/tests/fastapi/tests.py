@@ -18,9 +18,8 @@ import json
 
 import fastapi
 import pytest
-from starlette.testclient import TestClient
-
 from google.cloud.sqlcommenter.fastapi import get_fastapi_info
+from starlette.testclient import TestClient
 
 from .app import app
 

@@ -2,9 +2,10 @@ from typing import Optional
 
 from fastapi import FastAPI, status
 from fastapi.responses import JSONResponse
+from google.cloud.sqlcommenter.fastapi import (
+    SQLCommenterMiddleware, get_fastapi_info,
+)
 from starlette.exceptions import HTTPException as StarletteHTTPException
-
-from google.cloud.sqlcommenter.fastapi import SQLCommenterMiddleware, get_fastapi_info
 
 app = FastAPI(title="SQLCommenter")
 
