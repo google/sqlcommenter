@@ -6,12 +6,10 @@ on:
     paths-ignore:
       - php/sqlcommenter-php/packages/sqlcommenter-laravel/**
       - php/sqlcommenter-php/samples/sqlcommenter-laravel/**
-      - python/sqlcommenter-python/**
   pull_request:
     paths-ignore:
       - php/sqlcommenter-php/packages/sqlcommenter-laravel/**
       - php/sqlcommenter-php/samples/sqlcommenter-laravel/**
-      - python/sqlcommenter-python/**
 
 jobs:
   integrationtests:
