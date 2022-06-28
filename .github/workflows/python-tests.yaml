@@ -2,13 +2,13 @@ name: Python Packages Test
 
 on:
   push:
-#    branches:
-#      - master
-#    paths:
-#      - python/sqlcommenter-python/**
-#  pull_request:
-#    paths:
-#      - python/sqlcommenter-python/**
+    branches:
+      - master
+    paths:
+      - python/sqlcommenter-python/**
+  pull_request:
+    paths:
+      - python/sqlcommenter-python/**
 
 jobs:
   unittests:
