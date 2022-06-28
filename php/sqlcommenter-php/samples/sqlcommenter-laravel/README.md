@@ -1,4 +1,4 @@
-# sqlcommenter-laravel-sample 
+ # sqlcommenter-laravel-sample 
 
 sqlcommenter is a plugin/middleware/wrapper to augment SQL statements from laravel
 with comments that can be used later to correlate user code with SQL statements.
