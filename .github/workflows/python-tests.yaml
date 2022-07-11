@@ -38,7 +38,7 @@ jobs:
         run: tox -e '${{ matrix.python-version }}-{django21,django22,django30,django31,django32,psycopg2,flask,generic,sqlalchemy}'
         working-directory: ./python/sqlcommenter-python
 
-  misc:
+  lint:
       strategy:
         fail-fast: false
         matrix:
