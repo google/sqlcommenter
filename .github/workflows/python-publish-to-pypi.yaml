@@ -15,14 +15,10 @@ jobs:
       with:
         python-version: '3.7'
 
-    - name: Build wheels
-      working-directory: ./python/sqlcommenter-python
-      run: python -m build
-
-    - name: Install twine
+    - name: Install build & twine
       working-directory: ./python/sqlcommenter-python
       run: |
-        pip install twine
+        pip install build twine
 
     - name: Publish to TestPyPI
       working-directory: ./python/sqlcommenter-python
