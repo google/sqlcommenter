@@ -1,0 +1,42 @@
+name: Publish to Pypi
+
+on:
+  release:
+    types: [published]
+    tags:
+      - python.*
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.7'
+
+    - name: Build wheels
+      working-directory: ./python/sqlcommenter-python
+      run: python -m build
+
+    - name: Install twine
+      working-directory: ./python/sqlcommenter-python
+      run: |
+        pip install twine
+
+    - name: Publish to TestPyPI
+      working-directory: ./python/sqlcommenter-python
+      env:
+        TWINE_USERNAME: '__token__'
+        TWINE_PASSWORD: ${{ secrets.test_pypi_token }}
+      run: |
+        twine upload --repository testpypi --skip-existing --verbose dist/*
+
+    - name: Publish to PyPI
+      working-directory: ./python/sqlcommenter-python
+      env:
+        TWINE_USERNAME: '__token__'
+        TWINE_PASSWORD: ${{ secrets.pypi_password }}
+      run: |
+        twine upload --skip-existing --verbose dist/*
