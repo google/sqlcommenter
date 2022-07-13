@@ -36,10 +36,21 @@ def generate_sql_comment(**meta):
 
     # Sort the keywords to ensure that caching works and that testing is
     # deterministic. It eases visual inspection as well.
+
     return ' /*' + KEY_VALUE_DELIMITER.join(
         '{}={!r}'.format(url_quote(key), url_quote(value)) for key, value in sorted(meta.items())
         if value is not None
     ) + '*/'
+
+
+def add_sql_comment(sql, **meta):
+    comment = generate_sql_comment(**meta)
+    sql = sql.rstrip()
+    if sql[-1] == ';':
+        sql = sql[:-1] + comment + ';'
+    else:
+        sql = sql + comment
+    return sql
 
 
 def url_quote(s):

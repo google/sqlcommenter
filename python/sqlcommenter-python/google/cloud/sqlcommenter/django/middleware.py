@@ -15,11 +15,13 @@
 # limitations under the License.
 
 import logging
+from contextlib import ExitStack
 
 import django
-from django.db import connection
+from django.db import connections
+
 from django.db.backends.utils import CursorDebugWrapper
-from google.cloud.sqlcommenter import generate_sql_comment
+from google.cloud.sqlcommenter import add_sql_comment
 from google.cloud.sqlcommenter.opencensus import get_opencensus_values
 from google.cloud.sqlcommenter.opentelemetry import get_opentelemetry_values
 
@@ -36,7 +38,9 @@ class SqlCommenter:
         self.get_response = get_response
 
     def __call__(self, request):
-        with connection.execute_wrapper(QueryWrapper(request)):
+        with ExitStack() as stack:
+            for db_alias in connections:
+                stack.enter_context(connections[db_alias].execute_wrapper(QueryWrapper(request)))
             return self.get_response(request)
 
 
@@ -62,7 +66,8 @@ class QueryWrapper:
         db_driver = context['connection'].settings_dict.get('ENGINE', '')
         resolver_match = self.request.resolver_match
 
-        sql_comment = generate_sql_comment(
+        sql = add_sql_comment(
+            sql,
             # Information about the controller.
             controller=resolver_match.view_name if resolver_match and with_controller else None,
             # route is the pattern that matched a request with a controller i.e. the regex
@@ -85,10 +90,9 @@ class QueryWrapper:
         # See:
         #  * https://github.com/basecamp/marginalia/issues/61
         #  * https://github.com/basecamp/marginalia/pull/80
-        sql += sql_comment
 
         # Add the query to the query log if debugging.
-        if context['cursor'].__class__ is CursorDebugWrapper:
+        if isinstance(context['cursor'], CursorDebugWrapper):
             context['connection'].queries_log.append(sql)
 
         return execute(sql, params, many, context)

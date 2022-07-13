@@ -1,0 +1,1 @@
+{"version":1,"defects":{"UtilsTest::testFormatCommentsWithKeys":4,"UtilsTest::testFormatCommentsWithoutKeys":4,"UtilsTest::testFormatCommentsWithSpecialCharKeys":4},"times":{"Tests\\Unit\\ExampleTest::test_that_true_is_true":0,"UtilsTest::testFormatCommentsWithKeys":0,"UtilsTest::testFormatCommentsWithoutKeys":0,"UtilsTest::testFormatCommentsWithSpecialCharKeys":0}}

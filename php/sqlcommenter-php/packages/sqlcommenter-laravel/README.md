@@ -6,7 +6,7 @@ with comments that can be used later to correlate user code with SQL statements.
 
 ### Installation
 
-Add this to your composer.json
+Add this to your `composer.json`
 ```shell
 "repositories": [
     {
@@ -24,11 +24,12 @@ composer require "google/sqlcommenter-laravel"
 Publish the config file from library to into laravel app using below command
 
 ```shell
-php artisan vendor:publish --provider="google\GoogleSqlCommenterLaravel\GoogleSqlCommenterServiceProvider"
+php artisan vendor:publish --provider="Google\GoogleSqlCommenterLaravel\GoogleSqlCommenterServiceProvider"
+
 ```
 
-Add the following class above ``Illuminate\Database\DatabaseServiceProvider::class,
-`` in config/app.php
+Add the following class above `Illuminate\Database\DatabaseServiceProvider::class`,
+ in `config/app.php`
 ```php
 'providers' => [
     ...
@@ -37,9 +38,9 @@ Add the following class above ``Illuminate\Database\DatabaseServiceProvider::cla
     ...
 ]
 ```
-### Run the tests
+### Run unit tests
 
-Run the tests using below command
+Run unit tests using below command
 ```shell
 ./vendor/bin/phpunit tests
 ```
