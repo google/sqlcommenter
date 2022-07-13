@@ -7,8 +7,8 @@ name: changelog
 on:
   pull_request:
     types: [opened, synchronize, reopened, labeled, unlabeled]
-#    branches:
-#      - master
+    branches:
+      - master
     paths:
       - python/sqlcommenter-python/**
 
