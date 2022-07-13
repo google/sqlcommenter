@@ -1,6 +1,6 @@
 ## sqlcommenter
 
-**sqlcommenter is donated to [OpenTelemetry](https://opentelemetry.io/). We will continue to maintain this repository until opentelemetry SQLCommenter feature stabilizes. Further updates will be added here in due time.**
+**sqlcommenter is donated to [OpenTelemetry](https://opentelemetry.io/). We will continue to maintain this repository until opentelemetry SQLCommenter feature stabilizes. Further updates will be added here in due time. See the migration plans in [this comment](https://github.com/open-telemetry/opentelemetry-java-contrib/issues/205#issuecomment-1018136934). **
 
 [Documentation](https://google.github.io/sqlcommenter/)
 
