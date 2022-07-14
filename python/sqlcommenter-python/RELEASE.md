@@ -35,4 +35,6 @@ To publish a stable release:
 
 1. Do not change the release branch directly; make a PR to the release-X.Y branch with VERSION and any CHANGELOG changes.
 2. After merging your PR to release branch, `git tag` the new release from release branch.
-3. Merge the release branch `release-x.y` to `master`
+3. Tag should be prefixed with `python-`
+4. Once the release occurs `publish-python-to-pypi` workflow job will get executed and will publish the library to testpypi and pypi
+5. When build succeeds, merge the release branch `release-x.y` to `master`
