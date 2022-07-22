@@ -28,13 +28,13 @@ class Utils
         return "/*" . implode(
             ',',
             array_map(
-                fn (string $value, string $key) => Utils::customEncode($key) . "='" . Utils::customEncode($value) . "'", $comments,
+                static fn (string $value, string $key) => Utils::customUrlEncode($key) . "='" . Utils::customUrlEncode($value) . "'", $comments,
                 array_keys($comments)
             ),
         ) . "*/";
     }
 
-    private static function customEncode(string $input): string
+    private static function customUrlEncode(string $input): string
     {
         $encodedString = urlencode($input);
 
