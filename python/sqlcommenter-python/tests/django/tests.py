@@ -17,9 +17,11 @@
 import django
 from django.db import connection, connections
 from django.http import HttpRequest
-from django.test import TestCase, override_settings, modify_settings
+from django.test import TestCase, modify_settings, override_settings
 from django.urls import resolve, reverse
-from google.cloud.sqlcommenter.django.middleware import SqlCommenter, QueryWrapper
+from google.cloud.sqlcommenter.django.middleware import (
+    QueryWrapper, SqlCommenter,
+)
 
 from ..compat import mock
 from ..opencensus_mock import mock_opencensus_tracer
@@ -30,6 +32,8 @@ from . import views
 # Adding the middleware twice in modify_settings
 # doesn't work. The middleware is only used once
 # if used in modify_settings
+
+
 class TestMiddleware:
     def __init__(self, get_response):
         self.get_response = get_response
@@ -38,10 +42,12 @@ class TestMiddleware:
         with connection.execute_wrapper(QueryWrapper(request)):
             return self.get_response(request)
 
+
 # Query log only active if DEBUG=True.
 @override_settings(DEBUG=True)
 class Tests(TestCase):
     databases = '__all__'
+
     @staticmethod
     def get_request(path):
         request = HttpRequest()
