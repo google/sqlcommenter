@@ -19,7 +19,6 @@ from contextlib import ExitStack
 
 import django
 from django.db import connections
-
 from django.db.backends.utils import CursorDebugWrapper
 from google.cloud.sqlcommenter import add_sql_comment
 from google.cloud.sqlcommenter.opencensus import get_opencensus_values
