@@ -12,12 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-const {TraceContextFormat} = require('@opencensus/propagation-tracecontext');
-const traceContext = new TraceContextFormat();
-
 /**
  * fields represent variables that can be made optional for commenter output
- */ 
+ */
 exports.fields = {
     CLIENT_TIMEZONE: "client_timezone",
     DB_DRIVER: "db_driver",
@@ -49,7 +46,7 @@ exports.hasComment = (sql) => {
 
     // Check if it is a well formed comment.
     const indexClosingSlashComment = sql.indexOf('*/');
-    
+
     /* c8 ignore next */
     return indexOpeningSlashComment < indexClosingSlashComment;
 }
