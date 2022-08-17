@@ -7,8 +7,6 @@
     "test": "test"
   },
   "devDependencies": {
-    "@opencensus/nodejs": "^0.0.22",
-    "@opencensus/propagation-tracecontext": "^0.0.22",
     "@opentelemetry/api": "^1.0.3",
     "@opentelemetry/core": "^0.24.0",
     "@opentelemetry/node": "^0.24.0",
@@ -23,8 +21,6 @@
     "sinon-chai": "^3.5.0"
   },
   "peerDependencies": {
-    "@opencensus/nodejs": "^0.0.22",
-    "@opencensus/propagation-tracecontext": "^0.0.22",
     "@opentelemetry/core": "^0.24.0"
   },
   "engines": {
