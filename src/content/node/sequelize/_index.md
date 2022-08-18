@@ -8,6 +8,7 @@ tags: ["sequelize", "sequelize.js", "query-builder", "node", "node.js", "express
 
 ![](/images/sequelize-logo.png)
 
+- [Introduction](#introduction)
 - [Requirements](#requirements)
 - [Installation](#installation)
   - [Manually](#manually)
@@ -25,7 +26,7 @@ tags: ["sequelize", "sequelize.js", "query-builder", "node", "node.js", "express
   - [Results](#results)
   - [References](#references)
 
-#### Introduction
+### Introduction
 
 This package is in the form of `Sequelize.Client.prototype.query` wrapper whose purpose is to augment a SQL statement right before execution, with
 information about the controller and user code to help correlate them with SQL statements emitted by Sequelize.js.
