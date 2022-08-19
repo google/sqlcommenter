@@ -1,4 +1,4 @@
-name: Nodels Packages Test
+name: Nodejs Knex Packages Test
 
 on:
   push:
@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [current/latest/node, lts/*]
+        node-version: [ current, lts/* ]
 
     steps:
       - uses: actions/checkout@v3
@@ -24,6 +24,10 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
+        working-directory: ./nodejs/packages/sqlcommenter-knex
       - run: npm run build --if-present
+        working-directory: ./nodejs/packages/sqlcommenter-knex
       - run: npm test
+        working-directory: ./nodejs/packages/sqlcommenter-knex
+
       
