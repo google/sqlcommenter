@@ -1,6 +1,6 @@
 {
   "name": "google/sqlcommenter-laravel",
-  "description": "Laravel middleware to send events to OpenTelemetry",
+  "description": "Laravel middleware to augment SQL Statements with comments containing information about the code that caused its execution.",
   "type": "library",
   "license": "MIT",
   "authors": [
