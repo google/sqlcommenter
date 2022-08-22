@@ -2,13 +2,13 @@ name: Nodejs Sequelize Packages Test
 
 on:
   push:
-  #   branches:
-  #     - master
-  #   paths:
-  #     - nodejs/sqlcommenter-nodejs/packages/sqlcommenter-sequelize
-  # pull_request:
-  #   paths:
-  #     - nodejs/sqlcommenter-nodejs/packages/sqlcommenter-sequelize
+    branches:
+      - master
+    paths:
+      - nodejs/sqlcommenter-nodejs/packages/sqlcommenter-sequelize
+  pull_request:
+    paths:
+      - nodejs/sqlcommenter-nodejs/packages/sqlcommenter-sequelize
 jobs:
   unittests:
     runs-on: ubuntu-latest
