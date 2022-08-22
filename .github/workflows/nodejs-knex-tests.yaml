@@ -2,18 +2,18 @@ name: Nodejs Knex Packages Test
 
 on:
   push:
-    # branches:
-    #       - master
-    #     paths:
-    #       - python/nodejs/packages/**
-    #   pull_request:
-    #     paths:
-    #       - python/nodejs/packages/**
-
+    branches:
+      - master
+    paths:
+      - nodejs/sqlcommenter-nodejs/packages/sqlcommenter-knex
+  pull_request:
+    paths:
+      - nodejs/sqlcommenter-nodejs/packages/sqlcommenter-knex
 jobs:
   unittests:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false  # ensures the entire test matrix is run, even if one permutation fails
       matrix:
         node-version: [ current, lts/* ]
 
@@ -29,5 +29,4 @@ jobs:
         working-directory: ./nodejs/sqlcommenter-nodejs/packages/sqlcommenter-knex
       - run: npm test
         working-directory: ./nodejs/sqlcommenter-nodejs/packages/sqlcommenter-knex
-
-      
+   

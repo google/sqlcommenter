@@ -1,0 +1,32 @@
+name: Nodejs Sequelize Packages Test
+
+on:
+  push:
+  #   branches:
+  #     - master
+  #   paths:
+  #     - nodejs/sqlcommenter-nodejs/packages/sqlcommenter-sequelize
+  # pull_request:
+  #   paths:
+  #     - nodejs/sqlcommenter-nodejs/packages/sqlcommenter-sequelize
+jobs:
+  unittests:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false  # ensures the entire test matrix is run, even if one permutation fails
+      matrix:
+        node-version: [ current, lts/* ]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm ci
+        working-directory: ./nodejs/sqlcommenter-nodejs/packages/sqlcommenter-sequelize
+      - run: npm run build --if-present
+        working-directory: ./nodejs/sqlcommenter-nodejs/packages/sqlcommenter-sequelize
+      - run: npm test
+        working-directory: ./nodejs/sqlcommenter-nodejs/packages/sqlcommenter-sequelize
+   
