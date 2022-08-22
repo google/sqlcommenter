@@ -1,6 +1,6 @@
 {
   "name": "google/sqlcommenter-laravel",
-  "description": "Laravel middleware to send events to OpenTelemetry",
+  "description": "SQLCommenter implementation for Laravel. SQLCommenter is a set of tools that augments SQL Statements with comments containing information about the code that caused its execution. These information can be action, controller, framework, db_driver, route and opentelemetry traceparent.",
   "type": "library",
   "license": "MIT",
   "authors": [
