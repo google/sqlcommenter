@@ -1,4 +1,4 @@
-name: Publish to Sqlcommenter-php repository
+name: Publish to "sqlcommenter-laravel-php" repository
 on:
   push:
     branches:
@@ -17,5 +17,5 @@ jobs:
         with:
           source-directory: 'php/sqlcommenter-php/packages/sqlcommenter-laravel'
           destination-github-username: 'google'
-          destination-repository-name: 'sqlcommenter-php'
+          destination-repository-name: 'sqlcommenter-laravel-php'
           target-branch: main
