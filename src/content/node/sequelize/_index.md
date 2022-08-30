@@ -8,6 +8,7 @@ tags: ["sequelize", "sequelize.js", "query-builder", "node", "node.js", "express
 
 ![](/images/sequelize-logo.png)
 
+- [Introduction](#introduction)
 - [Requirements](#requirements)
 - [Installation](#installation)
   - [Manually](#manually)
@@ -25,7 +26,7 @@ tags: ["sequelize", "sequelize.js", "query-builder", "node", "node.js", "express
   - [Results](#results)
   - [References](#references)
 
-#### Introduction
+### Introduction
 
 This package is in the form of `Sequelize.Client.prototype.query` wrapper whose purpose is to augment a SQL statement right before execution, with
 information about the controller and user code to help correlate them with SQL statements emitted by Sequelize.js.
@@ -95,7 +96,7 @@ In the database server logs, the comment's fields are:
 * URL-quoted except for the equals(`=`) sign e.g `route='%5Epolls/%24'`. so should be URL-unquoted
 
 | Field             | Format                 | Description                                                                                          | Example                                                                 |
-|-------------------|------------------------|------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------|
+| ----------------- | ---------------------- | ---------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
 | `client_timezone` | `<string>`             | URL quoted name of the timezone used when converting a date from the database into a JavaScript date | `'+00:00'`                                                              |
 | `db_driver`       | `<sequelize>`          | URL quoted name and version of the database driver                                                   | `db_driver='sequelize'`                                                 |
 | `route`           | `<the route used>`     | URL quoted route used to match the express.js controller                                             | `route='%5E%2Fpolls%2F`                                                 |
@@ -114,7 +115,7 @@ wrapMainSequelizeAsMiddleware(Sequelize, include={...}, options={...});
 A map of values to be optionally included in the SQL comments.
 
 | Field           | On by default |
-|-----------------|---------------|
+| --------------- | ------------- |
 | client_timezone | {{<uncheck>}} |
 | db_driver       | {{<uncheck>}} |
 | route           | {{<check>}}   |
@@ -123,12 +124,12 @@ A map of values to be optionally included in the SQL comments.
 
 ##### `options` config
 A configuration object specifying where to collect trace data from. Accepted
-fields are: TraceProvider: Should be either `OpenCensus` or `OpenTelemetry`,
+fields are: TraceProvider: Should be `OpenTelemetry`,
 indicating which library to collect trace context from.
 
-| Field         | Possible values                 |
-|---------------|---------------------------------|
-| TraceProvider | `OpenCensus` or `OpenTelemetry` |
+| Field         | Possible values |
+| ------------- | --------------- |
+| TraceProvider | `OpenTelemetry` |
 
 ##### Options examples
 
@@ -178,57 +179,7 @@ Check out a full express + opentelemetry example
 
 #### Source code
 
-{{<tabs "With OpenCensus" "With OpenTelemetry" "With Route" "With DB Driver and CLIENT TIMEZONE" "With All Options Set">}}
-
-{{<highlight javascript>}}
-// In file app.js.
-const tracing = require('@opencensus/nodejs');
-const {B3Format} = require('@opencensus/propagation-b3');
-const {ZipkinTraceExporter} = require('@opencensus/exporter-zipkin');
-const {wrapSequelizeAsMiddleware} = require('@google-cloud/sqlcommenter-sequelize');
-const Sequelize = require('sequelize');
-const express = require('express');
-
-const exporter = new ZipkinTraceExporter({
-    url: process.env.ZIPKIN_TRACE_URL || 'localhost://9411/api/v2/spans',
-    serviceName: 'trace-542'
-});
-
-const b3 = new B3Format();
-const traceOptions = {
-    samplingRate: 1, // Always sample
-    propagation: b3,
-    exporter: exporter
-};
-
-// start tracing
-tracing.start(traceOptions);
-
-// Using a connection URI
-const sequelize = new Sequelize('postgres://user:pass@example.com:5432/dbname');
-
-const app = express();
-const port = process.env.APP_PORT || 3000;
-
-// Use the sequelize+express middleware with trace attributes 
-app.use(wrapSequelizeAsMiddleware(
-    sequelize,
-    { traceparent: true, tracestate: true, route: false },
-    { TraceProvider: "OpenCensus" },
-));
-
-app.get('/', (req, res) => res.send('Hello, sqlcommenter-nodejs!!'));
-app.get('^/polls/:param', function(req, res) {
-    sequelize.query('SELECT * from polls_question').then(function(polls) {
-        const blob = JSON.stringify(polls);
-        res.send(blob);
-    }).catch(function(err) {
-        console.log(err);
-        res.send(500);
-    });
-});
-app.listen(port, () => console.log(`Application listening on ${port}`));
-{{</highlight>}}
+{{<tabs "With OpenTelemetry" "With Route" "With DB Driver and CLIENT TIMEZONE" "With All Options Set">}}
 
 {{<highlight javascript>}}
 // In file app.js.
@@ -266,8 +217,8 @@ app.use(
   wrapSequelizeAsMiddleware(
     sequelize,
     {
-      client_timezone: true,
-      db_driver: true,
+      client_timezone: false,
+      db_driver: false,
       route: true,
       traceparent: true,
       tracestate: true,
@@ -354,59 +305,61 @@ app.listen(port, () => console.log(`Application listening on ${port}`));
 
 {{<highlight javascript>}}
 // In file app.js.
-const tracing = require('@opencensus/nodejs');
-const {B3Format} = require('@opencensus/propagation-b3');
-const {ZipkinTraceExporter} = require('@opencensus/exporter-zipkin');
-const Sequelize = require('sequelize');
-const {wrapSequelizeAsMiddleware} = require('@google-cloud/sqlcommenter-sequelize');
-const express = require('express');
+const { NodeTracerProvider } = require("@opentelemetry/node");
+const { BatchSpanProcessor } = require("@opentelemetry/tracing");
+const {
+  TraceExporter,
+} = require("@google-cloud/opentelemetry-cloud-trace-exporter");
 
-const exporter = new ZipkinTraceExporter({
-    url: process.env.ZIPKIN_TRACE_URL || 'localhost:9411/api/v2/spans',
-    serviceName: 'trace-542'
-});
+const tracerProvider = new NodeTracerProvider();
+// Export to Google Cloud Trace
+tracerProvider.addSpanProcessor(
+  new BatchSpanProcessor(new TraceExporter({ logger }), {
+    bufferSize: 500,
+    bufferTimeout: 5 * 1000,
+  })
+);
+tracerProvider.register();
 
-const b3 = new B3Format();
-const traceOptions = {
-    samplingRate: 1, // Always sample
-    propagation: b3,
-    exporter: exporter
-};
+// OpenTelemetry initialization should happen before importing any libraries
+// that it instruments
+const { Sequelize } = require("sequelize");
+const {
+  wrapSequelizeAsMiddleware,
+} = require("@google-cloud/sqlcommenter-sequelize");
 
-// start tracing
-tracing.start(traceOptions);
+const sequelize = new Sequelize("postgres://user:pass@example.com:5432/dbname");
 
-// Using a connection URI
-const sequelize = new Sequelize('postgres://user:pass@example.com:5432/dbname');
-
+const express = require("express");
 const app = express();
 const port = process.env.APP_PORT || 3000;
 
-// Use the sequelize+express middleware with all attributes set
-app.use(wrapSequelizeAsMiddleware(
+// SQLCommenter express middleware injects the route into the traces
+app.use(
+  wrapSequelizeAsMiddleware(
     sequelize,
     {
-        traceparent: true,
-        tracestate: true,
-
-        // Optional
-        route: false,
-        db_driver: false,
-        client_timezone: false
+      client_timezone: true,
+      db_driver: true,
+      route: true,
+      traceparent: true,
+      tracestate: true,
     },
-    {
-        TraceProvider: "OpenCensus",
-    },
-));
+    { TraceProvider: "OpenTelemetry" }
+  )
+);
 
-app.get('/', (req, res) => res.send('Hello, sqlcommenter-nodejs!!'));
-app.get('^/polls/:param', function(req, res) {
-    sequelize.query('SELECT * from polls_question').then(function(polls) {
-        const blob = JSON.stringify(polls);
-        res.send(blob);
-    }).catch(function(err) {
-        console.log(err);
-        res.send(500);
+app.get("/", (req, res) => res.send("Hello, sqlcommenter-nodejs!!"));
+app.get("^/polls/:param", function (req, res) {
+  sequelize
+    .query("SELECT * from polls_question")
+    .then(function (polls) {
+      const blob = JSON.stringify(polls);
+      res.send(blob);
+    })
+    .catch(function (err) {
+      console.log(err);
+      res.send(500);
     });
 });
 app.listen(port, () => console.log(`Application listening on ${port}`));
@@ -424,7 +377,7 @@ Application listening on 3000
 
 On making a request to that server at `http://localhost:3000/polls/1000`, the PostgreSQL logs show:
 
-{{<tabs "With OpenCensus" "With Route" "With DB Driver and CLIENT TIMEZONE" "With All Set">}}
+{{<tabs "With OpenTelemetry" "With Route" "With DB Driver and CLIENT TIMEZONE" "With All Set">}}
 
 {{<highlight shell>}}
 2019-06-03 14:32:10.842 PDT [32004] LOG:  statement: SELECT * from polls_question 
@@ -452,6 +405,6 @@ On making a request to that server at `http://localhost:3000/polls/1000`, the Po
 #### References
 
 | Resource                                    | URL                                                                |
-|---------------------------------------------|--------------------------------------------------------------------|
+| ------------------------------------------- | ------------------------------------------------------------------ |
 | @google-cloud/sqlcommenter-sequelize on npm | https://www.npmjs.com/package/@google-cloud/sqlcommenter-sequelize |
 | express.js                                  | https://expressjs.com/                                             |

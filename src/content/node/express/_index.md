@@ -11,7 +11,7 @@ tags: ["express", "express.js", "middleware", "node", "node.js"]
 - [Introduction](#introduction)
 - [References](#references)
 
-#### Introduction
+### Introduction
 
 We provide [express.js application-level middleware](https://expressjs.com/en/guide/using-middleware.html#middleware.application) with the following ORMs/Query-Builders:
 
@@ -20,7 +20,7 @@ We provide [express.js application-level middleware](https://expressjs.com/en/gu
 
 ### References
 
-Resource|URL
----|---
-express.js|https://expressjs.com/
-express.js middleware|https://expressjs.com/en/guide/using-middleware.html
+| Resource              | URL                                                  |
+| --------------------- | ---------------------------------------------------- |
+| express.js            | https://expressjs.com/                               |
+| express.js middleware | https://expressjs.com/en/guide/using-middleware.html |
