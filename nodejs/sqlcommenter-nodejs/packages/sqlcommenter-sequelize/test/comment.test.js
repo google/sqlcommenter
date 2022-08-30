@@ -19,16 +19,14 @@ let sequelize_version = require('sequelize').version;
 if (!sequelize_version)
     sequelize_version = require('sequelize/package').version;
 
-const {wrapSequelize} = require('../index');
-const {fields} = require('../util');
+const { wrapSequelize } = require('../index');
 const chai = require("chai");
 const expect = chai.expect;
 const seq_version = require('sequelize').version;
-const opencensus_tracing = require('@opencensus/nodejs');
-const {context, trace} = require('@opentelemetry/api');
-const {NodeTracerProvider} = require('@opentelemetry/node');
-const {AsyncHooksContextManager} = require('@opentelemetry/context-async-hooks');
-const {InMemorySpanExporter, SimpleSpanProcessor} = require('@opentelemetry/tracing');
+const { context, trace } = require('@opentelemetry/api');
+const { NodeTracerProvider } = require('@opentelemetry/node');
+const { AsyncHooksContextManager } = require('@opentelemetry/context-async-hooks');
+const { InMemorySpanExporter, SimpleSpanProcessor } = require('@opentelemetry/tracing');
 
 const createFakeSequelize = () => {
     return {
@@ -42,11 +40,11 @@ const createFakeSequelize = () => {
                         config: {
                             database: 'fake', client: 'fakesql',
                         },
-                            options: {
-                                databaseVersion: 'fakesql-server:0.0.X',
-                                dialect: 'fakesql',
-                                timezone: '+00:00',
-                            },
+                        options: {
+                            databaseVersion: 'fakesql-server:0.0.X',
+                            dialect: 'fakesql',
+                            timezone: '+00:00',
+                        },
                     },
                 },
             },
@@ -59,17 +57,16 @@ describe("Comments for Sequelize", () => {
     const fakeSequelize = createFakeSequelize();
 
     before(() => {
-        wrapSequelize(fakeSequelize, {client_timezone:true, db_driver:true});
+        wrapSequelize(fakeSequelize, { client_timezone: true, db_driver: true });
     });
 
     after(() => {
-        opencensus_tracing.stop();
     });
 
     describe("Cases", () => {
 
         it("should add comment to generated sql", (done) => {
-            
+
             const want = `SELECT * FROM foo /*client_timezone='%2B00%3A00',db_driver='sequelize%3A${seq_version}'*/`;
             const query = 'SELECT * FROM foo';
 
@@ -81,7 +78,7 @@ describe("Comments for Sequelize", () => {
         });
 
         it("should NOT affix comments to statements with existing comments", (done) => {
-            
+
             const q = [
                 'SELECT * FROM people /* existing */',
                 'SELECT * FROM people -- existing'
@@ -120,9 +117,9 @@ describe("Comments for Sequelize", () => {
         });
 
         it("chaining and repeated calls should NOT indefinitely chain SQL", (done) => {
-            
+
             const want = `SELECT * FROM foo /*client_timezone='%2B00%3A00',db_driver='sequelize%3A${seq_version}'*/`;
-            
+
             const sql = 'SELECT * FROM foo';
 
             fakeSequelize.dialect.Query.prototype.run(sql)
@@ -142,60 +139,24 @@ describe("Excluding all variables", () => {
     const fakeSequelize = createFakeSequelize();
 
     before(() => {
-        wrapSequelize(fakeSequelize, {non_existent: true});
+        wrapSequelize(fakeSequelize, { non_existent: true });
     });
 
     after(() => {
-        opencensus_tracing.stop();
     });
 
     it("when all variables are excluded, no comment should be generated", (done) => {
         // Allow a re-wrap.
         fakeSequelize.___alreadySQLCommenterWrapped___ = false;
-        wrapSequelize(fakeSequelize, {foo:true});
+        wrapSequelize(fakeSequelize, { foo: true });
 
         const want = `SELECT * FROM foo`;
-        const sql =  `SELECT * FROM foo`;
+        const sql = `SELECT * FROM foo`;
 
         fakeSequelize.dialect.Query.prototype.run(sql).then((got) => {
             expect(got).equals(want);
         });
         done();
-    });
-});
-
-describe("With OpenCensus tracing", () => {
-
-    const fakeSequelize = createFakeSequelize();
-
-    before(() => {
-        wrapSequelize(fakeSequelize, {traceparent: true, tracestate: true}, {TraceProvider: "OpenCensus"});
-    });
-
-    after(() => {
-            opencensus_tracing.stop();
-    });
-
-    it('Starting an OpenCensus trace should produce `traceparent`', (done) => {
-            // TODO: Follow-up with https://github.com/census-instrumentation/opencensus-node/issues/580
-            // and get a proper guide or file bugs against the project to get the proper
-            // way to retrieve spans. For now let's skip this test.
-            //  Remember: https://github.com/census-instrumentation/opencensus-node/issues/580
-
-            const traceOptions = {
-                samplingRate: 1, // Always sample
-            };
-            const tracer = opencensus_tracing.start(traceOptions).tracer;
-
-            tracer.startRootSpan({ name: 'with-tracing' }, rootSpan => {
-                const sql = 'SELECT * FROM foo';
-                fakeSequelize.dialect.Query.prototype.run(sql).then((augmentedSQL) => {
-                    const wantSQL = `SELECT * FROM foo /*traceparent='00-${rootSpan.traceId}-${rootSpan.id}-01'*/`;
-                    expect(augmentedSQL).equals(wantSQL);
-                    opencensus_tracing.tracer.stop();
-                    done();
-                });
-            });
     });
 });
 
@@ -215,7 +176,7 @@ describe("With OpenTelemetry tracing", () => {
     before(() => {
         contextManager = new AsyncHooksContextManager();
         context.setGlobalContextManager(contextManager.enable());
-        wrapSequelize(fakeSequelize, {traceparent: true, tracestate: true}, {TraceProvider: "OpenTelemetry"});
+        wrapSequelize(fakeSequelize, { traceparent: true, tracestate: true }, { TraceProvider: "OpenTelemetry" });
     });
 
     after(() => {
@@ -226,7 +187,7 @@ describe("With OpenTelemetry tracing", () => {
     it('Starting an OpenTelemetry trace should produce `traceparent`', (done) => {
         const rootSpan = tracer.startSpan('rootSpan');
 
-        context.with(trace.setSpan(context.active(), rootSpan),  async () => {
+        context.with(trace.setSpan(context.active(), rootSpan), async () => {
             const sql = 'SELECT * FROM foo';
             let augmentedSQL = await fakeSequelize.dialect.Query.prototype.run(sql);
             const wantSQL = `SELECT * FROM foo /*traceparent='00-${rootSpan.spanContext().traceId}-${rootSpan.spanContext().spanId}-01'*/`;
