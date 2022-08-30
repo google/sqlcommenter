@@ -12,12 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-const {TraceContextFormat} = require('@opencensus/propagation-tracecontext');
-const traceContext = new TraceContextFormat();
-
 /**
  * fields represent variables that can be made optional for commenter output
- */ 
+ */
 exports.fields = {
     CLIENT_TIMEZONE: "client_timezone",
     DB_DRIVER: "db_driver",
@@ -49,49 +46,7 @@ exports.hasComment = (sql) => {
 
     // Check if it is a well formed comment.
     const indexClosingSlashComment = sql.indexOf('*/');
-    
+
     /* c8 ignore next */
     return indexOpeningSlashComment < indexClosingSlashComment;
-}
-
-const latestSpan = (span) => {
-
-    if (!span || !span.isRootSpan())
-        return span;
-    
-    // Otherwise if it is a root span, we'll try to grab its last child.
-    const children = span.spans;
-    if (children.length < 1)
-        return span;
-
-    /* c8 ignore next */
-    return children[children.length - 1];
-}
-
-/**
- * Adds the required fields from span to dst for tracepropagation, ensuring
- * comformance with any system that uses W3C Distributed Tracing context to propagate traces.
- * In addition to adding a traceparent field, a tracestate is also added to dst
- * 
- * @param {Object} span The span object if tracing is active
- * @param {Object} dst The destination object to add trace propagation fields
- * @return {void}
- */
-exports.toW3CTraceContext = (span, dst) => {
-    // TODO: check if tracer.currentRootSpan can be null/undefined when tracer is active
-    const curSpan = latestSpan(span);
-    if (!curSpan)
-        return dst;
-
-    const spanContext = curSpan.spanContext || {};
-    if (!(spanContext.traceId && spanContext.spanId))
-        return dst;
-
-    const setHeader = {
-        setHeader: (key, value) => {
-            dst[key] = value;
-        }
-    };
-    traceContext.inject(setHeader, curSpan.spanContext);
-    return dst;
 }

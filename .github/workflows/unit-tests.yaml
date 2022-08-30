@@ -1,4 +1,5 @@
 name: Unit Tests
+
 on:
   push:
     branches:
@@ -6,12 +7,22 @@ on:
     paths-ignore:
       - php/sqlcommenter-php/packages/sqlcommenter-laravel/**
       - php/sqlcommenter-php/samples/sqlcommenter-laravel/**
+      - python/sqlcommenter-python/**
+      - nodejs/**
   pull_request:
     paths-ignore:
       - php/sqlcommenter-php/packages/sqlcommenter-laravel/**
       - php/sqlcommenter-php/samples/sqlcommenter-laravel/**
+      - python/sqlcommenter-python/**
+      - nodejs/**
+
 jobs:
   unittests:
+    runs-on: ubuntu-latest
+    steps:
+      - run: 'echo "No build required" '
+
+  lint:
     runs-on: ubuntu-latest
     steps:
       - run: 'echo "No build required" '

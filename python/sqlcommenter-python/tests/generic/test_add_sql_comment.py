@@ -27,10 +27,10 @@ class AddSqlCommentTests(TestCase):
         self.assertEqual("Select 1 /*a='%%2A/abc'*/", add_sql_comment("Select 1", a='*/abc'))
 
     def test_bytes(self):
-        self.assertIn("Select 1 /*a='%%2A/abc'*/", add_sql_comment("Select 1",a=b'*/abc'))
+        self.assertIn("Select 1 /*a='%%2A/abc'*/", add_sql_comment("Select 1", a=b'*/abc'))
 
     def test_url_quoting(self):
-        self.assertIn("Select 1 /*foo='bar%%2Cbaz'*/", add_sql_comment("Select 1",foo='bar,baz'))
+        self.assertIn("Select 1 /*foo='bar%%2Cbaz'*/", add_sql_comment("Select 1", foo='bar,baz'))
 
     def test_sql_with_semicolon(self):
-        self.assertIn("Select 1 /*foo='bar%%2Cbaz'*/;", add_sql_comment("Select 1;",foo='bar,baz'))
+        self.assertIn("Select 1 /*foo='bar%%2Cbaz'*/;", add_sql_comment("Select 1;", foo='bar,baz'))

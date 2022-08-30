@@ -19,31 +19,29 @@ namespace Google\GoogleSqlCommenterLaravel;
 
 class Utils
 {
-    public static function formatComments($comment)
+    public static function formatComments(array $comments): string
     {
-        if (empty($comment)) {
+        if (empty($comments)) {
             return "";
         }
-        $lastElement = array_key_last($comment);
-        $sql_comment = "/*";
-        foreach ($comment as $key => $value) {
-            if ($key == $lastElement) {
-                $sql_comment .= Utils::customUrlEncode($key) . "=" . "'" . Utils::customUrlEncode($value) . "'*/";
-            } else {
-                $sql_comment .= Utils::customUrlEncode($key) . "=" . "'" . Utils::customUrlEncode($value) . "',";
-            }
-        }
-        return $sql_comment;
+
+        return "/*" . implode(
+            ',',
+            array_map(
+                static fn (string $value, string $key) => Utils::customUrlEncode($key) . "='" . Utils::customUrlEncode($value) . "'", $comments,
+                array_keys($comments)
+            ),
+        ) . "*/";
     }
 
-    private static function customUrlEncode($input)
+    private static function customUrlEncode(string $input): string
     {
         $encodedString = urlencode($input);
 
-        # Since SQL uses '%' as a keyword, '%' is a by-product of url quoting
-        # e.g. foo,bar --> foo%2Cbar
-        # thus in our quoting, we need to escape it too to finally give
-        #      foo,bar --> foo%%2Cbar
+        // Since SQL uses '%' as a keyword, '%' is a by-product of url quoting
+        // e.g. foo,bar --> foo%2Cbar
+        // thus in our quoting, we need to escape it too to finally give
+        //      foo,bar --> foo%%2Cbar
 
         return str_replace("%", "%%", $encodedString);
     }
