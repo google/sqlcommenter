@@ -95,13 +95,12 @@ exports.wrapMainKnex = (Knex, include = {}, options = {}) => {
             return `${uri_encoded_key}='${uri_encoded_value}'`;
         }).join(',');
 
-        sqlStmt = sqlStmt.trim();
+        var trimmedSqlStmt = sqlStmt.trim();
         if (sqlStmt.slice(-1) === ';') {
-            var trimmedSqlStmt = sqlStmt.slice(0, -1);
-            commentedSQLStatement = `${trimmedSqlStmt} /*${commentStr}*/;`
+            commentedSQLStatement = `${trimmedSqlStmt.slice(0, -1)} /*${commentStr}*/;`
         }
         else {
-            commentedSQLStatement = `${sqlStmt} /*${commentStr}*/`
+            commentedSQLStatement = `${trimmedSqlStmt} /*${commentStr}*/`
         }
 
         if (typeof obj === 'string') {
