@@ -95,6 +95,7 @@ exports.wrapMainKnex = (Knex, include = {}, options = {}) => {
             return `${uri_encoded_key}='${uri_encoded_value}'`;
         }).join(',');
 
+        sqlStmt = sqlStmt.trim();
         if (sqlStmt.slice(-1) === ';') {
             var trimmedSqlStmt = sqlStmt.slice(0, -1);
             commentedSQLStatement = `${trimmedSqlStmt} /*${commentStr}*/;`

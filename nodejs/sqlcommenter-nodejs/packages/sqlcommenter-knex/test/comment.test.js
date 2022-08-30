@@ -94,7 +94,7 @@ describe("Comments for Knex", () => {
             done();
         });
 
-        it("should append ; after comment", (done) => {
+        it("should add ; after the comment ", (done) => {
             const want = "SELECT * from foo /*db_driver='knex%3Afake%3A0.0.1'*/;";
             fakeKnex.Client.prototype.query(null, { sql: 'SELECT * from foo;' }).then(({ sql }) => {
                 expect(sql).equals(want);
