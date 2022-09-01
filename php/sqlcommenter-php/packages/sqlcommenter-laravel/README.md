@@ -62,3 +62,4 @@ In the source repo,
 run unit tests using below command
 ```shell
 ./vendor/bin/phpunit tests
+```
