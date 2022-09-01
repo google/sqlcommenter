@@ -58,8 +58,7 @@ With Laravel SqlCommenter, we have configuration to choose which tags to be appe
 | `traceparent` | <div style="text-align: center">&#10004;</div> | The [W3C TraceContext.Traceparent field](https://www.w3.org/TR/trace-context/#traceparent-field) of the OpenTelemetry trace |
 
 ## Run Unittests
-In the source repo,
-run unit tests using below command
+In the source repo, run unit tests using below command
 ```shell
 ./vendor/bin/phpunit tests
 ```
