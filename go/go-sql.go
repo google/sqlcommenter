@@ -1,26 +1,34 @@
-package sqlcommenterGo
+package sqlcommenter
 
 import (
 	"context"
 	"database/sql"
 	"encoding/json"
 	"fmt"
+	"net/http"
 	"net/url"
 	"strings"
+
+	"github.com/fatih/structs"
 
 	_ "github.com/go-sql-driver/mysql"
 )
 
 type DB struct {
 	*sql.DB
-	commenterOptions map[string]bool
+	CommenterOptions CommenterOptions
 }
 
-var goSQLCommenterTags = map[string]string{"dbDriver": "go/sql"}
+type CommenterOptions struct {
+	DBDriver bool
+	Route    bool
+}
 
-func Open(driverName, dataSourceName string, commenterOptions map[string]bool) (*DB, error) {
+var goSQLCommenterTags = map[string]string{"DBDriver": "go/sql"}
+
+func Open(driverName string, dataSourceName string, commenterOptions CommenterOptions) (*DB, error) {
 	db, err := sql.Open(driverName, dataSourceName)
-	return &DB{DB: db, commenterOptions: commenterOptions}, err
+	return &DB{DB: db, CommenterOptions: commenterOptions}, err
 }
 
 func (db *DB) QueryRow(query string, args ...interface{}) any {
@@ -37,8 +45,10 @@ func (db *DB) withComment(ctx context.Context, query string) string {
 	var finalCommentsStr string = ""
 	query = strings.TrimSpace(query)
 
-	for key, element := range db.commenterOptions {
-		if element { // Checks if option is set as true
+	commenterOptions := structs.Map(db.CommenterOptions)
+
+	for key, element := range commenterOptions {
+		if element.(bool) { // Checks if option is set as true
 			if _, ok := goSQLCommenterTags[key]; ok { // Check if static value is assigned and if true append
 				finalCommentsMap[key] = goSQLCommenterTags[key]
 			} else if ctx.Value(key) != nil { // Append if key is avaliable in context
@@ -73,4 +83,10 @@ func encodeValue(v string) string {
 
 func encodeKey(k string) string {
 	return url.QueryEscape(string(k))
+}
+
+func AddHttpRouterTags(r *http.Request) context.Context {
+	ctx := context.Background()
+	ctx = context.WithValue(ctx, "Route", r.URL.Path)
+	return ctx
 }
