@@ -1,18 +1,16 @@
-/*
-Copyright 2022 Google LLC
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-     http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*/
+// Copyright 2022 Google LLC
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+// 
+//      http://www.apache.org/licenses/LICENSE-2.0
+// 
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
 package sqlcommenter
 
@@ -27,22 +25,33 @@ import (
 	"strings"
 )
 
+const (
+  
+  
+  
+  string = "route"
+  controller string = "controller"
+  action     string = "action"
+  framework  string = "framework"
+  driver     string = "driver"
+)
+
 type DB struct {
 	*sql.DB
-	CommenterOptions CommenterOptions
+	options CommenterOptions
 }
 
 type CommenterOptions struct {
-	DBDriver   bool
-	Route      bool
-	Framework  bool
-	Controller bool
-	Action     bool
+	EnableDBDriver   bool
+	EnableRoute      bool
+	EnableFramework  bool
+	EnableController bool
+	EnableAction     bool
 }
 
-func Open(driverName string, dataSourceName string, commenterOptions CommenterOptions) (*DB, error) {
+func Open(driverName string, dataSourceName string, options CommenterOptions) (*DB, error) {
 	db, err := sql.Open(driverName, dataSourceName)
-	return &DB{DB: db, CommenterOptions: commenterOptions}, err
+	return &DB{DB: db, options: options}, err
 }
 
 // ***** Query Functions *****
@@ -81,9 +90,9 @@ func (db *DB) PrepareContext(ctx context.Context, query string) (*sql.Stmt, erro
 
 func AddHttpRouterTags(r *http.Request, next any) context.Context { // any type is set because we need to refrain from importing http-router package
 	ctx := context.Background()
-	ctx = context.WithValue(ctx, "route", r.URL.Path)
-	ctx = context.WithValue(ctx, "action", getFunctionName(next))
-	ctx = context.WithValue(ctx, "framework", "net/http")
+	ctx = context.WithValue(ctx, route, r.URL.Path)
+	ctx = context.WithValue(ctx, action, getFunctionName(next))
+	ctx = context.WithValue(ctx, framework, "net/http")
 	return ctx
 }
 
@@ -92,38 +101,39 @@ func AddHttpRouterTags(r *http.Request, next any) context.Context { // any type 
 // ***** Commenter Functions *****
 
 func (db *DB) withComment(ctx context.Context, query string) string {
-
-	var finalCommentsMap = map[string]string{}
-	var finalCommentsStr string = ""
+	var commentsMap = map[string]string{}
 	query = strings.TrimSpace(query)
 
 	// Sorted alphabetically
-	if db.CommenterOptions.Action && (ctx.Value("action") != nil) {
-		finalCommentsMap["action"] = ctx.Value("action").(string)
+	if db.options.EnableAction && (ctx.Value(action) != nil) {
+		commentsMap[action] = ctx.Value(action).(string)
+	}
+	
+	// `driver` information should not be coming from framework.
+	// So, explicitly adding that here.
+	if db.options.EnableDBDriver {
+		commentsMap[driver] = "database/sql"
 	}
 
-	if db.CommenterOptions.DBDriver {
-		finalCommentsMap["driver"] = "go/sql"
+	if db.options.EnableFramework && (ctx.Value(framework) != nil) {
+		commentsMap[framework] = ctx.Value(framework).(string)
 	}
 
-	if db.CommenterOptions.Framework && (ctx.Value("framework") != nil) {
-		finalCommentsMap["framework"] = ctx.Value("framework").(string)
+	if db.options.EnableRoute && (ctx.Value(route) != nil) {
+		commentsMap[route] = ctx.Value(route).(string)
 	}
 
-	if db.CommenterOptions.Route && (ctx.Value("route") != nil) {
-		finalCommentsMap["route"] = ctx.Value("route").(string)
+	var commentsString string = ""
+	if len(commentsMap) > 0 { // Converts comments map to string and appends it to query
+		commentsString = fmt.Sprintf("/*%s*/", convertMapToComment(commentsMap))
 	}
 
-	if len(finalCommentsMap) > 0 { // Converts comments map to string and appends it to query
-		finalCommentsStr = fmt.Sprintf("/*%s*/", convertMapToComment(finalCommentsMap))
-		fmt.Println(finalCommentsStr)
-	}
-
+        // A semicolon at the end of the SQL statement means the query ends there.
+	// We need to insert the comment before that to be considered as part of the SQL statemtent. 
 	if query[len(query)-1:] == ";" {
-		return fmt.Sprintf("%s%s;", strings.TrimSuffix(query, ";"), finalCommentsStr)
+		return fmt.Sprintf("%s%s;", strings.TrimSuffix(query, ";"), commentsString)
 	}
-	return fmt.Sprintf("%s%s", query, finalCommentsStr)
-
+	return fmt.Sprintf("%s%s", query, commentsString)
 }
 
 // ***** Commenter Functions *****
