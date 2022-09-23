@@ -40,7 +40,7 @@ type CommenterOptions struct {
 	Action     bool //applicable for web frameworks
 }
 ```
-### go-http-router
+### net/http
 Populate the request context with sqlcommenter.AddHttpRouterTags(r) function in a custom middleware.
 
 #### Note
@@ -50,27 +50,22 @@ Populate the request context with sqlcommenter.AddHttpRouterTags(r) function in 
 #### Example
 ```go
 // middleware is used to intercept incoming HTTP calls and populate request context with commenter tags.
-func middleware(n httprouter.Handle) httprouter.Handle {
-	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-		ctx := sqlcommenter.AddHttpRouterTags(r)
-		log.Printf("HTTP request sent to %s from %s", r.URL.Path, r.RemoteAddr)
-
-		// call registered handler
-		n(w, r.WithContext(ctx), ps)
-	}
+func middleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		ctx := sqlcommenter.AddHttpRouterTags(r, next)
+		next.ServeHTTP(w, r.WithContext(ctx))
+	})
 }
 ```
-
-
 
 ## Options
 
 With Go SqlCommenter, we have configuration to choose which tags to be appended to the comment.
 
-| Options         | Included by default? | go-sql-orm                                                                                                                                                                   | http-router                                                                                                                                                                  | Notes |
+| Options         | Included by default? | go-sql-orm                                                                                                                                                                   | net/http                                                                                                                                                                     | Notes |
 | --------------- | :------------------: | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---: |
 | `DBDriver`      |                      | [ go-sql-driver](https://pkg.go.dev/database/sql/driver)                                                                                                                     |                                                                                                                                                                              |
-| `Action`        |                      |                                                                                                                                                                              | [http-router handle](https://pkg.go.dev/github.com/julienschmidt/httprouter#Handle)                                                                                          |       |
-| `Route`         |                      |                                                                                                                                                                              | [http-router routing path](https://pkg.go.dev/github.com/julienschmidt/httprouter#Router)                                                                                    |       |
-| `Framework`     |                      |                                                                                                                                                                              | [github.com/julienschmidt/httprouter](https://pkg.go.dev/github.com/julienschmidt/httprouter)                                                                                |       |
+| `Action`        |                      |                                                                                                                                                                              | [net/http handle](https://pkg.go.dev/net/http#Handle)                                                                                                                        |       |
+| `Route`         |                      |                                                                                                                                                                              | [net/http routing path](https://pkg.go.dev/github.com/gorilla/mux#Route.URLPath)                                                                                             |       |
+| `Framework`     |                      |                                                                                                                                                                              | [net/http](https://pkg.go.dev/net/http)                                                                                                                                      |       |
 | `Opentelemetry` |                      | [W3C TraceContext.Traceparent](https://www.w3.org/TR/trace-context/#traceparent-field), [W3C TraceContext.Tracestate](https://www.w3.org/TR/trace-context/#tracestate-field) | [W3C TraceContext.Traceparent](https://www.w3.org/TR/trace-context/#traceparent-field), [W3C TraceContext.Tracestate](https://www.w3.org/TR/trace-context/#tracestate-field) |       |

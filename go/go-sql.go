@@ -79,11 +79,11 @@ func (db *DB) PrepareContext(ctx context.Context, query string) (*sql.Stmt, erro
 
 // ***** Framework Functions *****
 
-func AddHttpRouterTags(r *http.Request, n any, p any) context.Context { // any type is set because we need to refrain from importing http-router package
+func AddHttpRouterTags(r *http.Request, next any) context.Context { // any type is set because we need to refrain from importing http-router package
 	ctx := context.Background()
 	ctx = context.WithValue(ctx, "route", r.URL.Path)
-	ctx = context.WithValue(ctx, "action", getFunctionName(n))
-	ctx = context.WithValue(ctx, "framework", "github.com/julienschmidt/httprouter")
+	ctx = context.WithValue(ctx, "action", getFunctionName(next))
+	ctx = context.WithValue(ctx, "framework", "net/http")
 	return ctx
 }
 
