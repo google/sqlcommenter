@@ -1,6 +1,6 @@
 # Sqlcommenter [In development]
 
-Sqlcommenter is a plugin/middleware/wrapper to augment SQL statements from go libraries with comments that can be used later to correlate user code with SQL statements.
+SQLcommenter is a plugin/middleware/wrapper to augment application related information/tags with SQL Statements that can be used later to correlate user code with SQL statements.
 
 ## Installation
 
@@ -10,7 +10,7 @@ Sqlcommenter is a plugin/middleware/wrapper to augment SQL statements from go li
 * In terminal go inside the client folder location where we need to import google-sqlcommenter package and enter the below commands
 
 ```shell
-go mod edit -replace google.com/sqlcommenterGo=path/to/google/sqlcommenter/go
+go mod edit -replace google.com/sqlcommenter=path/to/google/sqlcommenter/go
 
 go mod tiny
 ```
@@ -19,32 +19,33 @@ go mod tiny
 ## Usages
 
 ### go-sql-driver
-Use the sqlcommenter's db driver to  perform query
+Please use the sqlcommenter's default database driver to execute statements. \
+Due to inherent nature of Go, the safer way to pass information from framework to database driver is via `context`. So, it is recommended to use the context based methods of `DB` interface like `QueryContext`, `ExecContext` and `PrepareContext`. 
 
 ```go
-db, err := sqlcommenterGo.Open("<driver>", "<connectionString>", sqlcommenter.CommenterOptions{<tag>:<bool>})
-
+db, err := sqlcommenter.Open("<driver>", "<connectionString>", sqlcommenter.CommenterOptions{<tag>:<bool>})
 ```
 
 #### Configuration
 
-Tags to be appended can be configured by creating a variable of type sqlcommenter.CommenterOptions
+Users are given control over what tags they want to append by using `sqlcommenter.CommenterOptions` struct.
 
 ```go
 type CommenterOptions struct {
-	DBDriver   bool
-    Traceparent bool
-	Route      bool //applicable for web frameworks
-	Framework  bool //applicable for web frameworks
-	Controller bool //applicable for web frameworks
-	Action     bool //applicable for web frameworks
+	DBDriver    bool
+        Traceparent bool  // OpenTelemetry trace information
+	Route       bool  // applicable for web frameworks
+	Framework   bool  // applicable for web frameworks
+	Controller  bool  // applicable for web frameworks
+	Action      bool  // applicable for web frameworks
 }
 ```
+
 ### net/http
 Populate the request context with sqlcommenter.AddHttpRouterTags(r) function in a custom middleware.
 
 #### Note
-* <b>It needs to be used with drivers such as go-sql-orm </b>
+* We only support the `database/sql` driver and have provided an implementation for that.
 * <b>ORM related tags are added to the driver only when the tags are enabled in the commenter's driver's config and also the request context should passed to the querying functions</b>
 
 #### Example
