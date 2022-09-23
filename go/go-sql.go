@@ -3,15 +3,12 @@ package sqlcommenter
 import (
 	"context"
 	"database/sql"
-	"encoding/json"
 	"fmt"
 	"net/http"
 	"net/url"
+	"reflect"
+	"runtime"
 	"strings"
-
-	"github.com/fatih/structs"
-
-	_ "github.com/go-sql-driver/mysql"
 )
 
 type DB struct {
@@ -20,18 +17,25 @@ type DB struct {
 }
 
 type CommenterOptions struct {
-	DBDriver bool
-	Route    bool
+	DBDriver   bool
+	Route      bool
+	Framework  bool
+	Controller bool
+	Action     bool
 }
-
-var goSQLCommenterTags = map[string]string{"DBDriver": "go/sql"}
 
 func Open(driverName string, dataSourceName string, commenterOptions CommenterOptions) (*DB, error) {
 	db, err := sql.Open(driverName, dataSourceName)
 	return &DB{DB: db, CommenterOptions: commenterOptions}, err
 }
 
-func (db *DB) QueryRow(query string, args ...interface{}) any {
+// ***** Query Functions *****
+
+func (db *DB) Query(query string, args ...any) (*sql.Rows, error) {
+	return db.DB.Query(db.withComment(context.Background(), query), args...)
+}
+
+func (db *DB) QueryRow(query string, args ...interface{}) *sql.Row {
 	return db.DB.QueryRow(db.withComment(context.Background(), query), args...)
 }
 
@@ -39,54 +43,97 @@ func (db *DB) QueryContext(ctx context.Context, query string, args ...any) (*sql
 	return db.DB.QueryContext(ctx, db.withComment(ctx, query), args...)
 }
 
+func (db *DB) Exec(query string, args ...any) (sql.Result, error) {
+	return db.DB.Exec(db.withComment(context.Background(), query), args...)
+}
+
+func (db *DB) ExecContext(ctx context.Context, query string, args ...any) (sql.Result, error) {
+	return db.DB.ExecContext(ctx, db.withComment(ctx, query), args...)
+}
+
+func (db *DB) Prepare(query string) (*sql.Stmt, error) {
+	return db.DB.Prepare(db.withComment(context.Background(), query))
+}
+
+func (db *DB) PrepareContext(ctx context.Context, query string) (*sql.Stmt, error) {
+	return db.DB.PrepareContext(ctx, db.withComment(ctx, query))
+}
+
+// ***** Query Functions *****
+
+// ***** Framework Functions *****
+
+func AddHttpRouterTags(r *http.Request, n any, p any) context.Context { // any type is set because we need to refrain from importing http-router package
+	ctx := context.Background()
+	ctx = context.WithValue(ctx, "route", r.URL.Path)
+	ctx = context.WithValue(ctx, "action", getFunctionName(n))
+	ctx = context.WithValue(ctx, "framework", "github.com/julienschmidt/httprouter")
+	return ctx
+}
+
+// ***** Framework Functions *****
+
+// ***** Commenter Functions *****
+
 func (db *DB) withComment(ctx context.Context, query string) string {
 
 	var finalCommentsMap = map[string]string{}
 	var finalCommentsStr string = ""
 	query = strings.TrimSpace(query)
 
-	commenterOptions := structs.Map(db.CommenterOptions)
-
-	for key, element := range commenterOptions {
-		if element.(bool) { // Checks if option is set as true
-			if _, ok := goSQLCommenterTags[key]; ok { // Check if static value is assigned and if true append
-				finalCommentsMap[key] = goSQLCommenterTags[key]
-			} else if ctx.Value(key) != nil { // Append if key is avaliable in context
-				finalCommentsMap[key] = ctx.Value(key).(string)
-			}
-		}
-
+	// Sorted alphabetically
+	if db.CommenterOptions.Action && (ctx.Value("action") != nil) {
+		finalCommentsMap["action"] = ctx.Value("action").(string)
 	}
+
+	if db.CommenterOptions.DBDriver {
+		finalCommentsMap["driver"] = "go/sql"
+	}
+
+	if db.CommenterOptions.Framework && (ctx.Value("framework") != nil) {
+		finalCommentsMap["framework"] = ctx.Value("framework").(string)
+	}
+
+	if db.CommenterOptions.Route && (ctx.Value("route") != nil) {
+		finalCommentsMap["route"] = ctx.Value("route").(string)
+	}
+
 	if len(finalCommentsMap) > 0 { // Converts comments map to string and appends it to query
-		jsonStr, err := json.Marshal(finalCommentsMap)
-		if err != nil {
-			fmt.Printf("Error: %s", err.Error())
-		} else {
-			finalCommentsStr = strings.Replace(string(jsonStr), "{", "/*", 1)
-			finalCommentsStr = strings.Replace(string(finalCommentsStr), "}", "*/", 1)
-		}
+		finalCommentsStr = fmt.Sprintf("/*%s*/", convertMapToComment(finalCommentsMap))
+		fmt.Println(finalCommentsStr)
 	}
 
-	if strings.Contains(query, ";") {
-		query = strings.Replace(string(query), ";", "", 1)
-		return fmt.Sprintf("%s%s;", query, finalCommentsStr)
+	if query[len(query)-1:] == ";" {
+		return fmt.Sprintf("%s%s;", strings.TrimSuffix(query, ";"), finalCommentsStr)
 	}
 	return fmt.Sprintf("%s%s", query, finalCommentsStr)
 
 }
 
-// TODO:
-func encodeValue(v string) string {
-	urlEscape := strings.ReplaceAll(url.PathEscape(string(v)), "+", "%20")
-	return fmt.Sprintf("'%s'", urlEscape)
-}
+// ***** Commenter Functions *****
 
-func encodeKey(k string) string {
+// ***** Util Functions *****
+
+func encodeURL(k string) string {
 	return url.QueryEscape(string(k))
 }
 
-func AddHttpRouterTags(r *http.Request) context.Context {
-	ctx := context.Background()
-	ctx = context.WithValue(ctx, "Route", r.URL.Path)
-	return ctx
+func getFunctionName(i interface{}) string {
+	return runtime.FuncForPC(reflect.ValueOf(i).Pointer()).Name()
 }
+
+func convertMapToComment(tags map[string]string) string {
+	var sb strings.Builder
+	i, sz := 0, len(tags)
+	for key, val := range tags {
+		if i == sz-1 {
+			sb.WriteString(fmt.Sprintf("%s=%v", encodeURL(key), encodeURL(val)))
+		} else {
+			sb.WriteString(fmt.Sprintf("%s=%v,", encodeURL(key), encodeURL(val)))
+		}
+		i++
+	}
+	return sb.String()
+}
+
+// ***** Util Functions *****
