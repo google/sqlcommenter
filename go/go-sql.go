@@ -3,9 +3,9 @@
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -23,35 +23,50 @@ import (
 	"reflect"
 	"runtime"
 	"strings"
+
+	"go.opentelemetry.io/otel/propagation"
 )
 
 const (
-  
-  
-  
-  string = "route"
-  controller string = "controller"
-  action     string = "action"
-  framework  string = "framework"
-  driver     string = "driver"
+	route       string = "route"
+	controller  string = "controller"
+	action      string = "action"
+	framework   string = "framework"
+	driver      string = "driver"
+	traceparent string = "traceparent"
 )
 
 type DB struct {
 	*sql.DB
-	options CommenterOptions
+	options         CommenterOptions
+	otelTraceparent string
 }
 
 type CommenterOptions struct {
-	EnableDBDriver   bool
-	EnableRoute      bool
-	EnableFramework  bool
-	EnableController bool
-	EnableAction     bool
+	EnableDBDriver    bool
+	EnableRoute       bool
+	EnableFramework   bool
+	EnableController  bool
+	EnableAction      bool
+	EnableTraceparent bool
 }
 
 func Open(driverName string, dataSourceName string, options CommenterOptions) (*DB, error) {
 	db, err := sql.Open(driverName, dataSourceName)
 	return &DB{DB: db, options: options}, err
+}
+
+func (db *DB) AddorUpdateCurrentSpan(ctx context.Context) {
+
+	// Serialize the context into carrier
+	propgator := propagation.NewCompositeTextMapPropagator(propagation.TraceContext{}, propagation.Baggage{})
+	carrier := propagation.MapCarrier{}
+	propgator.Inject(ctx, carrier)
+
+	// Update traceparent
+	if val, ok := carrier["traceparent"]; ok {
+		db.otelTraceparent = val
+	}
 }
 
 // ***** Query Functions *****
@@ -108,7 +123,7 @@ func (db *DB) withComment(ctx context.Context, query string) string {
 	if db.options.EnableAction && (ctx.Value(action) != nil) {
 		commentsMap[action] = ctx.Value(action).(string)
 	}
-	
+
 	// `driver` information should not be coming from framework.
 	// So, explicitly adding that here.
 	if db.options.EnableDBDriver {
@@ -123,13 +138,17 @@ func (db *DB) withComment(ctx context.Context, query string) string {
 		commentsMap[route] = ctx.Value(route).(string)
 	}
 
+	if db.options.EnableTraceparent && (ctx.Value(traceparent) != "") {
+		commentsMap[traceparent] = db.otelTraceparent
+	}
+
 	var commentsString string = ""
 	if len(commentsMap) > 0 { // Converts comments map to string and appends it to query
 		commentsString = fmt.Sprintf("/*%s*/", convertMapToComment(commentsMap))
 	}
 
-        // A semicolon at the end of the SQL statement means the query ends there.
-	// We need to insert the comment before that to be considered as part of the SQL statemtent. 
+	// A semicolon at the end of the SQL statement means the query ends there.
+	// We need to insert the comment before that to be considered as part of the SQL statemtent.
 	if query[len(query)-1:] == ";" {
 		return fmt.Sprintf("%s%s;", strings.TrimSuffix(query, ";"), commentsString)
 	}
