@@ -38,8 +38,7 @@ const (
 
 type DB struct {
 	*sql.DB
-	options         CommenterOptions
-	otelTraceparent string
+	options CommenterOptions
 }
 
 type CommenterOptions struct {
@@ -54,19 +53,6 @@ type CommenterOptions struct {
 func Open(driverName string, dataSourceName string, options CommenterOptions) (*DB, error) {
 	db, err := sql.Open(driverName, dataSourceName)
 	return &DB{DB: db, options: options}, err
-}
-
-func (db *DB) AddorUpdateCurrentSpan(ctx context.Context) {
-
-	// Serialize the context into carrier
-	propgator := propagation.NewCompositeTextMapPropagator(propagation.TraceContext{}, propagation.Baggage{})
-	carrier := propagation.MapCarrier{}
-	propgator.Inject(ctx, carrier)
-
-	// Update traceparent
-	if val, ok := carrier["traceparent"]; ok {
-		db.otelTraceparent = val
-	}
 }
 
 // ***** Query Functions *****
@@ -108,6 +94,7 @@ func AddHttpRouterTags(r *http.Request, next any) context.Context { // any type 
 	ctx = context.WithValue(ctx, route, r.URL.Path)
 	ctx = context.WithValue(ctx, action, getFunctionName(next))
 	ctx = context.WithValue(ctx, framework, "net/http")
+	fmt.Println(ctx.Value("route"))
 	return ctx
 }
 
@@ -138,8 +125,11 @@ func (db *DB) withComment(ctx context.Context, query string) string {
 		commentsMap[route] = ctx.Value(route).(string)
 	}
 
-	if db.options.EnableTraceparent && (ctx.Value(traceparent) != "") {
-		commentsMap[traceparent] = db.otelTraceparent
+	if db.options.EnableTraceparent {
+		carrier := extractTraceparent(ctx)
+		if val, ok := carrier["traceparent"]; ok {
+			commentsMap[traceparent] = val
+		}
 	}
 
 	var commentsString string = ""
@@ -179,6 +169,15 @@ func convertMapToComment(tags map[string]string) string {
 		i++
 	}
 	return sb.String()
+}
+
+func extractTraceparent(ctx context.Context) propagation.MapCarrier {
+
+	// Serialize the context into carrier
+	propgator := propagation.NewCompositeTextMapPropagator(propagation.TraceContext{}, propagation.Baggage{})
+	carrier := propagation.MapCarrier{}
+	propgator.Inject(ctx, carrier)
+	return carrier
 }
 
 // ***** Util Functions *****
