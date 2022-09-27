@@ -94,7 +94,6 @@ func AddHttpRouterTags(r *http.Request, next any) context.Context { // any type 
 	ctx = context.WithValue(ctx, route, r.URL.Path)
 	ctx = context.WithValue(ctx, action, getFunctionName(next))
 	ctx = context.WithValue(ctx, framework, "net/http")
-	fmt.Println(ctx.Value("route"))
 	return ctx
 }
 
