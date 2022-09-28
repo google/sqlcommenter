@@ -1,11 +1,11 @@
-name: go-sql Packages Test
+name: go-sql package test
 
 on:
   push:
-#    branches:
-#      - master
-#    paths:
-#      - go/**
+    branches:
+      - master
+    paths:
+      - go/go-sql/**
   pull_request:
     paths:
       - go/go-sql/**
