@@ -25,6 +25,12 @@ jobs:
       run: go build -v ./...
       working-directory: ./go
 
+      # Verify go fmt standards are used
+    - name: Format
+      run: if [ "$(gofmt -s -l . | wc -l)" -gt 0 ]; then exit 1; fi
+
     - name: Test
       run: go test -v ./...
       working-directory: ./go
+
+

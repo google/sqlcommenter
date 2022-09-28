@@ -25,8 +25,7 @@ import (
 	"sort"
 	"strings"
 
-	"go.opentelemetry.io/otel/propagation"
-)
+	"go.opentelemetry.io/otel/propagation")
 
 const (
 	route       string = "route"
