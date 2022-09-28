@@ -25,12 +25,21 @@ jobs:
       run: go build -v ./...
       working-directory: ./go
 
-      # Verify go fmt standards are used
-    - name: Format
-      run: if [ "$(gofmt -s -l . | wc -l)" -gt 0 ]; then exit 1; fi
-
     - name: Test
       run: go test -v ./...
       working-directory: ./go
 
+  gofmt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.19
+
+      # Verify go fmt standards are used
+      - name: Format
+        run: if [ "$(gofmt -s -l . | wc -l)" -gt 0 ]; then exit 1; fi
 
