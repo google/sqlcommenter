@@ -1,4 +1,4 @@
-name: Python Packages Test
+name: Go Packages Test
 
 on:
   push:
@@ -23,6 +23,8 @@ jobs:
 
     - name: Build
       run: go build -v ./...
+      working-directory: ./go
 
     - name: Test
       run: go test -v ./...
+      working-directory: ./go
