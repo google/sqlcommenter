@@ -33,12 +33,12 @@ Users are given control over what tags they want to append by using `sqlcommente
 ```go
 type CommenterOptions struct {
 	EnableDBDriver    bool
-    EnableTraceparent bool  // OpenTelemetry trace information
+	EnableTraceparent bool  // OpenTelemetry trace information
 	EnableRoute       bool  // applicable for web frameworks
 	EnableFramework   bool  // applicable for web frameworks
 	EnableController  bool  // applicable for web frameworks
 	EnableAction      bool  // applicable for web frameworks
-}
+	}
 ```
 
 ### net/http

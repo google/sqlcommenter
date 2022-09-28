@@ -22,6 +22,7 @@ import (
 	"net/url"
 	"reflect"
 	"runtime"
+	"sort"
 	"strings"
 
 	"go.opentelemetry.io/otel/propagation"
@@ -159,11 +160,19 @@ func getFunctionName(i interface{}) string {
 func convertMapToComment(tags map[string]string) string {
 	var sb strings.Builder
 	i, sz := 0, len(tags)
-	for key, val := range tags {
+
+	//sort by keys
+	sortedKeys := make([]string, 0, len(tags))
+	for k := range tags {
+		sortedKeys = append(sortedKeys, k)
+	}
+	sort.Strings(sortedKeys)
+
+	for _, key := range sortedKeys {
 		if i == sz-1 {
-			sb.WriteString(fmt.Sprintf("%s=%v", encodeURL(key), encodeURL(val)))
+			sb.WriteString(fmt.Sprintf("%s=%v", encodeURL(key), encodeURL(tags[key])))
 		} else {
-			sb.WriteString(fmt.Sprintf("%s=%v,", encodeURL(key), encodeURL(val)))
+			sb.WriteString(fmt.Sprintf("%s=%v,", encodeURL(key), encodeURL(tags[key])))
 		}
 		i++
 	}
@@ -171,7 +180,6 @@ func convertMapToComment(tags map[string]string) string {
 }
 
 func extractTraceparent(ctx context.Context) propagation.MapCarrier {
-
 	// Serialize the context into carrier
 	propgator := propagation.NewCompositeTextMapPropagator(propagation.TraceContext{}, propagation.Baggage{})
 	carrier := propagation.MapCarrier{}
