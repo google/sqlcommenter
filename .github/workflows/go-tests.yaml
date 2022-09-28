@@ -1,4 +1,4 @@
-name: Go Packages Test
+name: go-sql Packages Test
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
 #      - go/**
   pull_request:
     paths:
-      - go/**
+      - go/go-sql/**
 
 jobs:
   unittests:
@@ -23,11 +23,11 @@ jobs:
 
     - name: Build
       run: go build -v ./...
-      working-directory: ./go
+      working-directory: ./go/go-sql
 
     - name: Test
       run: go test -v ./...
-      working-directory: ./go
+      working-directory: ./go/go-sql
 
   gofmt:
     runs-on: ubuntu-latest
