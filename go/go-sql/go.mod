@@ -1,4 +1,4 @@
-module google.com/sqlcommenter
+module google.com/sqlcommenter/gosql
 
 go 1.19
 
@@ -10,7 +10,7 @@ require (
 require (
 	github.com/go-logr/logr v1.2.3 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
-	golang.org/x/sys v0.0.0-20210423185535-09eb48e85fd7 // indirect
+	golang.org/x/sys v0.0.0-20220927170352-d9d178bc13c6 // indirect
 )
 
 require (

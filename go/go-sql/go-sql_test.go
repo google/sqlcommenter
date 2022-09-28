@@ -1,4 +1,4 @@
-package sqlcommenter
+package gosql
 
 import (
 	"context"
