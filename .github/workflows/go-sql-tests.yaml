@@ -23,11 +23,11 @@ jobs:
 
     - name: Build
       run: go build -v ./...
-      working-directory: ./go/go-sql
+      working-directory: ./go/database/sql
 
     - name: Test go-sql
       run: go test -v ./...
-      working-directory: ./go/go-sql
+      working-directory: ./go/database/sql
 
   gofmt:
     runs-on: ubuntu-latest
