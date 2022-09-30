@@ -15,6 +15,7 @@ import (
 
 func Index(w http.ResponseWriter, r *http.Request) {
 
+	connection := "root:root@/gotest"
 	exp, _ := stdouttrace.New(stdouttrace.WithPrettyPrint())
 	bsp := sdktrace.NewSimpleSpanProcessor(exp) // You should use batch span processor in prod
 	tp := sdktrace.NewTracerProvider(
@@ -25,7 +26,7 @@ func Index(w http.ResponseWriter, r *http.Request) {
 	ctx, span := tp.Tracer("foo").Start(r.Context(), "parent-span-name")
 	defer span.End()
 
-	db, err := gosql.Open("mysql", "root:root@/gotest", core.CommenterOptions{EnableDBDriver: true, EnableRoute: true, EnableAction: true, EnableFramework: true, EnableTraceparent: true})
+	db, err := gosql.Open("mysql", connection, core.CommenterOptions{EnableDBDriver: true, EnableRoute: true, EnableAction: true, EnableFramework: true, EnableTraceparent: true})
 	if err != nil {
 		fmt.Println(err)
 	} else {
