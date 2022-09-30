@@ -1,4 +1,4 @@
-module google.com/sqlcommenter/core
+module github.com/google/sqlcommenter/go/core
 
 go 1.19
 
