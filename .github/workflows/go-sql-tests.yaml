@@ -1,0 +1,45 @@
+name: go-sql package test
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - go/go-sql/**
+  pull_request:
+    paths:
+      - go/go-sql/**
+
+jobs:
+  unittests:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Go
+      uses: actions/setup-go@v3
+      with:
+        go-version: 1.19
+
+    - name: Build
+      run: go build -v ./...
+      working-directory: ./go/go-sql
+
+    - name: Test
+      run: go test -v ./...
+      working-directory: ./go/go-sql
+
+  gofmt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.19
+
+      # Verify go fmt standards are used
+      - name: Format
+        run: if [ "$(gofmt -s -l . | wc -l)" -gt 0 ]; then exit 1; fi
+
