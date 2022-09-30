@@ -18,40 +18,17 @@ import (
 	"context"
 	"database/sql"
 	"fmt"
-	"net/http"
-	"net/url"
-	"reflect"
-	"runtime"
-	"sort"
 	"strings"
 
-	"go.opentelemetry.io/otel/propagation"
-)
-
-const (
-	route       string = "route"
-	controller  string = "controller"
-	action      string = "action"
-	framework   string = "framework"
-	driver      string = "driver"
-	traceparent string = "traceparent"
+	"google.com/sqlcommenter/core"
 )
 
 type DB struct {
 	*sql.DB
-	options CommenterOptions
+	options core.CommenterOptions
 }
 
-type CommenterOptions struct {
-	EnableDBDriver    bool
-	EnableRoute       bool
-	EnableFramework   bool
-	EnableController  bool
-	EnableAction      bool
-	EnableTraceparent bool
-}
-
-func Open(driverName string, dataSourceName string, options CommenterOptions) (*DB, error) {
+func Open(driverName string, dataSourceName string, options core.CommenterOptions) (*DB, error) {
 	db, err := sql.Open(driverName, dataSourceName)
 	return &DB{DB: db, options: options}, err
 }
@@ -88,18 +65,6 @@ func (db *DB) PrepareContext(ctx context.Context, query string) (*sql.Stmt, erro
 
 // ***** Query Functions *****
 
-// ***** Framework Functions *****
-
-func AddHttpRouterTags(r *http.Request, next any) context.Context { // any type is set because we need to refrain from importing http-router package
-	ctx := context.Background()
-	ctx = context.WithValue(ctx, route, r.URL.Path)
-	ctx = context.WithValue(ctx, action, getFunctionName(next))
-	ctx = context.WithValue(ctx, framework, "net/http")
-	return ctx
-}
-
-// ***** Framework Functions *****
-
 // ***** Commenter Functions *****
 
 func (db *DB) withComment(ctx context.Context, query string) string {
@@ -107,34 +72,34 @@ func (db *DB) withComment(ctx context.Context, query string) string {
 	query = strings.TrimSpace(query)
 
 	// Sorted alphabetically
-	if db.options.EnableAction && (ctx.Value(action) != nil) {
-		commentsMap[action] = ctx.Value(action).(string)
+	if db.options.EnableAction && (ctx.Value(core.Action) != nil) {
+		commentsMap[core.Action] = ctx.Value(core.Action).(string)
 	}
 
 	// `driver` information should not be coming from framework.
 	// So, explicitly adding that here.
 	if db.options.EnableDBDriver {
-		commentsMap[driver] = "database/sql"
+		commentsMap[core.Driver] = "database/sql"
 	}
 
-	if db.options.EnableFramework && (ctx.Value(framework) != nil) {
-		commentsMap[framework] = ctx.Value(framework).(string)
+	if db.options.EnableFramework && (ctx.Value(core.Framework) != nil) {
+		commentsMap[core.Framework] = ctx.Value(core.Framework).(string)
 	}
 
-	if db.options.EnableRoute && (ctx.Value(route) != nil) {
-		commentsMap[route] = ctx.Value(route).(string)
+	if db.options.EnableRoute && (ctx.Value(core.Route) != nil) {
+		commentsMap[core.Route] = ctx.Value(core.Route).(string)
 	}
 
 	if db.options.EnableTraceparent {
-		carrier := extractTraceparent(ctx)
+		carrier := core.ExtractTraceparent(ctx)
 		if val, ok := carrier["traceparent"]; ok {
-			commentsMap[traceparent] = val
+			commentsMap[core.Traceparent] = val
 		}
 	}
 
 	var commentsString string = ""
 	if len(commentsMap) > 0 { // Converts comments map to string and appends it to query
-		commentsString = fmt.Sprintf("/*%s*/", convertMapToComment(commentsMap))
+		commentsString = fmt.Sprintf("/*%s*/", core.ConvertMapToComment(commentsMap))
 	}
 
 	// A semicolon at the end of the SQL statement means the query ends there.
@@ -146,45 +111,3 @@ func (db *DB) withComment(ctx context.Context, query string) string {
 }
 
 // ***** Commenter Functions *****
-
-// ***** Util Functions *****
-
-func encodeURL(k string) string {
-	return url.QueryEscape(string(k))
-}
-
-func getFunctionName(i interface{}) string {
-	return runtime.FuncForPC(reflect.ValueOf(i).Pointer()).Name()
-}
-
-func convertMapToComment(tags map[string]string) string {
-	var sb strings.Builder
-	i, sz := 0, len(tags)
-
-	//sort by keys
-	sortedKeys := make([]string, 0, len(tags))
-	for k := range tags {
-		sortedKeys = append(sortedKeys, k)
-	}
-	sort.Strings(sortedKeys)
-
-	for _, key := range sortedKeys {
-		if i == sz-1 {
-			sb.WriteString(fmt.Sprintf("%s=%v", encodeURL(key), encodeURL(tags[key])))
-		} else {
-			sb.WriteString(fmt.Sprintf("%s=%v,", encodeURL(key), encodeURL(tags[key])))
-		}
-		i++
-	}
-	return sb.String()
-}
-
-func extractTraceparent(ctx context.Context) propagation.MapCarrier {
-	// Serialize the context into carrier
-	propgator := propagation.NewCompositeTextMapPropagator(propagation.TraceContext{}, propagation.Baggage{})
-	carrier := propagation.MapCarrier{}
-	propgator.Inject(ctx, carrier)
-	return carrier
-}
-
-// ***** Util Functions *****
