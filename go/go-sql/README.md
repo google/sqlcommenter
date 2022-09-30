@@ -1,4 +1,4 @@
-# Sqlcommenter [In development]
+# go-sql-driver  [In development]
 
 SQLcommenter is a plugin/middleware/wrapper to augment application related information/tags with SQL Statements that can be used later to correlate user code with SQL statements.
 
@@ -7,28 +7,29 @@ SQLcommenter is a plugin/middleware/wrapper to augment application related infor
 ### Install from source
 
 * Clone the source
-* In terminal go inside the client folder location where we need to import google-sqlcommenter package and enter the below commands
+* In terminal go inside the client folder location where we need to import sqlcommenter go-sql module and enter the below commands
 
 ```shell
-go mod edit -replace google.com/sqlcommenter=path/to/google/sqlcommenter/go
+go mod edit -replace google.com/sqlcommenter=path/to/google/sqlcommenter/go-sql
 
 go mod tiny
+
+go get google.com/sqlcommenter/gosql
 ```
 ### Install from github [To be added]
 
-## Usages
+## Usage
 
-### go-sql-driver
-Please use the sqlcommenter's default database driver to execute statements. \
+Please use the sqlcommenter's default go-sql database driver to execute statements. 
 Due to inherent nature of Go, the safer way to pass information from framework to database driver is via `context`. So, it is recommended to use the context based methods of `DB` interface like `QueryContext`, `ExecContext` and `PrepareContext`. 
 
 ```go
-db, err := sqlcommenter.Open("<driver>", "<connectionString>", sqlcommenter.CommenterOptions{<tag>:<bool>})
+db, err := gosql.Open("<driver>", "<connectionString>", sqlcommenter.CommenterOptions{<tag>:<bool>})
 ```
 
-#### Configuration
+### Configuration
 
-Users are given control over what tags they want to append by using `sqlcommenter.CommenterOptions` struct.
+Users are given control over what tags they want to append by using `core.CommenterOptions` struct.
 
 ```go
 type CommenterOptions struct {
@@ -41,32 +42,15 @@ type CommenterOptions struct {
 	}
 ```
 
-### net/http
-Populate the request context with sqlcommenter.AddHttpRouterTags(r) function in a custom middleware.
 
-#### Note
-* We only support the `database/sql` driver and have provided an implementation for that.
-* <b>ORM related tags are added to the driver only when the tags are enabled in the commenter's driver's config and also the request context should passed to the querying functions</b>
+### Framework Supported
+* [http/net](.../../../http-net/README.md)
 
-#### Example
-```go
-// middleware is used to intercept incoming HTTP calls and populate request context with commenter tags.
-func middleware(next http.Handler) http.Handler {
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		ctx := sqlcommenter.AddHttpRouterTags(r, next)
-		next.ServeHTTP(w, r.WithContext(ctx))
-	})
-}
-```
 
 ## Options
 
 With Go SqlCommenter, we have configuration to choose which tags to be appended to the comment.
 
-| Options         | Included by default? | go-sql-orm                                                                                                                                                                   | net/http                                                                                                                                                                     | Notes |
-| --------------- | :------------------: | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---: |
-| `DBDriver`      |                      | [ go-sql-driver](https://pkg.go.dev/database/sql/driver)                                                                                                                     |                                                                                                                                                                              |
-| `Action`        |                      |                                                                                                                                                                              | [net/http handle](https://pkg.go.dev/net/http#Handle)                                                                                                                        |       |
-| `Route`         |                      |                                                                                                                                                                              | [net/http routing path](https://pkg.go.dev/github.com/gorilla/mux#Route.URLPath)                                                                                             |       |
-| `Framework`     |                      |                                                                                                                                                                              | [net/http](https://pkg.go.dev/net/http)                                                                                                                                      |       |
-| `Opentelemetry` |                      | [W3C TraceContext.Traceparent](https://www.w3.org/TR/trace-context/#traceparent-field), [W3C TraceContext.Tracestate](https://www.w3.org/TR/trace-context/#tracestate-field) | [W3C TraceContext.Traceparent](https://www.w3.org/TR/trace-context/#traceparent-field), [W3C TraceContext.Tracestate](https://www.w3.org/TR/trace-context/#tracestate-field) |       |
+| Options    | Included by default? | go-sql-driver                                            |
+| ---------- | -------------------- | -------------------------------------------------------- |
+| `DBDriver` |                      | [ go-sql-driver](https://pkg.go.dev/database/sql/driver) |
