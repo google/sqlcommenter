@@ -68,7 +68,7 @@ func ExtractTraceparent(ctx context.Context) propagation.MapCarrier {
 	return carrier
 }
 
-type HttpRequestTagger interface {
+type RequestTagger interface {
 	Route() string
 	Action() string
 	Framework() string

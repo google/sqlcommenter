@@ -24,7 +24,7 @@ Please use the sqlcommenter's default go-sql database driver to execute statemen
 Due to inherent nature of Go, the safer way to pass information from framework to database driver is via `context`. So, it is recommended to use the context based methods of `DB` interface like `QueryContext`, `ExecContext` and `PrepareContext`. 
 
 ```go
-db, err := sqlcommenter.Open("<driver>", "<connectionString>", sqlcommenter.CommenterOptions{<tag>:<bool>})
+db, err := gosql.Open("<driver>", "<connectionString>", sqlcommenter.CommenterOptions{<tag>:<bool>})
 ```
 
 ### Configuration
