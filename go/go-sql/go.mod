@@ -1,4 +1,4 @@
-module google.com/sqlcommenter/gosql
+module github.com/google/sqlcommenter/go/go-sql
 
 go 1.19
 
