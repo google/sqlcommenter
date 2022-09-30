@@ -1,14 +1,14 @@
-name: go-sql package test
+name: go packages test
 
 on:
   push:
     branches:
       - master
     paths:
-      - go/go-sql/**
+      - go/**
   pull_request:
     paths:
-      - go/go-sql/**
+      - go/**
 
 jobs:
   unittests:
@@ -25,7 +25,7 @@ jobs:
       run: go build -v ./...
       working-directory: ./go/go-sql
 
-    - name: Test
+    - name: Test go-sql
       run: go test -v ./...
       working-directory: ./go/go-sql
 
