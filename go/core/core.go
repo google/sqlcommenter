@@ -76,9 +76,9 @@ func ConvertMapToComment(tags map[string]string) string {
 
 func ExtractTraceparent(ctx context.Context) propagation.MapCarrier {
 	// Serialize the context into carrier
-	propgator := propagation.NewCompositeTextMapPropagator(propagation.TraceContext{}, propagation.Baggage{})
+	textMapPropogator := propagation.NewCompositeTextMapPropagator(propagation.TraceContext{}, propagation.Baggage{})
 	carrier := propagation.MapCarrier{}
-	propgator.Inject(ctx, carrier)
+	textMapPropogator.Inject(ctx, carrier)
 	return carrier
 }
 
