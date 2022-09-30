@@ -1,4 +1,4 @@
-module github.com/google/sqlcommenter/go/http
+module github.com/google/sqlcommenter/go/http/net
 
 go 1.19
 
