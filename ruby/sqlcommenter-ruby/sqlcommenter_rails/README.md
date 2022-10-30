@@ -1,5 +1,7 @@
 # sqlcommenter_rails
 
+**If you are on Rails version 7.0 and up, refer to the [sqlcommenter-ruby README] instead**
+
 [sqlcommenter] for [Ruby on Rails].
 
 Powered by [marginalia] and [marginalia-opencensus].
@@ -8,6 +10,7 @@ Powered by [marginalia] and [marginalia-opencensus].
 [Ruby on Rails]: https://rubyonrails.org/
 [marginalia]: https://github.com/basecamp/marginalia/
 [marginalia-opencensus]: https://github.com/google/sqlcommenter/tree/master/ruby/sqlcommenter-ruby/marginalia-opencensus
+[sqlcommenter-ruby README]: https://github.com/google/sqlcommenter/tree/master/ruby/sqlcommenter-ruby
 
 ## Installation
 
