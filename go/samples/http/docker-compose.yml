@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  sqlcommenter_mysql_db:
+    container_name: sqlcommenter_mysql_db
+    image: mysql:8
+    command:
+      --general-log=TRUE
+      --general-log-file=/var/lib/mysql/mysql-log.log
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_DATABASE: 'sqlcommenter_db'
+      MYSQL_ROOT_PASSWORD: 'password'
+    volumes:
+      - './docker-data/mysql:/var/lib/postgresql/data'
+  sqlcommenter_pg_db:
+    container_name: sqlcommenter_pg_db
+    image: postgres:14
+    command: postgres -c log_statement=all
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: dev
+      POSTGRES_DB: sqlcommenter_db
+    volumes:
+      - './docker-data/pg:/var/lib/postgresql/data'
