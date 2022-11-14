@@ -95,5 +95,5 @@ def _get_fastapi_route(fastapi_app: FastAPI, scope) -> Optional[Route]:
         # and return the route name if found.
         match, child_scope = route.matches(scope)
         if match == Match.FULL:
-            return child_scope["route"]
+            return child_scope.get("route")
     return None

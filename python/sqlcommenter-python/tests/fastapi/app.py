@@ -5,7 +5,9 @@ from fastapi.responses import JSONResponse
 from google.cloud.sqlcommenter.fastapi import (
     SQLCommenterMiddleware, get_fastapi_info,
 )
+from starlette.applications import Starlette
 from starlette.exceptions import HTTPException as StarletteHTTPException
+from starlette.routing import Route
 
 app = FastAPI(title="SQLCommenter")
 
@@ -28,3 +30,15 @@ async def custom_http_exception_handler(request, exc):
         status_code=status.HTTP_404_NOT_FOUND,
         content=get_fastapi_info(),
     )
+
+
+def starlette_endpoint(_):
+    return JSONResponse({"from": "starlette"})
+
+
+starlette_subapi = Starlette(routes=[
+    Route("/", starlette_endpoint),
+])
+
+
+app.mount("/starlette", starlette_subapi)

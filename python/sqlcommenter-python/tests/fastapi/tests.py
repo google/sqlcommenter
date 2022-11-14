@@ -52,3 +52,13 @@ def test_get_fastapi_info_in_404_error_context(client):
 
 def test_get_fastapi_info_outside_request_context(client):
     assert get_fastapi_info() == {}
+
+
+def test_get_openapi_does_not_throw_an_error(client):
+    resp = client.get(app.docs_url)
+    assert resp.status_code == 200
+
+
+def test_get_starlette_endpoints_does_not_throw_an_error(client):
+    resp = client.get("/starlette")
+    assert resp.status_code == 200
