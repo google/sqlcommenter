@@ -3,6 +3,7 @@ package todos
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 
@@ -26,7 +27,8 @@ type TodosController struct {
 }
 
 func (c *TodosController) CreateTodosTableIfNotExists() error {
-	return nil
+	_, err := c.DB.Exec(c.SQL.CreateTodosTableIfNotExists())
+	return err
 }
 
 func (c *TodosController) ActionList(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
@@ -35,17 +37,19 @@ func (c *TodosController) ActionList(w http.ResponseWriter, r *http.Request, p h
 	query := r.URL.Query()
 	search := query.Get("search")
 
-	rows, err := c.DB.QueryContext(ctx, c.SQL.ListTodos(), search)
+	rows, err := c.DB.QueryContext(ctx, c.SQL.ListTodos(), "%"+search+"%")
 	if err != nil {
+		fmt.Println(err)
 		writeServerErrorResponse(w, "query failed")
 		return
 	}
 	defer rows.Close()
 
-	var todos []Todo
+	var todos []Todo = make([]Todo, 0)
 	for rows.Next() {
 		var todo Todo
 		if err := rows.Scan(&todo.Id, &todo.Task); err != nil {
+			fmt.Println(err)
 			writeServerErrorResponse(w, "scan row failed")
 			return
 		}
@@ -64,6 +68,7 @@ func (c *TodosController) ActionInsert(w http.ResponseWriter, r *http.Request, p
 	var dto TodoDTO
 	err := json.NewDecoder(r.Body).Decode(&dto)
 	if err != nil {
+		fmt.Println(err)
 		writeBadRequestResponse(w, "parsing body failed")
 		return
 	}
@@ -80,6 +85,7 @@ func (c *TodosController) ActionInsert(w http.ResponseWriter, r *http.Request, p
 func (c *TodosController) insertTodoPG(ctx context.Context, w http.ResponseWriter, dto TodoDTO) {
 	rows, err := c.DB.QueryContext(ctx, c.SQL.InsertTodo(), dto.Task)
 	if err != nil {
+		fmt.Println(err)
 		writeServerErrorResponse(w, "insert failed")
 		return
 	}
@@ -87,6 +93,7 @@ func (c *TodosController) insertTodoPG(ctx context.Context, w http.ResponseWrite
 	if rows.Next() {
 		var todo Todo
 		if err := rows.Scan(&todo.Id, &todo.Task); err != nil {
+			fmt.Println(err)
 			writeServerErrorResponse(w, "scan row failed")
 			return
 		}
@@ -104,18 +111,21 @@ func (c *TodosController) insertTodoPG(ctx context.Context, w http.ResponseWrite
 func (c *TodosController) insertTodoMySQL(ctx context.Context, w http.ResponseWriter, dto TodoDTO) {
 	dbRes, err := c.DB.ExecContext(ctx, c.SQL.InsertTodo(), dto.Task)
 	if err != nil {
+		fmt.Println(err)
 		writeServerErrorResponse(w, "insert failed")
 		return
 	}
 
 	lId, err := dbRes.LastInsertId()
 	if err != nil {
+		fmt.Println(err)
 		writeServerErrorResponse(w, "cannot get insert-id")
 		return
 	}
 
 	rows, err := c.DB.QueryContext(ctx, c.SQL.TodoById(), lId)
 	if err != nil {
+		fmt.Println(err)
 		writeServerErrorResponse(w, "error in query")
 		return
 	}
@@ -144,6 +154,7 @@ func (c *TodosController) ActionUpdate(w http.ResponseWriter, r *http.Request, p
 	var dto TodoDTO
 	err := json.NewDecoder(r.Body).Decode(&dto)
 	if err != nil {
+		fmt.Println(err)
 		writeBadRequestResponse(w, "parsing body failed")
 		return
 	}
@@ -151,12 +162,14 @@ func (c *TodosController) ActionUpdate(w http.ResponseWriter, r *http.Request, p
 	var todo Todo
 	rows, err := c.DB.QueryContext(ctx, c.SQL.TodoById(), id)
 	if err != nil {
+		fmt.Println(err)
 		writeServerErrorResponse(w, "error in query")
 		return
 	}
 
 	if rows.Next() {
 		if err := rows.Scan(&todo.Id, &todo.Task); err != nil {
+			fmt.Println(err)
 			writeServerErrorResponse(w, "scan row failed")
 			return
 		}
@@ -167,6 +180,7 @@ func (c *TodosController) ActionUpdate(w http.ResponseWriter, r *http.Request, p
 
 	_, err = c.DB.ExecContext(ctx, c.SQL.UpdateTodo(), dto.Task, todo.Id)
 	if err != nil {
+		fmt.Println(err)
 		writeServerErrorResponse(w, "update todo query failed")
 		return
 	}
@@ -184,12 +198,14 @@ func (c *TodosController) ActionDelete(w http.ResponseWriter, r *http.Request, p
 	var todo Todo
 	rows, err := c.DB.QueryContext(ctx, c.SQL.TodoById(), id)
 	if err != nil {
+		fmt.Println(err)
 		writeServerErrorResponse(w, "error in query")
 		return
 	}
 
 	if rows.Next() {
 		if err := rows.Scan(&todo.Id, &todo.Task); err != nil {
+			fmt.Println(err)
 			writeServerErrorResponse(w, "scan row failed")
 			return
 		}
@@ -200,6 +216,7 @@ func (c *TodosController) ActionDelete(w http.ResponseWriter, r *http.Request, p
 
 	_, err = c.DB.ExecContext(ctx, c.SQL.DeleteTodo(), todo.Id)
 	if err != nil {
+		fmt.Println(err)
 		writeServerErrorResponse(w, "update todo query failed")
 		return
 	}
@@ -215,6 +232,7 @@ func writeJsonResponse(w http.ResponseWriter, res any) {
 
 	resJson, err := json.Marshal(res)
 	if err != nil {
+		fmt.Println(err)
 		log.Fatalf("error: json marshall: %v", res)
 	}
 
@@ -232,6 +250,7 @@ func writeServerErrorResponse(w http.ResponseWriter, reason string) {
 
 	resJson, err := json.Marshal(res)
 	if err != nil {
+		fmt.Println(err)
 		log.Fatalf("error: json marshall: %v", res)
 	}
 
@@ -248,6 +267,7 @@ func writeNotFoundResponse(w http.ResponseWriter) {
 
 	resJson, err := json.Marshal(res)
 	if err != nil {
+		fmt.Println(err)
 		log.Fatalf("error: json marshall: %v", res)
 	}
 
@@ -265,6 +285,7 @@ func writeBadRequestResponse(w http.ResponseWriter, reason string) {
 
 	resJson, err := json.Marshal(res)
 	if err != nil {
+		fmt.Println(err)
 		log.Fatalf("error: json marshall: %v", res)
 	}
 
