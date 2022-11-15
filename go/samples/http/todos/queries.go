@@ -45,10 +45,8 @@ func (sql PGQueries) TodoById() string {
 // MySQLQueries impl
 func (sql MySQLQueries) CreateTodosTableIfNotExists() string {
 	return `CREATE TABLE IF NOT EXISTS todos(
-		id INT NOT NULL AUTO_INCREMENT,
+		id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 		task VARCHAR(1000) NOT NULL
-
-		PRIMARY KEY(id)
 )`
 }
 
