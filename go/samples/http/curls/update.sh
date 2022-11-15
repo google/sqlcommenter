@@ -1,3 +1,5 @@
+# usage: update.sh <id> <task>
+
 curl --header "Content-Type: application/json" \
   --request PUT \
   --data '{"task":"'$2'"}' \
