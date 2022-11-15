@@ -82,7 +82,7 @@ func runApp(todosController *todos.TodosController) {
 func runForMysql() *gosql.DB {
 	connection := "root:password@/sqlcommenter_db"
 	db := mysqldb.ConnectMySQL(connection)
-	todosController := &todos.TodosController{DB: db, SQL: todos.MySQLQueries{}}
+	todosController := &todos.TodosController{Engine: "mysql", DB: db, SQL: todos.MySQLQueries{}}
 	runApp(todosController)
 	return db
 }
@@ -90,7 +90,7 @@ func runForMysql() *gosql.DB {
 func runForPg() *gosql.DB {
 	connection := "postgres://dev:dev@localhost/sqlcommenter_db?sslmode=disable"
 	db := pgdb.ConnectPG(connection)
-	todosController := &todos.TodosController{DB: db, SQL: todos.PGQueries{}}
+	todosController := &todos.TodosController{Engine: "pg", DB: db, SQL: todos.PGQueries{}}
 	runApp(todosController)
 	return db
 }
