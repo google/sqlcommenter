@@ -64,7 +64,7 @@ func (c *TodosController) ActionInsert(w http.ResponseWriter, r *http.Request, p
 	var dto TodoDTO
 	err := json.NewDecoder(r.Body).Decode(&dto)
 	if err != nil {
-		writeServerErrorResponse(w, "parsing body failed")
+		writeBadRequestResponse(w, "parsing body failed")
 		return
 	}
 
@@ -144,7 +144,7 @@ func (c *TodosController) ActionUpdate(w http.ResponseWriter, r *http.Request, p
 	var dto TodoDTO
 	err := json.NewDecoder(r.Body).Decode(&dto)
 	if err != nil {
-		writeServerErrorResponse(w, "parsing body failed")
+		writeBadRequestResponse(w, "parsing body failed")
 		return
 	}
 
@@ -245,6 +245,23 @@ func writeNotFoundResponse(w http.ResponseWriter) {
 
 	res := make(map[string]string)
 	res["msg"] = "not found"
+
+	resJson, err := json.Marshal(res)
+	if err != nil {
+		log.Fatalf("error: json marshall: %v", res)
+	}
+
+	w.Write(resJson)
+	return
+}
+
+func writeBadRequestResponse(w http.ResponseWriter, reason string) {
+	w.WriteHeader(http.StatusBadRequest)
+	w.Header().Set("Content-Type", "application/json")
+
+	res := make(map[string]string)
+	res["msg"] = "bad request"
+	res["reason"] = reason
 
 	resJson, err := json.Marshal(res)
 	if err != nil {
