@@ -78,6 +78,7 @@ func runApp(todosController *todos.TodosController) {
 
 	http.ListenAndServe(":8081", router)
 }
+
 // host = “host.docker.internal”
 
 func runForMysql() *gosql.DB {
