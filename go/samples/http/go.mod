@@ -8,7 +8,11 @@ require (
 	go.opentelemetry.io/otel/sdk v1.10.0
 )
 
-require go.opentelemetry.io/otel v1.10.0 // indirect
+require (
+	github.com/julienschmidt/httprouter v1.3.0 
+	github.com/lib/pq v1.10.7
+	go.opentelemetry.io/otel v1.10.0 // indirect
+)
 
 require (
 	github.com/go-logr/logr v1.2.3 // indirect
