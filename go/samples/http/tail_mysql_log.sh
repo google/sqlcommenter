@@ -1,1 +1,1 @@
-docker exec -it sqlcommenter_mysql_db tail -f /var/lib/mysql/mysql-log.log
+docker exec -it mysql tail -f /var/lib/mysql/mysql-log.log
