@@ -25,12 +25,13 @@ import (
 
 type DB struct {
 	*sql.DB
-	options core.CommenterOptions
+	driverName string
+	options    core.CommenterOptions
 }
 
 func Open(driverName string, dataSourceName string, options core.CommenterOptions) (*DB, error) {
 	db, err := sql.Open(driverName, dataSourceName)
-	return &DB{DB: db, options: options}, err
+	return &DB{DB: db, driverName: driverName, options: options}, err
 }
 
 // ***** Query Functions *****
@@ -79,7 +80,7 @@ func (db *DB) withComment(ctx context.Context, query string) string {
 	// `driver` information should not be coming from framework.
 	// So, explicitly adding that here.
 	if db.options.EnableDBDriver {
-		commentsMap[core.Driver] = "database/sql"
+		commentsMap[core.Driver] = fmt.Sprintf("database/sql:%s", db.driverName)
 	}
 
 	if db.options.EnableFramework && (ctx.Value(core.Framework) != nil) {
