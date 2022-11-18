@@ -76,11 +76,13 @@ func runApp(todosController *todos.TodosController) {
 	router.PUT("/todos/:id", middleware(todosController.ActionUpdate))
 	router.DELETE("/todos/:id", middleware(todosController.ActionDelete))
 
-	http.ListenAndServe(":8080", router)
+	http.ListenAndServe(":8081", router)
 }
 
+// host = “host.docker.internal”
+
 func runForMysql() *gosql.DB {
-	connection := "root:password@/sqlcommenter_db"
+	connection := "root:password@tcp(mysql:3306)/sqlcommenter_db"
 	db := mysqldb.ConnectMySQL(connection)
 	todosController := &todos.TodosController{Engine: "mysql", DB: db, SQL: todos.MySQLQueries{}}
 	runApp(todosController)
@@ -88,7 +90,7 @@ func runForMysql() *gosql.DB {
 }
 
 func runForPg() *gosql.DB {
-	connection := "postgres://dev:dev@localhost/sqlcommenter_db?sslmode=disable"
+	connection := "host=postgres user=postgres password=postgres dbname=postgres port=5432 sslmode=disable"
 	db := pgdb.ConnectPG(connection)
 	todosController := &todos.TodosController{Engine: "pg", DB: db, SQL: todos.PGQueries{}}
 	runApp(todosController)
