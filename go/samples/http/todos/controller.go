@@ -89,6 +89,7 @@ func (c *TodosController) insertTodoPG(ctx context.Context, w http.ResponseWrite
 		writeServerErrorResponse(w, "insert failed")
 		return
 	}
+	defer rows.Close()
 
 	if rows.Next() {
 		var todo Todo
@@ -129,6 +130,7 @@ func (c *TodosController) insertTodoMySQL(ctx context.Context, w http.ResponseWr
 		writeServerErrorResponse(w, "error in query")
 		return
 	}
+	defer rows.Close()
 
 	if rows.Next() {
 		var todo Todo
@@ -166,6 +168,7 @@ func (c *TodosController) ActionUpdate(w http.ResponseWriter, r *http.Request, p
 		writeServerErrorResponse(w, "error in query")
 		return
 	}
+	defer rows.Close()
 
 	if rows.Next() {
 		if err := rows.Scan(&todo.Id, &todo.Task); err != nil {
@@ -202,6 +205,7 @@ func (c *TodosController) ActionDelete(w http.ResponseWriter, r *http.Request, p
 		writeServerErrorResponse(w, "error in query")
 		return
 	}
+	defer rows.Close()
 
 	if rows.Next() {
 		if err := rows.Scan(&todo.Id, &todo.Task); err != nil {
