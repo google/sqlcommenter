@@ -9,7 +9,7 @@ import (
 	"github.com/google/sqlcommenter/go/core"
 	gosql "github.com/google/sqlcommenter/go/database/sql"
 	httpnet "github.com/google/sqlcommenter/go/net/http"
-	"github.com/julienschmidt/httprouter"
+	"github.com/gorilla/mux"
 	"go.opentelemetry.io/otel/exporters/stdout/stdouttrace"
 	sdktrace "go.opentelemetry.io/otel/sdk/trace"
 
@@ -18,8 +18,8 @@ import (
 	"sqlcommenter-http/todos"
 )
 
-func MakeIndexRoute(db *gosql.DB) func(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	return func(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+func MakeIndexRoute(db *gosql.DB) func(w http.ResponseWriter, r *http.Request) {
+	return func(w http.ResponseWriter, r *http.Request) {
 		exp, _ := stdouttrace.New(stdouttrace.WithPrettyPrint())
 		bsp := sdktrace.NewSimpleSpanProcessor(exp) // You should use batch span processor in prod
 		tp := sdktrace.NewTracerProvider(
@@ -52,11 +52,11 @@ func MakeIndexRoute(db *gosql.DB) func(w http.ResponseWriter, r *http.Request, _
 }
 
 // middleware is used to intercept incoming HTTP calls and apply general functions upon them.
-func middleware(next httprouter.Handle) httprouter.Handle {
-	return func(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
+func middleware(next func(http.ResponseWriter, *http.Request)) func(w http.ResponseWriter, r *http.Request) {
+	return func(w http.ResponseWriter, r *http.Request) {
 		ctx := core.ContextInject(r.Context(), httpnet.NewHTTPRequestExtractor(r, next))
-		log.Printf("HTTP request sent to %s from %v", r.URL.Path, next)
-		next(w, r.WithContext(ctx), p)
+		log.Printf("HTTP request sent to %s", r.URL.Path)
+		next(w, r.WithContext(ctx))
 	}
 }
 
@@ -66,17 +66,16 @@ func runApp(todosController *todos.TodosController) {
 		log.Fatal(err)
 	}
 
-	router := httprouter.New()
+	r := mux.NewRouter()
 
 	index := MakeIndexRoute(todosController.DB)
-	router.GET("/", middleware(index))
+	r.HandleFunc("/", middleware(index)).Methods("GET")
+	r.HandleFunc("/todos", middleware(todosController.ActionList)).Methods("GET")
+	r.HandleFunc("/todos", middleware(todosController.ActionInsert)).Methods("POST")
+	r.HandleFunc("/todos/{id}", middleware(todosController.ActionUpdate)).Methods("PUT")
+	r.HandleFunc("/todos/{id}", middleware(todosController.ActionDelete)).Methods("DELETE")
 
-	router.GET("/todos", middleware(todosController.ActionList))
-	router.POST("/todos", middleware(todosController.ActionInsert))
-	router.PUT("/todos/:id", middleware(todosController.ActionUpdate))
-	router.DELETE("/todos/:id", middleware(todosController.ActionDelete))
-
-	http.ListenAndServe(":8081", router)
+	http.ListenAndServe(":8081", r)
 }
 
 // host = “host.docker.internal”
