@@ -1,6 +1,8 @@
 # First pull Golang image
 FROM golang:1.19-alpine
 
+ENV APP_NAME sqlcommenter-http
+
 # Set workdir
 WORKDIR $GOPATH/src/$APP_NAME
 
