@@ -40,7 +40,7 @@ type CommenterOptions struct {
 	EnableController  bool   // applicable for web frameworks
 	EnableAction      bool   // applicable for web frameworks
 	EnableApplication bool   // applicable for web frameworks
-	Application       string // user-provided application-name. not required
+	Application       string // user-provided application-name. optional
 	}
 ```
 

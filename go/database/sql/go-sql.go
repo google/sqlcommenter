@@ -95,25 +95,23 @@ func (db *DB) withComment(ctx context.Context, query string) string {
 		commentsMap[core.Route] = ctx.Value(core.Route).(string)
 	}
 
+	if db.options.EnableTraceparent {
+		carrier := core.ExtractTraceparent(ctx)
+		if val, ok := carrier["traceparent"]; ok {
+			commentsMap[core.Traceparent] = val
+		}
+	}
+
 	if db.options.EnableApplication {
 		if !attemptedToAutosetApplication && db.application == "" {
 			attemptedToAutosetApplication = true
 			bi, ok := debug.ReadBuildInfo()
 			if ok {
 				db.application = bi.Path
-			} else {
-				db.application = ""
 			}
 		}
 
 		commentsMap[core.Application] = db.application
-	}
-
-	if db.options.EnableTraceparent {
-		carrier := core.ExtractTraceparent(ctx)
-		if val, ok := carrier["traceparent"]; ok {
-			commentsMap[core.Traceparent] = val
-		}
 	}
 
 	var commentsString string = ""
