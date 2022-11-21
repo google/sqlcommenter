@@ -45,7 +45,7 @@ func TestHTTP_Net(t *testing.T) {
 		t.Fatalf("MockSQL failed with unexpected error: %s", err)
 	}
 
-	db := DB{DB: mockDB, driverName: "mocksql", options: core.CommenterOptions{EnableDBDriver: true, EnableRoute: true, EnableFramework: true}}
+	db := DB{DB: mockDB, driverName: "mocksql", options: core.CommenterOptions{EnableDBDriver: true, EnableRoute: true, EnableFramework: true, EnableApplication: true, Application: "app"}, application: "app"}
 	r, err := http.NewRequest("GET", "hello/1", nil)
 	if err != nil {
 		t.Errorf("http.NewRequest('GET', 'hello/1', nil) returned unexpected error: %v", err)
@@ -53,7 +53,7 @@ func TestHTTP_Net(t *testing.T) {
 
 	ctx := core.ContextInject(r.Context(), httpnet.NewHTTPRequestExtractor(r, nil))
 	got := db.withComment(ctx, "Select 1")
-	want := "Select 1/*driver=database%2Fsql%3Amocksql,framework=net%2Fhttp,route=hello%2F1*/"
+	want := "Select 1/*application=app,db_driver=database%2Fsql%3Amocksql,framework=net%2Fhttp,route=hello%2F1*/"
 	if got != want {
 		t.Errorf("db.withComment(ctx, 'Select 1') got %q, wanted %q", got, want)
 	}
@@ -67,7 +67,7 @@ func TestQueryWithSemicolon(t *testing.T) {
 
 	db := DB{DB: mockDB, driverName: "mocksql", options: core.CommenterOptions{EnableDBDriver: true}}
 	got := db.withComment(context.Background(), "Select 1;")
-	want := "Select 1/*driver=database%2Fsql%3Amocksql*/;"
+	want := "Select 1/*db_driver=database%2Fsql%3Amocksql*/;"
 	if got != want {
 		t.Errorf("db.withComment(context.Background(), 'Select 1;') got %q, wanted %q", got, want)
 	}
