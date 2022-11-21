@@ -18,20 +18,24 @@ import (
 	"context"
 	"database/sql"
 	"fmt"
+	"runtime/debug"
 	"strings"
 
 	"github.com/google/sqlcommenter/go/core"
 )
 
+var attemptedToAutosetApplication = false
+
 type DB struct {
 	*sql.DB
-	driverName string
-	options    core.CommenterOptions
+	driverName  string
+	options     core.CommenterOptions
+	application string
 }
 
 func Open(driverName string, dataSourceName string, options core.CommenterOptions) (*DB, error) {
 	db, err := sql.Open(driverName, dataSourceName)
-	return &DB{DB: db, driverName: driverName, options: options}, err
+	return &DB{DB: db, driverName: driverName, options: options, application: options.Application}, err
 }
 
 // ***** Query Functions *****
@@ -89,6 +93,20 @@ func (db *DB) withComment(ctx context.Context, query string) string {
 
 	if db.options.EnableRoute && (ctx.Value(core.Route) != nil) {
 		commentsMap[core.Route] = ctx.Value(core.Route).(string)
+	}
+
+	if db.options.EnableApplication {
+		if !attemptedToAutosetApplication && db.application == "" {
+			attemptedToAutosetApplication = true
+			bi, ok := debug.ReadBuildInfo()
+			if ok {
+				db.application = bi.Path
+			} else {
+				db.application = ""
+			}
+		}
+
+		commentsMap[core.Application] = db.application
 	}
 
 	if db.options.EnableTraceparent {
