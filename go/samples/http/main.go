@@ -1,16 +1,19 @@
 package main
 
 import (
+	"context"
 	"flag"
-	"fmt"
 	"log"
 	"net/http"
 
 	"github.com/google/sqlcommenter/go/core"
 	gosql "github.com/google/sqlcommenter/go/database/sql"
 	httpnet "github.com/google/sqlcommenter/go/net/http"
-	"github.com/julienschmidt/httprouter"
-	"go.opentelemetry.io/otel/exporters/stdout/stdouttrace"
+	"github.com/gorilla/mux"
+	"go.opentelemetry.io/contrib/instrumentation/github.com/gorilla/mux/otelmux"
+	"go.opentelemetry.io/otel"
+	stdout "go.opentelemetry.io/otel/exporters/stdout/stdouttrace"
+	"go.opentelemetry.io/otel/propagation"
 	sdktrace "go.opentelemetry.io/otel/sdk/trace"
 
 	"sqlcommenter-http/mysqldb"
@@ -18,46 +21,13 @@ import (
 	"sqlcommenter-http/todos"
 )
 
-func MakeIndexRoute(db *gosql.DB) func(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	return func(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-		exp, _ := stdouttrace.New(stdouttrace.WithPrettyPrint())
-		bsp := sdktrace.NewSimpleSpanProcessor(exp) // You should use batch span processor in prod
-		tp := sdktrace.NewTracerProvider(
-			sdktrace.WithSampler(sdktrace.AlwaysSample()),
-			sdktrace.WithSpanProcessor(bsp),
-		)
-
-		ctx, span := tp.Tracer("foo").Start(r.Context(), "parent-span-name")
-		defer span.End()
-
-		db.ExecContext(ctx, "Select 1")
-		db.Exec("Select 2")
-
-		stmt1, err := db.Prepare("Select 3")
-		if err != nil {
-			log.Fatal(err)
-		}
-		stmt1.QueryRow()
-
-		stmt2, err := db.PrepareContext(ctx, "Select 4")
-		if err != nil {
-			log.Fatal(err)
-		}
-		stmt2.QueryRow()
-
-		db.QueryContext(ctx, "Select 5")
-
-		fmt.Fprintf(w, "Hello World!\r\n")
-	}
-}
-
 // middleware is used to intercept incoming HTTP calls and apply general functions upon them.
-func middleware(next httprouter.Handle) httprouter.Handle {
-	return func(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
-		ctx := core.ContextInject(r.Context(), httpnet.NewHTTPRequestExtractor(r, next))
-		log.Printf("HTTP request sent to %s from %v", r.URL.Path, next)
-		next(w, r.WithContext(ctx), p)
-	}
+func middleware(h http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		ctx := core.ContextInject(r.Context(), httpnet.NewHTTPRequestExtractor(r, h))
+		log.Printf("HTTP request sent to %s", r.URL.Path)
+		h.ServeHTTP(w, r.WithContext(ctx))
+	})
 }
 
 func runApp(todosController *todos.TodosController) {
@@ -66,17 +36,25 @@ func runApp(todosController *todos.TodosController) {
 		log.Fatal(err)
 	}
 
-	router := httprouter.New()
+	tp, err := initTracer()
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer func() {
+		if err := tp.Shutdown(context.Background()); err != nil {
+			log.Printf("Error shutting down tracer provider: %v", err)
+		}
+	}()
 
-	index := MakeIndexRoute(todosController.DB)
-	router.GET("/", middleware(index))
+	r := mux.NewRouter()
+	r.Use(otelmux.Middleware("sqlcommenter sample-server"))
 
-	router.GET("/todos", middleware(todosController.ActionList))
-	router.POST("/todos", middleware(todosController.ActionInsert))
-	router.PUT("/todos/:id", middleware(todosController.ActionUpdate))
-	router.DELETE("/todos/:id", middleware(todosController.ActionDelete))
+	r.HandleFunc("/todos", todosController.ActionList).Methods("GET")
+	r.HandleFunc("/todos", todosController.ActionInsert).Methods("POST")
+	r.HandleFunc("/todos/{id}", todosController.ActionUpdate).Methods("PUT")
+	r.HandleFunc("/todos/{id}", todosController.ActionDelete).Methods("DELETE")
 
-	http.ListenAndServe(":8081", router)
+	http.ListenAndServe(":8081", middleware(r))
 }
 
 // host = “host.docker.internal”
@@ -95,6 +73,20 @@ func runForPg() *gosql.DB {
 	todosController := &todos.TodosController{Engine: "pg", DB: db, SQL: todos.PGQueries{}}
 	runApp(todosController)
 	return db
+}
+
+func initTracer() (*sdktrace.TracerProvider, error) {
+	exporter, err := stdout.New(stdout.WithPrettyPrint())
+	if err != nil {
+		return nil, err
+	}
+	tp := sdktrace.NewTracerProvider(
+		sdktrace.WithSampler(sdktrace.AlwaysSample()),
+		sdktrace.WithBatcher(exporter),
+	)
+	otel.SetTracerProvider(tp)
+	otel.SetTextMapPropagator(propagation.NewCompositeTextMapPropagator(propagation.TraceContext{}, propagation.Baggage{}))
+	return tp, nil
 }
 
 func main() {

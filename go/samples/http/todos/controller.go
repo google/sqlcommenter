@@ -8,7 +8,7 @@ import (
 	"net/http"
 
 	gosql "github.com/google/sqlcommenter/go/database/sql"
-	"github.com/julienschmidt/httprouter"
+	"github.com/gorilla/mux"
 )
 
 type Todo struct {
@@ -31,7 +31,7 @@ func (c *TodosController) CreateTodosTableIfNotExists() error {
 	return err
 }
 
-func (c *TodosController) ActionList(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
+func (c *TodosController) ActionList(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 
 	query := r.URL.Query()
@@ -62,7 +62,7 @@ func (c *TodosController) ActionList(w http.ResponseWriter, r *http.Request, p h
 	writeJsonResponse(w, res)
 }
 
-func (c *TodosController) ActionInsert(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
+func (c *TodosController) ActionInsert(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 
 	var dto TodoDTO
@@ -149,9 +149,10 @@ func (c *TodosController) insertTodoMySQL(ctx context.Context, w http.ResponseWr
 	}
 }
 
-func (c *TodosController) ActionUpdate(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
+func (c *TodosController) ActionUpdate(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
-	id := p.ByName("id")
+	vars := mux.Vars(r)
+	id := vars["id"]
 
 	var dto TodoDTO
 	err := json.NewDecoder(r.Body).Decode(&dto)
@@ -194,9 +195,10 @@ func (c *TodosController) ActionUpdate(w http.ResponseWriter, r *http.Request, p
 	writeJsonResponse(w, res)
 }
 
-func (c *TodosController) ActionDelete(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
+func (c *TodosController) ActionDelete(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
-	id := p.ByName("id")
+	vars := mux.Vars(r)
+	id := vars["id"]
 
 	var todo Todo
 	rows, err := c.DB.QueryContext(ctx, c.SQL.TodoById(), id)
