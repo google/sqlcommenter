@@ -1,4 +1,4 @@
-# usage: update.sh <id> <task>
+# usage: update_with_traceparent.sh <id> <task>
 
 curl --header "Content-Type: application/json" \
   --header "Traceparent: 00-a7586e0a5bc7934ce028e83bc1d247f2-6b94506168fc7803-01" \
