@@ -34,13 +34,17 @@ Users are given control over what tags they want to append by using `core.Commen
 ```go
 type CommenterOptions struct {
 	EnableDBDriver    bool
-	EnableTraceparent bool  // OpenTelemetry trace information
-	EnableRoute       bool  // applicable for web frameworks
-	EnableFramework   bool  // applicable for web frameworks
-	EnableController  bool  // applicable for web frameworks
-	EnableAction      bool  // applicable for web frameworks
+	EnableTraceparent bool   // OpenTelemetry trace information
+	EnableRoute       bool   // applicable for web frameworks
+	EnableFramework   bool   // applicable for web frameworks
+	EnableController  bool   // applicable for web frameworks
+	EnableAction      bool   // applicable for web frameworks
+	EnableApplication bool   // applicable for web frameworks
+	Application       string // user-provided application-name. not required
 	}
 ```
+
+The driver will try to use the module-name from the project's `go.mod` as the application name if `EnableApplication` is `true` and no `Application` string is provided (works correctly for compiled go applications).
 
 
 ### Framework Supported
