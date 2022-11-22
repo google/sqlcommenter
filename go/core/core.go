@@ -88,13 +88,13 @@ func ExtractTraceparent(ctx context.Context) propagation.MapCarrier {
 	return carrier
 }
 
-type RequestTags interface {
+type RequestTagsProvider interface {
 	Route() string
 	Action() string
 	Framework() string
 }
 
-func ContextInject(ctx context.Context, h RequestTags) context.Context {
+func ContextInject(ctx context.Context, h RequestTagsProvider) context.Context {
 	ctx = context.WithValue(ctx, Route, h.Route())
 	ctx = context.WithValue(ctx, Action, h.Action())
 	ctx = context.WithValue(ctx, Framework, h.Framework())
