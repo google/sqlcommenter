@@ -22,6 +22,8 @@ github.com/google/sqlcommenter/go/database/sql v0.0.3-beta h1:1f989k6obpu99gl/wX
 github.com/google/sqlcommenter/go/database/sql v0.0.3-beta/go.mod h1:Bmr95q93SPegEZ04UpJTVSr+okVqZTR3tM4Tom4f0b4=
 github.com/google/sqlcommenter/go/gorrila/mux v0.0.1-beta h1:kCtKVtbDtv42Vh7jvwaHC7MCuVOFjKFUMcdjN2gvXjo=
 github.com/google/sqlcommenter/go/gorrila/mux v0.0.1-beta/go.mod h1:xhQX/UtJVH6+dzvU+ULSVyepXvnqMqBPZay4l8m1WfM=
+github.com/google/sqlcommenter/go/gorrila/mux v0.0.2-beta h1:wJV2txZXFLPDLCgM1isWT47SA54bTZpT/hmzCeO4FxI=
+github.com/google/sqlcommenter/go/gorrila/mux v0.0.2-beta/go.mod h1:xhQX/UtJVH6+dzvU+ULSVyepXvnqMqBPZay4l8m1WfM=
 github.com/google/sqlcommenter/go/net/http v0.0.3-beta h1:IE/vO3xKddn/2Bq3k+hSy4CxcEuvE1lUiIDYTXjApzA=
 github.com/google/sqlcommenter/go/net/http v0.0.3-beta/go.mod h1:duXQQvXZYCX8eQ+XOrlojWF512ltEp1eSKXc/KiS9lg=
 github.com/gorilla/mux v1.8.0 h1:i40aqfkR1h2SlN9hojwV5ZA91wcXFOvkdNIeFDP5koI=

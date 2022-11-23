@@ -19,7 +19,7 @@ require (
 	go.opentelemetry.io/otel v1.11.1
 )
 
-require github.com/google/sqlcommenter/go/gorrila/mux v0.0.1-beta // indirect
+require github.com/google/sqlcommenter/go/gorrila/mux v0.0.2-beta // indirect
 
 require (
 	github.com/go-logr/logr v1.2.3 // indirect
