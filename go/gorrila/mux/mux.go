@@ -1,6 +1,7 @@
 package mux
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/google/sqlcommenter/go/core"
@@ -10,13 +11,14 @@ import (
 
 func SQLCommenterMiddleware(h http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		route := mux.CurrentRoute(r)
-		pathTemplate, err := route.GetPathTemplate()
+		muxRoute := mux.CurrentRoute(r)
+		path, err := muxRoute.GetPathTemplate()
 		if err != nil {
-			pathTemplate = ""
+			path = ""
 		}
 
-		ctx := core.ContextInject(r.Context(), httpnet.NewHTTPRequestTags("gorrila/mux", pathTemplate, core.GetFunctionName(route.GetHandler())))
+		route := fmt.Sprintf("%s--%s", r.Method, path)
+		ctx := core.ContextInject(r.Context(), httpnet.NewHTTPRequestTags("gorrila/mux", route, core.GetFunctionName(muxRoute.GetHandler())))
 		h.ServeHTTP(w, r.WithContext(ctx))
 	})
 }
