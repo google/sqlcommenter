@@ -16,8 +16,9 @@ package sql
 
 import (
 	"context"
-	"github.com/google/sqlcommenter/go/core"
 	"testing"
+
+	"github.com/google/sqlcommenter/go/core"
 )
 
 func TestWithComment_NoContext(t *testing.T) {
