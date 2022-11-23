@@ -30,8 +30,8 @@ func (s *sqlCommenterConn) Query(query string, args []driver.Value) (driver.Rows
 		return nil, driver.ErrSkip
 	}
 	ctx := context.Background()
-	extendedQuery := s.withComment(ctx, query)
-	return queryer.Query(extendedQuery, args)
+	commentedQuery := s.withComment(ctx, query)
+	return queryer.Query(commentedQuery, args)
 }
 
 func (s *sqlCommenterConn) QueryContext(ctx context.Context, query string, args []driver.NamedValue) (driver.Rows, error) {
@@ -39,8 +39,8 @@ func (s *sqlCommenterConn) QueryContext(ctx context.Context, query string, args 
 	if !ok {
 		return nil, driver.ErrSkip
 	}
-	extendedQuery := s.withComment(ctx, query)
-	return queryer.QueryContext(ctx, extendedQuery, args)
+	commentedQuery := s.withComment(ctx, query)
+	return queryer.QueryContext(ctx, commentedQuery, args)
 }
 
 func (s *sqlCommenterConn) Exec(query string, args []driver.Value) (driver.Result, error) {
@@ -49,8 +49,8 @@ func (s *sqlCommenterConn) Exec(query string, args []driver.Value) (driver.Resul
 		return nil, driver.ErrSkip
 	}
 	ctx := context.Background()
-	extendedQuery := s.withComment(ctx, query)
-	return execor.Exec(extendedQuery, args)
+	commentedQuery := s.withComment(ctx, query)
+	return execor.Exec(commentedQuery, args)
 }
 
 func (s *sqlCommenterConn) ExecContext(ctx context.Context, query string, args []driver.NamedValue) (driver.Result, error) {
@@ -58,8 +58,17 @@ func (s *sqlCommenterConn) ExecContext(ctx context.Context, query string, args [
 	if !ok {
 		return nil, driver.ErrSkip
 	}
-	extendedQuery := s.withComment(ctx, query)
-	return execor.ExecContext(ctx, extendedQuery, args)
+	commentedQuery := s.withComment(ctx, query)
+	return execor.ExecContext(ctx, commentedQuery, args)
+}
+
+func (s *sqlCommenterConn) PrepareContext(ctx context.Context, query string) (stmt driver.Stmt, err error) {
+	preparer, ok := s.Conn.(driver.ConnPrepareContext)
+	if !ok {
+		return nil, driver.ErrSkip
+	}
+	commentedQuery := s.withComment(ctx, query)
+	return preparer.PrepareContext(ctx, commentedQuery)
 }
 
 func (s *sqlCommenterConn) Raw() driver.Conn {
