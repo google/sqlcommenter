@@ -130,7 +130,9 @@ func (conn *sqlCommenterConn) withComment(ctx context.Context, query string) str
 				conn.options.Tags.Application = bi.Path
 			}
 		}
-		commentsMap[core.Application] = conn.options.Tags.Application
+		if conn.options.Tags.Application != "" {
+			commentsMap[core.Application] = conn.options.Tags.Application
+		}
 	}
 
 	var commentsString string = ""

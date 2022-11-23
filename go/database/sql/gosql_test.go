@@ -14,88 +14,47 @@
 
 package sql
 
-// import (
-// 	"context"
-// 	"net/http"
-// 	"regexp"
-// 	"testing"
+import (
+	"database/sql/driver"
+)
 
-// 	"github.com/DATA-DOG/go-sqlmock"
-// 	"github.com/google/sqlcommenter/go/core"
-// 	httpnet "github.com/google/sqlcommenter/go/net/http"
-// 	"go.opentelemetry.io/otel/exporters/stdout/stdouttrace"
-// 	sdktrace "go.opentelemetry.io/otel/sdk/trace"
-// )
+type mockConn struct {
+	prepareStmt driver.Stmt
+	prepareErr error
 
-// func TestDisabled(t *testing.T) {
-// 	mockDB, _, err := sqlmock.New()
-// 	if err != nil {
-// 		t.Fatalf("MockSQL failed with unexpected error: %s", err)
-// 	}
-// 	db := DB{DB: mockDB, driverName: "mocksql", options: core.CommenterOptions{}}
-// 	query := "SELECT 2"
-// 	if got, want := db.withComment(context.Background(), query), query; got != want {
-// 		t.Errorf("db.withComment(context.Background(), %q) = %q, want = %q", query, got, want)
-// 	}
-// }
+	closeErr error
 
-// func TestHTTP_Net(t *testing.T) {
-// 	mockDB, _, err := sqlmock.New()
-// 	if err != nil {
-// 		t.Fatalf("MockSQL failed with unexpected error: %s", err)
-// 	}
+	beginTx driver.Tx
+	beginErr error
+}
 
-// 	db := DB{DB: mockDB, driverName: "mocksql", options: core.CommenterOptions{EnableDBDriver: true, EnableRoute: true, EnableFramework: true, EnableApplication: true, Application: "app"}, application: "app"}
-// 	r, err := http.NewRequest("GET", "hello/1", nil)
-// 	if err != nil {
-// 		t.Errorf("http.NewRequest('GET', 'hello/1', nil) returned unexpected error: %v", err)
-// 	}
+func (c *mockConn) Prepare(query string) (driver.Stmt, error) {
+	if c.prepareErr != nil {
+		return nil, c.prepareErr
+	}
+	return c.prepareStmt, nil
+}
 
-// 	ctx := core.ContextInject(r.Context(), httpnet.NewHTTPRequestExtractor(r, nil))
-// 	got := db.withComment(ctx, "Select 1")
-// 	want := "Select 1/*application=app,db_driver=database%2Fsql%3Amocksql,framework=net%2Fhttp,route=hello%2F1*/"
-// 	if got != want {
-// 		t.Errorf("db.withComment(ctx, 'Select 1') got %q, wanted %q", got, want)
-// 	}
-// }
+func (c *mockConn) Close() error {
+	return c.closeErr
+}
 
-// func TestQueryWithSemicolon(t *testing.T) {
-// 	mockDB, _, err := sqlmock.New()
-// 	if err != nil {
-// 		t.Fatalf("MockSQL failed with unexpected error: %s", err)
-// 	}
+func (c *mockConn) Begin() (driver.Tx, error) {
+	if c.beginErr != nil {
+		return nil, c.beginErr
+	}
+	return c.beginTx, nil 
+}
 
-// 	db := DB{DB: mockDB, driverName: "mocksql", options: core.CommenterOptions{EnableDBDriver: true}}
-// 	got := db.withComment(context.Background(), "Select 1;")
-// 	want := "Select 1/*db_driver=database%2Fsql%3Amocksql*/;"
-// 	if got != want {
-// 		t.Errorf("db.withComment(context.Background(), 'Select 1;') got %q, wanted %q", got, want)
-// 	}
-// }
+type mockDriver struct {
+	conn driver.Conn
+	openError error
+}
 
-// func TestOtelIntegration(t *testing.T) {
-// 	mockDB, _, err := sqlmock.New()
-// 	if err != nil {
-// 		t.Fatalf("MockSQL failed with unexpected error: %s", err)
-// 	}
+func (d *mockDriver) Open(name string) (driver.Conn, error) {
+	if d.openError != nil {
+		return nil, d.openError
+	}
+	return d.conn, nil
+}
 
-// 	db := DB{DB: mockDB, driverName: "mocksql", options: core.CommenterOptions{EnableTraceparent: true}}
-// 	exp, _ := stdouttrace.New(stdouttrace.WithPrettyPrint())
-// 	bsp := sdktrace.NewSimpleSpanProcessor(exp) // You should use batch span processor in prod
-// 	tp := sdktrace.NewTracerProvider(
-// 		sdktrace.WithSampler(sdktrace.AlwaysSample()),
-// 		sdktrace.WithSpanProcessor(bsp),
-// 	)
-// 	ctx, _ := tp.Tracer("").Start(context.Background(), "parent-span-name")
-
-// 	got := db.withComment(ctx, "Select 1;")
-// 	wantRegex := "Select 1/\\*traceparent=\\d{1,2}-[a-zA-Z0-9_]{32}-[a-zA-Z0-9_]{16}-\\d{1,2}\\*/;"
-// 	r, err := regexp.Compile(wantRegex)
-// 	if err != nil {
-// 		t.Errorf("regex.Compile() failed with error: %v", err)
-// 	}
-
-// 	if !r.MatchString(got) {
-// 		t.Errorf("%q does not match the given regex %q", got, wantRegex)
-// 	}
-// }
