@@ -11,7 +11,7 @@ import (
 
 func TestSQLCommenterMiddleware(t *testing.T) {
 	framework := "gorrila/mux"
-	route := "/test/{id}"
+	route := "GET--/test/{id}"
 	action := "github.com/google/sqlcommenter/go/gorrila/mux.TestSQLCommenterMiddleware.func1"
 
 	mockHandler := func(w http.ResponseWriter, r *http.Request) {
