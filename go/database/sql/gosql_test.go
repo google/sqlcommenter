@@ -20,11 +20,11 @@ import (
 
 type mockConn struct {
 	prepareStmt driver.Stmt
-	prepareErr error
+	prepareErr  error
 
 	closeErr error
 
-	beginTx driver.Tx
+	beginTx  driver.Tx
 	beginErr error
 }
 
@@ -43,11 +43,11 @@ func (c *mockConn) Begin() (driver.Tx, error) {
 	if c.beginErr != nil {
 		return nil, c.beginErr
 	}
-	return c.beginTx, nil 
+	return c.beginTx, nil
 }
 
 type mockDriver struct {
-	conn driver.Conn
+	conn      driver.Conn
 	openError error
 }
 
@@ -57,4 +57,3 @@ func (d *mockDriver) Open(name string) (driver.Conn, error) {
 	}
 	return d.conn, nil
 }
-
