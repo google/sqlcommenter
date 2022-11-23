@@ -25,4 +25,4 @@ COPY --from=build-env /$APP_NAME .
 EXPOSE 8081
  
 # Start app
-CMD ["./sqlcommenter-http", "--db_engine=mysql"]
+CMD ["./sqlcommenter-http", "--db_engine=pg"]
