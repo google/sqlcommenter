@@ -17,12 +17,14 @@ Users are given control over what tags they want to append by using `core.Commen
 ```go
 type CommenterOptions struct {
 	EnableDBDriver    bool
-	EnableTraceparent bool  // OpenTelemetry trace information
-	EnableRoute       bool  // applicable for web frameworks
-	EnableFramework   bool  // applicable for web frameworks
-	EnableController  bool  // applicable for web frameworks
-	EnableAction      bool  // applicable for web frameworks
-	}
+	EnableTraceparent bool   // OpenTelemetry trace information
+	EnableRoute       bool   // applicable for web frameworks
+	EnableFramework   bool   // applicable for web frameworks
+	EnableController  bool   // applicable for web frameworks
+	EnableAction      bool   // applicable for web frameworks
+	EnableApplication bool
+	Application       string // user-provided application-name. optional
+}
 ```
 
 
