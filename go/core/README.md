@@ -12,19 +12,34 @@ This is a support package and will be installed indirectly by other go sqlcommen
 
 ### Configuration
 
-Users are given control over what tags they want to append by using `core.CommenterOptions` struct.
+Users are given control over what tags they want to append by using `core.CommenterConfig` struct.
 
 ```go
-type CommenterOptions struct {
-	EnableDBDriver    bool
-	EnableTraceparent bool   // OpenTelemetry trace information
-	EnableRoute       bool   // applicable for web frameworks
-	EnableFramework   bool   // applicable for web frameworks
-	EnableController  bool   // applicable for web frameworks
-	EnableAction      bool   // applicable for web frameworks
-	EnableApplication bool
-	Application       string // user-provided application-name. optional
+type CommenterConfig struct {
+    EnableDBDriver    bool
+    EnableRoute       bool
+    EnableFramework   bool
+    EnableController  bool
+    EnableAction      bool
+    EnableTraceparent bool
+    EnableApplication bool
 }
 ```
 
+Users can also set the values for some static tags by using `core.StaticTags` struct.
 
+```go
+type StaticTags struct {
+    Application string
+    DriverName  string
+}
+```
+
+These two structs together form the `core.CommenterOptions` struct, which is used by [sqlcommenter/go/database/sql](../database/sql/README.md).
+
+```go
+type CommenterOptions struct {
+    Config CommenterConfig
+    Tags   StaticTags
+}
+```
