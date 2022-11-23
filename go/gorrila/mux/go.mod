@@ -3,7 +3,7 @@ module github.com/google/sqlcommenter/go/gorrila/mux
 go 1.19
 
 require (
-	github.com/google/sqlcommenter/go/core v0.0.3-beta
+	github.com/google/sqlcommenter/go/core v0.0.5-beta
 	github.com/google/sqlcommenter/go/net/http v0.0.3-beta
 	github.com/gorilla/mux v1.8.0
 )
