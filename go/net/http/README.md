@@ -14,7 +14,7 @@ This is a low-level package that can be used to prepare SQLCommeneterTags out of
 
 ```go
 import (
-	sqlcommenterhttp "github.com/google/sqlcommenter/go/net/http"
+    sqlcommenterhttp "github.com/google/sqlcommenter/go/net/http"
 )
 
 requestTags := sqlcommenterhttp.NewHTTPRequestTags(framework string, route string, action string)

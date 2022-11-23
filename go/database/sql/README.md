@@ -15,14 +15,14 @@ Due to inherent nature of Go, the safer way to pass information from framework t
 
 ```go
 import (
-	gosql "github.com/google/sqlcommenter/go/database/sql"
-	sqlcommentercore "github.com/google/sqlcommenter/go/core"
-	_ "github.com/lib/pq" // or any other database driver
+    gosql "github.com/google/sqlcommenter/go/database/sql"
+    sqlcommentercore "github.com/google/sqlcommenter/go/core"
+    _ "github.com/lib/pq" // or any other database driver
 )
 
 db, err := gosql.Open("<driver>", "<connectionString>", sqlcommentercore.CommenterOptions{
-	Config: sqlcommentercore.CommenterConfig{<flag>:bool}
-	Tags  : sqlcommentercore.StaticTags{<tag>: string} // optional
+    Config: sqlcommentercore.CommenterConfig{<flag>:bool}
+    Tags  : sqlcommentercore.StaticTags{<tag>: string} // optional
 })
 ```
 
@@ -32,22 +32,22 @@ Users are given control over what tags they want to append by using `core.Commen
 
 ```go
 type CommenterOptions struct {
-	EnableDBDriver    bool
-	EnableTraceparent bool   // OpenTelemetry trace information
-	EnableRoute       bool   // applicable for web frameworks
-	EnableFramework   bool   // applicable for web frameworks
-	EnableController  bool   // applicable for web frameworks
-	EnableAction      bool   // applicable for web frameworks
-	EnableApplication bool   // applicable for web frameworks
+    EnableDBDriver    bool
+    EnableTraceparent bool   // OpenTelemetry trace information
+    EnableRoute       bool   // applicable for web frameworks
+    EnableFramework   bool   // applicable for web frameworks
+    EnableController  bool   // applicable for web frameworks
+    EnableAction      bool   // applicable for web frameworks
+    EnableApplication bool   // applicable for web frameworks
 }
 ```
 
-Users can also provide static tags they want to use by using `core.StaticTags` struct. These tags are optional
+Users can also provide static tags they want to use by using `core.StaticTags` struct. These tags are optional. If not provided, the `Application` tag will get auto-populated from the user-project's module-name in `go.mod`. `DriverName` is set to the driver-name provided in `gosql.Open(driverName, ...)` call.
 
 ```go
 type StaticTags struct {
-	Application string
-	DriverName  string
+    Application string
+    DriverName  string
 }
 ```
 

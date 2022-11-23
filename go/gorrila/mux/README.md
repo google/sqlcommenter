@@ -20,14 +20,14 @@ import (
     "net/http"
 
     sqlcommentermux "github.com/google/sqlcommenter/go/gorrila/mux"
-	"github.com/gorilla/mux"
+    "github.com/gorilla/mux"
 )
 
 func runApp() {
-	r := mux.NewRouter()
-	r.Use(sqlcommentermux.SQLCommenterMiddleware)
+    r := mux.NewRouter()
+    r.Use(sqlcommentermux.SQLCommenterMiddleware)
 
-	r.HandleFunc("/", ActionHome).Methods("GET")
+    r.HandleFunc("/", ActionHome).Methods("GET")
 
     http.ListenAndServe(":8081", r)
 }
@@ -38,49 +38,49 @@ func runApp() {
 ```go
 import (
     "context"
-	"log"
-	"net/http"
+    "log"
+    "net/http"
 
     sqlcommentermux "github.com/google/sqlcommenter/go/gorrila/mux"
-	"github.com/gorilla/mux"
-	"go.opentelemetry.io/contrib/instrumentation/github.com/gorilla/mux/otelmux"
-	"go.opentelemetry.io/otel"
-	stdout "go.opentelemetry.io/otel/exporters/stdout/stdouttrace"
-	"go.opentelemetry.io/otel/propagation"
-	sdktrace "go.opentelemetry.io/otel/sdk/trace"
+    "github.com/gorilla/mux"
+    "go.opentelemetry.io/contrib/instrumentation/github.com/gorilla/mux/otelmux"
+    "go.opentelemetry.io/otel"
+    stdout "go.opentelemetry.io/otel/exporters/stdout/stdouttrace"
+    "go.opentelemetry.io/otel/propagation"
+    sdktrace "go.opentelemetry.io/otel/sdk/trace"
 )
 
 func main() {
     tp, err := initTracer()
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer func() {
-		if err := tp.Shutdown(context.Background()); err != nil {
-			log.Printf("Error shutting down tracer provider: %v", err)
-		}
-	}()
+    if err != nil {
+        log.Fatal(err)
+    }
+    defer func() {
+        if err := tp.Shutdown(context.Background()); err != nil {
+            log.Printf("Error shutting down tracer provider: %v", err)
+        }
+    }()
 
-	r := mux.NewRouter()
-	r.Use(otelmux.Middleware("sqlcommenter sample-server"), sqlcommentermux.SQLCommenterMiddleware)
+    r := mux.NewRouter()
+    r.Use(otelmux.Middleware("sqlcommenter sample-server"), sqlcommentermux.SQLCommenterMiddleware)
 
-	r.HandleFunc("/", ActionHome).Methods("GET")
+    r.HandleFunc("/", ActionHome).Methods("GET")
 
     http.ListenAndServe(":8081", r)
 }
 
 func initTracer() (*sdktrace.TracerProvider, error) {
-	exporter, err := stdout.New(stdout.WithPrettyPrint())
-	if err != nil {
-		return nil, err
-	}
-	tp := sdktrace.NewTracerProvider(
-		sdktrace.WithSampler(sdktrace.AlwaysSample()),
-		sdktrace.WithBatcher(exporter),
-	)
-	otel.SetTracerProvider(tp)
-	otel.SetTextMapPropagator(propagation.NewCompositeTextMapPropagator(propagation.TraceContext{}, propagation.Baggage{}))
-	return tp, nil
+    exporter, err := stdout.New(stdout.WithPrettyPrint())
+    if err != nil {
+        return nil, err
+    }
+    tp := sdktrace.NewTracerProvider(
+        sdktrace.WithSampler(sdktrace.AlwaysSample()),
+        sdktrace.WithBatcher(exporter),
+    )
+    otel.SetTracerProvider(tp)
+    otel.SetTextMapPropagator(propagation.NewCompositeTextMapPropagator(propagation.TraceContext{}, propagation.Baggage{}))
+    return tp, nil
 }
 ```
 

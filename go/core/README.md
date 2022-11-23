@@ -16,13 +16,13 @@ Users are given control over what tags they want to append by using `core.Commen
 
 ```go
 type CommenterConfig struct {
-	EnableDBDriver    bool
-	EnableRoute       bool
-	EnableFramework   bool
-	EnableController  bool
-	EnableAction      bool
-	EnableTraceparent bool
-	EnableApplication bool
+    EnableDBDriver    bool
+    EnableRoute       bool
+    EnableFramework   bool
+    EnableController  bool
+    EnableAction      bool
+    EnableTraceparent bool
+    EnableApplication bool
 }
 ```
 
@@ -30,8 +30,8 @@ Users can also set the values for some static tags by using `core.StaticTags` st
 
 ```go
 type StaticTags struct {
-	Application string
-	DriverName  string
+    Application string
+    DriverName  string
 }
 ```
 
@@ -39,7 +39,7 @@ These two structs together form the `core.CommenterOptions` struct, which is use
 
 ```go
 type CommenterOptions struct {
-	Config CommenterConfig
-	Tags   StaticTags
+    Config CommenterConfig
+    Tags   StaticTags
 }
 ```
