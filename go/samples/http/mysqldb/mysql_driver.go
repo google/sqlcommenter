@@ -12,7 +12,6 @@ import (
 func ConnectMySQL(connection string) *sql.DB {
 	db, err := gosql.Open("mysql", connection, core.CommenterOptions{
 		Config: core.CommenterConfig{EnableDBDriver: true, EnableRoute: true, EnableAction: true, EnableFramework: true, EnableTraceparent: true, EnableApplication: true},
-		Tags:   core.StaticTags{},
 	})
 	if err != nil {
 		log.Fatalf("Failed to connect to MySQL(%q), error: %v", connection, err)

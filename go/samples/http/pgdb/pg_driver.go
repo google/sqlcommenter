@@ -12,7 +12,6 @@ import (
 func ConnectPG(connection string) *sql.DB {
 	db, err := gosql.Open("postgres", connection, core.CommenterOptions{
 		Config: core.CommenterConfig{EnableDBDriver: true, EnableRoute: true, EnableAction: true, EnableFramework: true, EnableTraceparent: true, EnableApplication: true},
-		Tags:   core.StaticTags{},
 	})
 	if err != nil {
 		log.Fatalf("Failed to connect to PG(%q), error: %v", connection, err)
