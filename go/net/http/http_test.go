@@ -1,5 +1,3 @@
-package http
-
 import "testing"
 
 func TestNewHTTPRequestTags(t *testing.T) {
