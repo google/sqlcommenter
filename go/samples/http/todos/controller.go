@@ -37,7 +37,15 @@ func (c *TodosController) ActionList(w http.ResponseWriter, r *http.Request) {
 	query := r.URL.Query()
 	search := query.Get("search")
 
-	rows, err := c.DB.QueryContext(ctx, c.SQL.ListTodos(), "%"+search+"%")
+	stmt, err := c.DB.PrepareContext(ctx, c.SQL.ListTodos())
+	if err != nil {
+		fmt.Println(err)
+		writeServerErrorResponse(w, "error in prepare statement")
+		return
+	}
+	defer stmt.Close()
+
+	rows, err := stmt.QueryContext(ctx, "%"+search+"%")
 	if err != nil {
 		fmt.Println(err)
 		writeServerErrorResponse(w, "query failed")
