@@ -36,16 +36,6 @@ const (
 	Application string = "application"
 )
 
-const (
-	Route       string = "route"
-	Controller  string = "controller"
-	Action      string = "action"
-	Framework   string = "framework"
-	Driver      string = "db_driver"
-	Traceparent string = "traceparent"
-	Application string = "application"
-)
-
 type CommenterConfig struct {
 	EnableDBDriver    bool
 	EnableRoute       bool
