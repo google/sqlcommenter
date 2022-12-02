@@ -6,7 +6,7 @@ weight: 1
 tags: ["go", "sql"]
 ---
 
-SQLCommenter provides drop-in replacement for [go's `database/sql`](https://pkg.go.dev/database/sql) library. You can start using the [SQLcommenter's `database/sql`](https://github.com/google/sqlcommenter/tree/master/go/database/sql) without changing your business logic code and use one of the frmaework instrumentation to proapagate tags and traceparent to the SQL queries.
+SQLCommenter provides drop-in replacement for [go's `database/sql`](https://pkg.go.dev/database/sql) library. You can start using the [SQLcommenter's `database/sql`](https://github.com/google/sqlcommenter/tree/master/go/database/sql) without changing your business logic code and use one of the framework instrumentation to proapagate tags and traceparent to the SQL queries.
 
 ## Installation
 
@@ -16,17 +16,24 @@ go get -u github.com/google/sqlcommenter/go/database/sql
 
 ## Usage
 
-Please use the sqlcommenter's default go-sql database driver to execute statements. 
+Please use the sqlcommenter's go-sql database driver to open a connection and use that connection to execute statements. 
 Due to inherent nature of Go, the safer way to pass information from framework to database driver is via `context`. So, it is recommended to use the context based methods of `DB` interface like `QueryContext`, `ExecContext` and `PrepareContext`. 
 
 ```go
 import (
+    "database/sql"
+
     gosql "github.com/google/sqlcommenter/go/database/sql"
     sqlcommentercore "github.com/google/sqlcommenter/go/core"
     _ "github.com/lib/pq" // or any other database driver
 )
 
-db, err := gosql.Open("<driver>", "<connectionString>", sqlcommentercore.CommenterOptions{
+var (
+  db *sql.DB
+  err error
+)
+
+db, err = gosql.Open("<driver>", "<connectionString>", sqlcommentercore.CommenterOptions{
     Config: sqlcommentercore.CommenterConfig{<flag>:bool}
     Tags  : sqlcommentercore.StaticTags{<tag>: string} // optional
 })
