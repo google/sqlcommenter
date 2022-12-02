@@ -16,7 +16,7 @@ go get -u github.com/google/sqlcommenter/go/database/sql
 
 ## Usage
 
-Please use the sqlcommenter's default go-sql database driver to open connection and get a db instance and use the db instance to execute statements. 
+Please use the sqlcommenter's go-sql database driver to open a connection and use that connection to execute statements. 
 Due to inherent nature of Go, the safer way to pass information from framework to database driver is via `context`. So, it is recommended to use the context based methods of `DB` interface like `QueryContext`, `ExecContext` and `PrepareContext`. 
 
 ```go
