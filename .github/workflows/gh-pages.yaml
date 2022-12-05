@@ -7,7 +7,7 @@ on:
   pull_request:
     branches:
       - gh-pages
-  workflow_dispatch
+  workflow_dispatch:
 
 jobs:
   deploy:
