@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>request on sqlcommenter</title>
+    <link>https://google.github.io/sqlcommenter/tags/request/</link>
+    <description>Recent content in request on sqlcommenter</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 02 Dec 2022 13:42:00 +0530</lastBuildDate><atom:link href="https://google.github.io/sqlcommenter/tags/request/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>http-tags</title>
+      <link>https://google.github.io/sqlcommenter/go/net_http/</link>
+      <pubDate>Fri, 02 Dec 2022 13:42:00 +0530</pubDate>
+      
+      <guid>https://google.github.io/sqlcommenter/go/net_http/</guid>
+      <description>This is a low-level package that can be used to prepare SQLCommenterTags out of an http request. The core package can then be used to inject these tags into a context.
+Installation go get -u github.com/google/sqlcommenter/go/net/http Usage import ( sqlcommenterhttp &amp;#34;github.com/google/sqlcommenter/go/net/http&amp;#34; &amp;#34;github.com/google/sqlcommenter/go/core&amp;#34; ) requestTags := sqlcommenterhttp.NewHTTPRequestTags(framework string, route string, action string) ctx := core.ContextInject(request.Context(), requestTags) requestWithTags := request.WithContext(ctx) This package can be used to instrument SQLCommenter for various frameworks.</description>
+    </item>
+    
+  </channel>
+</rss>

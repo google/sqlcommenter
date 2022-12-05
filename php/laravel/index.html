@@ -5,7 +5,7 @@
     
       <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="generator" content="Hugo 0.81.0" />
+<meta name="generator" content="Hugo 0.79.0" />
 <title>Laravel :: sqlcommenter</title>
 <link rel="shortcut icon" href="https://google.github.io/sqlcommenter/images/favicon.ico" type="image/x-icon" />
 <link href="https://google.github.io/sqlcommenter/css/font-awesome.min.css" rel="stylesheet">
@@ -109,6 +109,32 @@
       <div>
       <a href="https://google.github.io/sqlcommenter/spec/">Specification</a><i class="fa fa-circle-thin read-icon"></i>
       </div>
+    </li>
+    <li data-nav-id="/go/" class="dd-item haschildren
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/go/">Go</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+    <li data-nav-id="/go/net_http/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/go/net_http/">http-tags</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/go/gorrila_mux/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/go/gorrila_mux/">gorrila/mux</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/go/database_sql/" class="dd-item
+        ">
+      <div>
+      <a href="https://google.github.io/sqlcommenter/go/database_sql/">database/sql</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+        </ul>
     </li>
     <li data-nav-id="/python/" class="dd-item haschildren
         ">
@@ -331,11 +357,12 @@
 <li><a href="#references">References</a></li>
 </ul>
 <h3 id="introduction">Introduction</h3>
-<p>This package is in the form of <a href="https://github.com/illuminate/database">Illuminate Database Connector Wrapper</a> whose purpose is to augment a SQL statement right before execution, with information about the controller and user code to help with later making database optimization decisions, after those statements are examined from the database server&rsquo;s logs.</p>
+<p>This package is in the form of <a href="https://github.com/illuminate/database">Illuminate Database Connector Wrapper</a> whose purpose is to augment a SQL statement right before execution, with information about the controller and user code to help with later making database optimization decisions, after examining the statements.</p>
 <h3 id="requirements">Requirements</h3>
-<p>It requires <a href="https://www.php.net">php 8</a> &amp; above</p>
+<p>It requires <a href="https://www.php.net">php 8</a> &amp; above.</p>
 <h3 id="installation">Installation</h3>
-<p>This middleware can be installed by any of the following:</p>
+<p>At present, we can install <code>sqlcommenter-laravel</code> from source.</p>
+<p>This middleware can be installed by one of the following methods:</p>
 <h4 id="composer">Composer</h4>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">composer require google/sqlcommenter-laravel
 </code></pre></div><h4 id="source">Source</h4>
@@ -361,14 +388,14 @@
     <span style="color:#f92672">...</span>
 <span style="color:#111">]</span>
 </code></pre></div><h3 id="fields">Fields</h3>
-<p>In the database server logs, the comment&rsquo;s fields are:</p>
+<p>SQL Statements generated are appended with a comment having fields:</p>
 <ul>
-<li>comma separated key-value pairs e.g. <code>controller='index'</code></li>
-<li>values are SQL escaped i.e. <code>key='value'</code></li>
-<li>URL-quoted except for the equals(<code>=</code>) sign e.g <code>route='%5Epolls/%24'</code>. so should be URL-unquoted when being consumed</li>
+<li>comma separated key-value pairs e.g. <code>controller='index'</code>.</li>
+<li>values are SQL escaped i.e. <code>key='value'</code>.</li>
+<li>URL-quoted except for the equals(<code>=</code>) sign e.g <code>route='%5Epolls/%24'</code>. So, should be URL-unquoted when being consumed.</li>
 </ul>
 <h3 id="sample-log-entry">Sample log entry</h3>
-<p>After making a request into the middleware-enabled polls web-app.</p>
+<p>After making requests to the sample middleware-enabled <code>polls</code> web-app, we can see logs like:</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">2022-04-29 13:59:39.922 IST <span style="color:#f92672">[</span>27935<span style="color:#f92672">]</span> LOG:  duration: 0.012 ms  execute pdo_stmt_00000003: Select * from users
 /*framework<span style="color:#f92672">=</span><span style="color:#d88200">&#39;laravel-9.7.0&#39;</span>,controller<span style="color:#f92672">=</span><span style="color:#d88200">&#39;UserController&#39;</span>,action<span style="color:#f92672">=</span><span style="color:#d88200">&#39;index&#39;</span>,route<span style="color:#f92672">=</span><span style="color:#d88200">&#39;%%2Fapi%%2Ftest&#39;</span>,db_driver<span style="color:#f92672">=</span><span style="color:#d88200">&#39;pgsql&#39;</span>,traceparent<span style="color:#f92672">=</span><span style="color:#d88200">&#39;00-1cd60708968a61e942b5dacc2d4a5473-7534abe7ed36ce35-01&#39;</span>*/
 </code></pre></div><h3 id="expected-fields">Expected Fields</h3>
@@ -414,7 +441,7 @@
 </tbody>
 </table>
 <h3 id="end-to-end-examples">End to end examples</h3>
-<p>Examples are based upon the <a href="https://github.com/google/sqlcommenter/tree/master/php/sqlcommenter-php/samples/sqlcommenter-laravel">sample</a></p>
+<p>Examples are based upon the <a href="https://github.com/google/sqlcommenter/tree/master/php/sqlcommenter-php/samples/sqlcommenter-laravel">sample app</a>.</p>
 <h4 id="source-code">Source code</h4>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e"># config/google_sqlcommenter.php
 </span><span style="color:#75715e"></span><span style="color:#f92672">&lt;?</span><span style="color:#75af00">php</span>

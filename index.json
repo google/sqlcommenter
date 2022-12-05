@@ -1,5 +1,26 @@
 [
 {
+	"uri": "https://google.github.io/sqlcommenter/go/net_http/",
+	"title": "http-tags",
+	"tags": ["go", "http", "context", "request"],
+	"description": "",
+	"content": "This is a low-level package that can be used to prepare SQLCommenterTags out of an http request. The core package can then be used to inject these tags into a context.\nInstallation go get -u github.com/google/sqlcommenter/go/net/http Usage import ( sqlcommenterhttp \u0026#34;github.com/google/sqlcommenter/go/net/http\u0026#34; \u0026#34;github.com/google/sqlcommenter/go/core\u0026#34; ) requestTags := sqlcommenterhttp.NewHTTPRequestTags(framework string, route string, action string) ctx := core.ContextInject(request.Context(), requestTags) requestWithTags := request.WithContext(ctx) This package can be used to instrument SQLCommenter for various frameworks.\n"
+},
+{
+	"uri": "https://google.github.io/sqlcommenter/go/gorrila_mux/",
+	"title": "gorrila/mux",
+	"tags": ["go", "gorrila", "mux", "http"],
+	"description": "",
+	"content": "This library provides a middleware that extracts SQLCommenter HTTP request tags from a request being handled by gorrila/mux and attaches them to the request\u0026rsquo;s context. This same context, when used to run queries using sqlcommenter/go/database/sql, allows request tags and traceparent(if using otelmux) to be passed into SQL comments.\nInstallation go get -u github.com/google/sqlcommenter/go/gorrila/mux Usage import ( \u0026#34;net/http\u0026#34; sqlcommentermux \u0026#34;github.com/google/sqlcommenter/go/gorrila/mux\u0026#34; \u0026#34;github.com/gorilla/mux\u0026#34; ) func runApp() { r := mux.NewRouter() r.Use(sqlcommentermux.SQLCommenterMiddleware) r.HandleFunc(\u0026#34;/\u0026#34;, ActionHome).Methods(\u0026#34;GET\u0026#34;) http.ListenAndServe(\u0026#34;:8081\u0026#34;, r) } Usage (with otelmux) import ( \u0026#34;context\u0026#34; \u0026#34;log\u0026#34; \u0026#34;net/http\u0026#34; sqlcommentermux \u0026#34;github.com/google/sqlcommenter/go/gorrila/mux\u0026#34; \u0026#34;github.com/gorilla/mux\u0026#34; \u0026#34;go.opentelemetry.io/contrib/instrumentation/github.com/gorilla/mux/otelmux\u0026#34; \u0026#34;go.opentelemetry.io/otel\u0026#34; stdout \u0026#34;go.opentelemetry.io/otel/exporters/stdout/stdouttrace\u0026#34; \u0026#34;go.opentelemetry.io/otel/propagation\u0026#34; sdktrace \u0026#34;go.opentelemetry.io/otel/sdk/trace\u0026#34; ) func main() { tp, err := initTracer() if err != nil { log.Fatal(err) } defer func() { if err := tp.Shutdown(context.Background()); err != nil { log.Printf(\u0026#34;Error shutting down tracer provider: %v\u0026#34;, err) } }() r := mux.NewRouter() r.Use(otelmux.Middleware(\u0026#34;sqlcommenter sample-server\u0026#34;), sqlcommentermux.SQLCommenterMiddleware) r.HandleFunc(\u0026#34;/\u0026#34;, ActionHome).Methods(\u0026#34;GET\u0026#34;) http.ListenAndServe(\u0026#34;:8081\u0026#34;, r) } func initTracer() (*sdktrace.TracerProvider, error) { exporter, err := stdout.New(stdout.WithPrettyPrint()) if err != nil { return nil, err } tp := sdktrace.NewTracerProvider( sdktrace.WithSampler(sdktrace.AlwaysSample()), sdktrace.WithBatcher(exporter), ) otel.SetTracerProvider(tp) otel.SetTextMapPropagator(propagation.NewCompositeTextMapPropagator(propagation.TraceContext{}, propagation.Baggage{})) return tp, nil } Tags    Options Included by default? gorrila/mux     Action Y name of the handler function   Route Y routing path   Framework Y gorrila/mux   Opentelemetry N W3C TraceContext.Traceparent, W3C TraceContext.Tracestate    "
+},
+{
+	"uri": "https://google.github.io/sqlcommenter/go/database_sql/",
+	"title": "database/sql",
+	"tags": ["go", "sql"],
+	"description": "",
+	"content": "SQLCommenter provides drop-in replacement for go\u0026rsquo;s database/sql library. You can start using the SQLcommenter\u0026rsquo;s database/sql without changing your business logic code and use one of the framework instrumentation to proapagate tags and traceparent to the SQL queries.\nInstallation go get -u github.com/google/sqlcommenter/go/database/sql Usage Please use the sqlcommenter\u0026rsquo;s default go-sql database driver to open connection and get a db instance and use the db instance to execute statements. Due to inherent nature of Go, the safer way to pass information from framework to database driver is via context. So, it is recommended to use the context based methods of DB interface like QueryContext, ExecContext and PrepareContext.\nimport ( \u0026#34;database/sql\u0026#34; gosql \u0026#34;github.com/google/sqlcommenter/go/database/sql\u0026#34; sqlcommentercore \u0026#34;github.com/google/sqlcommenter/go/core\u0026#34; _ \u0026#34;github.com/lib/pq\u0026#34; // or any other database driver ) var ( db *sql.DB err error ) db, err = gosql.Open(\u0026#34;\u0026lt;driver\u0026gt;\u0026#34;, \u0026#34;\u0026lt;connectionString\u0026gt;\u0026#34;, sqlcommentercore.CommenterOptions{ Config: sqlcommentercore.CommenterConfig{\u0026lt;flag\u0026gt;:bool} Tags : sqlcommentercore.StaticTags{\u0026lt;tag\u0026gt;: string} // optional }) Configuration Users are given control over what tags they want to append by using core.CommenterOptions struct.\ntype CommenterOptions struct { EnableDBDriver bool EnableTraceparent bool // OpenTelemetry trace information  EnableRoute bool // applicable for web frameworks  EnableFramework bool // applicable for web frameworks  EnableController bool // applicable for web frameworks  EnableAction bool // applicable for web frameworks  EnableApplication bool // applicable for web frameworks } Users can also provide static tags they want to use by using core.StaticTags struct. These tags are optional. If not provided, the Application tag will get auto-populated from the user-project\u0026rsquo;s module-name in go.mod. DriverName is set to the driver-name provided in gosql.Open(driverName, ...) call.\ntype StaticTags struct { Application string DriverName string } The driver will try to use the module-name from the project\u0026rsquo;s go.mod as the application name if EnableApplication is true and no Application string is provided (works correctly for compiled go applications).\n"
+},
+{
 	"uri": "https://google.github.io/sqlcommenter/php/laravel/",
 	"title": "Laravel",
 	"tags": ["php", "laravel"],
@@ -75,6 +96,13 @@
 	"tags": [],
 	"description": "",
 	"content": " Introduction Requirements Installation  pip install Source install Usage   CommenterCursor  with_opencensus=True   Expected fields  Default options with Flask   End to end examples  Source code Results   With flask References  Introduction This package is in the form of a psycopg2 cursor factory whose purpose is to augment a SQL statement right before execution, with information about the driver and user code to help correlate user code with executed SQL statements.\nWe provide a CommenterCursorFactory that takes options such as\nCommenterCursorFactory(with_opencensus=\u0026lt;True or False\u0026gt;) We provide options such as with_opencensus because\nRequirements    Requirement Restriction     psycopg2 (any version) http://initd.org/psycopg/docs/index.html   Python (any version) https://www.python.org/downloads/    Installation This cursor factory can be installed by any of the following:\nPip install pip3 install google-cloud-sqlcommenter Source install git clone https://github.com/google/sqlcommenter.git cd python/sqlcommenter-python \u0026amp;\u0026amp; python3 setup.py install Usage We\u0026rsquo;ll perform the following imports in our source code:\nCommenterCursorFactory CommenterCursorFactory is a factory for a cursor_factory that when used to create a psycopg2.Connection engine will grab information about your application and augment it as a comment to your SQL statement.\nimport psycopg2 from google.cloud.sqlcommenter.psycopg2.extension import CommenterCursorFactory conn = psycopg2.connect(..., cursor_factory=CommenterCursorFactory()) with_openCensus=True To enable the comment cursor to also attach information about the current OpenCensus span (if any exists), pass in option with_opencensus=True when invoking CommenterCursorFactory, so\nconn = psycopg2.connect(..., cursor_factory=CommenterCursorFactory(with_opencensus=True)) Expected fields    Field Description Included by default     db_driver The underlying database driver e.g. 'psycopg2' ❌   dbapi_threadsafety The threadsafety API assignment e.g. 2 ❌   driver_paramstyle The Python DB API style of parameters e.g. pyformat ❌   libpq_version The underlying version of libpq that was used by psycopg2 ❌   traceparent The W3C TraceContext.Traceparent field of the OpenCensus trace \u0026ndash; optionally defined with with_opencensus=True ❌   tracestate The W3C TraceContext.Tracestate field of the OpenCensus trace \u0026ndash; optionally defined with with_opencensus=True ❌    Default options with flask If combined with Flask, the following options will be turned on by default\n   Field Description **kwargs field name     controller Grabs the controller being used with_controller   framework Grabs the framework and its version with_framework   route Grabs the route being used with_route    End to end examples Source code With OpenCensus  With DB Driver  With DB API Level  With DB API Thread Safety  With Driver Parameter Style  With libpq Version   #!/usr/bin/env python3 import psycopg2 from google.cloud.sqlcommenter.psycopg2.extension import CommenterCursorFactory from opencensus.trace.samplers import AlwaysOnSampler from opencensus.trace.tracer import Tracer DSN = \u0026#39;...\u0026#39; # DB connection info class NoopExporter(): def emit(self, *args, **kwargs): pass def export(self, *args, **kwargs): pass def main(): tracer = Tracer(exporter=NoopExporter, sampler=AlwaysOnSampler()) cursor_factory = CommenterCursorFactory(with_opencensus=True) with tracer.span(): with psycopg2.connect(DSN, cursor_factory=cursor_factory) as conn: with conn.cursor() as cursor: cursor.execute(\u0026#34;SELECT * FROM polls_question\u0026#34;) for row in cursor: print(row) if __name__ == \u0026#39;__main__\u0026#39;: main() #!/usr/bin/env python3 import psycopg2 from google.cloud.sqlcommenter.psycopg2.extension import CommenterCursorFactory DSN = \u0026#39;...\u0026#39; # DB connection info def main(): cursor_factory = CommenterCursorFactory(with_db_driver=True) with psycopg2.connect(DSN, cursor_factory=cursor_factory) as conn: with conn.cursor() as cursor: cursor.execute(\u0026#34;SELECT * FROM polls_question\u0026#34;) for row in cursor: print(row) if __name__ == \u0026#39;__main__\u0026#39;: main() #!/usr/bin/env python3 import psycopg2 from google.cloud.sqlcommenter.psycopg2.extension import CommenterCursorFactory DSN = \u0026#39;...\u0026#39; # DB connection info def main(): cursor_factory = CommenterCursorFactory(with_dbapi_level=True) with psycopg2.connect(DSN, cursor_factory=cursor_factory) as conn: with conn.cursor() as cursor: cursor.execute(\u0026#34;SELECT * FROM polls_question\u0026#34;) for row in cursor: print(row) if __name__ == \u0026#39;__main__\u0026#39;: main() #!/usr/bin/env python3 import psycopg2 from google.cloud.sqlcommenter.psycopg2.extension import CommenterCursorFactory DSN = \u0026#39;...\u0026#39; # DB connection info def main(): cursor_factory = CommenterCursorFactory(with_dbapi_threadsafety=True) with psycopg2.connect(DSN, cursor_factory=cursor_factory) as conn: with conn.cursor() as cursor: cursor.execute(\u0026#34;SELECT * FROM polls_question\u0026#34;) for row in cursor: print(row) if __name__ == \u0026#39;__main__\u0026#39;: main() #!/usr/bin/env python3 import psycopg2 from google.cloud.sqlcommenter.psycopg2.extension import CommenterCursorFactory DSN = \u0026#39;...\u0026#39; # DB connection info def main(): cursor_factory = CommenterCursorFactory(with_driver_paramstyle=True) with psycopg2.connect(DSN, cursor_factory=cursor_factory) as conn: with conn.cursor() as cursor: cursor.execute(\u0026#34;SELECT * FROM polls_question\u0026#34;) for row in cursor: print(row) if __name__ == \u0026#39;__main__\u0026#39;: main() #!/usr/bin/env python3 import psycopg2 from google.cloud.sqlommenter.psycopg2.extension import CommenterCursorFactory DSN = \u0026#39;...\u0026#39; # DB connection info def main(): cursor_factory = CommenterCursorFactory(with_libpq_version=True) with psycopg2.connect(DSN, cursor_factory=cursor_factory) as conn: with conn.cursor() as cursor: cursor.execute(\u0026#34;SELECT * FROM polls_question\u0026#34;) for row in cursor: print(row) if __name__ == \u0026#39;__main__\u0026#39;: main()   python3 main.py (1, \u0026#39;Wassup?\u0026#39;, datetime.datetime(2019, 5, 30, 13, 51, 12, 910545, tzinfo=psycopg2.tz.FixedOffsetTimezone(offset=-420, name=None))) (2, \u0026#39;Wassup?\u0026#39;, datetime.datetime(2019, 5, 30, 13, 57, 45, 905771, tzinfo=psycopg2.tz.FixedOffsetTimezone(offset=-420, name=None))) (3, \u0026#39;Wassup?\u0026#39;, datetime.datetime(2019, 5, 30, 13, 57, 46, 908185, tzinfo=psycopg2.tz.FixedOffsetTimezone(offset=-420, name=None))) (4, \u0026#39;Wassup?\u0026#39;, datetime.datetime(2019, 5, 30, 13, 57, 47, 557196, tzinfo=psycopg2.tz.FixedOffsetTimezone(offset=-420, name=None))) (5, \u0026#39;Wassup?\u0026#39;, datetime.datetime(2019, 5, 30, 13, 57, 47, 853424, tzinfo=psycopg2.tz.FixedOffsetTimezone(offset=-420, name=None))) Results Examining our Postgresql server logs, with the various options\nWith OpenCensus  With DB Driver  With DB API Level  With DB API Thread Safety  With Driver Parameter Style  With libpq Version   2019-07-17 15:45:12.254 -03 [16353] LOG: statement: SELECT * FROM polls_question /*traceparent=\u0026#39;00-fdda4e35e3083efdd6ee9ca4df5f3402-b3139d365faa0f43-01\u0026#39;*/ 2019-07-17 15:56:05.192 -03 [16491] LOG: statement: SELECT * FROM polls_question /*db_driver=\u0026#39;psycopg2%3A2.8.3%20%28dt%20dec%20pq3%20ext%20lo64%29\u0026#39;*/ 2019-07-17 15:59:45.935 -03 [16566] LOG: statement: SELECT * FROM polls_question /*dbapi_level=\u0026#39;2.0\u0026#39;*/ 2019-07-17 16:01:15.533 -03 [16600] LOG: statement: SELECT * FROM polls_question /*dbapi_threadsafety=2*/ 2019-07-17 16:03:54.687 -03 [16652] LOG: statement: SELECT * FROM polls_question /*driver_paramstyle=\u0026#39;pyformat\u0026#39;*/ 2019-07-17 16:05:37.618 -03 [16708] LOG: statement: SELECT * FROM polls_question /*libpq_version=110002*/   With flask When coupled with the web framework flask, we still provide middleware to correlate your web applications with your SQL statements from psycopg2. Please see this end-to-end guide below:   References    Resource URL     psycopg2 project http://initd.org/psycopg/docs/index.html   sqlcommenter-psycopg2 on PyPi https://pypi.org/project/google-cloud-sqlcommenter   sqlcommenter-psycopg2 on Github https://github.com/google/sqlcommenter   OpenCensus https://opencensus.io/   OpenCensus SpanID https://opencensus.io/tracing/span/spanid   OpenCensus TraceID https://opencensus.io/tracing/span/traceid    "
+},
+{
+	"uri": "https://google.github.io/sqlcommenter/go/",
+	"title": "Go",
+	"tags": [],
+	"description": "",
+	"content": "sqlcommenter support is available in Go for the following frameworks/ORMs:\n go database/sql gorrila/mux  sqlcommenter support for go also provides a lib which you use to instrument other http frameworks with go database/sql - go sqlcommenter http\n"
 },
 {
 	"uri": "https://google.github.io/sqlcommenter/node/express/",
@@ -175,6 +203,62 @@
 	"content": " Why sqlcommenter How does sqlcommenter benefit me What ORMs does sqlcommenter support What databases does sqlcommenter support How do I use sqlcommenter in my application How do I examine the augmented SQL statements Where is the specification What are the default fields  Why sqlcommenter? Most applications require persistent data yet when database performance goes awry, it is next to impossible to easily correlate slow queries with source code.\nHow does sqlcommenter benefit me?  It helps provide observability and can help correlate your source code with slow queries thus guiding you in performance optimization  What ORMs does sqlcommenter support? See the root of this project\nWhat databases does sqlcommenter support? When developing sqlcommenter, we\u0026rsquo;ve tested it with a couple of databases. Please see /databases for an authoritative list but here are some:\n          How do I use sqlcommenter in my application? If you are using a supported ORM/framework, it shouldn\u0026rsquo;t be a hassle at all to use. Just pick any of the ORMs in your favorite language\n                  How do I examine the augmented SQL statements? If you manage your databases or have access to database server logs, the statements will be logged there. Examine databases for more information how.\nWhere is the specification? The specification is available here.\nWhat are the default fields    Integration action controller framework route     ActiveRecord/Marginalia ✔ ✔ ✔ ✔   Hibernate+ Spring ✔ ✔ ✔ ✔   knex.js+ express.js ❌ ✔ ❌ ❌   Django ❌ ✔ ✔ ✔   psycopg2 + Flask ❌ ✔ ✔ ✔   sqlalchemy+ Flask ❌ ✔ ✔ ✔   sequelize.js+ express.js ❌ ✔ ❌ ❌    What ORMs support OpenTelemetry ? Node.js ORMs(Knex, Sequelize, Express) support OpenTelemetry.\n"
 },
 {
+	"uri": "https://google.github.io/sqlcommenter/tags/context/",
+	"title": "context",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://google.github.io/sqlcommenter/tags/go/",
+	"title": "go",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://google.github.io/sqlcommenter/tags/http/",
+	"title": "http",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://google.github.io/sqlcommenter/tags/request/",
+	"title": "request",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://google.github.io/sqlcommenter/tags/",
+	"title": "Tags",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://google.github.io/sqlcommenter/tags/gorrila/",
+	"title": "gorrila",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://google.github.io/sqlcommenter/tags/mux/",
+	"title": "mux",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://google.github.io/sqlcommenter/tags/sql/",
+	"title": "sql",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
 	"uri": "https://google.github.io/sqlcommenter/tags/laravel/",
 	"title": "laravel",
 	"tags": [],
@@ -184,13 +268,6 @@
 {
 	"uri": "https://google.github.io/sqlcommenter/tags/php/",
 	"title": "php",
-	"tags": [],
-	"description": "",
-	"content": ""
-},
-{
-	"uri": "https://google.github.io/sqlcommenter/tags/",
-	"title": "Tags",
 	"tags": [],
 	"description": "",
 	"content": ""

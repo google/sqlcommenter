@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>sql on sqlcommenter</title>
+    <link>https://google.github.io/sqlcommenter/tags/sql/</link>
+    <description>Recent content in sql on sqlcommenter</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 02 Dec 2022 12:56:00 +0530</lastBuildDate><atom:link href="https://google.github.io/sqlcommenter/tags/sql/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>database/sql</title>
+      <link>https://google.github.io/sqlcommenter/go/database_sql/</link>
+      <pubDate>Fri, 02 Dec 2022 12:56:00 +0530</pubDate>
+      
+      <guid>https://google.github.io/sqlcommenter/go/database_sql/</guid>
+      <description>SQLCommenter provides drop-in replacement for go&amp;rsquo;s database/sql library. You can start using the SQLcommenter&amp;rsquo;s database/sql without changing your business logic code and use one of the framework instrumentation to proapagate tags and traceparent to the SQL queries.
+Installation go get -u github.com/google/sqlcommenter/go/database/sql Usage Please use the sqlcommenter&amp;rsquo;s default go-sql database driver to open connection and get a db instance and use the db instance to execute statements. Due to inherent nature of Go, the safer way to pass information from framework to database driver is via context.</description>
+    </item>
+    
+  </channel>
+</rss>

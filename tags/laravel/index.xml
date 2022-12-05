@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>laravel on sqlcommenter</title>
+    <link>https://google.github.io/sqlcommenter/tags/laravel/</link>
+    <description>Recent content in laravel on sqlcommenter</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 04 May 2022 18:30:11 -0600</lastBuildDate><atom:link href="https://google.github.io/sqlcommenter/tags/laravel/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Laravel</title>
+      <link>https://google.github.io/sqlcommenter/php/laravel/</link>
+      <pubDate>Wed, 04 May 2022 18:30:11 -0600</pubDate>
+      
+      <guid>https://google.github.io/sqlcommenter/php/laravel/</guid>
+      <description>Introduction Requirements Installation  composer install source   Fields  Sample log entry Expected fields   References  Introduction This package is in the form of Illuminate Database Connector Wrapper whose purpose is to augment a SQL statement right before execution, with information about the controller and user code to help with later making database optimization decisions, after examining the statements.
+Requirements It requires php 8 &amp;amp; above.</description>
+    </item>
+    
+  </channel>
+</rss>
