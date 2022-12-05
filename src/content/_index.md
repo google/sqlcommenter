@@ -71,6 +71,7 @@ We support a variety of languages and frameworks such as:
 {{<card-vendor href="/node" src="/images/nodejs-logo.png">}}
 {{<card-vendor href="/ruby" src="/images/ruby-logo.png">}}
 {{<card-vendor href="/php" src="/images/php-logo.png">}}
+{{<card-vendor href="/go" src="/images/go-logo.png">}}
 
 #### Frameworks
 {{<card-vendor href="/python/django" src="/images/django-logo.png">}}
@@ -84,6 +85,7 @@ We support a variety of languages and frameworks such as:
 {{<card-vendor href="/python/flask" src="/images/flask-logo.png">}}
 {{<card-vendor href="/ruby/rails" src="/images/activerecord_marginalia-logo.png">}}
 {{<card-vendor href="/php/laravel" src="/images/laravel-logo.png">}}
+{{<card-vendor href="/go/gorrila_mux" src="/images/gorilla-icon.png">}}
 
 #### Databases
 

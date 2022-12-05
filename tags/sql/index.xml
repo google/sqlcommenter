@@ -14,7 +14,7 @@
       
       <guid>https://google.github.io/sqlcommenter/go/database_sql/</guid>
       <description>SQLCommenter provides drop-in replacement for go&amp;rsquo;s database/sql library. You can start using the SQLcommenter&amp;rsquo;s database/sql without changing your business logic code and use one of the framework instrumentation to proapagate tags and traceparent to the SQL queries.
-Installation go get -u github.com/google/sqlcommenter/go/database/sql Usage Please use the sqlcommenter&amp;rsquo;s default go-sql database driver to open connection and get a db instance and use the db instance to execute statements. Due to inherent nature of Go, the safer way to pass information from framework to database driver is via context.</description>
+Installation go get -u github.com/google/sqlcommenter/go/database/sql Usage Please use the sqlcommenter&amp;rsquo;s go-sql database driver to open a connection and use that connection to execute statements. Due to inherent nature of Go, the safer way to pass information from framework to database driver is via context.</description>
     </item>
     
   </channel>
