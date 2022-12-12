@@ -52,8 +52,14 @@ type StaticTags struct {
 }
 
 type CommenterOptions struct {
+	Driver DriverOptions
 	Config CommenterConfig
 	Tags   StaticTags
+}
+
+type DriverOptions struct {
+	// Setting this to true means your underlying driver supports the ConnBeginTx interface
+	WithBeginTX bool
 }
 
 func encodeURL(k string) string {
@@ -71,7 +77,7 @@ func ConvertMapToComment(tags map[string]string) string {
 	var sb strings.Builder
 	i, sz := 0, len(tags)
 
-	//sort by keys
+	// sort by keys
 	sortedKeys := make([]string, 0, len(tags))
 	for k := range tags {
 		sortedKeys = append(sortedKeys, k)
