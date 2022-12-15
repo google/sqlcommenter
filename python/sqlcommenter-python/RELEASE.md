@@ -23,7 +23,8 @@ This helps ongoing PRs to get their changes in the right place, and to consider 
 1. Make a PR to update `CHANGELOG.md` on master
    - Add a new section for the new release so that "unreleased" is blank and at the top.
    - New section should say "## x.y.0 - release date".
-2. This PR will get merged.
+2. Change the release version in `setup.py` file. 
+3. This PR will get merged.
 
 ### Create release branch
 
