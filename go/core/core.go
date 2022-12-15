@@ -57,7 +57,7 @@ type CommenterOptions struct {
 }
 
 func encodeURL(k string) string {
-	return url.QueryEscape(string(k))
+	return url.QueryEscape(k)
 }
 
 func GetFunctionName(i interface{}) string {
@@ -71,7 +71,7 @@ func ConvertMapToComment(tags map[string]string) string {
 	var sb strings.Builder
 	i, sz := 0, len(tags)
 
-	//sort by keys
+	// sort by keys
 	sortedKeys := make([]string, 0, len(tags))
 	for k := range tags {
 		sortedKeys = append(sortedKeys, k)
@@ -80,9 +80,9 @@ func ConvertMapToComment(tags map[string]string) string {
 
 	for _, key := range sortedKeys {
 		if i == sz-1 {
-			sb.WriteString(fmt.Sprintf("%s=%v", encodeURL(key), encodeURL(tags[key])))
+			sb.WriteString(fmt.Sprintf("%s=%s", encodeURL(key), encodeURL(tags[key])))
 		} else {
-			sb.WriteString(fmt.Sprintf("%s=%v,", encodeURL(key), encodeURL(tags[key])))
+			sb.WriteString(fmt.Sprintf("%s=%s,", encodeURL(key), encodeURL(tags[key])))
 		}
 		i++
 	}
