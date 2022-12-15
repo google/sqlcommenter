@@ -80,9 +80,9 @@ func ConvertMapToComment(tags map[string]string) string {
 
 	for _, key := range sortedKeys {
 		if i == sz-1 {
-			sb.WriteString(fmt.Sprintf("%s=%s", encodeURL(key), encodeURL(tags[key])))
+			sb.WriteString(fmt.Sprintf("%s='%s'", encodeURL(key), encodeURL(tags[key])))
 		} else {
-			sb.WriteString(fmt.Sprintf("%s=%s,", encodeURL(key), encodeURL(tags[key])))
+			sb.WriteString(fmt.Sprintf("%s='%s',", encodeURL(key), encodeURL(tags[key])))
 		}
 		i++
 	}
