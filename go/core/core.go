@@ -22,6 +22,8 @@ import (
 	"runtime"
 	"sort"
 	"strings"
+
+	"go.opentelemetry.io/otel/propagation"
 )
 
 // Constants used as key string for tags.
