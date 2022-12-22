@@ -2,14 +2,6 @@ github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c
 github.com/go-logr/logr v1.2.3 h1:2DntVwHkVopvECVRSlL5PSo9eG+cAkDCuckLubN+rq0=
 github.com/go-logr/stdr v1.2.2 h1:hSWxHoqTgW2S2qGc0LTAI563KZ5YKYRhT3MFKZMbjag=
 github.com/google/go-cmp v0.5.9 h1:O2Tfq5qg4qc4AmwVlvv0oLiVAGB7enBSJ2x2DqQFi38=
-github.com/google/sqlcommenter/go/core v0.0.5-beta h1:axqYR1zQCCdRBLnwr/j+ckllBSBJ7uaVdsnANuGzCUI=
-github.com/google/sqlcommenter/go/core v0.0.5-beta/go.mod h1:GORu2htXRC4xtejBzOa4ct1L20pohP81DFNYKdCJI70=
-github.com/google/sqlcommenter/go/core v0.1.0 h1:g5jL8HUk2Ko9mMPoCI4jP47dyJhpNyu6E8WmiEhh8OU=
-github.com/google/sqlcommenter/go/core v0.1.0/go.mod h1:GORu2htXRC4xtejBzOa4ct1L20pohP81DFNYKdCJI70=
-github.com/google/sqlcommenter/go/core v0.1.1 h1:DXaWbnQHJ00RqqGiyySPnaNHLqWuemtdP1DIheVXa/A=
-github.com/google/sqlcommenter/go/core v0.1.1/go.mod h1:GORu2htXRC4xtejBzOa4ct1L20pohP81DFNYKdCJI70=
-github.com/google/sqlcommenter/go/core v0.1.2-beta h1:fDg7rYUmqO1UJ3SqvDDEB7Wc0kDjpzgS81VGhcJTkoI=
-github.com/google/sqlcommenter/go/core v0.1.2-beta/go.mod h1:GORu2htXRC4xtejBzOa4ct1L20pohP81DFNYKdCJI70=
 github.com/google/sqlcommenter/go/core v0.1.2 h1:UM3jS7JROrPTsJxbLq68PRB34Iq8H3AZQDQUSV7sQWU=
 github.com/google/sqlcommenter/go/core v0.1.2/go.mod h1:GORu2htXRC4xtejBzOa4ct1L20pohP81DFNYKdCJI70=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
