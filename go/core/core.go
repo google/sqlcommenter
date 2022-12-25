@@ -26,16 +26,21 @@ import (
 	"go.opentelemetry.io/otel/propagation"
 )
 
+// Constants used as key string for tags.
+// It is not necessary that all SQLCommenter frameworks/ORMs will contain all these keys i.e.
+// it is on best-effort basis.
 const (
 	Route       string = "route"
-	Controller  string = "controller"
-	Action      string = "action"
-	Framework   string = "framework"
-	Driver      string = "db_driver"
-	Traceparent string = "traceparent"
-	Application string = "application"
+	Controller         = "controller"
+	Action             = "action"
+	Framework          = "framework"
+	Driver             = "db_driver"
+	Traceparent        = "traceparent"
+	Application        = "application"
 )
 
+// CommenterConfig contains configurations for SQLCommenter library.
+// We can enable and disable certain tags by enabling these configurations.
 type CommenterConfig struct {
 	EnableDBDriver    bool
 	EnableRoute       bool
@@ -46,11 +51,15 @@ type CommenterConfig struct {
 	EnableApplication bool
 }
 
+// StaticTags are few tags that can be set by the application and will be constant
+// for every API call.
 type StaticTags struct {
 	Application string
 	DriverName  string
 }
 
+// CommenterOptions contains all options regarding SQLCommenter library.
+// This includes the configurations as well as any static tags.
 type CommenterOptions struct {
 	Driver DriverOptions
 	Config CommenterConfig
@@ -66,13 +75,19 @@ func encodeURL(k string) string {
 	return url.QueryEscape(k)
 }
 
-func GetFunctionName(i interface{}) string {
+// GetFunctionName returns the name of the function passed.
+func GetFunctionName(i any) string {
 	if i == nil {
 		return ""
 	}
 	return runtime.FuncForPC(reflect.ValueOf(i).Pointer()).Name()
 }
 
+// ConvertMapToComment returns a comment string given a map of key-value pairs of tags.
+// There are few steps involved here:
+//   - Sorting the tags by key string
+//   - url encoding the key value pairs
+//   - Formatting the key value pairs as "key1=value1,key2=value2" format.
 func ConvertMapToComment(tags map[string]string) string {
 	var sb strings.Builder
 	i, sz := 0, len(tags)
@@ -95,6 +110,7 @@ func ConvertMapToComment(tags map[string]string) string {
 	return sb.String()
 }
 
+// ExtractTraceparent extracts the traceparent field using OpenTelemetry library.
 func ExtractTraceparent(ctx context.Context) propagation.MapCarrier {
 	// Serialize the context into carrier
 	textMapPropogator := propagation.NewCompositeTextMapPropagator(propagation.TraceContext{}, propagation.Baggage{})
@@ -103,12 +119,15 @@ func ExtractTraceparent(ctx context.Context) propagation.MapCarrier {
 	return carrier
 }
 
+// RequestTagsProvider adds a basic interface for other libraries like gorilla/mux to implement.
 type RequestTagsProvider interface {
 	Route() string
 	Action() string
 	Framework() string
 }
 
+// ContextInject injects the tags key-value pairs into context,
+// which can be later passed into drivers/ORMs to finally inject them into SQL queries.
 func ContextInject(ctx context.Context, h RequestTagsProvider) context.Context {
 	ctx = context.WithValue(ctx, Route, h.Route())
 	ctx = context.WithValue(ctx, Action, h.Action())

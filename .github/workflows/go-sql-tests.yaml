@@ -21,11 +21,35 @@ jobs:
       with:
         go-version: 1.19
 
-    - name: Build
+    - name: Build core
+      run: go build -v ./...
+      working-directory: ./go/core
+      
+    - name: Test core
+      run: go test -v ./...
+      working-directory: ./go/core
+      
+    - name: Build net/http
+      run: go build -v ./...
+      working-directory: ./go/net/http
+    
+    - name: Test net/http
+      run: go test -v ./...
+      working-directory: ./go/net/http
+      
+    - name: Build gorilla/mux
+      run: go build -v ./...
+      working-directory: ./go/gorrila/mux
+      
+    - name: Test gorilla/mux
+      run: go test -v ./...
+      working-directory: ./go/gorrila/mux
+      
+    - name: Build database/sql
       run: go build -v ./...
       working-directory: ./go/database/sql
 
-    - name: Test go-sql
+    - name: Test database/sql
       run: go test -v ./...
       working-directory: ./go/database/sql
 
@@ -42,4 +66,3 @@ jobs:
       # Verify go fmt standards are used
       - name: Format
         run: if [ "$(gofmt -s -l . | wc -l)" -gt 0 ]; then exit 1; fi
-

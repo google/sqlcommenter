@@ -41,7 +41,7 @@ func TestWithComment_NoContext(t *testing.T) {
 				Config: core.CommenterConfig{EnableDBDriver: true},
 			},
 			query:     "SELECT 1;",
-			wantQuery: "SELECT 1/*db_driver=database%2Fsql%3A*/;",
+			wantQuery: "SELECT 1/*db_driver='database%2Fsql%3A'*/;",
 		},
 		{
 			desc: "enable DBDriver and pass static tag driver name",
@@ -50,7 +50,7 @@ func TestWithComment_NoContext(t *testing.T) {
 				Tags:   core.StaticTags{DriverName: "postgres"},
 			},
 			query:     "SELECT 1;",
-			wantQuery: "SELECT 1/*db_driver=database%2Fsql%3Apostgres*/;",
+			wantQuery: "SELECT 1/*db_driver='database%2Fsql%3Apostgres'*/;",
 		},
 		{
 			desc: "enable DBDriver and pass all static tags",
@@ -59,7 +59,7 @@ func TestWithComment_NoContext(t *testing.T) {
 				Tags:   core.StaticTags{DriverName: "postgres", Application: "app-1"},
 			},
 			query:     "SELECT 1;",
-			wantQuery: "SELECT 1/*db_driver=database%2Fsql%3Apostgres*/;",
+			wantQuery: "SELECT 1/*db_driver='database%2Fsql%3Apostgres'*/;",
 		},
 		{
 			desc: "enable other tags and pass all static tags",
@@ -68,7 +68,7 @@ func TestWithComment_NoContext(t *testing.T) {
 				Tags:   core.StaticTags{DriverName: "postgres", Application: "app-1"},
 			},
 			query:     "SELECT 1;",
-			wantQuery: "SELECT 1/*application=app-1,db_driver=database%2Fsql%3Apostgres*/;",
+			wantQuery: "SELECT 1/*application='app-1',db_driver='database%2Fsql%3Apostgres'*/;",
 		},
 	}
 	for _, tc := range testCases {
@@ -122,7 +122,7 @@ func TestWithComment_WithContext(t *testing.T) {
 				},
 			),
 			query:     "SELECT 1;",
-			wantQuery: "SELECT 1/*application=app-1,db_driver=database%2Fsql%3Apostgres,framework=custom-golang,route=listData*/;",
+			wantQuery: "SELECT 1/*application='app-1',db_driver='database%2Fsql%3Apostgres',framework='custom-golang',route='listData'*/;",
 		},
 		{
 			desc: "only all options but context contains all tags",
@@ -147,7 +147,7 @@ func TestWithComment_WithContext(t *testing.T) {
 				},
 			),
 			query:     "SELECT 1;",
-			wantQuery: "SELECT 1/*action=any+action,application=app-1,db_driver=database%2Fsql%3Apostgres,framework=custom-golang,route=listData*/;",
+			wantQuery: "SELECT 1/*action='any+action',application='app-1',db_driver='database%2Fsql%3Apostgres',framework='custom-golang',route='listData'*/;",
 		},
 	}
 	for _, tc := range testCases {
