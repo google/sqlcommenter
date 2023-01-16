@@ -6,7 +6,6 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 import io.r2dbc.spi.Connection;
-import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,12 +14,11 @@ import org.reactivestreams.Subscription;
 import reactor.core.CoreSubscriber;
 
 @RunWith(JUnit4.class)
-public class ConnectionDecoratorTest extends TestCase {
+public class ConnectionDecoratorTest {
 
   private CoreSubscriber<Object> delegate;
   private ConnectionDecorator connectionDecorator;
 
-  @Override
   @Before
   public void setUp() throws Exception {
     delegate = mock(CoreSubscriber.class);

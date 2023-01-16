@@ -11,7 +11,6 @@ import com.google.cloud.sqlcommenter.threadlocalstorage.State;
 import io.r2dbc.spi.Connection;
 import io.r2dbc.spi.Statement;
 import java.lang.reflect.Proxy;
-import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,7 +18,7 @@ import org.junit.runners.JUnit4;
 import reactor.util.context.Context;
 
 @RunWith(JUnit4.class)
-public class ConnectionInvocationHandlerTest extends TestCase {
+public class ConnectionInvocationHandlerTest {
 
   private final String stmt1 = "SELECT * from FOO";
 
@@ -28,7 +27,6 @@ public class ConnectionInvocationHandlerTest extends TestCase {
   private Context context = Context.empty();
   private ConnectionInvocationHandler connectionInvocationHandler;
 
-  @Override
   @Before
   public void setUp() throws Exception {
     connection = mock(Connection.class);
