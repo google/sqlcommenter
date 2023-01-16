@@ -22,7 +22,7 @@ public class ConnectionInvocationHandler implements InvocationHandler {
 
     if ("createStatement".equals(methodName)) {
       String query = (String) args[0];
-      if (contextView != null) {
+      if (contextView != null && contextView.hasKey("state")) {
         State state = contextView.get("state");
         query = state.formatAndAppendToSQL(query);
       }
