@@ -1,9 +1,12 @@
 # sqlcommenter_rails demo
 
+**If you are on Rails version 7.0 and up, refer to the [sqlcommenter-ruby README] instead**
+
 This is a demo [Rails API] application to demonstrate [sqlcommenter_rails] integration.
 
 [Rails API]: https://guides.rubyonrails.org/api_app.html
 [sqlcommenter_rails]: https://github.com/google/sqlcommenter/ruby/sqlcommenter-ruby/sqlcommenter_rails
+[sqlcommenter-ruby README]: https://github.com/google/sqlcommenter/tree/master/ruby/sqlcommenter-ruby
 
 ## Setup
 

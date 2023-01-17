@@ -1,55 +1,100 @@
 package main
 
 import (
-	"fmt"
+	"context"
+	"database/sql"
+	"flag"
 	"log"
 	"net/http"
 
-	_ "github.com/go-sql-driver/mysql"
-	"github.com/google/sqlcommenter/go/core"
-	gosql "github.com/google/sqlcommenter/go/database/sql"
-	httpnet "github.com/google/sqlcommenter/go/net/http"
-	"go.opentelemetry.io/otel/exporters/stdout/stdouttrace"
+	gosqlmux "github.com/google/sqlcommenter/go/gorrila/mux"
+	"github.com/gorilla/mux"
+	"go.opentelemetry.io/contrib/instrumentation/github.com/gorilla/mux/otelmux"
+	"go.opentelemetry.io/otel"
+	stdout "go.opentelemetry.io/otel/exporters/stdout/stdouttrace"
+	"go.opentelemetry.io/otel/propagation"
 	sdktrace "go.opentelemetry.io/otel/sdk/trace"
+
+	"sqlcommenter-http/mysqldb"
+	"sqlcommenter-http/pgdb"
+	"sqlcommenter-http/todos"
 )
 
-func Index(w http.ResponseWriter, r *http.Request) {
-
-	connection := "root:root@/gotest"
-	exp, _ := stdouttrace.New(stdouttrace.WithPrettyPrint())
-	bsp := sdktrace.NewSimpleSpanProcessor(exp) // You should use batch span processor in prod
-	tp := sdktrace.NewTracerProvider(
-		sdktrace.WithSampler(sdktrace.AlwaysSample()),
-		sdktrace.WithSpanProcessor(bsp),
-	)
-
-	ctx, span := tp.Tracer("foo").Start(r.Context(), "parent-span-name")
-	defer span.End()
-
-	db, err := gosql.Open("mysql", connection, core.CommenterOptions{EnableDBDriver: true, EnableRoute: true, EnableAction: true, EnableFramework: true, EnableTraceparent: true})
+func runApp(todosController *todos.TodosController) {
+	err := todosController.CreateTodosTableIfNotExists()
 	if err != nil {
-		fmt.Println(err)
-	} else {
-		db.ExecContext(ctx, "Select 11;")
-		db.Exec("Select 2;")
-		db.Prepare("Select 10")
-		db.PrepareContext(ctx, "Select 10")
+		log.Fatal(err)
 	}
-	fmt.Fprintf(w, "Hello World!")
+
+	tp, err := initTracer()
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer func() {
+		if err := tp.Shutdown(context.Background()); err != nil {
+			log.Printf("Error shutting down tracer provider: %v", err)
+		}
+	}()
+
+	r := mux.NewRouter()
+	r.Use(otelmux.Middleware("sqlcommenter sample-server"), gosqlmux.SQLCommenterMiddleware)
+
+	r.HandleFunc("/todos", todosController.ActionList).Methods("GET")
+	r.HandleFunc("/todos", todosController.ActionInsert).Methods("POST")
+	r.HandleFunc("/todos/{id}", todosController.ActionUpdate).Methods("PUT")
+	r.HandleFunc("/todos/{id}", todosController.ActionDelete).Methods("DELETE")
+
+	http.ListenAndServe(":8081", r)
 }
 
-// middleware is used to intercept incoming HTTP calls and apply general functions upon them.
-func middleware(next http.Handler) http.Handler {
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		ctx := core.ContextInject(r.Context(), httpnet.NewHTTPRequestExtractor(r, next))
-		log.Printf("HTTP request sent to %s from %v", r.URL.Path, next)
-		next.ServeHTTP(w, r.WithContext(ctx))
-	})
+func runForMysql() *sql.DB {
+	connection := "root:password@tcp(mysql:3306)/sqlcommenter_db"
+	db := mysqldb.ConnectMySQL(connection)
+	todosController := &todos.TodosController{Engine: "mysql", DB: db, SQL: todos.MySQLQueries{}}
+	runApp(todosController)
+	return db
+}
+
+func runForPg() *sql.DB {
+	connection := "host=postgres user=postgres password=postgres dbname=postgres port=5432 sslmode=disable"
+	db := pgdb.ConnectPG(connection)
+	todosController := &todos.TodosController{Engine: "pg", DB: db, SQL: todos.PGQueries{}}
+	runApp(todosController)
+	return db
+}
+
+func initTracer() (*sdktrace.TracerProvider, error) {
+	exporter, err := stdout.New(stdout.WithPrettyPrint())
+	if err != nil {
+		return nil, err
+	}
+	tp := sdktrace.NewTracerProvider(
+		sdktrace.WithSampler(sdktrace.AlwaysSample()),
+		sdktrace.WithBatcher(exporter),
+	)
+	otel.SetTracerProvider(tp)
+	otel.SetTextMapPropagator(propagation.NewCompositeTextMapPropagator(propagation.TraceContext{}, propagation.Baggage{}))
+	return tp, nil
 }
 
 func main() {
-	mux := http.NewServeMux()
-	finalHandler := http.HandlerFunc(Index)
-	mux.Handle("/", middleware((finalHandler)))
-	log.Fatal(http.ListenAndServe(":8080", mux))
+	var engine string
+
+	flag.StringVar(&engine, "db_engine", "pg", "db-engine to run the sample application on")
+	flag.Parse()
+
+	if engine != "mysql" && engine != "pg" {
+		log.Fatalf("invalid engine: %s", engine)
+	}
+
+	var db *sql.DB
+
+	switch engine {
+	case "mysql":
+		db = runForMysql()
+	case "pg":
+		db = runForPg()
+	}
+
+	db.Close()
 }

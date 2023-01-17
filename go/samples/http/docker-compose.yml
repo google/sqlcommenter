@@ -1,0 +1,62 @@
+version: '3.8'
+networks:
+  mynet:
+    driver: bridge
+
+
+services:
+  mysql:
+    container_name: mysql
+    image: mysql:8
+    command:
+      --general-log=TRUE
+      --general-log-file=/var/lib/mysql/mysql-log.log
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: 'sqlcommenter_db'
+      MYSQL_ROOT_PASSWORD: 'password'
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - mynet 
+    volumes:
+      - './docker-data/mysql:/var/lib/mysql'
+  postgres:
+    image: postgres:14
+    container_name: postgres
+    # restart: always
+    volumes:
+      - './docker-data/postgres:/var/lib/postgresql/data'
+    command: postgres -c log_statement=all
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - mynet
+  http-service:
+    container_name: http-service
+    build:
+      context: .
+    depends_on:
+      postgres:
+        condition: service_healthy
+      mysql:
+        condition: service_healthy
+    links:
+      - postgres
+      - mysql
+    ports:
+      - 8081:8081
+    networks:
+      - mynet
