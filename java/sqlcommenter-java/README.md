@@ -110,11 +110,34 @@ or alternatively just for a specific method
 
 #### Hibernate
 
+##### Hibernate via JPA
+
 If you're using Hibernate via JPA, then you can simply set the `hibernate.session_factory.statement_inspector` configuration property in the `persistence.xml` configuration file:
 
 ```xml
 <property name="hibernate.session_factory.statement_inspector" value="com.google.cloud.sqlcommenter.schibernate.SCHibernate" />
 ```
+
+##### Hibernate via Spring Application Properties
+If you're using Hibernate via Spring application properties(i.e. you have `application.yml` or `application.properties` in your resources folder)
+- `application.properties`
+
+```properties
+spring.jpa.properties.hibernate.session_factory.statement_inspector=com.google.cloud.sqlcommenter.schibernate.SCHibernate
+```
+
+- `application.yml`
+
+```yml 
+spring:
+  jpa:
+    properties:
+      hibernate:
+        session_factory:
+          statement_inspector: com.google.cloud.sqlcommenter.schibernate.SCHibernate
+```
+
+##### Hibernate via Spring
 
 If you're using Hibernate via Spring, then you might not use a `persistence.xml` configuration file, in which case,
 you can set up the `hibernate.session_factory.statement_inspector` configuration property as follows:
