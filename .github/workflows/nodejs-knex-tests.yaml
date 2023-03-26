@@ -5,10 +5,10 @@ on:
     branches:
       - master
     paths:
-      - nodejs/sqlcommenter-nodejs/packages/sqlcommenter-knex
+      - nodejs/sqlcommenter-nodejs/packages/sqlcommenter-knex/**
   pull_request:
     paths:
-      - nodejs/sqlcommenter-nodejs/packages/sqlcommenter-knex
+      - nodejs/sqlcommenter-nodejs/packages/sqlcommenter-knex/**
 jobs:
   unittests:
     runs-on: ubuntu-latest

@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-const {hasComment} = require('./util');
+const { hasComment } = require('./util');
 const provider = require('./provider');
 const hook = require('./hooks');
 
@@ -33,7 +33,7 @@ const defaultFields = {
  *  TraceProvider: Should be either 'OpenCensus' or 'OpenTelemetry', indicating which library to collect trace data from.
  * @return {void}
  */
-exports.wrapMainKnex = (Knex, include={}, options={}) => {
+exports.wrapMainKnex = (Knex, include = {}, options = {}) => {
 
     /* c8 ignore next 2 */
     if (Knex.___alreadySQLCommenterWrapped___)
@@ -46,7 +46,7 @@ exports.wrapMainKnex = (Knex, include={}, options={}) => {
 
     // Please don't change this prototype from an explicit function
     // to use arrow functions lest we'll get bugs with not resolving "this".
-    Knex.Client.prototype.query = function(conn, obj) {
+    Knex.Client.prototype.query = function (conn, obj) {
 
         // If Knex.VERSION() is available, that means they are using a version of knex.js < 0.16.1
         // because as per https://github.com/tgriesser/knex/blob/master/CHANGELOG.md#0161---28-nov-2018
@@ -74,7 +74,7 @@ exports.wrapMainKnex = (Knex, include={}, options={}) => {
         // Add trace context to comments, depending on the current provider.
         provider.attachComments(options.TraceProvider, comments);
 
-        const filtering = typeof include === 'object' && include && Object.keys(include).length > 0; 
+        const filtering = typeof include === 'object' && include && Object.keys(include).length > 0;
         // Filter out keys whose values are undefined or aren't to be included by default.
         const keys = Object.keys(comments).filter((key) => {
             /* c8 ignore next 6 */
@@ -94,11 +94,19 @@ exports.wrapMainKnex = (Knex, include={}, options={}) => {
             const uri_encoded_value = encodeURIComponent(comments[key]);
             return `${uri_encoded_key}='${uri_encoded_value}'`;
         }).join(',');
-        
+
+        var trimmedSqlStmt = sqlStmt.trim();
+        if (sqlStmt.slice(-1) === ';') {
+            commentedSQLStatement = `${trimmedSqlStmt.slice(0, -1)} /*${commentStr}*/;`
+        }
+        else {
+            commentedSQLStatement = `${trimmedSqlStmt} /*${commentStr}*/`
+        }
+
         if (typeof obj === 'string') {
-            obj = {sql: `${sqlStmt} /*${commentStr}*/`};
+            obj = { sql: commentedSQLStatement };
         } else {
-            obj.sql = `${sqlStmt} /*${commentStr}*/`;
+            obj.sql = commentedSQLStatement;
         }
 
         return query.apply(this, [conn, obj]);
@@ -141,7 +149,7 @@ const getKnexVersion = (Knex) => {
  *  TraceProvider: Should be either 'OpenCensus' or 'OpenTelemetry', indicating which library to collect trace data from.
  * @return {Function} A middleware that is compatible with the express framework.
  */
-exports.wrapMainKnexAsMiddleware = (Knex, include=null, options) => {
+exports.wrapMainKnexAsMiddleware = (Knex, include = null, options) => {
 
     exports.wrapMainKnex(Knex, include, options);
 

@@ -94,6 +94,15 @@ describe("Comments for Knex", () => {
             done();
         });
 
+        it("should add ; after the comment ", (done) => {
+            const want = "SELECT * from foo /*db_driver='knex%3Afake%3A0.0.1'*/;";
+            fakeKnex.Client.prototype.query(null, { sql: 'SELECT * from foo;' }).then(({ sql }) => {
+                expect(sql).equals(want);
+            });
+            done();
+        });
+
+
         it("chaining and repeated calls should NOT indefinitely chain SQL", (done) => {
 
             const want = "SELECT * from foo /*db_driver='knex%3Afake%3A0.0.1'*/";
@@ -154,10 +163,10 @@ describe("With OpenTelemetry tracing", () => {
     it('Starting an OpenTelemetry trace should produce `traceparent`', (done) => {
         const rootSpan = tracer.startSpan('rootSpan');
         context.with(trace.setSpan(context.active(), rootSpan), async () => {
-            const obj = { sql: 'SELECT * FROM foo' };
+            const obj = { sql: 'SELECT * FROM foo;' };
             fakeKnex.Client.prototype.query(null, obj).then((got) => {
                 const augmentedSQL = got.sql;
-                const wantSQL = `SELECT * FROM foo /*db_driver='knex%3Afake%3A0.0.1',traceparent='00-${rootSpan.spanContext().traceId}-${rootSpan.spanContext().spanId}-01'*/`;
+                const wantSQL = `SELECT * FROM foo /*db_driver='knex%3Afake%3A0.0.1',traceparent='00-${rootSpan.spanContext().traceId}-${rootSpan.spanContext().spanId}-01'*/;`;
                 console.log(augmentedSQL);
                 expect(augmentedSQL).equals(wantSQL);
                 rootSpan.end();
