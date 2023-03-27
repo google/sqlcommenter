@@ -24,9 +24,9 @@ const chai = require("chai");
 const expect = chai.expect;
 const seq_version = require('sequelize').version;
 const { context, trace } = require('@opentelemetry/api');
-const { NodeTracerProvider } = require('@opentelemetry/node');
+const { NodeTracerProvider } = require('@opentelemetry/sdk-trace-node');
 const { AsyncHooksContextManager } = require('@opentelemetry/context-async-hooks');
-const { InMemorySpanExporter, SimpleSpanProcessor } = require('@opentelemetry/tracing');
+const { InMemorySpanExporter, SimpleSpanProcessor } = require('@opentelemetry/sdk-trace-base');
 
 const createFakeSequelize = () => {
     return {
