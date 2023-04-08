@@ -37,7 +37,7 @@ tracestate='rojo%253D00f067aa0ba902b7%2Ccongo%253Dt61rcWkgMzE''*/
 - [ ] Jetty
 - [ ] Netty
 - [ ] Apache Tomcat
-- [ ] gRPC
+- [X] gRPC
 
 ### Using it
 
@@ -173,3 +173,17 @@ public class JPAConfig {
 
 1. Please follow the instructions to add the [Spring interceptor](#spring)
 2. Please follow the instructions to add the [Hibernate StatementInspector](#hibernate)
+
+#### Spring gRPC Configuration 
+Add following configuration into your code
+```java
+@Configuration
+public class gRPCConfig {
+
+    @Bean
+    public GrpcSQLCommenterInterceptor grpcSQLCommenterInterceptor() {
+        return new GrpcSQLCommenterInterceptor();
+    }
+
+}
+```
