@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="5.0.6" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Google.Cloud.SqlCommenter.AspNetCore\Google.Cloud.SqlCommenter.AspNetCore.csproj" />
+  </ItemGroup>
+</Project>
