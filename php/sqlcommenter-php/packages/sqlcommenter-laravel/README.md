@@ -39,3 +39,6 @@ With Laravel SqlCommenter, we have configuration to choose which tags to be appe
 | `framework`   | <div style="text-align: center">&#10004;</div> | The word "laravel" and the version of laravel being used                                                                    |
 | `route`       | <div style="text-align: center">&#10004;</div> | The [route](https://laravel.com/docs/9.x/routing) of the matching URL pattern as described in your routes/api.php           |
 | `traceparent` | <div style="text-align: center">&#10004;</div> | The [W3C TraceContext.Traceparent field](https://www.w3.org/TR/trace-context/#traceparent-field) of the OpenTelemetry trace |
+
+## Contributing
+See [CONTRIBUTING.md](https://github.com/google/sqlcommenter/blob/master/php/sqlcommenter-php/packages/sqlcommenter-laravel/CONTRIBUTING.md)
