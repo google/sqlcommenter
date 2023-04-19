@@ -1,0 +1,39 @@
+name: Publish Python to Pypi
+
+on:
+  push:
+    tags:
+      - python-*
+
+jobs:
+  publish-python-to-pypi:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.7'
+
+    - name: Install build & twine
+      run: pip install twine build
+
+    - name: Build wheels
+      working-directory: ./python/sqlcommenter-python
+      run: python -m build
+
+    - name: Publish to TestPyPI
+      working-directory: ./python/sqlcommenter-python
+      env:
+        TWINE_USERNAME: '__token__'
+        TWINE_PASSWORD: ${{ secrets.test_pypi_token }}
+      run: |
+        twine upload --repository testpypi --skip-existing --verbose dist/*
+
+    - name: Publish to PyPI
+      working-directory: ./python/sqlcommenter-python
+      env:
+        TWINE_USERNAME: '__token__'
+        TWINE_PASSWORD: ${{ secrets.pypi_password }}
+      run: |
+        twine upload --skip-existing --verbose dist/*
