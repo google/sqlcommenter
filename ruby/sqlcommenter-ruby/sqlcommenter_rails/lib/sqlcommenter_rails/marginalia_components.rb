@@ -34,7 +34,6 @@ module Marginalia
   end
 end
 
-Marginalia::Comment.key_value_separator = '='
-Marginalia::Comment.quote_values = :single
+Marginalia::Comment.update_formatter!(:sqlcommenter)
 Marginalia::Comment.components += %i[framework db_driver route]
 Marginalia::Comment.components.sort!
