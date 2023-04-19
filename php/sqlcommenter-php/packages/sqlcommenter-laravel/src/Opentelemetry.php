@@ -21,6 +21,11 @@ use OpenTelemetry\API\Trace\Propagation\TraceContextPropagator;
 
 class Opentelemetry
 {
+    /**
+     * Get the underlying Opentelemetry values.
+     *
+     * @return array
+     */
     public static function getOpentelemetryValues()
     {
         $carrier = [];

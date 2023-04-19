@@ -19,6 +19,12 @@ namespace Google\GoogleSqlCommenterLaravel;
 
 class Utils
 {
+    /**
+     * Format query comments.
+     *
+     * @param array $comments
+     * @return string
+     */
     public static function formatComments(array $comments): string
     {
         if (empty($comments)) {
@@ -34,6 +40,12 @@ class Utils
         ) . "*/";
     }
 
+    /**
+     * Encode URL.
+     *
+     * @param string $input
+     * @return string
+     */
     private static function customUrlEncode(string $input): string
     {
         $encodedString = urlencode($input);

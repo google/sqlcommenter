@@ -37,6 +37,12 @@ class Connection extends BaseConnection
         );
     }
 
+    /**
+     * Append SQL comments to the underlying query.
+     *
+     * @param string $query
+     * @return string
+     */
     private function appendSqlComments(string $query): string
     {
         static $configurationKey = 'google_sqlcommenter.include';
@@ -52,7 +58,7 @@ class Connection extends BaseConnection
         if (config("{$configurationKey}.controller", true) && !empty($action['controller'])) {
             $comments['controller'] = explode("@", class_basename($action['controller']))[0];
         }
-        if (config("{$configurationKey}.action", true) && !empty($action and $action['controller'] && str_contains($action['controller'], '@'))) {
+        if (config("{$configurationKey}.action", true) && !empty($action) && !empty($action['controller']) && str_contains($action['controller'], '@')) {
             $comments['action'] = explode("@", class_basename($action['controller']))[1];
         }
         if (config("{$configurationKey}.route", true)) {
