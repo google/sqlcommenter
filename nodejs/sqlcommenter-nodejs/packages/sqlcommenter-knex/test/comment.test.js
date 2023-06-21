@@ -14,155 +14,200 @@
 
 "use strict";
 
-const { wrapMainKnex } = require('../index');
+const { wrapMainKnex } = require("../index");
 const chai = require("chai");
-const { context, trace } = require('@opentelemetry/api');
-const { NodeTracerProvider } = require('@opentelemetry/node');
-const { AsyncHooksContextManager } = require('@opentelemetry/context-async-hooks');
-const { InMemorySpanExporter, SimpleSpanProcessor } = require('@opentelemetry/tracing');
+const { context, trace } = require("@opentelemetry/api");
+const { NodeTracerProvider } = require("@opentelemetry/node");
+const {
+  AsyncHooksContextManager,
+} = require("@opentelemetry/context-async-hooks");
+const {
+  InMemorySpanExporter,
+  SimpleSpanProcessor,
+} = require("@opentelemetry/tracing");
 
 const expect = chai.expect;
 
 describe("Comments for Knex", () => {
-
-    let fakeKnex = {
-        Client: {
-            prototype: {
-                config: { connection: { database: 'fake' }, client: 'fakesql' },
-                version: 'fake-server:0.0.X',
-                query: (conn, obj) => {
-                    return Promise.resolve(obj); // simply returns a resolved promise for inspection.
-                }
-            }
+  let fakeKnex = {
+    Client: {
+      prototype: {
+        config: { connection: { database: "fake" }, client: "fakesql" },
+        version: "fake-server:0.0.X",
+        query: (conn, obj) => {
+          return Promise.resolve(obj); // simply returns a resolved promise for inspection.
         },
-        VERSION: () => {
-            return 'fake:0.0.1';
-        }
-    };
+      },
+    },
+    VERSION: () => {
+      return "fake:0.0.1";
+    },
+  };
 
-    before(() => {
-        wrapMainKnex(fakeKnex, { db_driver: true })
+  before(() => {
+    wrapMainKnex(fakeKnex, { db_driver: true });
+  });
+
+  describe("Cases", () => {
+    it("should add comment to generated sql", (done) => {
+      const want =
+        "SELECT CURRENT_TIMESTAMP /*db_driver='knex%3Afake%3A0.0.1'*/";
+      const obj = { sql: "SELECT CURRENT_TIMESTAMP" };
+
+      fakeKnex.Client.prototype.query(null, obj).then(({ sql }) => {
+        expect(sql).equals(want);
+      });
+      done();
     });
 
-    describe("Cases", () => {
+    it("should NOT affix comments to statements with existing comments", (done) => {
+      const queries = [
+        "SELECT * FROM people /* existing */",
+        "SELECT * FROM people -- existing",
+      ];
 
-        it("should add comment to generated sql", (done) => {
-
-            const want = "SELECT CURRENT_TIMESTAMP /*db_driver='knex%3Afake%3A0.0.1'*/";
-            const obj = { sql: 'SELECT CURRENT_TIMESTAMP' };
-
-            fakeKnex.Client.prototype.query(null, obj).then(({ sql }) => {
-                expect(sql).equals(want);
-            });
-            done();
-        });
-
-        it("should NOT affix comments to statements with existing comments", (done) => {
-
-            const queries = [
-                'SELECT * FROM people /* existing */',
-                'SELECT * FROM people -- existing'
-            ];
-
-            Promise.all([
-                fakeKnex.Client.prototype.query(null, queries[0]),
-                fakeKnex.Client.prototype.query(null, queries[1])
-            ]).then(([a, b]) => {
-                expect(a).to.equal(queries[0]);
-                expect(b).to.equal(queries[1]);
-            });
-            done();
-        });
-
-        it("should add expected database/driver properties", (done) => {
-            const want = [
-                "db_driver",
-            ];
-            fakeKnex.Client.prototype.query(null, 'SELECT * from foo').then(({ sql }) => {
-                want.forEach((key) => {
-                    expect(sql.indexOf(key)).to.be.gt(-1);
-                });
-            });
-            done();
-        });
-
-        it("should deterministically sort keys alphabetically", (done) => {
-            const want = "SELECT * from foo /*db_driver='knex%3Afake%3A0.0.1'*/";
-            fakeKnex.Client.prototype.query(null, { sql: 'SELECT * from foo' }).then(({ sql }) => {
-                expect(sql).equals(want);
-            });
-            done();
-        });
-
-        it("chaining and repeated calls should NOT indefinitely chain SQL", (done) => {
-
-            const want = "SELECT * from foo /*db_driver='knex%3Afake%3A0.0.1'*/";
-
-            const obj = { sql: 'SELECT * from foo' };
-
-            fakeKnex.Client.prototype.query(null, obj)
-                .then((a) => fakeKnex.Client.prototype.query(null, a))
-                .then((b) => fakeKnex.Client.prototype.query(null, b))
-                .then((c) => fakeKnex.Client.prototype.query(null, c))
-                .then((d) => {
-                    expect(d.sql).equals(want);
-                });
-
-            done();
-        });
+      Promise.all([
+        fakeKnex.Client.prototype.query(null, queries[0]),
+        fakeKnex.Client.prototype.query(null, queries[1]),
+      ]).then(([a, b]) => {
+        expect(a).to.equal(queries[0]);
+        expect(b).to.equal(queries[1]);
+      });
+      done();
     });
+
+    it("should add expected database/driver properties", (done) => {
+      const want = ["db_driver"];
+      fakeKnex.Client.prototype
+        .query(null, "SELECT * from foo")
+        .then(({ sql }) => {
+          want.forEach((key) => {
+            expect(sql.indexOf(key)).to.be.gt(-1);
+          });
+        });
+      done();
+    });
+
+    it("should deterministically sort keys alphabetically", (done) => {
+      const want = "SELECT * from foo /*db_driver='knex%3Afake%3A0.0.1'*/";
+      fakeKnex.Client.prototype
+        .query(null, { sql: "SELECT * from foo" })
+        .then(({ sql }) => {
+          expect(sql).equals(want);
+        });
+      done();
+    });
+
+    it("chaining and repeated calls should NOT indefinitely chain SQL", (done) => {
+      const want = "SELECT * from foo /*db_driver='knex%3Afake%3A0.0.1'*/";
+
+      const obj = { sql: "SELECT * from foo" };
+
+      fakeKnex.Client.prototype
+        .query(null, obj)
+        .then((a) => fakeKnex.Client.prototype.query(null, a))
+        .then((b) => fakeKnex.Client.prototype.query(null, b))
+        .then((c) => fakeKnex.Client.prototype.query(null, c))
+        .then((d) => {
+          expect(d.sql).equals(want);
+        });
+
+      done();
+    });
+  });
 });
 
-
 describe("With OpenTelemetry tracing", () => {
-
-    let fakeKnex = {
-        Client: {
-            prototype: {
-                config: { connection: { database: 'fake' }, client: 'fakesql' },
-                version: 'fake-server:0.0.X',
-                query: (conn, obj) => {
-                    return Promise.resolve(obj); // simply returns a resolved promise for inspection.
-                }
-            }
+  let fakeKnex = {
+    Client: {
+      prototype: {
+        config: { connection: { database: "fake" }, client: "fakesql" },
+        version: "fake-server:0.0.X",
+        query: (conn, obj) => {
+          return Promise.resolve(obj); // simply returns a resolved promise for inspection.
         },
-        VERSION: () => {
-            return 'fake:0.0.1';
-        }
-    };
+      },
+    },
+    VERSION: () => {
+      return "fake:0.0.1";
+    },
+  };
 
-    // Load OpenTelemetry components
-    const provider = new NodeTracerProvider();
-    const memoryExporter = new InMemorySpanExporter();
-    const spanProcessor = new SimpleSpanProcessor(memoryExporter);
-    provider.addSpanProcessor(spanProcessor);
-    const tracer = provider.getTracer('default');
-    trace.setGlobalTracerProvider(provider);
-    let contextManager;
+  // Load OpenTelemetry components
+  const provider = new NodeTracerProvider();
+  const memoryExporter = new InMemorySpanExporter();
+  const spanProcessor = new SimpleSpanProcessor(memoryExporter);
+  provider.addSpanProcessor(spanProcessor);
+  const tracer = provider.getTracer("default");
+  trace.setGlobalTracerProvider(provider);
+  let contextManager;
 
-    before(() => {
-        contextManager = new AsyncHooksContextManager();
-        context.setGlobalContextManager(contextManager.enable());
-        wrapMainKnex(fakeKnex, { db_driver: true, traceparent: true, tracestate: true }, { TraceProvider: "" });
+  before(() => {
+    contextManager = new AsyncHooksContextManager();
+    context.setGlobalContextManager(contextManager.enable());
+    wrapMainKnex(
+      fakeKnex,
+      { db_driver: true, traceparent: true, tracestate: true },
+      { TraceProvider: "" }
+    );
+  });
+
+  after(() => {
+    memoryExporter.reset();
+    context.disable();
+  });
+
+  it("Starting an OpenTelemetry trace should produce `traceparent`", (done) => {
+    const rootSpan = tracer.startSpan("rootSpan");
+    context.with(trace.setSpan(context.active(), rootSpan), async () => {
+      const obj = { sql: "SELECT * FROM foo" };
+      fakeKnex.Client.prototype.query(null, obj).then((got) => {
+        const augmentedSQL = got.sql;
+        const wantSQL = `SELECT * FROM foo /*db_driver='knex%3Afake%3A0.0.1',traceparent='00-${
+          rootSpan.spanContext().traceId
+        }-${rootSpan.spanContext().spanId}-01'*/`;
+        console.log(augmentedSQL);
+        expect(augmentedSQL).equals(wantSQL);
+        rootSpan.end();
+        done();
+      });
     });
+  });
+});
 
-    after(() => {
-        memoryExporter.reset();
-        context.disable();
-    });
+describe("Additional comments for Knex", () => {
+  let fakeKnex = {
+    Client: {
+      prototype: {
+        config: { connection: { database: "fake" }, client: "fakesql" },
+        version: "fake-server:0.0.X",
+        query: (conn, obj) => {
+          return Promise.resolve(obj); // simply returns a resolved promise for inspection.
+        },
+      },
+    },
+    VERSION: () => {
+      return "fake:0.0.1";
+    },
+  };
 
-    it('Starting an OpenTelemetry trace should produce `traceparent`', (done) => {
-        const rootSpan = tracer.startSpan('rootSpan');
-        context.with(trace.setSpan(context.active(), rootSpan), async () => {
-            const obj = { sql: 'SELECT * FROM foo' };
-            fakeKnex.Client.prototype.query(null, obj).then((got) => {
-                const augmentedSQL = got.sql;
-                const wantSQL = `SELECT * FROM foo /*db_driver='knex%3Afake%3A0.0.1',traceparent='00-${rootSpan.spanContext().traceId}-${rootSpan.spanContext().spanId}-01'*/`;
-                console.log(augmentedSQL);
-                expect(augmentedSQL).equals(wantSQL);
-                rootSpan.end();
-                done();
-            });
-        });
+  before(() => {
+    wrapMainKnex(fakeKnex, { db_driver: true }, undefined, {
+      key1: "someString",
+      key2: () => "stringFromFn",
     });
+  });
+
+  describe("Cases", () => {
+    it("should add comment to generated sql", (done) => {
+      const want =
+        "SELECT CURRENT_TIMESTAMP /*db_driver='knex%3Afake%3A0.0.1',key1='someString',key2='stringFromFn'*/";
+      const obj = { sql: "SELECT CURRENT_TIMESTAMP" };
+
+      fakeKnex.Client.prototype.query(null, obj).then(({ sql }) => {
+        expect(sql).equals(want);
+      });
+      done();
+    });
+  });
 });
