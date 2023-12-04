@@ -34,7 +34,6 @@ setup(
     long_description_content_type='text/markdown',
     license='BSD',
     packages=find_packages(exclude=['tests']),
-    install_requires=['asgiref', 'fastapi'],
     extras_require={
         'django': ['django >= 1.11'],
         'flask': ['flask'],
