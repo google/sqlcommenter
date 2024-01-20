@@ -26,7 +26,7 @@ jobs:
         working-directory: ./php/sqlcommenter-php/packages/sqlcommenter-laravel
         id: composer-cache
         run: |
-          echo "::set-output name=dir::$(composer config cache-files-dir)"
+          echo "dir=$(composer config cache-files-dir)" >> "$GITHUB_OUTPUT"
 
       - uses: actions/cache@v1
         with:
@@ -38,7 +38,7 @@ jobs:
       - name: Get yarn cache
         working-directory: ./php/sqlcommenter-php/packages/sqlcommenter-laravel
         id: yarn-cache
-        run: echo "::set-output name=dir::$(yarn cache dir)"
+        run: echo "dir=$(yarn cache dir)" >> "$GITHUB_OUTPUT"
 
       - uses: actions/cache@v1
         with:
