@@ -148,8 +148,8 @@ Thus given for example the following key value pairs
 key value pair|serialized_key|serialized_value|Final
 ---|---|---|---
 `route=/polls 1000`|`route`|`'%2Fpolls%201000'`|`route='%2Fpolls%201000'`
-`name='DROP TABLE FOO'`|`route`|`'%2Fpolls%201000'`|`route='%2Fpolls%201000'`
-`name''="DROP TABLE USERS'"`|name=\'\'|DROP%20TABLE%20USERS\'|name=\'\'='DROP%20TABLE%20USERS\''
+`name='DROP TABLE FOO'`|`name`|`'DROP%20TABLE%20FOO'`|`name='DROP%20TABLE%20FOO'`
+`name''="DROP TABLE USERS'"`|`name=''`|`'DROP%20TABLE%20USERS\''`|`name='DROP%20TABLE%20USERS\''`
 
 ### Sorting
 
@@ -287,10 +287,10 @@ Running [sql_commenter](#sql-commenter) on an ORM integration that extracts the 
 
 ```python
 sql_commenter('SELECT * FROM FOO', [
-        tracestate='congo%3Dt61rcWkgMzE%2Crojo%3D00f067aa0ba902b7',
+        tracestate='congo=t61rcWkgMzE,rojo=00f067aa0ba902b7',
         traceparent='00-5bd66ef5095369c7b0d1f8f4bd33716a-c532cb4098ac3dd2-01',
         framework='spring',
-        action='%2Fparam*d',
+        action='/param*d',
         controller='index',
 ])
 ```
