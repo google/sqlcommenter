@@ -147,7 +147,7 @@ func TestWithComment_WithContext(t *testing.T) {
 				},
 			),
 			query:     "SELECT 1;",
-			wantQuery: "SELECT 1/*action='any+action',application='app-1',db_driver='database%2Fsql%3Apostgres',framework='custom-golang',route='listData'*/;",
+			wantQuery: "SELECT 1/*action='any+action',application='app-1',controller='custom-controller',db_driver='database%2Fsql%3Apostgres',framework='custom-golang',route='listData'*/;",
 		},
 	}
 	for _, tc := range testCases {
