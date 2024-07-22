@@ -101,6 +101,10 @@ func (conn *sqlCommenterConn) withComment(ctx context.Context, query string) str
 		commentsMap[core.Action] = ctx.Value(core.Action).(string)
 	}
 
+	if config.EnableController && (ctx.Value(core.Controller) != nil) {
+		commentsMap[core.Controller] = ctx.Value(core.Controller).(string)
+	}
+
 	// `driver` information should not be coming from framework.
 	// So, explicitly adding that here.
 	if config.EnableDBDriver {
