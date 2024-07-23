@@ -25,10 +25,10 @@
     "@opentelemetry/plugin-pg": "^0.11.0",
     "@opentelemetry/plugin-pg-pool": "^0.11.0",
     "@opentelemetry/tracing": "^0.12.0",
-    "express": "^4.17.1",
-    "knex": "^0.21.12",
+    "express": "^4.19.2",
+    "knex": "^2.4.0",
     "pg": "^8.4.2",
     "pg-hstore": "^2.3.3",
-    "sequelize": "^6.3.5"
+    "sequelize": "^6.29.0"
   }
 }
