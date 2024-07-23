@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-const {hasComment} = require('./util');
+const { hasComment } = require('./util');
 const provider = require('./provider');
 const hook = require('./hooks');
 
@@ -33,7 +33,7 @@ const defaultFields = {
  *  TraceProvider: Should be either 'OpenCensus' or 'OpenTelemetry', indicating which library to collect trace data from.
  * @return {void}
  */
-exports.wrapSequelize = (sequelize, include={}, options={}) => {
+exports.wrapSequelize = (sequelize, include = {}, options = {}) => {
 
     /* c8 ignore next 2 */
     if (sequelize.___alreadySQLCommenterWrapped___)
@@ -43,7 +43,7 @@ exports.wrapSequelize = (sequelize, include={}, options={}) => {
 
     // Please don't change this prototype from an explicit function
     // to use arrow functions lest we'll get bugs with not resolving "this".
-    sequelize.dialect.Query.prototype.run = function(sql, sql_options) {
+    sequelize.dialect.Query.prototype.run = function (sql, sql_options) {
 
         // If a comment already exists, do not insert a new one.
         // See internal issue #20.
@@ -54,7 +54,7 @@ exports.wrapSequelize = (sequelize, include={}, options={}) => {
             client_timezone: this.sequelize.options.timezone,
             db_driver: `sequelize:${sequelizeVersion}`
         };
-        
+
         if (sequelize.__middleware__) {
             const context = hook.getContext();
             if (context && context.req) {
@@ -64,9 +64,9 @@ exports.wrapSequelize = (sequelize, include={}, options={}) => {
 
         // Add trace context to comments, depending on the provider.
         provider.attachComments(options.TraceProvider, comments);
-    
+
         // Filter out keys whose values are undefined or aren't to be included by default.
-        const filtering = typeof include === 'object' && include && Object.keys(include).length > 0; 
+        const filtering = typeof include === 'object' && include && Object.keys(include).length > 0;
         const keys = Object.keys(comments).filter((key) => {
             /* c8 ignore next 6 */
             if (!filtering)
@@ -85,10 +85,20 @@ exports.wrapSequelize = (sequelize, include={}, options={}) => {
             const uri_encoded_value = encodeURIComponent(comments[key]);
             return `${uri_encoded_key}='${uri_encoded_value}'`;
         }).join(',');
-               
-        if (commentStr && commentStr.length > 0)
-            sql = `${sql} /*${commentStr}*/`;
-        
+
+        sql = sql.trim()
+        if (commentStr && commentStr.length > 0) {
+            if (sql.slice(-1) === ';') {
+                var trimmedSql = sql.slice(0, -1);
+                sql = `${trimmedSql} /*${commentStr}*/;`;
+
+            }
+            else {
+                sql = `${sql} /*${commentStr}*/`;
+            }
+
+        }
+
         return run.apply(this, [sql, sql_options]);
     }
 
@@ -119,7 +129,7 @@ const sequelizeVersion = resolveSequelizeVersion();
  *  TraceProvider: Should be either 'OpenCensus' or 'OpenTelemetry', indicating which library to collect trace data from.
  * @return {Function} A middleware that is compatible with the express framework. 
  */
-exports.wrapSequelizeAsMiddleware = (sequelize, include=null, options) => {
+exports.wrapSequelizeAsMiddleware = (sequelize, include = null, options) => {
 
     exports.wrapSequelize(sequelize, include, options);
 

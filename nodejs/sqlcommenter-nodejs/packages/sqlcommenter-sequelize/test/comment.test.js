@@ -77,6 +77,18 @@ describe("Comments for Sequelize", () => {
             done();
         });
 
+        it("should add ; after the comment ", (done) => {
+
+            const want = `SELECT * FROM foo /*client_timezone='%2B00%3A00',db_driver='sequelize%3A${seq_version}'*/;`;
+            const query = 'SELECT * FROM foo; ';
+
+            fakeSequelize.dialect.Query.prototype.run(query).then((sql) => {
+                expect(sql).equals(want);
+            });
+
+            done();
+        });
+
         it("should NOT affix comments to statements with existing comments", (done) => {
 
             const q = [
