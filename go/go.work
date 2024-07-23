@@ -1,0 +1,9 @@
+go 1.19
+
+use (
+	./core
+	./database/sql
+	./gorrila/mux
+	./net/http
+	./samples/http
+)

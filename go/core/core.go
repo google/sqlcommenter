@@ -61,8 +61,14 @@ type StaticTags struct {
 // CommenterOptions contains all options regarding SQLCommenter library.
 // This includes the configurations as well as any static tags.
 type CommenterOptions struct {
+	Driver DriverOptions
 	Config CommenterConfig
 	Tags   StaticTags
+}
+
+type DriverOptions struct {
+	// Setting this to true means your underlying driver supports the ConnBeginTx interface
+	WithBeginTX bool
 }
 
 func encodeURL(k string) string {
