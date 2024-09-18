@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="5.0.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Google.Cloud.SqlCommenter.Abstractions\Google.Cloud.SqlCommenter.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>

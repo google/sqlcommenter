@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option csharp_namespace = "SqlCommenter.Example";
+
+package greet;
+
+service Greeter {
+  rpc SayHello (HelloRequest) returns (stream HelloReply);
+}
+
+message HelloRequest {
+}
+
+message HelloReply {
+  string message = 1;
+}

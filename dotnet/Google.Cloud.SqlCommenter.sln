@@ -1,0 +1,81 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{75238849-652F-422D-A40C-0B9176A48D70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Google.Cloud.SqlCommenter.Abstractions", "src\Google.Cloud.SqlCommenter.Abstractions\Google.Cloud.SqlCommenter.Abstractions.csproj", "{91460D4D-6314-4564-8870-67113A6EAFA2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Google.Cloud.SqlCommenter.AspNetCore", "src\Google.Cloud.SqlCommenter.AspNetCore\Google.Cloud.SqlCommenter.AspNetCore.csproj", "{8EA2453E-4D68-4386-8A5B-DE62902F6F37}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Google.Cloud.SqlCommenter.AspNetCore.Grpc", "src\Google.Cloud.SqlCommenter.AspNetCore.Grpc\Google.Cloud.SqlCommenter.AspNetCore.Grpc.csproj", "{511B2462-CD6D-4968-9352-82EAF6709DA7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Google.Cloud.SqlCommenter.EntityFrameworkCore", "src\Google.Cloud.SqlCommenter.EntityFrameworkCore\Google.Cloud.SqlCommenter.EntityFrameworkCore.csproj", "{773541DE-6F1E-4E00-B13E-5D93604AB4B4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{1A97B85D-C782-49AA-8D9A-7D98AEBDFCE2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "example", "example", "{971A2F89-F378-402E-A8AA-F1C354938B39}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Google.Cloud.SqlCommenter.Abstractions.Test", "test\Google.Cloud.SqlCommenter.Abstractions.Test\Google.Cloud.SqlCommenter.Abstractions.Test.csproj", "{2230CD42-E547-4142-BE84-8ADD1F79AA6D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Google.Cloud.SqlCommenter.AspNetCore.Test", "test\Google.Cloud.SqlCommenter.AspNetCore.Test\Google.Cloud.SqlCommenter.AspNetCore.Test.csproj", "{26A626A9-6D65-494E-9FD9-2F2983A4C8C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Google.Cloud.SqlCommenter.AspNetCore.Grpc.Test", "test\Google.Cloud.SqlCommenter.AspNetCore.Grpc.Test\Google.Cloud.SqlCommenter.AspNetCore.Grpc.Test.csproj", "{244E87DF-5233-43A2-871F-199BD52B6502}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Google.Cloud.SqlCommenter.EntityFrameworkCore.Test", "test\Google.Cloud.SqlCommenter.EntityFrameworkCore.Test\Google.Cloud.SqlCommenter.EntityFrameworkCore.Test.csproj", "{617EDDDE-C823-40EF-A85C-910CE1F9C3F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlCommenterExample", "example\SqlCommenterExample\SqlCommenterExample.csproj", "{6FDCB12C-4698-402A-9868-66570EAEE8AA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{91460D4D-6314-4564-8870-67113A6EAFA2} = {75238849-652F-422D-A40C-0B9176A48D70}
+		{8EA2453E-4D68-4386-8A5B-DE62902F6F37} = {75238849-652F-422D-A40C-0B9176A48D70}
+		{511B2462-CD6D-4968-9352-82EAF6709DA7} = {75238849-652F-422D-A40C-0B9176A48D70}
+		{773541DE-6F1E-4E00-B13E-5D93604AB4B4} = {75238849-652F-422D-A40C-0B9176A48D70}
+		{2230CD42-E547-4142-BE84-8ADD1F79AA6D} = {1A97B85D-C782-49AA-8D9A-7D98AEBDFCE2}
+		{26A626A9-6D65-494E-9FD9-2F2983A4C8C5} = {1A97B85D-C782-49AA-8D9A-7D98AEBDFCE2}
+		{244E87DF-5233-43A2-871F-199BD52B6502} = {1A97B85D-C782-49AA-8D9A-7D98AEBDFCE2}
+		{617EDDDE-C823-40EF-A85C-910CE1F9C3F6} = {1A97B85D-C782-49AA-8D9A-7D98AEBDFCE2}
+		{6FDCB12C-4698-402A-9868-66570EAEE8AA} = {971A2F89-F378-402E-A8AA-F1C354938B39}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{91460D4D-6314-4564-8870-67113A6EAFA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91460D4D-6314-4564-8870-67113A6EAFA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91460D4D-6314-4564-8870-67113A6EAFA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91460D4D-6314-4564-8870-67113A6EAFA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8EA2453E-4D68-4386-8A5B-DE62902F6F37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EA2453E-4D68-4386-8A5B-DE62902F6F37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EA2453E-4D68-4386-8A5B-DE62902F6F37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EA2453E-4D68-4386-8A5B-DE62902F6F37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{511B2462-CD6D-4968-9352-82EAF6709DA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{511B2462-CD6D-4968-9352-82EAF6709DA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{511B2462-CD6D-4968-9352-82EAF6709DA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{511B2462-CD6D-4968-9352-82EAF6709DA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{773541DE-6F1E-4E00-B13E-5D93604AB4B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{773541DE-6F1E-4E00-B13E-5D93604AB4B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{773541DE-6F1E-4E00-B13E-5D93604AB4B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{773541DE-6F1E-4E00-B13E-5D93604AB4B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2230CD42-E547-4142-BE84-8ADD1F79AA6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2230CD42-E547-4142-BE84-8ADD1F79AA6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2230CD42-E547-4142-BE84-8ADD1F79AA6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2230CD42-E547-4142-BE84-8ADD1F79AA6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26A626A9-6D65-494E-9FD9-2F2983A4C8C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26A626A9-6D65-494E-9FD9-2F2983A4C8C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26A626A9-6D65-494E-9FD9-2F2983A4C8C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26A626A9-6D65-494E-9FD9-2F2983A4C8C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{244E87DF-5233-43A2-871F-199BD52B6502}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{244E87DF-5233-43A2-871F-199BD52B6502}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{244E87DF-5233-43A2-871F-199BD52B6502}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{244E87DF-5233-43A2-871F-199BD52B6502}.Release|Any CPU.Build.0 = Release|Any CPU
+		{617EDDDE-C823-40EF-A85C-910CE1F9C3F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{617EDDDE-C823-40EF-A85C-910CE1F9C3F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{617EDDDE-C823-40EF-A85C-910CE1F9C3F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{617EDDDE-C823-40EF-A85C-910CE1F9C3F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FDCB12C-4698-402A-9868-66570EAEE8AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FDCB12C-4698-402A-9868-66570EAEE8AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FDCB12C-4698-402A-9868-66570EAEE8AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FDCB12C-4698-402A-9868-66570EAEE8AA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
