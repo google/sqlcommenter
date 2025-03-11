@@ -92,6 +92,6 @@ class QueryWrapper:
 
         # Add the query to the query log if debugging.
         if isinstance(context['cursor'], CursorDebugWrapper):
-            context['connection'].queries_log.append(sql)
+            context['connection'].queries_log.append({"sql": sql})
 
         return execute(sql, params, many, context)
