@@ -1,0 +1,58 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  "enabledManagers": [
+    "docker-compose",
+    "dockerfile",
+    "github-actions",
+    "gomod",
+    "helm-values",
+    "terraform",
+    "terraform-version"
+  ],
+  "packageRules": [
+    {
+      "matchManagers": [
+        "docker-compose",
+        "dockerfile"
+      ],
+      "groupName": "Docker Dependencies",
+      "enabled": true
+    },
+    {
+      "matchManagers": [
+        "terraform",
+        "terraform-version"
+      ],
+      "groupName": "Terraform Dependencies",
+      "enabled": true
+    },
+    {
+      "matchManagers": [
+        "github-actions"
+      ],
+      "groupName": "GitHub Actions Updates",
+      "enabled": true
+    },
+    {
+      "matchManagers": [
+        "helm-values",
+        "helmv3"
+      ],
+      "groupName": "Helm Chart Dependencies",
+      "enabled": true
+    },
+    {
+      "matchManagers": [
+        "gomod"
+      ],
+      "groupName": "Go Module Dependencies",
+      "enabled": true
+    }
+  ],
+  "ignoreDeps": [
+    "*"
+  ]
+}
