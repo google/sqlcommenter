@@ -1,18 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended",
-    ":disablePrControls"
-  ],
-  "packageRules": [
-    {
-      "matchDepTypes": [
-        "flux",
-        "helmv3",
-        "javascript",
-        "python"
-      ],
-      "enabled": false
-    }
+    "local>addgene/renovate-config"
   ]
 }
