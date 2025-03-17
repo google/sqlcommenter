@@ -66,7 +66,7 @@ dependencies {
     compile 'org.hibernate:hibernate-core:5.4.3.Final'
 
     testCompile 'junit:junit:4.13.2'
-    testCompile 'com.google.truth:truth:0.44'
+    testCompile 'com.google.truth:truth:0.46'
     testCompile 'org.mockito:mockito-core:1.9.5'
     testCompile 'org.springframework.boot:spring-boot-starter-data-jpa:2.1.5.RELEASE'
     testCompile 'org.springframework.boot:spring-boot-starter-test:2.1.5.RELEASE'
