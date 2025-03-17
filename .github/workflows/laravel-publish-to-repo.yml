@@ -2,7 +2,7 @@ name: Publish to "sqlcommenter-laravel-php" repository
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - php/sqlcommenter-php/packages/sqlcommenter-laravel/**
 jobs:

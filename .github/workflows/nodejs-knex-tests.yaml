@@ -3,7 +3,7 @@ name: Nodejs Knex Packages Test
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - nodejs/sqlcommenter-nodejs/packages/sqlcommenter-knex
   pull_request:
@@ -29,4 +29,3 @@ jobs:
         working-directory: ./nodejs/sqlcommenter-nodejs/packages/sqlcommenter-knex
       - run: npm test
         working-directory: ./nodejs/sqlcommenter-nodejs/packages/sqlcommenter-knex
-   

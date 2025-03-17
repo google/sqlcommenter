@@ -2,7 +2,7 @@ name: Integration Tests
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - php/sqlcommenter-php/packages/sqlcommenter-laravel/**
       - php/sqlcommenter-php/samples/sqlcommenter-laravel/**

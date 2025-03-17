@@ -3,7 +3,7 @@ name: Python Packages Test
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - python/sqlcommenter-python/**
   pull_request:
@@ -57,4 +57,3 @@ jobs:
         - name: run tox
           run: tox -e flake8
           working-directory: ./python/sqlcommenter-python
-
