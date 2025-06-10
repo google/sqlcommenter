@@ -67,15 +67,16 @@ class QueryWrapper:
 
         sql = add_sql_comment(
             sql,
+            # For supported tags, see: https://cloud.google.com/sql/docs/mysql/using-query-insights#using-sql-commenter
             # Information about the controller.
             controller=resolver_match.view_name if resolver_match and with_controller else None,
             # route is the pattern that matched a request with a controller i.e. the regex
             # See https://docs.djangoproject.com/en/stable/ref/urlresolvers/#django.urls.ResolverMatch.route
             # getattr() because the attribute doesn't exist in Django < 2.2.
             route=getattr(resolver_match, 'route', None) if resolver_match and with_route else None,
-            # app_name is the application namespace for the URL pattern that matches the URL.
+            # application is the application namespace for the URL pattern that matches the URL.
             # See https://docs.djangoproject.com/en/stable/ref/urlresolvers/#django.urls.ResolverMatch.app_name
-            app_name=(resolver_match.app_name or None) if resolver_match and with_app_name else None,
+            application=(resolver_match.app_name or None) if resolver_match and with_app_name else None,
             # Framework centric information.
             framework=('django:%s' % django_version) if with_framework else None,
             # Information about the database and driver.

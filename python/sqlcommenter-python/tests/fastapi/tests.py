@@ -32,7 +32,7 @@ def client():
 
 def test_get_fastapi_info_in_request_context(client):
     expected = {
-        'app_name': 'SQLCommenter',
+        'application': 'SQLCommenter',
         'controller': 'fastapi_info',
         'framework': 'fastapi:%s' % fastapi.__version__,
         'route': '/fastapi-info',
@@ -43,7 +43,7 @@ def test_get_fastapi_info_in_request_context(client):
 
 def test_get_fastapi_info_in_404_error_context(client):
     expected = {
-        'app_name': 'SQLCommenter',
+        'application': 'SQLCommenter',
         'framework': 'fastapi:%s' % fastapi.__version__,
     }
     resp = client.get('/doesnt-exist')

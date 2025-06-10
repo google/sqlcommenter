@@ -78,7 +78,7 @@ class SQLCommenterMiddleware:
 def _get_fastapi_info(fastapi_app: FastAPI, scope) -> dict:
     info = {
         "framework": 'fastapi:%s' % fastapi.__version__,
-        "app_name": fastapi_app.title,
+        "application": fastapi_app.title,
     }
 
     route = _get_fastapi_route(fastapi_app, scope)

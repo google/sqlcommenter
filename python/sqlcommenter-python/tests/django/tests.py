@@ -106,19 +106,19 @@ class Tests(TestCase):
     def test_app_path(self):
         with self.settings(SQLCOMMENTER_WITH_APP_NAME=True):
             query = self.get_query(path=reverse('app_urls:app-path'))
-            self.assertIn("/*app_name='app_urls'", query)
+            self.assertIn("/*application='app_urls'", query)
             self.assertIn("controller='app_urls%%3Aapp-path'", query)
             self.assertRoute('app-urls/app-path/', query)
 
     def test_app_name_disabled(self):
         query = self.get_query(path=reverse('app_urls:app-path'))
-        self.assertNotIn('app_name=', query)
+        self.assertNotIn('application=', query)
 
     def test_empty_app_name(self):
         """An empty app_name is omitted."""
         with self.settings(SQLCOMMENTER_WITH_APP_NAME=True):
             query = self.get_query()
-            self.assertNotIn("app_name=", query)
+            self.assertNotIn("application=", query)
 
     def test_db_driver(self):
         with self.settings(SQLCOMMENTER_WITH_DB_DRIVER=True):
