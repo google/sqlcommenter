@@ -19,7 +19,6 @@ from contextlib import ExitStack
 
 import django
 from django.db import connections
-from django.db.backends.utils import CursorDebugWrapper
 from google.cloud.sqlcommenter import add_sql_comment
 from google.cloud.sqlcommenter.opencensus import get_opencensus_values
 from google.cloud.sqlcommenter.opentelemetry import get_opentelemetry_values
@@ -89,9 +88,5 @@ class QueryWrapper:
         # See:
         #  * https://github.com/basecamp/marginalia/issues/61
         #  * https://github.com/basecamp/marginalia/pull/80
-
-        # Add the query to the query log if debugging.
-        if isinstance(context['cursor'], CursorDebugWrapper):
-            context['connection'].queries_log.append(sql)
 
         return execute(sql, params, many, context)
