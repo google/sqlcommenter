@@ -24,6 +24,7 @@ import sqlalchemy
 from google.cloud.sqlcommenter import add_sql_comment
 from google.cloud.sqlcommenter.fastapi import get_fastapi_info
 from google.cloud.sqlcommenter.flask import get_flask_info
+from google.cloud.sqlcommenter.celery import get_celery_info
 from google.cloud.sqlcommenter.opencensus import get_opencensus_values
 from google.cloud.sqlcommenter.opentelemetry import get_opentelemetry_values
 
@@ -47,6 +48,8 @@ def BeforeExecuteFactory(
         info = get_flask_info()
         if not info:
             info = get_fastapi_info()
+        if not info:
+            info = get_celery_info()
         return info
 
     def before_cursor_execute(conn, cursor, sql, parameters, context, executemany):

@@ -41,6 +41,7 @@ setup(
         'fastapi': ['fastapi'],
         'psycopg2': ['psycopg2'],
         'sqlalchemy': ['sqlalchemy'],
+        'celery': ['celery>=5'],
         'opencensus': ['opencensus'],
         'opentelemetry': ["opentelemetry-api ~= 1.0"],
     },

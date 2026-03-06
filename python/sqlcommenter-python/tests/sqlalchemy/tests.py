@@ -161,3 +161,38 @@ class FastAPITests(SQLAlchemyTestCase):
             "SELECT 1 /*controller='c',framework='fastapi'*/;",
             with_route=False,
         )
+
+
+class CeleryTests(SQLAlchemyTestCase):
+    celery_info = {
+        'framework': 'celery',
+        'controller': 'tasks.add',
+        'route': 'celery',
+    }
+
+    @mock.patch('google.cloud.sqlcommenter.sqlalchemy.executor.get_celery_info', return_value=celery_info)
+    def test_all_data(self, get_info):
+        self.assertSQL(
+            "SELECT 1 /*controller='tasks.add',framework='celery',route='celery'*/;",
+        )
+
+    @mock.patch('google.cloud.sqlcommenter.sqlalchemy.executor.get_celery_info', return_value=celery_info)
+    def test_framework_disabled(self, get_info):
+        self.assertSQL(
+            "SELECT 1 /*controller='tasks.add',route='celery'*/;",
+            with_framework=False,
+        )
+
+    @mock.patch('google.cloud.sqlcommenter.sqlalchemy.executor.get_celery_info', return_value=celery_info)
+    def test_controller_disabled(self, get_info):
+        self.assertSQL(
+            "SELECT 1 /*framework='celery',route='celery'*/;",
+            with_controller=False,
+        )
+
+    @mock.patch('google.cloud.sqlcommenter.sqlalchemy.executor.get_celery_info', return_value=celery_info)
+    def test_route_disabled(self, get_info):
+        self.assertSQL(
+            "SELECT 1 /*controller='tasks.add',framework='celery'*/;",
+            with_route=False,
+        )
