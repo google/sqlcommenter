@@ -55,7 +55,7 @@ we can now correlate and pinpoint the fields in the above slow SQL query to our 
 
 Original field|Interpretation
 ---|----
-`controller='index'`|Controller name `^/polls/$`
+`controller='index'`|Controller name `index`
 `db_driver='django.db.backends.postgresql'`|Database driver `django.db.backends.postgresql`
 `framework='django%3A2.2.1'`|Framework version of `django 2.2.1`
 `route='%5Epolls/%24'`|Route of `^/polls/$`
